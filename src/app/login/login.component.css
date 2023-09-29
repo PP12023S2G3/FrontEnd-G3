@@ -1,23 +1,61 @@
+/*@keyframes cambiaColoresBorde {
+  0% {
+    border-color: rgba(0, 25, 255, 1);
+  }
+
+  25% {
+    border-color:rgba(101, 0, 180, 1);
+  }
+
+  50% {
+    border-color: rgba(37, 255, 1, 1);
+  }
+
+  75% {
+    border-color: rgba(101, 0, 180, 1);
+  }
+
+  100% {
+    border-color: rgba(0, 25, 255, 1);
+  }
+  
+}
+
 .login-container {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background: linear-gradient(to bottom, #531981, #E62D9C);
-    text-align: center;
-    border-radius: 10px;
-  }
+  width: 498px;
+  height: 445px;
+  flex-shrink: 0;  
+  padding: 20px;
+  border-style: solid;
+  border-width: 2px;
+  animation: cambiaColoresBorde 5s ease-in infinite;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.titulo-iniciar-sesion{
+  color: black;
+  font-weight: bold;
+}
+
+.campos-iniciar-sesion {
+  margin-bottom: 20px;
+  color:black;
+}
+
+.boton{
+  width: 418.32px;
+  height: 59.775px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+  color: white;
+  font-weight: bold;
   
-  h2 {
-    color: white;
-  }
-  
-  .p-field {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    color: white;
-  }
-  
+}
+
+.etiquetas-iniciar-sesion {
+  display: block;
+  color: rgb(0, 0, 0);
+}*/
