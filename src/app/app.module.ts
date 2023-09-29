@@ -21,7 +21,7 @@ import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { ContentFormularioComponent } from './views/formulario-view/content-formulario/content-formulario.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import { ButtonModule } from 'primeng/button';
     HistorialViewComponent,
     InicioViewComponent,
     FormularioViewComponent,
-    ContentFormularioComponent
+    ContentFormularioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -43,13 +44,9 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     AppRoutingModule,
     PanelModule,
-<<<<<<< Updated upstream
-    ButtonModule
-=======
-    InputTextModule, 
-    PasswordModule,  
-    ButtonModule    
->>>>>>> Stashed changes
+    ButtonModule,
+    InputTextModule,
+    PasswordModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
