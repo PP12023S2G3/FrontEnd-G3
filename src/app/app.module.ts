@@ -15,8 +15,10 @@ import { ContentComponent } from './shared/content/content.component';
 
 //PRIMENG
 import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button'
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { ContentFormularioComponent } from './views/formulario-view/content-formulario/content-formulario.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ContentFormularioComponent } from './views/formulario-view/content-form
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
-    PanelModule
+    PanelModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

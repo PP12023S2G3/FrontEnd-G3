@@ -23,7 +23,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 8px 0;
+  margin: 15px 0;
 }
 
 p {
@@ -57,9 +57,13 @@ p {
   background-color: #124694;
   color: white;
   font-weight: 600;
-  text-align: center;
 }
 
+.toolbar .button-login {
+  height: 40px;
+  float: right;
+  margin-top: -3.5rem;
+}
 
 .global-message-error {
   span {
