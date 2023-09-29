@@ -1,0 +1,23 @@
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: linear-gradient(to bottom, #531981, #E62D9C);
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    color: white;
+  }
+  
+  .p-field {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    color: white;
+  }
+  

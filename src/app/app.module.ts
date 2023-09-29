@@ -12,12 +12,16 @@ import { FormularioViewComponent } from './views/formulario-view/formulario-view
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ContentComponent } from './shared/content/content.component';
+import { FormsModule } from '@angular/forms';
 
 //PRIMENG
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button'
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { ContentFormularioComponent } from './views/formulario-view/content-formulario/content-formulario.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -36,9 +40,16 @@ import { ContentFormularioComponent } from './views/formulario-view/content-form
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     PanelModule,
+<<<<<<< Updated upstream
     ButtonModule
+=======
+    InputTextModule, 
+    PasswordModule,  
+    ButtonModule    
+>>>>>>> Stashed changes
   ],
   providers: [],
   bootstrap: [AppComponent]
