@@ -1,0 +1,9 @@
+
+<div class="formulario">
+    <div class="container-custom-file-input">
+    <!-- Botón circular para subir una imagen -->
+    <input class="custom-file-input" type="file" accept="image/*" (change)="onImageSelected($event)" />
+    </div>
+    <!-- Botón "Resultado" -->
+    <button (click)="diagnosticResult()" class="result-button">Resultado</button>
+</div>

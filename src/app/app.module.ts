@@ -16,7 +16,7 @@ import { ContentComponent } from './shared/content/content.component';
 //PRIMENG
 import { PanelModule } from 'primeng/panel';
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
-
+import { ContentFormularioComponent } from './views/formulario-view/content-formulario/content-formulario.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
     ModeloViewComponent,
     HistorialViewComponent,
     InicioViewComponent,
-    FormularioViewComponent
+    FormularioViewComponent,
+    ContentFormularioComponent
   ],
   imports: [
     BrowserAnimationsModule,

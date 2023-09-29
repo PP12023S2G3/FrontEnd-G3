@@ -1,12 +1,21 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #F5F5F5;
+}
+
+.root{
+  display: block;
+  height: 100%;
+}
+
 * {
   font-family: 'Arial';
   font-style: normal;
   font-weight: 400;
 }
 
-body {
-  background-color: #F5F5F5;
-}
 
 h1,
 h2,
@@ -23,6 +32,19 @@ p {
 
 .spacer {
   flex: 1;
+}
+.view{
+  height: 100%;
+}
+.container{
+  position: absolute;
+  top: 70px;/* Agrega un espacio superior de 70px por la altura del header */
+  left: 0;
+  right: 0;
+  height: calc(100% - 70px); /* Calcula la altura, restando 70px desde la altura total de la ventana */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
 }
 
 .toolbar {
