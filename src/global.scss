@@ -1,8 +1,6 @@
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #F5F5F5;
+
+  background-color: white;
 }
 
 .root{
@@ -16,14 +14,10 @@ html, body {
   font-weight: 400;
 }
 
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 15px 0;
+div .global-label {
+  width: 40%;
+  margin-left: 8%;
+  font-size: 40px;
 }
 
 p {
@@ -46,6 +40,17 @@ p {
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
 }
+.container-header-inicio {
+  height: calc(100% - 80px);
+}
+
+.container-content-inicio {
+  margin-top: 10rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+}
 
 .toolbar {
   position: absolute;
@@ -57,6 +62,10 @@ p {
   background-color: #124694;
   color: white;
   font-weight: 600;
+}
+
+.global-inicio-imagen {
+ margin-top: -3rem;
 }
 
 .toolbar .button-login {
@@ -75,46 +84,3 @@ p {
   }
 }
 
-.global-table {
-
-  margin: 0vw 0vw 1vw 0vw;
-
-  table {
-    border-collapse: separate;
-  }
-
-  .p-datatable-thead th:first-child {
-    border-top-left-radius: 10px;
-
-  }
-
-  .p-datatable-thead th:last-child {
-    border-top-right-radius: 10px;
-  }
-
-  table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-  }
-
-  table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-  }
-
-  .p-datatable .p-datatable-thead>tr>th {
-    text-align: center;
-    border-color: black;
-    background: #BBBABF;
-    text-align: center;
-    padding: 0.3rem;
-    font-family: 'Arial';
-    font-style: normal;
-    font-weight: 400;
-    color: black;
-  }
-
-  .p-datatable .p-datatable-tbody>tr>td {
-    text-align: center;
-    border-color: black;
-    padding: 1rem;
-  }
-}
