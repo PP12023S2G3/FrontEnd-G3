@@ -1,23 +1,47 @@
+@keyframes cambiaColoresBorde {
+  0% {
+    border-top-color: #531981;
+  }
+
+  25% {
+    border-color:#E62D9C;
+  }
+
+  50% {
+    border-color: #531981;
+  }
+
+  75% {
+    border-color: #E62D9C;
+  }
+
+  100% {
+    border-color: #531981;
+  }
+  
+}
+
 .login-container {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background: linear-gradient(to bottom, #531981, #E62D9C);
-    text-align: center;
-    border-radius: 10px;
-  }
-  
-  h2 {
-    color: white;
-  }
-  
-  .p-field {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    color: white;
-  }
-  
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border-style: solid;
+  border-width: 2px;
+  animation: cambiaColoresBorde 5s ease-in infinite;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+}
+
+h2 {
+  color: white;
+}
+
+.p-field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  color: white;
+}
