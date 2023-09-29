@@ -27,8 +27,8 @@ import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
     ContactoViewComponent,
     ModeloViewComponent,
     HistorialViewComponent,
-    FormularioViewComponent,
-    InicioViewComponent
+    InicioViewComponent,
+    FormularioViewComponent
   ],
   imports: [
     BrowserAnimationsModule,

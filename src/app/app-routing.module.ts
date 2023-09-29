@@ -3,12 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactoViewComponent } from './views/contacto-view/contacto-view.component';
 import { ModeloViewComponent } from './views/modelo-view/modelo-view.component';
 import { HistorialViewComponent } from './views/historial-view/historial-view.component';
+import { FormularioViewComponent } from './views/formulario-view/formulario-view.component';
+import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 
 
 const routes: Routes = [
   { path: 'contacto', component: ContactoViewComponent },
   { path: 'modelo', component: ModeloViewComponent },
   { path: 'historial', component: HistorialViewComponent },
+  { path: 'formulario', component: FormularioViewComponent },
+  { path: '', component: InicioViewComponent }
 ];
 
 @NgModule({
