@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
 
   background-color: white;
 }
 
-.root{
+.root {
   display: block;
   height: 100%;
 }
@@ -27,19 +28,26 @@ p {
 .spacer {
   flex: 1;
 }
-.view{
+
+.view {
   height: 100%;
 }
-.container{
+
+.container {
   position: absolute;
-  top: 70px;/* Agrega un espacio superior de 70px por la altura del header */
+  top: 70px;
+  /* Agrega un espacio superior de 70px por la altura del header */
   left: 0;
   right: 0;
-  height: calc(100% - 70px); /* Calcula la altura, restando 70px desde la altura total de la ventana */
+  height: calc(100% - 70px);
+  /* Calcula la altura, restando 70px desde la altura total de la ventana */
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
 }
+
 .container-header-inicio {
   height: calc(100% - 80px);
 }
@@ -65,7 +73,7 @@ p {
 }
 
 .global-inicio-imagen {
- margin-top: -3rem;
+  margin-top: -3rem;
 }
 
 .toolbar .button-login {
@@ -126,4 +134,88 @@ p {
     border-color: black;
     padding: 1rem;
   }
+}
+
+@keyframes cambiaColoresBorde {
+  0% {
+    border-color: rgba(0, 25, 255, 1);
+  }
+
+  25% {
+    border-color: rgba(101, 0, 180, 1);
+  }
+
+  50% {
+    border-color: rgba(37, 255, 1, 1);
+  }
+
+  75% {
+    border-color: rgba(101, 0, 180, 1);
+  }
+
+  100% {
+    border-color: rgba(0, 25, 255, 1);
+  }
+
+}
+
+.login-container {
+  width: 498px;
+  height: 445px;
+  position: relative;
+  left: 471px;
+  right: 471px;
+  top: 193px;
+  bottom: 290px;
+  padding: 20px;
+  border-style: solid;
+  border-width: 2px;
+  animation: cambiaColoresBorde 5s ease-in infinite;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.titulo-iniciar-sesion {
+  color: black;
+  font-weight: bold;
+}
+
+.campos-iniciar-sesion {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.etiquetas-iniciar-sesion {
+  display: block;
+  color: rgb(0, 0, 0);
+  width: 32px;
+  color: #000;
+  font-size: 15.94px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 10px;
+  margin: 15px;
+}
+
+.boton {
+  width: 418.32px;
+  height: 59.775px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+  color: white;
+  color: #FFF;
+  font-size: 15.94px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+
+}
+
+.input-datos-iniciar-sesion {
+  width: 418.32px;
+  height: 49.813px;
+  border-radius: 9.963px;
+  border: 0.996px solid #D1D1D1;
 }

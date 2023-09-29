@@ -1,17 +1,24 @@
+<div class="view">
+  <app-header class="container-header-inicio" />
+</div>
+
+
 <div class="login-container">
-  <h2 class="titulo-iniciar-sesion">Iniciar Sesión</h2>
+  <h2 class="titulo-iniciar-sesion">Bienvenid@!</h2>
   <form>
     <div class="campos-iniciar-sesion">
-      <label class="etiquetas-iniciar-sesion" for="id" >DNI:</label>
-      <input type="text"  pInputText [(ngModel)]="persona.id" required/>
+      <label class="etiquetas-iniciar-sesion" for="id">DNI:</label>
+      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su DNI" pInputText
+        [(ngModel)]="persona.id" required />
     </div>
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion" for="password">Contraseña:</label>
-      <input type="password" pPassword [(ngModel)]="password" required/>
+      <input class="input-datos-iniciar-sesion" type="password" placeholder="Ingrese su contraseña" pPassword
+        [(ngModel)]="password" required />
+    </div>
+    <div>
+      <p> ¿Olvidaste tu contraseña?</p>
     </div>
     <button class="boton">Ingresar</button>
   </form>
 </div>
-
-
-
