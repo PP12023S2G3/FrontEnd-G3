@@ -7,18 +7,18 @@
   <h2 class="titulo-iniciar-sesion">Bienvenid@!</h2>
   <form>
     <div class="campos-iniciar-sesion">
-      <label class="etiquetas-iniciar-sesion" for="id">DNI:</label>
+      <label class="etiquetas-iniciar-sesion">DNI:</label>
       <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su DNI" pInputText
-        [(ngModel)]="persona.id" required />
+        [(ngModel)]="persona.dni" required name="first"/>
     </div>
     <div class="campos-iniciar-sesion">
-      <label class="etiquetas-iniciar-sesion" for="password">Contraseña:</label>
-      <input class="input-datos-iniciar-sesion" type="password" placeholder="Ingrese su contraseña" pPassword
-        [(ngModel)]="password" required />
+      <label class="etiquetas-iniciar-sesion">Contraseña:</label>
+      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su contraseña" pInputText
+        [(ngModel)]="persona.clave" required name="segundo"/>
     </div>
     <div>
       <p> ¿Olvidaste tu contraseña?</p>
     </div>
-    <button class="boton">Ingresar</button>
+    <button class="boton" (click)="mostrarInfo()">Ingresar</button>
   </form>
 </div>
