@@ -7,18 +7,20 @@ import { Component } from '@angular/core';
 })
 export class ContentFormularioComponent {
 // Variable para almacenar la imagen seleccionada
-selectedImage: File | null = null;
+uploadedFiles: File [] = [] ;
+maxFileSize: number = 10485760; // Tamaño máximo en bytes (en este caso, 10 MB)
+acceptedFileTypes: string = 'image/jpeg,image/png'; // Tipos MIME permitidos
 
 // Función para manejar la selección de una imagen
-onImageSelected(event: any) {
-  this.selectedImage = event.target.files[0];
+onUpload(event: any) {
+  this.uploadedFiles = event.target.files[0];
 }
 
 // Función para mostrar el resultado (puedes implementar la lógica deseada aquí)
 diagnosticResult() {
-  if (this.selectedImage) {
+  if (this.uploadedFiles) {
     // Aquí puedes realizar acciones con la imagen seleccionada
-    alert('Imagen seleccionada: ' + this.selectedImage.name);
+    alert('Imagen seleccionada: ' + this.uploadedFiles);
   } else {
     alert('No se ha seleccionado una imagen.');
   }

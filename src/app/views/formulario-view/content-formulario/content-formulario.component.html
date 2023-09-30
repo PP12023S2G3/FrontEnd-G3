@@ -1,9 +1,18 @@
 
 <div class="formulario">
     <div class="container-custom-file-input">
-    <!-- Botón circular para subir una imagen -->
+    <!-- Botón circular para subir una imagen
     <input class="custom-file-input" type="file" accept="image/*" (change)="onImageSelected($event)" />
     </div>
+    -->
+
+<p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="false" [accept]="acceptedFileTypes" [maxFileSize]="maxFileSize" accept="image/*" >
+    <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+        </ul>
+    </ng-template>
+</p-fileUpload>
     <!-- Botón "Resultado" -->
-    <button (click)="diagnosticResult()" class="result-button">Resultado</button>
+    <p-button class="result-button" (click)="diagnosticResult()"  label="Resultado"></p-button>
 </div>

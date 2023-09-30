@@ -5,40 +5,13 @@
 }
 
 .container-custom-file-input {
-    margin: 20px;
-    padding: 10px;
-    border: 2px dashed black; /* Agrega un borde punteado cuadrado */
-    width: 30vw; /* Define el ancho del contenedor */
-    height: 30vw; /* Define el alto del contenedor */
+  margin: 5vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  .custom-file-input {
-   /* Estilos para el círculo azul */
-  border-radius: 50%;
-  width: 100%; /* Toma todo el ancho del contenedor */
-  height: 100%; /* Toma todo el alto del contenedor */
-  background-color: blue;
-  border: none;
-  color: white;
-  font-size: 1.5vw;
-  cursor: pointer;
-  }
-
-  .custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-  }
-
-  .custom-file-input::before {
-    height: 100%;
-    content: 'Seleccione una imagen aquí'; /* Texto personalizado para el botón */
-    display: flex;
-    flex-direction: column;
-    justify-content:center ;
-    align-items: center;
-    background-color: #4F97EB;
-    color: white;
-    cursor: pointer;
-  }
+.result-button{
+  margin:4vw
+}

@@ -22,6 +22,7 @@ import { ContentFormularioComponent } from './views/formulario-view/content-form
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { LoginComponent } from './login/login.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { LoginComponent } from './login/login.component';
     ButtonModule,
     InputTextModule,
     PasswordModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
