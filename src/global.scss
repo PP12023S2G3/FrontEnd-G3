@@ -199,7 +199,7 @@ p {
   margin: 15px;
 }
 
-.boton {
+/*.boton {
   width: 418.32px;
   height: 59.775px;
   border-radius: 10px;
@@ -210,7 +210,22 @@ p {
   font-style: normal;
   font-weight: bold;
   line-height: normal;
+}*/
 
+.global-button-inicio {
+  .p-button{
+    width: 418.32px;
+    height: 59.775px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+    color: white;
+    font-size: 15.94px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    margin: 20px;
+  }
+  
 }
 
 .input-datos-iniciar-sesion {
