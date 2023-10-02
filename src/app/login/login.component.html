@@ -5,21 +5,21 @@
 
 <div class="login-container">
   <h2 class="titulo-iniciar-sesion">Bienvenid@!</h2>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">DNI:</label>
       <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su DNI" pInputText
-        [(ngModel)]="persona.dni" required name="first"/>
+        [(ngModel)]="persona.dni" required name="primero"/>
     </div>
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">Contraseña:</label>
-      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su contraseña" pInputText
+      <input type="password" class="input-datos-iniciar-sesion" placeholder="Ingrese su contraseña" pInputText
         [(ngModel)]="persona.clave" required name="segundo"/>
     </div>
-    <div>
-      <p> ¿Olvidaste tu contraseña?</p>
+    <div class="conatainer-boton-link">
+      <p-button class="boton-link" label="¿Olvidaste tu contraseña?" styleClass="p-button-link"></p-button>
     </div>
-    <p-button label="Ingresar" class="global-button-inicio" (onClick)="mostrarInfo()"></p-button>
-      <!--<button class="boton" (click)="mostrarInfo()">Ingresar</button>-->
+
+      <p-button type="submit" label="Ingresar" class="global-button-inicio"></p-button>
   </form>
 </div>

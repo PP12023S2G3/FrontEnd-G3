@@ -160,25 +160,29 @@ p {
 }
 
 .login-container {
-  width: 498px;
-  height: 445px;
+  width: 455px;
+  height: 500px;
   position: relative;
   left: 471px;
   right: 471px;
-  top: 193px;
-  bottom: 290px;
+  top: 150px;
+  bottom: auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
   border-style: solid;
   border-width: 2px;
   animation: cambiaColoresBorde 5s ease-in infinite;
-  background-color: #ffffff;
-  text-align: center;
+  background-color: white;
   border-radius: 10px;
 }
 
 .titulo-iniciar-sesion {
   color: black;
   font-weight: bold;
+  text-align: center;
 }
 
 .campos-iniciar-sesion {
@@ -199,23 +203,11 @@ p {
   margin: 15px;
 }
 
-/*.boton {
-  width: 418.32px;
-  height: 59.775px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
-  color: white;
-  color: #FFF;
-  font-size: 15.94px;
-  font-style: normal;
-  font-weight: bold;
-  line-height: normal;
-}*/
-
 .global-button-inicio {
   .p-button{
     width: 418.32px;
     height: 59.775px;
+    align-items: center;
     border-radius: 10px;
     background: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
     color: white;
@@ -223,9 +215,8 @@ p {
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    margin: 20px;
+    bottom: -10px;
   }
-  
 }
 
 .input-datos-iniciar-sesion {
@@ -233,4 +224,14 @@ p {
   height: 49.813px;
   border-radius: 9.963px;
   border: 0.996px solid #D1D1D1;
+}
+
+.conatainer-boton-link{
+  text-align: right;
+}
+
+.boton-link{
+  .p-button-link{
+
+  }
 }
