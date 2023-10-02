@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     }
     
     console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
-    // Resto del código para enviar la solicitud de inicio de sesión al servidor
+    
   }
 
   validarDNI(dni: string): boolean {

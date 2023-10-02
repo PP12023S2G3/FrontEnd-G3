@@ -136,75 +136,14 @@ p {
   }
 }
 
-@keyframes cambiaColoresBorde {
-  0% {
-    border-color: rgba(0, 25, 255, 1);
+.boton-home{
+  .p-button{
+      color:rgba(236, 233, 233, 0.767);
   }
-
-  25% {
-    border-color: rgba(101, 0, 180, 1);
-  }
-
-  50% {
-    border-color: rgba(37, 255, 1, 1);
-  }
-
-  75% {
-    border-color: rgba(101, 0, 180, 1);
-  }
-
-  100% {
-    border-color: rgba(0, 25, 255, 1);
-  }
-
-}
-
-.login-container {
-  width: 455px;
-  height: 500px;
-  position: relative;
-  left: 471px;
-  right: 471px;
-  top: 150px;
-  bottom: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  border-style: solid;
-  border-width: 2px;
-  animation: cambiaColoresBorde 5s ease-in infinite;
-  background-color: white;
-  border-radius: 10px;
-}
-
-.titulo-iniciar-sesion {
-  color: black;
-  font-weight: bold;
-  text-align: center;
-}
-
-.campos-iniciar-sesion {
-  margin-bottom: 20px;
-  color: black;
-}
-
-.etiquetas-iniciar-sesion {
-  display: block;
-  color: rgb(0, 0, 0);
-  width: 32px;
-  color: #000;
-  font-size: 15.94px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding: 10px;
-  margin: 15px;
 }
 
 .global-button-inicio {
-  .p-button{
+  .p-button {
     width: 418.32px;
     height: 59.775px;
     align-items: center;
@@ -216,22 +155,5 @@ p {
     font-weight: bold;
     line-height: normal;
     bottom: -10px;
-  }
-}
-
-.input-datos-iniciar-sesion {
-  width: 418.32px;
-  height: 49.813px;
-  border-radius: 9.963px;
-  border: 0.996px solid #D1D1D1;
-}
-
-.conatainer-boton-link{
-  text-align: right;
-}
-
-.boton-link{
-  .p-button-link{
-
   }
 }
