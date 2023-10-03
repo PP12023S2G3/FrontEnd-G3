@@ -10,7 +10,7 @@ export class ContentFormularioComponent {
 
   uploadedFiles: File [] = [] ;
   maxFileSize: number = 10485760;
-  acceptedFileTypes: string = 'image/jpeg,image/png';
+  acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
   isChooseButtonDisabled = false;
   isCancelButtonVisible = false;
   isResultButtonDisabled = true;
