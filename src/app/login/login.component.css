@@ -1,4 +1,5 @@
 
+/*
 .toolbar {
     position: absolute;
     top: 0;
@@ -7,7 +8,6 @@
     height: 70px;
     align-items: center;
     background: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
-    /*#797979, #62817E, #598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395*/
     color: white;
     font-weight: 600;
 }
@@ -17,32 +17,9 @@
     float: left;
     margin-top: -3.5rem;
     margin-left: 1rem;
-}
-
-/*
-@keyframes cambiaColoresBorde {
-    0% {
-        border-color: rgba(0, 25, 255, 1);
-    }
-
-    25% {
-        border-color: rgba(101, 0, 180, 1);
-    }
-
-    50% {
-        border-color: rgba(37, 255, 1, 1);
-    }
-
-    75% {
-        border-color: rgba(101, 0, 180, 1);
-    }
-
-    100% {
-        border-color: rgba(0, 25, 255, 1);
-    }
 }*/
 
-/*Opcion 1 Colores chillones*/
+/*Opcion 1 Colores chillones
 .login-container {
     width: 455px;
     height: 470px;
@@ -62,28 +39,33 @@
     transform: translate(-50%, -50%);
     margin-top: 4rem;
     border-radius: 10px;
-    /*background: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);*/
     background: linear-gradient(85deg,#25FF01, #0019FF,#6500B4);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-}
+}*/
 
 /* Opcion 2 colores apagados*/
-/*
+
 .login-container{
     width: 455px;
     height: 470px;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
     padding: 20px;
     background-color: white;
     border-radius: 10px;
     margin-top: 3px;
+    border-style: solid;
+    border-color: #598480;
+    border-width: 2px;
 
 }
 
-
+/*
 .borde-login{
     width: 461px;
     height: 476px;

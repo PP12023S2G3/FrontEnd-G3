@@ -1,12 +1,16 @@
 html,
 body {
 
-  background-color: white;
+  background-color: var(--blanco);
 }
 
-.root {
+:root {
   display: block;
   height: 100%;
+  --blanco: #ffffff;
+  --degradado-verde: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
+  --degradado-rosa: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+
 }
 
 * {
@@ -17,6 +21,7 @@ div .global-label {
   width: 40%;
   margin-left: 8%;
   font-size: 40px;
+  background-image: url("assets/img/edicionFondo.png");
 }
 
 div h1{
@@ -81,13 +86,15 @@ p {
   right: 0;
   height: 70px;
   align-items: center;
-  background: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
+  background: var(--degradado-verde);
   color: white;
-  font-weight: 600;
+  
+ 
 }
 
 .global-inicio-imagen {
   margin-top: -3rem;
+  overflow:hidden;
 }
 
 
@@ -157,7 +164,7 @@ p {
     height: 59.775px;
     align-items: center;
     border-radius: 10px;
-    background: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+    background: var(--degradado-rosa);
     color: white;
     font-size: 15.94px;
     font-style: normal;
@@ -165,4 +172,37 @@ p {
     line-height: normal;
     bottom: -10px;
   }
+}
+
+.footer{
+  width: 75.625rem;
+  height: 20rem;
+  background: var(--degradado-verde);
+  position: absolute;
+  left: 0;
+
+  
+}
+
+.footer-conteiner .enlaces-footer{
+  display: flex; /* Mostrar elementos en línea */
+  flex-direction: column;
+  justify-content: flex-start; /* Alinear elementos a la izquierda */
+  align-items:flex-start; /* Alinear elementos verticalmente al centro */
+  padding: 20px;
+  color: white;
+}
+
+.footer .redes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+  .p-button{
+    margin-top: 0%; /* Espaciado superior para separar las redes del contenido superior */
+    margin-right: 20px;
+
+  }
+  
 }

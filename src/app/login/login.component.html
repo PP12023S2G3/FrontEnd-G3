@@ -1,31 +1,20 @@
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <h1 style="text-align: center;   margin: 15px 0; ">DiagnosticAR</h1>
-    <div class="spacer"></div>
-      <div class="button-login" height="24">
-        <p-button height="24" label="Home" class="boton-home" styleClass="p-button-outlined"></p-button>
-      </div>
-</div>
+<div class="login-container">
+  <h2 class="titulo-iniciar-sesion">Bienvenid@!</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="campos-iniciar-sesion">
+      <label class="etiquetas-iniciar-sesion">DNI:</label>
+      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su DNI" pInputText
+        [(ngModel)]="persona.dni" required name="primero" />
+    </div>
+    <div class="campos-iniciar-sesion">
+      <label class="etiquetas-iniciar-sesion">Contraseña:</label>
+      <input type="password" class="input-datos-iniciar-sesion" placeholder="Ingrese su contraseña" pInputText
+        [(ngModel)]="persona.clave" required name="segundo" />
+    </div>
+    <div class="conatainer-boton-link">
+      <p-button class="boton-link" label="¿Olvidaste tu contraseña?" styleClass="p-button-link"></p-button>
+    </div>
 
-<div class="borde-login">
-  <div class="login-container">
-    <h2 class="titulo-iniciar-sesion">Bienvenid@!</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="campos-iniciar-sesion">
-        <label class="etiquetas-iniciar-sesion">DNI:</label>
-        <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su DNI" pInputText
-          [(ngModel)]="persona.dni" required name="primero"/>
-      </div>
-      <div class="campos-iniciar-sesion">
-        <label class="etiquetas-iniciar-sesion">Contraseña:</label>
-        <input type="password" class="input-datos-iniciar-sesion" placeholder="Ingrese su contraseña" pInputText
-          [(ngModel)]="persona.clave" required name="segundo"/>
-      </div>
-      <div class="conatainer-boton-link">
-        <p-button class="boton-link" label="¿Olvidaste tu contraseña?" styleClass="p-button-link"></p-button>
-      </div>
-
-        <p-button type="submit" label="Ingresar" class="global-button-inicio"></p-button>
-    </form>
-  </div>
+    <p-button type="submit" label="Ingresar" class="global-button-inicio"></p-button>
+  </form>
 </div>
