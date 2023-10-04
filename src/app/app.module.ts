@@ -23,6 +23,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { LoginComponent } from './login/login.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { FooterComponent } from './shared/footer/footer.component';
+import { DescriptionComponent } from './shared/content/description/description.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     InicioViewComponent,
     FormularioViewComponent,
     ContentFormularioComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent,
+    DescriptionComponent
   ],
   imports: [
     BrowserAnimationsModule,

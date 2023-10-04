@@ -10,9 +10,7 @@ body {
 }
 
 * {
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 400;
+  font-family: "Poppins", sans-serif;
 }
 
 div .global-label {
@@ -20,6 +18,16 @@ div .global-label {
   margin-left: 8%;
   font-size: 40px;
 }
+
+div h1{
+font-family: "Poppins", sans-serif;
+font-weight: bold;
+font-size: 72px;
+color: #131325;
+text-align: center;
+width: 100%;
+}
+
 
 p {
   margin: 0;
@@ -56,8 +64,14 @@ p {
   margin-top: 10rem;
   left: 0;
   right: 0;
+  /* Calcula la altura, restando 70px desde la altura total de la ventana */
   width: 100%;
   display: flex;
+}
+
+.container-description-inicio {
+  margin-top: 50rem;
+  height: calc(100% - 50px);
 }
 
 .toolbar {
@@ -67,7 +81,7 @@ p {
   right: 0;
   height: 70px;
   align-items: center;
-  background-color: #124694;
+  background: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
   color: white;
   font-weight: 600;
 }
@@ -76,11 +90,6 @@ p {
   margin-top: -3rem;
 }
 
-.toolbar .button-login {
-  height: 40px;
-  float: right;
-  margin-top: -3.5rem;
-}
 
 .global-message-error {
   span {
