@@ -6,6 +6,7 @@ import { HistorialViewComponent } from './views/historial-view/historial-view.co
 import { FormularioViewComponent } from './views/formulario-view/formulario-view.component';
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { LoginComponent } from './login/login.component';
+import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'historial', component: HistorialViewComponent },
   { path: 'formulario', component: FormularioViewComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: InicioViewComponent }
+  { path: '', component: InicioViewComponent },
+  { path: 'resetPassword', component: ResetPasswordComponent}
 ];
 
 @NgModule({

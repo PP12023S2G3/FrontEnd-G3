@@ -12,7 +12,7 @@
         [(ngModel)]="persona.clave" required name="segundo" />
     </div>
     <div class="conatainer-boton-link">
-      <p-button class="boton-link" label="¿Olvidaste tu contraseña?" styleClass="p-button-link"></p-button>
+      <p-button class="boton-link" label="¿Olvidaste tu contraseña?" (click)="irAResetPassword()" styleClass="p-button-link"></p-button>
     </div>
 
     <p-button type="submit" label="Ingresar" class="global-button-inicio"></p-button>
