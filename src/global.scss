@@ -2,6 +2,8 @@ html,
 body {
 
   background-color: var(--blanco);
+  margin:0%;
+  padding:0%;
 }
 
 :root {
@@ -174,30 +176,39 @@ p {
   }
 }
 
-.footer{
-  width: 75.625rem;
-  height: 20rem;
+.footer {
   background: var(--degradado-verde);
-  position: absolute;
-  left: 0;
-
+  color: white;
+  text-align: left; /* Alinear texto a la izquierda */
+  padding: 20px;
+  position: relative;
+  left: -1%;
+  margin-right:-10%;
   
 }
 
-.footer-conteiner .enlaces-footer{
-  display: flex; /* Mostrar elementos en línea */
+.footer-container {
+  display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Alinear elementos a la izquierda */
-  align-items:flex-start; /* Alinear elementos verticalmente al centro */
-  padding: 20px;
-  color: white;
+  align-items: flex-start; /* Alinear elementos verticalmente al centro */
+  
 }
 
-.footer .redes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+.enlaces-footer {
+  margin-right: 20px; /* Espaciado derecho para separar elementos de tipo <p> de los botones */
+  font-weight: bold;
+}
+
+.redes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; /* Alinear botones en la parte inferior */
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
   .p-button{
     margin-top: 0%; /* Espaciado superior para separar las redes del contenido superior */
