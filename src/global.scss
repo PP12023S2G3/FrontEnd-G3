@@ -23,7 +23,6 @@ div .global-label {
   width: 40%;
   margin-left: 8%;
   font-size: 40px;
-  background-image: url("assets/img/edicionFondo.png");
 }
 
 div h1{
@@ -68,17 +67,16 @@ p {
 }
 
 .container-content-inicio {
-  margin-top: 10rem;
+  margin-top: 0rem;
   left: 0;
   right: 0;
-  /* Calcula la altura, restando 70px desde la altura total de la ventana */
+  height: 58rem;
   width: 100%;
   display: flex;
 }
 
 .container-description-inicio {
-  margin-top: 50rem;
-  height: calc(100% - 50px);
+  height: 120rem;
 }
 
 .toolbar {
@@ -90,8 +88,8 @@ p {
   align-items: center;
   background: var(--degradado-verde);
   color: white;
-  
- 
+
+
 }
 
 .global-inicio-imagen {
@@ -184,7 +182,7 @@ p {
   position: relative;
   left: -1%;
   margin-right: -1%;
-  
+
 }
 
 .footer-container {
@@ -192,7 +190,7 @@ p {
   flex-direction: column;
   justify-content: flex-start; /* Alinear elementos a la izquierda */
   align-items: flex-start; /* Alinear elementos verticalmente al centro */
-  
+
 }
 
 .enlaces-footer {
@@ -215,5 +213,5 @@ p {
     margin-right: 20px;
 
   }
-  
+
 }
