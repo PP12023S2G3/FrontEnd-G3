@@ -7,15 +7,42 @@ div h4{
   font-weight: normal;
 }
 .description-text-conteiner {
-  width: 45%;
+  width: 50%;
   margin-left: 27%;
 }
 .description-conteiner2 {
   margin-top: 23rem;
 }
-.description-conteiner-foto {
-  margin-left: 30%;
+.description-text-conteiner .description-conteiner-foto {
+   width: 30%;
+   margin-left: 4%;
 }
 .nuestro-equipo-container {
   margin-left: 5%;
+}
+
+
+@media screen and (max-width: 1600px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -5%;
+ }
+ .nuestro-equipo-container {
+  margin-left: -5%;
+ }
+
+}
+
+
+@media screen and (max-width: 1280px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -15%;
+ }
+ .nuestro-equipo-container {
+  margin-left: -15%;
+ }
+
 }
