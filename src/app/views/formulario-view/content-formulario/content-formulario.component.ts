@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result/result.service';
 
 @Component({
@@ -10,14 +11,17 @@ export class ContentFormularioComponent {
 
   uploadedFiles: File [] = [] ;
   maxFileSize: number = 10485760;
+  minImageWidth: number = 225;
+  minImageHeight: number = 225;
   acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
   isChooseButtonDisabled = false;
   isCancelButtonVisible = false;
   isResultButtonDisabled = true;
   imagenURL: string | ArrayBuffer | null = null;
   mostrarTextoInicial = true;
+  isValid=true;
 
-  constructor(private resultService:ResultService) {
+  constructor(private resultService:ResultService, private router: Router) {
    }
 
   onUpload(event: any) {
@@ -43,12 +47,20 @@ export class ContentFormularioComponent {
     }
   }
 
-  onCancel() {
-    this.resetFileInput();
-  }
-
   onFileSelect(event: any) {
-    this.mostrarTextoInicial=false;
+    this.mostrarTextoInicial = false;
+    const selectedFile = event.files && event.files[0];
+    if (selectedFile) {
+      const image = new Image();
+      image.src = URL.createObjectURL(selectedFile);
+      image.onload = () => {
+        if (image.width >= this.minImageWidth && image.height >= this.minImageHeight) {
+          this.isValid=true;
+        } else {
+          this.isValid=false;
+        }
+      };
+    }
   }
 
   resetFileInput() {
@@ -57,8 +69,14 @@ export class ContentFormularioComponent {
     this.isCancelButtonVisible = false;
     this.isResultButtonDisabled = true;
     this.imagenURL = "";
-    this.mostrarTextoInicial=true;
+    this.mostrarTextoInicial=this.uploadedFiles.length===0;
+    console.log(this.mostrarTextoInicial,this.uploadedFiles.length)
   }
+
+  controlMostrarTextoInicialCancel() {
+    this.mostrarTextoInicial=this.uploadedFiles.length===0;
+  }
+
 
   getObjectURL(){
     if (this.uploadedFiles.length > 0) {
@@ -70,14 +88,28 @@ export class ContentFormularioComponent {
     }
   }
 
+  onCancel() {
+    this.resetFileInput();
+  }
+
+  onClearUpload(){
+    this.controlMostrarTextoInicialCancel();
+  }
+
+
   public postResult(file : File){
     const formData = new FormData();
-    formData.append('img', file);
+    formData.append('image', file);
 
     this.resultService.postResultado(formData).subscribe({
       next: res => {
+        console.log(res)
+       // Almacena los datos en localStorage
+       localStorage.setItem('responseData', JSON.stringify(res));
 
-      },
+       // Redirige a la ruta '/result'
+       this.router.navigate(['/result']);
+       },
       error: error => {
     }
     });

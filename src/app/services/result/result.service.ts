@@ -8,8 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResultService {
 
-  private endpoint : string ='/imagen';
-  private api : string ='https://api-resultados.onrender.com/Pruebas';
+ // private endpoint : string ='/imagen';
+ // private api : string ='https://api-resultados.onrender.com/Pruebas';
+ private endpoint : string ='predict';
+  private api : string ='https://lunarpi-production.up.railway.app/';
 
   constructor(private http: HttpClient) { }
 
