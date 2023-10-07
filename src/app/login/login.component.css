@@ -1,68 +1,16 @@
 
-/*
-.toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    align-items: center;
-    background: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
-    color: white;
-    font-weight: 600;
-}
-
-.toolbar .button-login {
-    height: 40px;
-    float: left;
-    margin-top: -3.5rem;
-    margin-left: 1rem;
-}*/
-
-/*Opcion 1 Colores chillones
-.login-container {
-    width: 455px;
-    height: 470px;
-    position:relative;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    margin-top: 1px;
-}
-
-.borde-login{
-    width: 457px;
-    height: 472px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 4rem;
-    border-radius: 10px;
-    background: linear-gradient(85deg,#25FF01, #0019FF,#6500B4);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-}*/
-
-/* Opcion 2 colores apagados*/
-
 .login-container{
-    width: 455px;
-    height: 470px;
-    position: absolute;
-    top: 50%;
-    left: 75%;
-    transform: translate(-50%, -50%);
+  width: 60%;
+  height: 50%;
+  transform: translate(-50%, -50%);
     padding: 20px;
     background-color: white;
     border-radius: 10px;
-    margin-top: 3px;
+
+    margin-left: 20rem;
     border-style: solid;
     border-color: #598480;
     border-width: 2px;
-
 }
 
 /*
@@ -108,7 +56,7 @@
 }
 
 .input-datos-iniciar-sesion {
-    width: 418.32px;
+    width: 100%; /*width:418.32px;*/
     height: 49.813px;
     border-radius: 9.963px;
     border: 0.996px solid #D1D1D1;

@@ -1,4 +1,8 @@
 .enlaces-footer p{
     margin: 20px;
-    
+}
+
+:host ::ng-deep .p-button{
+    background: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
+    border: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
 }

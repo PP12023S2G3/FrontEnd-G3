@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from './Persona';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,13 @@ import { Persona } from './Persona';
 })
 export class LoginComponent implements OnInit {
   persona: Persona = new Persona("", "");
+  private router: Router;
+  constructor(router: Router) { this.router = router }
 
   ngOnInit(): void {
     this.persona.dni = "";
     this.persona.clave = "";
+    
   }
 
   /*mostrarInfo() {
@@ -43,6 +47,11 @@ export class LoginComponent implements OnInit {
   validarContraseña(contraseña: string): boolean {
       // Validar la contraseña
     return /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(contraseña);
+  }
+
+  irAResetPassword() {
+    // Navegar a la página resetPassword
+    this.router.navigate(['/resetPassword']);
   }
 }
 

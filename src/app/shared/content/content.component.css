@@ -1,0 +1,34 @@
+.inicio-imagen {
+  margin-top: 8%;
+}
+
+.container-login-inicio {
+  margin-left: 70rem;
+  margin-top: -14%;
+}
+
+
+@media screen and (max-width: 1700px) {
+  .inicio-imagen {
+    margin-left: -10rem;
+  }
+  .container-login-inicio {
+    margin-left: 60rem;
+    margin-top: -14%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .inicio-imagen {
+    margin-left: -12rem;
+  }
+  .container-login-inicio {
+    margin-left: 50rem;
+
+  }
+
+  .content{
+    overflow-x: hidden; 
+  }
+
+}
