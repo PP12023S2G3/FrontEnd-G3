@@ -1,0 +1,9 @@
+.toolbar .foto img {
+  width: 70px;
+  height: 66px;
+}
+.toolbar .foto {
+  float: left;
+  margin-right: 20px;
+  margin-top: 0.7rem;
+}

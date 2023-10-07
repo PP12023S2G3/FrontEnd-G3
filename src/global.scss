@@ -1,3 +1,4 @@
+
 html,
 body {
 
@@ -84,7 +85,7 @@ p {
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 90px;
   align-items: center;
   background: var(--degradado-verde);
   color: white;
@@ -107,6 +108,12 @@ p {
   .p-button{
       color:rgba(236, 233, 233, 0.767);
   }
+}
+.p-button-link {
+  color: #000;
+  font-size: 16px;
+  font-style: auto;
+  font-family: "Open Sans", sans-serif;
 }
 
 .global-button-inicio {
@@ -131,6 +138,7 @@ p {
   text-align: left; /* Alinear texto a la izquierda */
   padding: 20px;
   position: relative;
+  height: 200px;
   left: -1%;
   margin-right: -1%;
   margin-top: 4rem;

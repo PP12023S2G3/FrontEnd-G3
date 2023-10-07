@@ -33,6 +33,7 @@
 
 .titulo-iniciar-sesion {
     color: black;
+    font-size: 32px;
     font-weight: bold;
     text-align: center;
 }
@@ -47,8 +48,8 @@
     color: rgb(0, 0, 0);
     width: 32px;
     color: #000;
-    font-size: 15.94px;
-    font-style: normal;
+    font-size: 18px;
+    font-style: bold;
     font-weight: 400;
     line-height: normal;
     padding: 10px;
@@ -65,3 +66,4 @@
 .conatainer-boton-link {
     text-align: right;
 }
+
