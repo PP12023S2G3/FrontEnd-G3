@@ -1,0 +1,127 @@
+== Documentación de Integración de API en Aplicación Angular
+
+[v1, {docdate}]
+:toc:
+:title-page:
+:toc-title: Secciones
+:numbered:
+:source-highlighter: highlight.js
+:tabsize: 4
+:nofooter:
+:pdf-page-margin: [2.8cm, 2.8cm, 2.8cm, 2.8cm]
+
+== Introducción
+
+En esta documentación, se detalla la integración de una API en una aplicación Angular. La aplicación Angular consta de varias vistas, incluyendo la Landing Page, la vista de Diagnóstico y futuras vistas como Historial de Resultados y Vista de Resultado. También se proporciona información sobre la comunicación entre la aplicación y la API.
+
+== Uso de HttpClient en Angular
+
+Para interactuar con la API, utilizamos Angular HttpClient para realizar solicitudes POST. A continuación, se muestra un ejemplo de cómo enviar datos al servidor:
+
+[source,typescript]
+----
+// Código de ejemplo de solicitud POST con HttpClient
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ResultService {
+
+ private endpoint : string ='predict';
+  private api : string ='https://lunarpi-production.up.railway.app/';
+
+  constructor(private http: HttpClient) { }
+
+
+  public postResultado(data:FormData):Observable<any>{
+    let url=this.api+this.endpoint;
+    return this.http.post<any>(url,data);
+  }
+}
+----
+
+== Ampliación de Métodos
+
+En el futuro, se ampliarán los métodos de interacción con la API, incluyendo solicitudes GET, PUT, DELETE, etc. Estos métodos se documentarán a medida que se implementen.
+
+== Enrutamiento en Angular
+
+La aplicación utiliza Angular Router para gestionar el enrutamiento entre las diferentes vistas. A continuación, se muestra cómo se configuran las rutas:
+
+[source,typescript]
+----
+// Configuración de rutas en Angular
+const routes: Routes = [
+  { path: 'contacto', component: ContactoViewComponent },
+  { path: 'modelo', component: ModeloViewComponent },
+  { path: 'historial', component: HistorialViewComponent },
+  { path: 'formulario', component: FormularioViewComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'result', component: ResultViewComponent },
+  { path: '', component: InicioViewComponent }
+];
+----
+
+== Vistas Actuales y Futuras
+
+Actualmente, la aplicación consta de las siguientes vistas:
+- Landing Page
+- Vista de Diagnóstico
+
+En el futuro, se agregarán las siguientes vistas:
+- Historial de Resultados
+- Vista de Resultado
+
+== Diagrama de Conexión
+
+Puedes encontrar el diagrama de conexión entre la aplicación y la API en este enlace: [Enlace a draw.io](https://drive.google.com/file/d/1r7P10qblaK6nsKx6CGKErgz9nl1h3grI/view?usp=sharing).
+
+Este diagrama ilustra la comunicación entre la aplicación Angular y la API.
+
+== Documentación en Excel
+
+La documentación en Excel se encuentra en este enlace: [Enlace a la documentación en Excel](https://docs.google.com/spreadsheets/d/1sK7vKorLwR_7fXY4CiyUvesxriWXz0AqUMkzepbHKPs/edit?usp=sharing). Esta hoja de cálculo contiene información adicional sobre la integración y la API.
+
+== Flujo de la Aplicación
+
+[Insertar diagrama de flujo del flujo de la aplicación aquí]
+
+Este diagrama de flujo muestra cómo los usuarios navegan por la aplicación, desde la Landing Page hasta las diversas vistas.
+
+== Consideraciones de Seguridad
+
+Se aplican consideraciones de seguridad, como autenticación y autorización. Detallaremos cómo se manejan estas consideraciones en la aplicación y cómo se comunican con la API.
+
+== Definiciones Técnicas
+
+A continuación, se presentan algunas definiciones técnicas clave utilizadas en este documento:
+
+- **Angular**: Un framework de desarrollo web de código abierto desarrollado por Google. Se utiliza para construir aplicaciones web de una sola página (SPA) y aplicaciones web dinámicas.
+
+- **HttpClient**: Un módulo en Angular que permite realizar solicitudes HTTP a servidores remotos.
+
+- **API**: Siglas de "Interfaz de Programación de Aplicaciones". Una API es un conjunto de reglas y protocolos que permiten que diferentes aplicaciones se comuniquen entre sí.
+
+- **Router de Angular**: El enrutador de Angular es un módulo que permite la navegación entre diferentes vistas y componentes en una aplicación Angular.
+
+== Pruebas y Depuración
+
+Proporcionamos información sobre cómo realizar pruebas y depuración en la aplicación Angular, especialmente en relación con las llamadas a la API.
+
+== Mantenimiento Futuro
+
+Se planea mantener y actualizar la aplicación a medida que evolucione la API o surjan nuevas características.
+
+== Bibliografía
+
+- [Documentación oficial de Angular](https://angular.io/docs)
+- [Documentación de HttpClient en Angular](https://angular.io/guide/http)
+- [Enlace a draw.io](https://drive.google.com/file/d/1r7P10qblaK6nsKx6CGKErgz9nl1h3grI/view?usp=sharing)
+- [Enlace a la documentación en Excel](https://docs.google.com/spreadsheets/d/1sK7vKorLwR_7fXY4CiyUvesxriWXz0AqUMkzepbHKPs/edit?usp=sharing)
+
+== Conclusion
+
+Esta documentación proporciona una visión general de la integración de la API en la aplicación Angular. Se debe mantener actualizada a medida que se realicen cambios en la aplicación y la API.
