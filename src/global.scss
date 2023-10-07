@@ -118,8 +118,8 @@ p {
 
 .global-button-inicio {
   .p-button {
-    width: 100%; /*width: 418.32px;*/
-    height: 59.775px;
+    width: 97%; /*width: 418.32px;*/
+    height: 4rem;
     align-items: center;
     border-radius: 10px;
     background: var(--degradado-rosa);
@@ -128,7 +128,8 @@ p {
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    bottom: -10px;
+    bottom: 1rem;
+    margin-top: 1rem;
   }
 }
 

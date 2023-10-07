@@ -1,11 +1,10 @@
 .login-container {
-    width: 60%;
+    width: 75%;
     height: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
     background-color: white;
     border-radius: 10px;
-
     margin-left: 20rem;
     border-style: solid;
     border-color: #598480;
@@ -55,7 +54,8 @@
 }
 
 .input-datos-iniciar-sesion {
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
     /*width:418.32px;*/
     height: 49.813px;
     border: 0.996px solid #D1D1D1;
@@ -71,10 +71,11 @@
        width: 75%;
        
     }
-    :host::ng-deep .p-button{
+    :host::ng-deep .global-button-inicio .p-button{
         width: 97%; /*width: 418.32px;*/
         height: 4rem;
-        bottom: 10px;
+        bottom: 1rem;
+        margin-top: 1rem;
     }
 
     .input-datos-iniciar-sesion {
