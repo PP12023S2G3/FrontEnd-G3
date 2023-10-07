@@ -3,12 +3,12 @@
   <form (ngSubmit)="onSubmit()">
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">DNI:</label>
-      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingrese su DNI" pInputText
+      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingresar DNI" pInputText
         [(ngModel)]="persona.dni" required name="primero" />
     </div>
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">Contraseña:</label>
-      <input type="password" class="input-datos-iniciar-sesion" placeholder="Ingrese su contraseña" pInputText
+      <input type="password" class="input-datos-iniciar-sesion" placeholder="********" pInputText
         [(ngModel)]="persona.clave" required name="segundo" />
     </div>
     <div class="conatainer-boton-link">

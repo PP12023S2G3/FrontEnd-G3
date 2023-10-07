@@ -59,12 +59,13 @@
   }
 
   .container-login-inicio {
-    margin-left: 50rem;
+    margin-left: 48rem;
     margin-top: -20%;
   }
 
   .content{
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
 }

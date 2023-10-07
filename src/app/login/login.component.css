@@ -1,16 +1,15 @@
-
-.login-container{
-  width: 60%;
-  height: 50%;
-  transform: translate(-50%, -50%);
-    padding: 20px;
+.login-container {
+    width: 60%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
     background-color: white;
     border-radius: 10px;
 
     margin-left: 20rem;
     border-style: solid;
     border-color: #598480;
-    border-width: 2px;
+    border-width: 1px;
 }
 
 /*
@@ -40,26 +39,25 @@
 
 .campos-iniciar-sesion {
     margin-bottom: 20px;
-    color: black;
+    
 }
 
 .etiquetas-iniciar-sesion {
     display: block;
-    color: rgb(0, 0, 0);
     width: 32px;
     color: #000;
     font-size: 18px;
-    font-style: bold;
-    font-weight: 400;
+    font-weight: bold;
     line-height: normal;
     padding: 10px;
     margin: 15px;
+    margin-bottom: 0px;
 }
 
 .input-datos-iniciar-sesion {
-    width: 100%; /*width:418.32px;*/
+    width: 100%;
+    /*width:418.32px;*/
     height: 49.813px;
-    border-radius: 9.963px;
     border: 0.996px solid #D1D1D1;
 }
 
@@ -67,3 +65,28 @@
     text-align: right;
 }
 
+
+@media screen and (max-width: 1280px) {
+    .login-container {
+       width: 75%;
+       
+    }
+    :host::ng-deep .p-button{
+        width: 97%; /*width: 418.32px;*/
+        height: 4rem;
+        bottom: 10px;
+    }
+
+    .input-datos-iniciar-sesion {
+        width: 90%;
+        margin-left: 5%;
+       
+    }
+    :host::ng-deep .boton-link .p-button{
+        text-align: right;
+        font-weight:lighter;
+        font-family: "Poppins", sans-serif;
+    }
+       
+
+}
