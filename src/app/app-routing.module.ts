@@ -6,6 +6,7 @@ import { HistorialViewComponent } from './views/historial-view/historial-view.co
 import { FormularioViewComponent } from './views/formulario-view/formulario-view.component';
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { LoginComponent } from './login/login.component';
+import { ResultViewComponent } from './views/result-view/result-view.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'historial', component: HistorialViewComponent },
   { path: 'formulario', component: FormularioViewComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'result', component: ResultViewComponent },
   { path: '', component: InicioViewComponent }
 ];
 

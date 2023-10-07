@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DescriptionComponent } from './shared/content/description/description.component';
+import { ResultViewComponent } from './views/result-view/result-view.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { DescriptionComponent } from './shared/content/description/description.c
     ContentFormularioComponent,
     LoginComponent,
     FooterComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    ResultViewComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,27 +1,31 @@
 
 <div class="formulario">
     <div class="container-custom-file-input">
-    <!-- Botón circular para subir una imagen
-    <input class="custom-file-input" type="file" accept="image/*" (change)="onImageSelected($event)" />
-    </div>
-    -->
 
-<p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onSelect)="onFileSelect($event)" (onUpload)="onUpload($event)" [disabled]="isChooseButtonDisabled" [multiple]="false" [accept]="acceptedFileTypes" [maxFileSize]="maxFileSize"  accept="image/*" >
-    <ng-template pTemplate="content">
-        <ul *ngIf="uploadedFiles.length">
-            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-        </ul>
-        <!-- Vista previa de la imagen -->
-  <img class="imagen-pre" *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen subida" />
-  <p class="image-placeholder" *ngIf="mostrarTextoInicial" >Seleccione una imagen para diagnosticar</p>
-        <p-button
-        *ngIf="isCancelButtonVisible"
-        class="cancel-button"
-        (click)="onCancel()"
-        label="Cancel"
-      ></p-button>
-    </ng-template>
-</p-fileUpload>
-    <!-- Botón "Resultado" -->
-    <p-button class="result-button" (click)="diagnosticResult()"  label="Resultado" [disabled]="isResultButtonDisabled" ></p-button>
+        <p-fileUpload name="myfile[]" url="https://www.primefaces.org/cdn/api/upload.php" (onSelect)="onFileSelect($event)" (onUpload)="onUpload($event)" (onClear)="onClearUpload()" [showUploadButton]="isValid" [disabled]="isChooseButtonDisabled" [multiple]="false" [accept]="acceptedFileTypes" [maxFileSize]="maxFileSize"  accept="image/*"  >
+            <ng-template pTemplate="toolbar">
+
+            </ng-template>
+            <ng-template let-file pTemplate="file">
+                <div>
+                    <div>{{ file.name }} - {{ file.size }} bytes</div>
+                </div>
+                <div *ngIf="!isValid">
+                    <div>El archivo es demasiado pequeño</div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="content" let-files>
+                <div>
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                    <!-- Vista previa de la imagen -->
+                <img class="imagen-pre" *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen subida" />
+                <p class="image-placeholder" *ngIf="mostrarTextoInicial" >Seleccione una imagen para diagnosticar</p>
+                <p-button *ngIf="isCancelButtonVisible" class="cancel-button" (click)="onCancel()" label="Cancel"></p-button>
+                </div>
+            </ng-template>
+        </p-fileUpload>
+        <p-button class="result-button" (click)="diagnosticResult()"  label="Resultado" [disabled]="isResultButtonDisabled" ></p-button>
+
 </div>
