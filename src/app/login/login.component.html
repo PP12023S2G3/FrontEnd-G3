@@ -14,7 +14,7 @@
       <label class="etiquetas-iniciar-sesion">Contraseña:</label>
       <div>
         <i class="pi pi-lock"></i>
-        <input [type]="showPassword ? 'text' : 'password'" class="input-datos-iniciar-sesion" placeholder="********" id="password" [(ngModel)]="persona.clave" name="password" required />
+        <input [type]="showPassword ? 'text' : 'password'" class="input-datos-iniciar-sesion" placeholder="********" id="password" pInputText [(ngModel)]="persona.clave" name="password" required />
         <i class="pi pi-eye" (click)="togglePasswordVisibility()"></i>
       </div>
       
