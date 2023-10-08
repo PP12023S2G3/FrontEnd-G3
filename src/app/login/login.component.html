@@ -3,13 +3,21 @@
   <form (ngSubmit)="onSubmit()">
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">DNI:</label>
-      <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingresar DNI" pInputText
+      <div>
+        <i class="pi pi-id-card"></i>      
+          <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingresar DNI" pInputText
         [(ngModel)]="persona.dni" required name="primero" />
+      </div>
+      
     </div>
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">Contraseña:</label>
-      <input type="password" class="input-datos-iniciar-sesion" placeholder="********" pInputText
-        [(ngModel)]="persona.clave" required name="segundo" />
+      <div>
+        <i class="pi pi-lock"></i>
+        <input [type]="showPassword ? 'text' : 'password'" class="input-datos-iniciar-sesion" placeholder="********" id="password" [(ngModel)]="persona.clave" name="password" required />
+        <i class="pi pi-eye" (click)="togglePasswordVisibility()"></i>
+      </div>
+      
     </div>
     <div class="conatainer-boton-link">
       <p-button class="boton-link" label="¿Olvidaste tu contraseña?" (click)="irAResetPassword()" styleClass="p-button-link"></p-button>

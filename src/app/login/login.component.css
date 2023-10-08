@@ -38,7 +38,7 @@
 
 .campos-iniciar-sesion {
     margin-bottom: 20px;
-    
+
 }
 
 .etiquetas-iniciar-sesion {
@@ -65,14 +65,54 @@
     text-align: right;
 }
 
+:host::ng-deep .pi-id-card {
+    position: absolute;
+    left: 0.2rem;
+    top: 10rem;
+    font-size: 1.5rem;
+    color: #797979;
+}
+
+:host::ng-deep .pi-lock {
+    position: absolute;
+    left: 0.2rem;
+    top: 16.625rem;
+    font-size: 1.5rem;
+    color: #797979;
+}
+
+:host::ng-deep .pi-eye {
+    position: absolute;
+    left: 25.7rem;
+    top: 17rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* Estilo para mostrar la contraseña 
+.show-password input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+Estilo para ocultar la contraseña 
+.hide-password input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}*/
+
 
 @media screen and (max-width: 1280px) {
     .login-container {
-       width: 75%;
-       
+        width: 75%;
+
     }
-    :host::ng-deep .global-button-inicio .p-button{
-        width: 97%; /*width: 418.32px;*/
+
+    :host::ng-deep .global-button-inicio .p-button {
+        width: 97%;
+        /*width: 418.32px;*/
         height: 4rem;
         bottom: 1rem;
         margin-top: 1rem;
@@ -81,13 +121,27 @@
     .input-datos-iniciar-sesion {
         width: 90%;
         margin-left: 5%;
-       
+
     }
-    :host::ng-deep .boton-link .p-button{
+
+    :host::ng-deep .boton-link .p-button {
         text-align: right;
-        font-weight:lighter;
-        font-family: "Poppins", sans-serif;
+
     }
-       
+
+    :host::ng-deep .pi-id-card {
+        position: absolute;
+        left: 0.2rem;
+        top: 10rem;
+        font-size: 1.5rem;
+    }
+
+    :host::ng-deep .pi-lock {
+        position: absolute;
+        left: 0.2rem;
+        top: 16.625rem;
+        font-size: 1.5rem;
+    }
+
 
 }

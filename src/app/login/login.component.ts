@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   persona: Persona = new Persona("", "");
+  showPassword: boolean = false;
   private router: Router;
   constructor(router: Router) { this.router = router }
 
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit {
     
   }
 
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
   /*mostrarInfo() {
     console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
   }*/
