@@ -26,6 +26,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DescriptionComponent } from './shared/content/description/description.component';
 import { ResultViewComponent } from './views/result-view/result-view.component';
+import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ResultViewComponent } from './views/result-view/result-view.component';
     LoginComponent,
     FooterComponent,
     DescriptionComponent,
-    ResultViewComponent
+    ResultViewComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserAnimationsModule,
