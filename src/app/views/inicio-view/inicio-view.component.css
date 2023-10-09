@@ -1,3 +1,9 @@
 *{
   background-color: #EFEFEF;
 }
+@media screen and (max-width: 970px) {
+  .container-content-inicio {
+    height: 80rem;
+  }
+
+}

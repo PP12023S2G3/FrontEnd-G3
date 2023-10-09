@@ -145,3 +145,54 @@ Estilo para ocultar la contraseña
 
 
 }
+
+@media screen and (max-width: 360px) {
+
+    .description-text-conteiner .description-conteiner-foto {
+      width: 30%;
+      margin-left: -55%;
+     }
+     .description-text-conteiner .description-conteiner-foto img{
+      width: 400px;
+      height: 250px;
+      margin-left: 40%;
+     }
+    .titulo-iniciar-sesion {
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    .etiquetas-iniciar-sesion {
+        font-size: 16px;
+    }
+
+     .nuestro-equipo-container {
+      margin-left: -50%;
+      }
+      .nuestro-equipo-container img{
+        width: 435px;
+        height: 250px;
+        }
+  }
+
+  @media screen and (max-width: 380px) {
+    .login-container {
+        width: 60%;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        background-color: white;
+        border-radius: 10px;
+        margin-left: 20rem;
+        border-style: solid;
+        border-color: #598480;
+        border-width: 1px;
+    }
+  
+    .content{
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  
+  }

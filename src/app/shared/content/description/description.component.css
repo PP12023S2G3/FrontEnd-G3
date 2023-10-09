@@ -142,3 +142,141 @@ div h4{
       height: 250px;
       }
 }
+@media screen and (max-width: 600px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    margin-left: -32%;
+   }
+   .nuestro-equipo-container {
+    margin-left: -20%;
+    }
+}
+@media screen and (max-width: 550px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    margin-left: -39%;
+   }
+   .nuestro-equipo-container {
+    margin-left: -24%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -42%;
+   }
+   .description-text-conteiner .description-conteiner-foto img{
+    width: 400px;
+    height: 250px;
+    margin-left: 40%;
+   }
+
+   .nuestro-equipo-container {
+    margin-left: -45%;
+    }
+    .nuestro-equipo-container img{
+      width: 450px;
+      height: 250px;
+      }
+}
+
+@media screen and (max-width: 480px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -55%;
+   }
+   .description-text-conteiner .description-conteiner-foto img{
+    width: 400px;
+    height: 250px;
+    margin-left: 40%;
+   }
+
+   .nuestro-equipo-container {
+    margin-left: -50%;
+    }
+    .nuestro-equipo-container img{
+      width: 435px;
+      height: 250px;
+      }
+}
+
+@media screen and (max-width: 480px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -30%;
+   }
+   .description-text-conteiner .description-conteiner-foto img{
+    width: 300px;
+    height: 250px;
+    margin-left: 30%;
+   }
+
+   div h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #131325;
+    text-align: center;
+    width: 100%;
+   }
+
+   .description-text-conteiner h4 {
+    font-size: 16px;
+    color: #0C0C20;
+    text-align: center;
+    width: 180%;
+    font-weight: normal;
+    margin-left: -6rem;
+   }
+
+   .nuestro-equipo-container {
+    margin-left: -34%;
+    }
+    .nuestro-equipo-container img{
+      width: 350px;
+      height: 250px;
+      }
+}
+
+@media screen and (max-width: 380px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -50%;
+   }
+   .description-text-conteiner .description-conteiner-foto img{
+    width: 300px;
+    height: 250px;
+    margin-left: 40%;
+   }
+
+   div h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #131325;
+    text-align: center;
+    width: 100%;
+   }
+
+   .description-text-conteiner h4 {
+    font-size: 16px;
+    color: #0C0C20;
+    text-align: center;
+    width: 180%;
+    font-weight: normal;
+    margin-left: -5rem;
+   }
+
+   .nuestro-equipo-container {
+    margin-left: -52%;
+    }
+    .nuestro-equipo-container img{
+      width: 350px;
+      height: 250px;
+      }
+}

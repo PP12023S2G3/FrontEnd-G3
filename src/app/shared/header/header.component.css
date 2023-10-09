@@ -1,9 +1,17 @@
 .toolbar .foto img {
-  width: 70px;
-  height: 66px;
+  width: 30px;
+  height: 30px;
 }
 .toolbar .foto {
   float: left;
   margin-right: 20px;
   margin-top: 0.7rem;
+}
+
+.tittle{
+  font-size: 32px;
+  font-weight: bold;
+  line-height: normal;
+  margin-top: 0.5rem;
+  font-family: "Poppins", sans-serif;
 }

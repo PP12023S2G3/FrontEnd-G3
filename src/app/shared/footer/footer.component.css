@@ -8,11 +8,11 @@
 }
 
 p {
-  font-size: 50px;
+  font-size: 32px;
 }
 
 .enlaces-footer .foto{
-margin-top: -10rem;
+margin-top: -8.5rem;
 float: right;
 margin-left: 15px;
 }
@@ -21,3 +21,41 @@ margin-left: 15px;
   width: 150px;
   height: 142px;
   }
+
+  @media screen and (max-width: 650px) {
+    
+    .footer{
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+    .enlaces-footer .foto img{
+      width: 80px;
+      height: 80px;
+      }
+
+      .enlaces-footer .foto{
+        margin-top: -7rem;
+        float: right;
+        margin-left: 15px;
+        }
+        
+  }
+  @media screen and (max-width: 400px) {
+    
+    .footer{
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+    .enlaces-footer .foto img{
+      width: 80px;
+      height: 80px;
+      }
+
+      .enlaces-footer .foto{
+        margin-top: -7.3rem;
+        float: right;
+        margin-left: 25px;
+        }
+        
+  }
+  
