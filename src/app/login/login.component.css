@@ -1,5 +1,5 @@
 .login-container {
-    width: 75%;
+    width: 70%;
     height: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
@@ -37,8 +37,7 @@
 }
 
 .campos-iniciar-sesion {
-    margin-bottom: 20px;
-
+    margin: auto 10px 20px 10px;
 }
 
 .etiquetas-iniciar-sesion {
@@ -54,18 +53,42 @@
 }
 
 .input-datos-iniciar-sesion {
-    width: 90%;
-    margin-left: 5%;
-    /*width:418.32px;*/
+    width: 100%;
     height: 49.813px;
     border: 0.996px solid #D1D1D1;
 }
+
+.noBorder {
+    border: none;
+    width: 95%;
+}
+
+.loginInput {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    border-radius: 10px;
+    border: 0.996px solid #D1D1D1;
+    padding-left: 10px;
+}
+
+.loginIcon {
+    font-size: 1.5rem;
+    color: #797979;
+    padding: 0.5rem;
+}
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
 .conatainer-boton-link {
     text-align: right;
 }
 
-:host::ng-deep .pi-id-card {
+/* :host::ng-deep .pi-id-card {
     position: absolute;
     left: 0.2rem;
     top: 10rem;
@@ -87,7 +110,7 @@
     top: 17rem;
     font-size: 1.3rem;
     cursor: pointer;
-}
+} */
 
 /* Estilo para mostrar la contraseña 
 .show-password input[type="text"] {

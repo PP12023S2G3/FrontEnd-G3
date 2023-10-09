@@ -3,20 +3,19 @@
   <form (ngSubmit)="onSubmit()">
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">DNI:</label>
-      <div>
-        <i class="pi pi-id-card"></i>      
-          <input class="input-datos-iniciar-sesion" type="text" placeholder="Ingresar DNI" pInputText
-        [(ngModel)]="persona.dni" required name="primero" />
-      </div>
-      
+        <span class="loginInput">
+          <i class="pi pi-id-card loginIcon"></i>  
+          <input class="noBorder" type="text" placeholder="Ingresar DNI" pInputText
+          [(ngModel)]="persona.dni" required name="primero" />
+        </span>    
     </div>
     <div class="campos-iniciar-sesion">
       <label class="etiquetas-iniciar-sesion">Contraseña:</label>
-      <div>
-        <i class="pi pi-lock"></i>
-        <input [type]="showPassword ? 'text' : 'password'" class="input-datos-iniciar-sesion" placeholder="********" id="password" pInputText [(ngModel)]="persona.clave" name="password" required />
-        <i class="pi pi-eye" (click)="togglePasswordVisibility()"></i>
-      </div>
+      <span class="loginInput">
+        <i class="pi pi-lock loginIcon"></i>
+        <input class="noBorder" [type]="showPassword ? 'text' : 'password'" placeholder="********" id="password" pInputText [(ngModel)]="persona.clave" name="password" required />
+        <i class="pi pi-eye loginIcon" (click)="togglePasswordVisibility()"></i>
+      </span>
       
     </div>
     <div class="conatainer-boton-link">
