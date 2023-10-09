@@ -153,14 +153,14 @@ Estilo para ocultar la contraseña
     }
 
     :host::ng-deep .pi-id-card {
-        position: absolute;
+        /* position: absolute; */
         left: 0.2rem;
         top: 10rem;
         font-size: 1.5rem;
     }
 
     :host::ng-deep .pi-lock {
-        position: absolute;
+        /* position: absolute; */
         left: 0.2rem;
         top: 16.625rem;
         font-size: 1.5rem;
@@ -197,6 +197,7 @@ Estilo para ocultar la contraseña
         width: 435px;
         height: 250px;
         }
+    
   }
 
   @media screen and (max-width: 380px) {
