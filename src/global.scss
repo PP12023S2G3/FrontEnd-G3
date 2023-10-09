@@ -11,7 +11,7 @@ body {
   display: block;
   height: 100%;
   --blanco: #ffffff;
-  --degradado-verde: linear-gradient(90deg, #797979,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
+  --degradado-verde: linear-gradient(90deg, #797979, #4C707D, #1B6581, #4B5C8B);
   --degradado-rosa: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
 
 }
@@ -85,7 +85,7 @@ p {
   top: 0;
   left: 0;
   right: 0;
-  height: 90px;
+  height: 56px;
   align-items: center;
   background: var(--degradado-verde);
   color: var(--blanco);
