@@ -98,6 +98,42 @@ div h4{
       }
 }
 
+@media screen and (max-width: 950px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    width: 30%;
+    margin-left: -30%;
+   }
+   .description-text-conteiner .description-conteiner-foto img{
+    width: 600px;
+    height: 400px;
+    margin-left: 40%;
+   }
+
+   .nuestro-equipo-container {
+    margin-left: -19%;
+    }
+    .nuestro-equipo-container img{
+      width: 600px;
+      height: 400px;
+      }
+      .description-text-conteiner h4{
+        width: 130%;
+        margin-left: -20%;
+      }
+}
+
+@media screen and (max-width: 850px) {
+
+  .description-text-conteiner .description-conteiner-foto {
+    margin-left: -35%;
+   }
+
+   .nuestro-equipo-container {
+    margin-left: -25%;
+    }
+}
+
 @media screen and (max-width: 800px) {
 
   .description-text-conteiner .description-conteiner-foto {
