@@ -1,5 +1,5 @@
 .enlaces-footer p{
-    margin: 20px;  margin-top: 3.5rem;
+    margin: 20px;  margin-top: 1rem;
 }
 
 :host ::ng-deep .p-button{
@@ -13,14 +13,14 @@ p {
 }
 
 .enlaces-footer .foto{
-margin-top: -8.5rem;
+margin-top: -4.7rem;
 float: right;
 margin-left: 15px;
 }
 
 .enlaces-footer .foto img{
-  width: 150px;
-  height: 142px;
+  width: 60px;
+  height: 60px;
 }
 
   @media screen and (max-width: 650px) {
@@ -30,14 +30,17 @@ margin-left: 15px;
       overflow-y: hidden;
     }
     .enlaces-footer .foto img{
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       }
+      .enlaces-footer p{
+        margin: 20px;  margin-top: -1rem;
+    }
 
       .enlaces-footer .foto{
-        margin-top: -7rem;
+        margin-top: -3rem;
         float: right;
-        margin-left: 15px;
+        margin-left: 25px;
         }
         
   }
@@ -48,12 +51,15 @@ margin-left: 15px;
       overflow-y: hidden;
     }
     .enlaces-footer .foto img{
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       }
+      .enlaces-footer p{
+        margin: 20px;  margin-top: -1rem;
+    }
 
       .enlaces-footer .foto{
-        margin-top: -7.3rem;
+        margin-top: -3rem;
         float: right;
         margin-left: 25px;
         }
