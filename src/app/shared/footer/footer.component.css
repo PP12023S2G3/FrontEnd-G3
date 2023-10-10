@@ -5,6 +5,7 @@
 :host ::ng-deep .p-button{
     background:  transparent;
     border: transparent;
+    box-shadow: none;
 }
 
 p {
