@@ -3,7 +3,14 @@
 }
 @media screen and (max-width: 970px) {
   .container-content-inicio {
-    height: 80rem;
+    height: 88rem;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .container-content-inicio {
+    height: 85rem;
   }
 
 }

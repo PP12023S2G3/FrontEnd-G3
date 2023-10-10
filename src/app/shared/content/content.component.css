@@ -12,6 +12,20 @@
   margin-top: -16%;
 }
 
+.conteiner-inicio-descr {
+  margin-top: -10%;
+  width: 700px;
+  margin-left: 35%;
+}
+
+div h4{
+  font-size: 32px;
+  color: #0C0C20;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+
+}
 
 @media screen and (max-width: 1700px) {
   .inicio-imagen {
@@ -87,6 +101,12 @@
 
 }
 @media screen and (max-width: 1180px) {
+  .conteiner-inicio-descr {
+    margin-top: -10%;
+    width: 700px;
+    margin-left: 30%;
+  }
+
   .inicio-imagen {
     margin-left: -9rem;
     margin-top: 10rem;
@@ -136,6 +156,20 @@
   .inicio-imagen {
     margin-left: 0rem;
     margin-top: 42rem;
+  }
+  .conteiner-inicio-descr {
+    margin-top: 50%;
+    width: 700px;
+    margin-left: 13%;
+  }
+
+  div h4{
+    font-size: 25px;
+    color: #0C0C20;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+  
   }
 
   .inicio-imagen img {
@@ -224,6 +258,11 @@
     overflow-x: hidden;
     overflow-y: hidden;
   }
+  .conteiner-inicio-descr {
+    margin-top: 50%;
+    width: 500px;
+    margin-left: 28%;
+  }
 
 }
 
@@ -243,7 +282,11 @@
     margin-top: -105%;
 
   }
-
+  .conteiner-inicio-descr {
+    margin-top: 50%;
+    width: 500px;
+    margin-left: 28%;
+  }
   .content{
     overflow-x: hidden;
     overflow-y: hidden;
@@ -285,6 +328,12 @@
     height: 450px;
   }
 
+  .conteiner-inicio-descr {
+    margin-top: 50%;
+    width: 500px;
+    margin-left: 23%;
+  }
+
   .container-login-inicio {
     margin-left: 6rem;
     margin-top: -112%;
@@ -304,6 +353,7 @@
     margin-top: 42rem;
   }
 
+
   .inicio-imagen img {
     width: 430px;
     height: 430px;
@@ -319,7 +369,19 @@
     overflow-x: hidden;
     overflow-y: hidden;
   }
-
+  .conteiner-inicio-descr {
+    margin-top: 60%;
+    width: 350px;
+    margin-left: 35%;
+  }
+  div h4{
+    font-size: 18px;
+    color: #0C0C20;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+  
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -367,6 +429,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
   }
+
 
 }
 
