@@ -3,8 +3,8 @@
 }
 
 :host ::ng-deep .p-button{
-    background: linear-gradient(90deg, #797979,#53717C,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
-    border: linear-gradient(90deg, #797979,#53717C,#598480, #4A8983, #199A8E, #17868F, #166F91, #1B6581, #516395);
+    background:  transparent;
+    border: transparent;
 }
 
 p {
@@ -20,7 +20,7 @@ margin-left: 15px;
 .enlaces-footer .foto img{
   width: 150px;
   height: 142px;
-  }
+}
 
   @media screen and (max-width: 650px) {
     

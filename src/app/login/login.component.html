@@ -2,7 +2,7 @@
   <h2 class="titulo-iniciar-sesion">Bienvenid@!</h2>
   <form (ngSubmit)="onSubmit()">
     <div class="campos-iniciar-sesion">
-      <label class="etiquetas-iniciar-sesion">DNI:</label>
+      <label class="etiquetas-iniciar-sesion">DNI</label>
         <span class="loginInput">
           <i class="pi pi-id-card loginIcon"></i>  
           <input class="noBorder" type="text" placeholder="Ingresar DNI" pInputText
@@ -10,7 +10,7 @@
         </span>    
     </div>
     <div class="campos-iniciar-sesion">
-      <label class="etiquetas-iniciar-sesion">Contraseña:</label>
+      <label class="etiquetas-iniciar-sesion">Contraseña</label>
       <span class="loginInput">
         <i class="pi pi-lock loginIcon"></i>
         <input class="noBorder" [type]="showPassword ? 'text' : 'password'" placeholder="********" id="password" pInputText [(ngModel)]="persona.clave" name="password" required />
