@@ -1,4 +1,4 @@
-.login-container {
+.container-login {
     width: 70%;
     height: 50%;
     transform: translate(-50%, -50%);
@@ -11,36 +11,18 @@
     border-width: 1px;
 }
 
-/*
-.borde-login{
-    width: 461px;
-    height: 476px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 4rem;
-    border-radius: 10px;
-    background: linear-gradient(90deg,#62817E,#598480, #4A8983, #199A8E, #17868F, #166F91, #316A93, #516395);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-}
-*/
-
-.titulo-iniciar-sesion {
+.title-welcome-login {
     color: black;
     font-size: 32px;
     font-weight: bold;
     text-align: center;
 }
 
-.campos-iniciar-sesion {
+.container-field-login {
     margin: auto 10px 20px 10px;
 }
 
-.etiquetas-iniciar-sesion {
+.label-input-login {
     display: block;
     width: 32px;
     color: #000;
@@ -79,62 +61,42 @@
     color: #797979;
     padding: 0.5rem;
 }
+
 .loginForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
 
-.conatainer-boton-link {
+.container-button-link {
     text-align: right;
 }
 
-/* :host::ng-deep .pi-id-card {
-    position: absolute;
-    left: 0.2rem;
-    top: 10rem;
-    font-size: 1.5rem;
-    color: #797979;
+
+:host::ng-deep .button-enter-login .p-button {
+    width: 97%;
+    height: 4rem;
+    align-items: center;
+    border-radius: 10px;
+    background: var(--degradado-rosa);
+    color: var(--blanco);
+    font-size: 15.94px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    bottom: 1rem;
+    margin-top: 1rem;
+    border: none;
+
 }
-
-:host::ng-deep .pi-lock {
-    position: absolute;
-    left: 0.2rem;
-    top: 16.625rem;
-    font-size: 1.5rem;
-    color: #797979;
-}
-
-:host::ng-deep .pi-eye {
-    position: absolute;
-    left: 25.7rem;
-    top: 17rem;
-    font-size: 1.3rem;
-    cursor: pointer;
-} */
-
-/* Estilo para mostrar la contraseña 
-.show-password input[type="text"] {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-Estilo para ocultar la contraseña 
-.hide-password input[type="password"] {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-}*/
-
 
 @media screen and (max-width: 1280px) {
-    .login-container {
+    .container-login {
         width: 75%;
 
     }
 
-    :host::ng-deep .global-button-inicio .p-button {
+    :host::ng-deep .button-enter-login .p-button {
         width: 97%;
         /*width: 418.32px;*/
         height: 4rem;
@@ -148,7 +110,7 @@ Estilo para ocultar la contraseña
 
     }
 
-    :host::ng-deep .boton-link .p-button {
+    :host::ng-deep .button-link .p-button {
         text-align: right;
 
     }
@@ -173,36 +135,39 @@ Estilo para ocultar la contraseña
 @media screen and (max-width: 360px) {
 
     .description-text-conteiner .description-conteiner-foto {
-      width: 30%;
-      margin-left: -55%;
-     }
-     .description-text-conteiner .description-conteiner-foto img{
-      width: 400px;
-      height: 250px;
-      margin-left: 40%;
-     }
-    .titulo-iniciar-sesion {
+        width: 30%;
+        margin-left: -55%;
+    }
+
+    .description-text-conteiner .description-conteiner-foto img {
+        width: 400px;
+        height: 250px;
+        margin-left: 40%;
+    }
+
+    .title-welcome-login {
         font-family: "Poppins", sans-serif;
         font-weight: bold;
         font-size: 25px;
     }
 
-    .etiquetas-iniciar-sesion {
+    .label-input-login {
         font-size: 16px;
     }
 
-     .nuestro-equipo-container {
-      margin-left: -50%;
-      }
-      .nuestro-equipo-container img{
+    .nuestro-equipo-container {
+        margin-left: -50%;
+    }
+
+    .nuestro-equipo-container img {
         width: 435px;
         height: 250px;
-        }
-    
-  }
+    }
 
-  @media screen and (max-width: 380px) {
-    .login-container {
+}
+
+@media screen and (max-width: 380px) {
+    .container-login {
         width: 60%;
         height: 50%;
         transform: translate(-50%, -50%);
@@ -214,10 +179,10 @@ Estilo para ocultar la contraseña
         border-color: #598480;
         border-width: 1px;
     }
-  
-    .content{
-      overflow-x: hidden;
-      overflow-y: hidden;
+
+    .content {
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
-  
-  }
+
+}
