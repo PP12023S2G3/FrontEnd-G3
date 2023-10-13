@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result/result.service';
 
 @Component({
-  selector: 'app-content-formulario',
-  templateUrl: './content-formulario.component.html',
-  styleUrls: ['./content-formulario.component.css']
+  selector: 'app-form-diagnostic',
+  templateUrl: './form-diagnostic.component.html',
+  styleUrls: ['./form-diagnostic.component.css']
 })
-export class ContentFormularioComponent {
+export class FormDiagnosticComponent {
 
   uploadedFiles: File [] = [] ;
   maxFileSize: number = 10485760;

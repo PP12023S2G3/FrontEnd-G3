@@ -19,13 +19,13 @@
                     <ul *ngIf="uploadedFiles.length">
                         <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
                     </ul>
-                    <!-- Vista previa de la imagen -->
+
                 <img class="imagen-pre" *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen subida" />
-                <p class="image-placeholder" *ngIf="mostrarTextoInicial" >Seleccione una imagen para diagnosticar</p>
+                <p class="image-placeholder" *ngIf="mostrarTextoInicial" >Seleccione o arrastre una imagen para diagnosticar</p>
                 <p-button *ngIf="isCancelButtonVisible" class="cancel-button" (click)="onCancel()" label="Cancel"></p-button>
                 </div>
             </ng-template>
         </p-fileUpload>
-        <p-button class="result-button" (click)="diagnosticResult()"  label="Resultado" [disabled]="isResultButtonDisabled" ></p-button>
+        <p-button class="result-button" (click)="diagnosticResult()"  label="Result" [disabled]="isResultButtonDisabled" ></p-button>
 
 </div>

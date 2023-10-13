@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { ContactoViewComponent } from './views/contacto-view/contacto-view.component';
 import { ModeloViewComponent } from './views/modelo-view/modelo-view.component';
 import { HistorialViewComponent } from './views/historial-view/historial-view.component';
-import { FormularioViewComponent } from './views/formulario-view/formulario-view.component';
+import { DiagnosticViewComponent } from './views/diagnostic-view/diagnostic-view.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ContentComponent } from './shared/content/content.component';
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button'
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
-import { ContentFormularioComponent } from './views/formulario-view/content-formulario/content-formulario.component';
+import { FormDiagnosticComponent } from './views/diagnostic-view/form-diagnostic/form-diagnostic.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { LoginComponent } from './login/login.component';
@@ -39,8 +39,8 @@ import { ResetPasswordComponent } from './resetPassword/resetPassword.component'
     ModeloViewComponent,
     HistorialViewComponent,
     InicioViewComponent,
-    FormularioViewComponent,
-    ContentFormularioComponent,
+    DiagnosticViewComponent,
+    FormDiagnosticComponent,
     LoginComponent,
     FooterComponent,
     DescriptionComponent,
