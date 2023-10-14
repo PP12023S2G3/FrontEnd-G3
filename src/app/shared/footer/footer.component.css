@@ -25,8 +25,8 @@ p {
 }
 
 .footer {
-  background: var(--degradado-verde);
-  color: var(--blanco);
+  background: var(--gradient-green);
+  color: var(--font-color-light);
   text-align: left; /* Alinear texto a la izquierda */
   padding: 20px;
   position: relative;

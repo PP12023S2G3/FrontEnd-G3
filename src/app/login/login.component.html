@@ -4,10 +4,10 @@
     <div class="container-field-login"> <!--campos==field-->
       <label class="label-input-login">DNI</label>
         <span class="loginInput">
-          <i class="pi pi-id-card loginIcon"></i>  
+          <i class="pi pi-id-card loginIcon"></i>
           <input class="noBorder" type="text" placeholder="Ingresar DNI" pInputText
           [(ngModel)]="persona.dni" required name="dni" />
-        </span>    
+        </span>
     </div>
     <div class="container-field-login">
       <label class="label-input-login">Contraseña</label>
@@ -16,7 +16,7 @@
         <input class="noBorder" [type]="showPassword ? 'text' : 'password'" placeholder="********" id="password" pInputText [(ngModel)]="persona.clave" name="password" required />
         <i class="pi pi-eye loginIcon" (click)="togglePasswordVisibility()"></i>
       </span>
-      
+
     </div>
     <div class="container-button-link">
       <p-button class="button-link" label="¿Olvidaste tu contraseña?" (click)="irAResetPassword()" styleClass="p-button-link"></p-button>

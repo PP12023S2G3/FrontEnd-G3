@@ -1,19 +1,17 @@
-
-html,
-body {
-
-  background-color: var(--blanco);
-  margin:0%;
-  padding:0%;
-}
-
 :root {
   display: block;
   height: 100%;
-  --blanco: #ffffff;
-  --degradado-verde: linear-gradient(90deg, #797979, #4C707D, #1B6581, #4B5C8B);
-  --degradado-rosa: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
-
+  --background-color-light: #f2f0f0;
+  --font-color-light: #ffffff;
+  --gradient-green: linear-gradient(90deg, #797979, #4C707D, #1B6581, #4B5C8B);
+  --gradient-pink: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+  --error-color:red;
+  --border-box-color:#598480;
+}
+html,
+body {
+  margin:0%;
+  padding:0%;
 }
 
 * {
@@ -80,23 +78,12 @@ p {
   height: 120rem;
 }
 
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 56px;
-  align-items: center;
-  background: var(--degradado-verde);
-  color: var(--blanco);
 
-
-}
 
 
 .global-message-error {
   span {
-    color: red;
+    color: var(--error-color);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: small;
     text-align: center;

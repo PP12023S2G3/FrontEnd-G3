@@ -3,11 +3,11 @@
     height: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
-    background-color: white;
+    background-color: var(--background-color-light);
     border-radius: 10px;
     margin-left: 20rem;
     border-style: solid;
-    border-color: #598480;
+    border-color: var(--border-box-color);
     border-width: 1px;
 }
 
@@ -78,8 +78,7 @@
     height: 4rem;
     align-items: center;
     border-radius: 10px;
-    background: var(--degradado-rosa);
-    color: var(--blanco);
+    background: var(--gradient-pink);
     font-size: 15.94px;
     font-style: normal;
     font-weight: bold;
@@ -112,7 +111,6 @@
 
     :host::ng-deep .button-link .p-button {
         text-align: right;
-
     }
 
     :host::ng-deep .pi-id-card {
@@ -176,7 +174,7 @@
         border-radius: 10px;
         margin-left: 20rem;
         border-style: solid;
-        border-color: #598480;
+        border-color: var(--border-box-color);
         border-width: 1px;
     }
 
