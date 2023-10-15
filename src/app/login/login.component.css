@@ -132,8 +132,20 @@
     .container-login {
         width: 320px;
     }
-
 }
+
+@media screen and (max-width: 900px) { 
+    .container-login {
+        width: 450px;
+    }
+}
+
+
+@media screen and (max-width: 582px) {
+    .container-login {
+        width: 350px;
+    }
+  }
 
 @media screen and (max-width: 360px) {
 

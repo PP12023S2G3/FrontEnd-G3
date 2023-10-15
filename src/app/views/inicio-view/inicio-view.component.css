@@ -103,12 +103,100 @@
 
   .container-login-inicio {
     margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
-
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .title-description {
+    width: 90%;
+  }
+}
 
+@media screen and (max-width: 900px) {
+  .title-description {
+    width: 90%;
+  }
+  .content{
+    display: grid;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    height: 105vh;
+    margin-top: 2vh;
+  }
+  .inicio-imagen {
+    order: 2;
+  }
+    .container-login-inicio {
+      width: 100%; /* Ajusta el ancho del login */
+      order: 1;
+      margin-top: 3vh;
+      margin-left: 1vh;
+    }
+    .inicio-imagen img {
+      width: 550px;
+      height: 392px;
+    }
+}
 
+@media screen and (max-width: 700px) {
+  .title-description {
+    width: 90%;
+  }
+  .title-description h1{
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 582px) {
+  .title-description {
+    width: 90%;
+  }
+  .title-description h1{
+    font-size: 24px;
+  }
+  .container-login-inicio {
+    width: 100%; /* Ajusta el ancho del login */
+    order: 1;
+    margin-top: 3vh;
+    margin-left: -1vh;
+  }
+  .inicio-imagen img {
+    width: 400px;
+    height: 300px;
+  }
+  .content{
+    display: grid;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    height: 100vh;
+    margin-top: 2vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .title-description {
+    width: 95%;
+  }
+  .title-description h1{
+    font-size: 18px;
+  }
+  .container-login-inicio {
+    width: 90%; /* Ajusta el ancho del login */
+    order: 1;
+    margin-top: 3vh;
+    margin-left: 1vh;
+  }
+  .inicio-imagen img {
+    width: 380px;
+    height: 300px;
+  }
+  .content{
+    display: grid;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    height: 100vh;
+    margin-top: 2vh;
+  }
+}
 --Description
 
 .description-text-conteiner .description-conteiner-foto img {
@@ -122,13 +210,6 @@
   }
 
 
-div h4{
-  font-size: 32px;
-  color: #0C0C20;
-  text-align: center;
-  width: 100%;
-  font-weight: normal;
-}
 .description-text-conteiner {
   width: 50%;
   margin-left: 27%;
@@ -233,15 +314,6 @@ div h4{
       .description-text-conteiner h4{
         width: 130%;
         margin-left: -20%;
-      }
-
-      div h1{
-        font-family: "Poppins", sans-serif;
-        font-weight: bold;
-        font-size: 56px;
-        color: #131325;
-        text-align: center;
-        width: 100%;
       }
       div h4{
         font-size: 24px;
