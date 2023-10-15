@@ -1,0 +1,20 @@
+.container-header-result {
+    display: flex;
+    align-items: center;
+    margin: 2% 0 0 4%;
+    padding: 0;
+}
+
+.img-result-logo {
+    width: auto;
+    height: auto;
+ 
+}
+
+.title-result {
+    flex-grow: 1; /* Permite que el título ocupe todo el espacio restante */
+    text-align: center;
+    
+}
+
+

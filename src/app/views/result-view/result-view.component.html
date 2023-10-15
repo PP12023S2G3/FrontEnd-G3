@@ -1,1 +1,51 @@
-<p>result-view works!</p>
+<div class="container-result">
+    <div class="container-header-result">
+            <img class="img-result-logo" src="assets/img/Ellipse 6.png">
+            <h2 id="title" class="title-result">Resultado</h2>
+    </div>
+
+
+    <div class="container-data-result">
+        <div class="container-data-doctor">
+            <h4 class="title-data-doctor">Datos del médico</h4>
+            <label class="label-doctor">Médico</label>
+            <input class="input-name-dni-doctor" type="text" placeholder="Nombre y Dni del medico" pInputText
+                [(ngModel)]="diagnostic.doctor" readonly name="doctor" />
+        </div>
+
+        <div class="container-data-patient">
+            <h4 class="title-data-patient">Datos del paciente</h4>
+            <div class="container-inputs-data-patient">
+                <input class="input-age-patient" type="text" placeholder="Edad del paciente" pInputText
+                    [(ngModel)]="diagnostic.age" readonly name="age-patient" />
+
+                <input class="input-weight-patient" type="text" placeholder="Peso del paciente" pInputText
+                    [(ngModel)]="diagnostic.weight" readonly name="weight-patient" />
+
+                <input class="input-height-patient" type="text" placeholder="Altura del paciente" pInputText
+                    [(ngModel)]="diagnostic.height" readonly name="height-patient" />
+
+                <input class="input-gender-patient" type="text" placeholder="Sexo del paciente" pInputText
+                    [(ngModel)]="diagnostic.gender" readonly name="gender-patient" />
+
+                <input class="input-body-section-patient" type="text" placeholder="Sección del cuerpo del paciente"
+                    pInputText [(ngModel)]="diagnostic.sectionBody" readonly name="body-section-patient" />
+
+                <input class="input-preconditions-patient" type="text" placeholder="Condiciones previas del paciente"
+                    pInputText [(ngModel)]="diagnostic.preconditions" readonly name="preconditions-patient" />
+
+                <input class="input-diagnostic-result-patient" type="text"
+                    placeholder="Resultado de diagnostic del paciente" pInputText
+                    [(ngModel)]="diagnostic.resultDiagnostic" readonly name="diagnostic-result-patient" />
+
+            </div>
+        </div>
+
+        <div class="container-result-image">
+            <img class="img-result" alt="imagen del resultado" src="assets/img/cerebro.png">
+        </div>
+
+
+    </div>
+
+</div>
