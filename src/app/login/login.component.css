@@ -1,14 +1,13 @@
 .container-login {
-    width: 70%;
+    width: 450px;
     height: 50%;
-    transform: translate(-50%, -50%);
     padding: 10px;
-    background-color: var(--background-color-light);
+    background-color: var(--font-color-light);
     border-radius: 10px;
-    margin-left: 20rem;
     border-style: solid;
-    border-color: var(--border-box-color);
     border-width: 1px;
+    background-color: white;
+    float: right;
 }
 
 .title-welcome-login {
@@ -91,8 +90,7 @@
 
 @media screen and (max-width: 1280px) {
     .container-login {
-        width: 75%;
-
+        width: 380px;
     }
 
     :host::ng-deep .button-enter-login .p-button {
@@ -127,6 +125,13 @@
         font-size: 1.5rem;
     }
 
+
+}
+
+@media screen and (max-width: 1080px) { 
+    .container-login {
+        width: 320px;
+    }
 
 }
 

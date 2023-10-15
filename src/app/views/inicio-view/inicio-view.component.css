@@ -1,461 +1,112 @@
 
-.inicio-imagen {
-  margin-top: 11%;
-}
-
 .inicio-imagen img {
   width: 700px;
-  height: 550px;
+  height: 592px;
+  
+}
+
+.container-content-inicio {
+  display: contents;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  height: 100vh;
+  margin-top: 0vh;
+}
+
+.content {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  height: 80vh;
+  max-width: 100%;
+  margin-top: 3vh;
+}
+
+
+.inicio-imagen {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  max-width: 100%; /* Ajusta el tamaño de la imagen automáticamente */
 }
 
 .container-login-inicio {
-  margin-left: 70rem;
-  margin-top: -16%;
+  max-width: 100%;
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  margin-left: 15vh; /* Agrega un margen izquierdo entre el login y la imagen */
 }
 
 .conteiner-inicio-descr {
-  margin-top: -10%;
-  width: 700px;
-  margin-left: 35%;
-}
-
-div h4{
-  font-size: 32px;
-  color: #0C0C20;
+  display: flex;
+  flex-direction: column; /* Coloca el título debajo del contenido */
   text-align: center;
-  width: 100%;
-  font-weight: bold;
-
+  align-items: center; /* Centra verticalmente */
+  margin-top: -1%; /* Espacio entre el login y el título */
 }
 
-@media screen and (max-width: 1700px) {
-  .inicio-imagen {
-    margin-top: 11%;
-    margin-left: -5rem;
-  }
-
-  .inicio-imagen img {
-    width: 700px;
-    height: 550px;
-  }
-
-  .container-login-inicio {
-    margin-left: 60rem;
-    margin-top: -18%;
-  }
+.title-description {
+  text-align: center;
+  width: 40%;
 }
 
-@media screen and (max-width: 1600px) {
-  .inicio-imagen {
-    margin-top: 11%;
-    margin-left: -5rem;
-  }
-
-  .inicio-imagen img {
-    width: 700px;
-    height: 550px;
-  }
-
-  .container-login-inicio {
-    margin-left: 56rem;
-    margin-top: -19%;
-  }
-}
-
-@media screen and (max-width: 1432px) {
-  .inicio-imagen {
-    margin-left: -9rem;
-    margin-top: 10rem;
-  }
-
-  .inicio-imagen img {
-    width: 700px;
-    height: 550px;
-  }
-
-  .container-login-inicio {
-    margin-left: 55rem;
-    margin-top: -19%;
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .inicio-imagen {
-    margin-left: -10rem;
-    margin-top: 10rem;
-  }
-
-  .inicio-imagen img {
-    width: 600px;
-    height: 550px;
-  }
-
-  .container-login-inicio {
-    margin-left: 48rem;
-    margin-top: -20%;
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-@media screen and (max-width: 1180px) {
-  .conteiner-inicio-descr {
-    margin-top: -10%;
-    width: 700px;
-    margin-left: 30%;
-  }
-
-  .inicio-imagen {
-    margin-left: -9rem;
-    margin-top: 10rem;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 41rem;
-    margin-top: -20%;
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-
-@media screen and (max-width: 1000px) {
-  .inicio-imagen {
-    margin-left: -10rem;
-    margin-top: 10rem;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 38rem;
-    margin-top: -22%;
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-
-@media screen and (max-width: 970px) {
-  .inicio-imagen {
-    margin-left: 0rem;
-    margin-top: 42rem;
+@media screen and (max-width: 1723px) {
+  .title-description {
+    width: 50%;
   }
   .conteiner-inicio-descr {
-    margin-top: 50%;
-    width: 700px;
-    margin-left: 13%;
+    margin-top: -1.5%; /* Espacio entre el login y el título */
   }
-
-  div h4{
-    font-size: 25px;
-    color: #0C0C20;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
-  
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 9rem;
-    margin-top: -100%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-@media screen and (max-width: 850px) {
-  .inicio-imagen {
-    margin-left: -2rem;
-    margin-top: 42rem;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 9rem;
-    margin-top: -100%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
 }
 
-@media screen and (max-width: 800px) {
-  .inicio-imagen {
-    margin-left: -5rem;
-    margin-top: 42rem;
+@media screen and (max-width: 1372px) {
+  .title-description {
+    width: 60%;
   }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
   .container-login-inicio {
-    margin-left: 9rem;
-    margin-top: -100%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-
-@media screen and (max-width: 700px) {
-  .inicio-imagen {
-    margin-left: -7rem;
-    margin-top: 42rem;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 9rem;
-    margin-top: -105%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-  .conteiner-inicio-descr {
-    margin-top: 50%;
-    width: 500px;
-    margin-left: 28%;
-  }
-
-}
-
-@media screen and (max-width: 650px) {
-  .inicio-imagen {
-    margin-left: -9rem;
-    margin-top: 42rem;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 9rem;
-    margin-top: -105%;
-
-  }
-  .conteiner-inicio-descr {
-    margin-top: 50%;
-    width: 500px;
-    margin-left: 28%;
-  }
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-@media screen and (max-width: 600px) {
-  .inicio-imagen {
-    margin-left: -10rem;
-    margin-top: 42rem;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 500px;
-  }
-
-  .container-login-inicio {
-    margin-left: 9rem;
-    margin-top: -109%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-
-@media screen and (max-width: 550px) {
-  .inicio-imagen {
-    margin-left: -9.5rem;
-    margin-top: 42rem;
-  }
-
-  .inicio-imagen img {
-    width: 450px;
-    height: 450px;
-  }
-
-  .conteiner-inicio-descr {
-    margin-top: 50%;
-    width: 500px;
-    margin-left: 23%;
-  }
-
-  .container-login-inicio {
-    margin-left: 6rem;
-    margin-top: -112%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
-
-@media screen and (max-width: 500px) {
-  .inicio-imagen {
-    margin-left: -10rem;
-    margin-top: 42rem;
-  }
-
-
-  .inicio-imagen img {
-    width: 430px;
-    height: 430px;
-  }
-
-  .container-login-inicio {
-    margin-left: 6rem;
-    margin-top: -122%;
-
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-  .conteiner-inicio-descr {
-    margin-top: 60%;
-    width: 350px;
-    margin-left: 35%;
-  }
-  div h4{
-    font-size: 18px;
-    color: #0C0C20;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
+    margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
   
   }
 }
 
-@media screen and (max-width: 480px) {
-  .inicio-imagen {
-    margin-left: -9rem;
-    margin-top: 42rem;
+@media screen and (max-width: 1285px) {
+  .title-description {
+    width: 60%;
   }
 
   .inicio-imagen img {
-    width: 380px;
-    height: 380px;
+    width: 620px;
+    height: 550px;
   }
 
   .container-login-inicio {
-    margin-left: 4rem;
-    margin-top: -122%;
-
+    margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
   }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
 }
 
-@media screen and (max-width: 450px) {
-  .inicio-imagen {
-    margin-left: -10rem;
-    margin-top: 42rem;
+@media screen and (max-width: 1146px) {
+  .title-description {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .title-description {
+    width: 70%;
   }
 
   .inicio-imagen img {
-    width: 380px;
-    height: 380px;
+    width: 500px;
+    height: 492px;
   }
 
   .container-login-inicio {
-    margin-left: 4rem;
-    margin-top: -122%;
+    margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
 
   }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-
 }
 
-@media screen and (max-width: 380px) {
-  .inicio-imagen {
-    margin-left: -10rem;
-    margin-top: 42rem;
-  }
-
-  .inicio-imagen img {
-    width: 300px;
-    height: 300px;
-  }
-
-  .container-login-inicio {
-    margin-left: 1.3rem;
-    margin-top: -122%;
-  }
-
-  .content{
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
 
 
 --Description

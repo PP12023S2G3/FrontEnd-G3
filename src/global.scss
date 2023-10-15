@@ -66,12 +66,10 @@ p {
 }
 
 .container-content-inicio {
-  margin-top: 0rem;
-  left: 0;
-  right: 0;
-  height: 60rem;
-  width: 100%;
   display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
 }
 
 .container-description-inicio {
