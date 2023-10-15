@@ -11,7 +11,6 @@ import { HistorialViewComponent } from './views/historial-view/historial-view.co
 import { DiagnosticViewComponent } from './views/diagnostic-view/diagnostic-view.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { ContentComponent } from './shared/content/content.component';
 import { FormsModule } from '@angular/forms';
 
 //PRIMENG
@@ -24,7 +23,6 @@ import { PasswordModule } from 'primeng/password';
 import { LoginComponent } from './login/login.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FooterComponent } from './shared/footer/footer.component';
-import { DescriptionComponent } from './shared/content/description/description.component';
 import { ResultViewComponent } from './views/result-view/result-view.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 
@@ -34,7 +32,6 @@ import { ResetPasswordComponent } from './resetPassword/resetPassword.component'
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    ContentComponent,
     ContactoViewComponent,
     ModeloViewComponent,
     HistorialViewComponent,
@@ -43,7 +40,6 @@ import { ResetPasswordComponent } from './resetPassword/resetPassword.component'
     FormDiagnosticComponent,
     LoginComponent,
     FooterComponent,
-    DescriptionComponent,
     ResultViewComponent,
     ResetPasswordComponent
   ],

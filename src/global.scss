@@ -3,15 +3,16 @@
   height: 100%;
   --background-color-light: #f2f0f0;
   --font-color-light: #ffffff;
-  --gradient-green: linear-gradient(90deg, #797979, #4C707D, #1B6581, #4B5C8B);
-  --gradient-pink: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
-  --error-color:red;
-  --border-box-color:#598480;
+  --gradient-green: linear-gradient(90deg, #797979, #4c707d, #1b6581, #4b5c8b);
+  --gradient-pink: linear-gradient(90deg, #e62d9c 0.04%, #531981 102.56%);
+  --error-color: red;
+  --border-box-color: #598480;
 }
+
 html,
 body {
-  margin:0%;
-  padding:0%;
+  margin: 0%;
+  padding: 0%;
 }
 
 * {
@@ -24,15 +25,14 @@ div .global-label {
   font-size: 40px;
 }
 
-div h1{
-font-family: "Poppins", sans-serif;
-font-weight: bold;
-font-size: 72px;
-color: #131325;
-text-align: center;
-width: 100%;
+div h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 72px;
+  color: #131325;
+  text-align: center;
+  width: 100%;
 }
-
 
 p {
   margin: 0;
@@ -78,9 +78,6 @@ p {
   height: 120rem;
 }
 
-
-
-
 .global-message-error {
   span {
     color: var(--error-color);
@@ -91,9 +88,9 @@ p {
   }
 }
 
-.boton-home{
-  .p-button{
-      color:rgba(236, 233, 233, 0.767);
+.boton-home {
+  .p-button {
+    color: rgba(236, 233, 233, 0.767);
   }
 }
 .p-button-link {
@@ -103,5 +100,52 @@ p {
   font-family: "Open Sans", sans-serif;
 }
 
+.display1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 72px;
+  color: #0C0C20;
+}
 
+.title1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 56px;
+  color: #0C0C20;
+}
+
+.title2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 48px;
+  color: #0C0C20;
+}
+
+.title3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #0C0C20;
+}
+
+.title4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  color: #0C0C20;
+}
+
+.title5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #0C0C20;
+}
+
+.title6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  color: #0C0C20;
+}
 
