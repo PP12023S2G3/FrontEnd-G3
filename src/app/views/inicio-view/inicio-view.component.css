@@ -1,276 +1,65 @@
 * {
   background-color: #efefef;
 }
-
 .inicio-imagen img {
-  width: 700px;
-  height: 592px;
+  min-width: 340px;
+  min-height: 300px;
+  max-width: 40vw;
+  max-height: 40vw;
+  margin: 2vw;
 }
-
 .container-description-inicio {
   margin-top: 10%;
 }
-
 .container-content-inicio {
-  display: contents;
-  align-items: center; /* Centra verticalmente */
-  justify-content: center;
-  height: 95vh;
-  margin-top: 0vh;
+  margin-top: 50px;
 }
-
 .content {
   display: flex;
   align-items: center; /* Centra verticalmente */
   justify-content: center;
-  height: 95vh;
-  max-width: 100%;
-  margin-top: 0vh;
+  height: 100%;
+  flex-wrap: wrap;
 }
-
 .inicio-imagen {
   display: flex;
+  flex: 1;
   align-items: center; /* Centra verticalmente */
   justify-content: center;
   max-width: 100%; /* Ajusta el tamaño de la imagen automáticamente */
 }
-
 .container-login-inicio {
+  flex: 1;
   max-width: 100%;
   display: flex;
   align-items: center; /* Centra verticalmente */
   justify-content: center;
-  margin-left: 15vh; /* Agrega un margen izquierdo entre el login y la imagen */
+  margin: 1vh; /* Agrega un margen izquierdo entre el login y la imagen */
 }
-
 .conteiner-inicio-descr {
   display: flex;
   flex-direction: column; /* Coloca el título debajo del contenido */
   text-align: center;
   align-items: center; /* Centra verticalmente */
-  margin-top: -3%; /* Espacio entre el login y el título */
 }
-
 .title-description {
   text-align: center;
   width: 40%;
 }
-
-@media screen and (max-width: 1723px) {
-  .title-description {
-    width: 50%;
-  }
-  .conteiner-inicio-descr {
-    margin-top: -5%; /* Espacio entre el login y el título */
-  }
-}
-
-@media screen and (max-width: 1372px) {
-  .title-description {
-    width: 60%;
-  }
-  .container-login-inicio {
-    margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
-  }
-}
-
-@media screen and (max-width: 1285px) {
-  .title-description {
-    width: 60%;
-  }
-
-  .inicio-imagen img {
-    width: 620px;
-    height: 550px;
-  }
-
-  .container-login-inicio {
-    margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
-  }
-}
-
-@media screen and (max-width: 1146px) {
-  .title-description {
-    width: 70%;
-  }
-}
-
-@media screen and (max-width: 1080px) {
-  .title-description {
-    width: 70%;
-  }
-
-  .inicio-imagen img {
-    width: 500px;
-    height: 492px;
-  }
-
-  .container-login-inicio {
-    margin-left: 5vh; /* Agrega un margen izquierdo entre el login y la imagen */
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .title-description {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .title-description {
-    width: 90%;
-  }
-  .content {
-    display: grid;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    height: 105vh;
-    margin-top: 2vh;
-  }
-  .inicio-imagen {
-    order: 2;
-  }
-  .container-login-inicio {
-    width: 100%; /* Ajusta el ancho del login */
-    order: 1;
-    margin-top: 3vh;
-    margin-left: 1vh;
-  }
-  .inicio-imagen img {
-    width: 550px;
-    height: 392px;
-  }
-  .title-description h1 {
-    width: 90%;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
-    font-size: 24px;
-    color: #0C0C20;
-    text-align: center;
-  }
-  .title-description  {
-    display: flex;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .title-description {
-    width: 90%;
-  }
-  .title-description h1 {
-    font-size: 24px;
-  }
-}
-
-@media screen and (max-width: 582px) {
-  .title-description {
-    width: 90%;
-  }
-  .title-description h1 {
-    font-size: 24px;
-  }
-  .container-login-inicio {
-    width: 100%; /* Ajusta el ancho del login */
-    order: 1;
-    margin-top: 3vh;
-    margin-left: -1vh;
-  }
-  .inicio-imagen img {
-    width: 400px;
-    height: 300px;
-  }
-  .content {
-    display: grid;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    height: 95vh;
-    margin-top: 2vh;
-  }
-
-}
-@media screen and (max-width: 480px) {
-  .title-description {
-    width: 95%;
-  }
-  .title-description h1 {
-    font-size: 18px;
-  }
-  .container-login-inicio {
-    width: 90%; /* Ajusta el ancho del login */
-    order: 1;
-    margin-top: 3vh;
-    margin-left: 1vh;
-  }
-  .inicio-imagen img {
-    width: 380px;
-    height: 300px;
-  }
-  .content {
-    display: grid;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    height: 95vh;
-    margin-top: 2vh;
-  }
-}
-
-@media screen and (max-width: 380px) {
-  .title-description {
-    width: 95%;
-  }
-  .title-description h1 {
-    font-size: 18px;
-  }
-  .container-login-inicio {
-    display: flex;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    order: 1;
-    margin-top: 3vh;
-    margin-left: 0vh;
-  }
-  .inicio-imagen img {
-    width: 300px;
-    height: 250px;
-  }
-
-  .inicio-imagen {
-    margin-top: -1rem;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-  }
-
-  .content {
-    display: grid;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    height: 90vh;
-    margin-top: 2vh;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-}
-
 --Description .container-description-inicio h1,
 .container-description-inicio h4,
 .description-conteiner2 h1,
 .description-conteiner2 h4 {
   text-align: center;
 }
-
 .description-conteiner-foto {
   display: flex;
   justify-content: center; /* Centra las imágenes horizontalmente */
 }
-
 .description-conteiner-foto div img {
   width: 400px;
   height: 200px;
 }
-
 .conteiner-foto1 img,
 .conteiner-foto2 img,
 .conteiner-foto3 img,
@@ -287,7 +76,6 @@
   margin: 5px 20px;
   object-fit: cover; /* Ajusta la imagen para llenar el espacio del contenedor */
 }
-
 .conteiner-foto1,
 .conteiner-foto2,
 .conteiner-foto3,
@@ -298,7 +86,6 @@
   width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
   margin-bottom: 20px;
 }
-
 h4 {
   width: 60%;
 }
@@ -308,11 +95,9 @@ h4 {
   align-items: center; /* Centra verticalmente */
   width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
 }
-
 .description-conteiner-foto {
   display: flex;
 }
-
 .description-conteiner-foto img {
   width: 400px;
   height: 200px;
@@ -329,123 +114,6 @@ h4 {
   width: 800px;
   height: 400px;
 }
-
 .description-conteiner2 {
   margin-top: 18vh;
-}
-
-@media screen and (max-width: 1280px) {
-  h4 {
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .nuestro-equipo-container img {
-    width: 600px;
-    height: 400px;
-  }
-  .description-conteiner-foto div img {
-    width: 350px;
-    height: 200px;
-  }
-
-h4 {
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  font-size: 24px;
-  color: #0C0C20;
-}
-
-h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 48px;
-  color: #0C0C20;
-}
-}
-
-@media screen and (max-width: 800px) {
-  .description-conteiner-foto div img {
-    width: 280px;
-    height: 150px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .description-conteiner-foto div img {
-    width: 350px;
-    height: 150px;
-  }
-  .description-conteiner-foto{
-    display: flex;
-    flex-direction: column; /* Cambia la dirección de flexión a columna para apilar las imágenes verticalmente */
-    align-items: center;
-    margin: 20px 0; /* Agregar espacio arriba y abajo para mejorar la separación */
-    }
-
-    .nuestro-equipo-container img {
-      width: 500px;
-      height: 300px;
-    }
-    h4 {
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      font-weight: normal;
-      font-size: 24px;
-      color: #0C0C20;
-    }
-    
-    h1 {
-      font-family: "Poppins", sans-serif;
-      font-weight: bold;
-      font-size: 40px;
-      color: #0C0C20;
-    }
-}
-
-@media screen and (max-width: 500px) {
-  .description-conteiner-foto div img {
-    width: 350px;
-    height: 150px;
-  }
-  .description-conteiner-foto{
-    display: flex;
-    flex-direction: column; /* Cambia la dirección de flexión a columna para apilar las imágenes verticalmente */
-    align-items: center;
-    margin: 20px 0; /* Agregar espacio arriba y abajo para mejorar la separación */
-    }
-
-    .nuestro-equipo-container img {
-      width: 400px;
-      height: 200px;
-    }
-
-    h4 {
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      font-weight: normal;
-      font-size: 18px;
-      color: #0C0C20;
-    }
-    
-    h1 {
-      font-family: "Poppins", sans-serif;
-      font-weight: bold;
-      font-size: 32px;
-      color: #0C0C20;
-    }
-}
-
-@media screen and (max-width: 450px) {
-  .description-conteiner-foto div img {
-    width: 300px;
-    height: 120px;
-  }
-  .nuestro-equipo-container img {
-    width: 380px;
-    height: 200px;
-  }
-
 }

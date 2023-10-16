@@ -1,5 +1,4 @@
 :root {
-  display: block;
   height: 100%;
   --background-color-light: #f2f0f0;
   --font-color-light: #ffffff;
@@ -7,26 +6,36 @@
   --gradient-pink: linear-gradient(90deg, #e62d9c 0.04%, #531981 102.56%);
   --error-color: red;
   --border-box-color: #598480;
-  --font-title5 : font-size: 24px;
-  
+  --font-family: "Poppins", sans-serif;
+  --font-family-error: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-weight-normal: normal;
+  --font-weight-bold: bold;
+  --font-size-display1: 72px;
+  --font-size-title1: 56px;
+  --font-size-title2: 48px;
+  --font-size-title3: 40px;
+  --font-size-title4: 32px;
+  --font-size-title5: 24px;
+  --font-size-title6: 18px;
+  --font-size-paragraph1: 32px;
+  --font-size-paragraph2: 24px;
+  --font-size-paragraph3: 18px;
+  --text-color: #0C0C20;
+  --header-height: 70px;
 }
-
 html,
 body {
   margin: 0%;
   padding: 0%;
 }
-
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family);
 }
-
 div .global-label {
   width: 40%;
   margin-left: 8%;
   font-size: 40px;
 }
-
 div h1 {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
@@ -35,127 +44,79 @@ div h1 {
   text-align: center;
   width: 100%;
 }
-
 p {
   margin: 0;
 }
-
 .spacer {
   flex: 1;
 }
-
 .view {
   height: 100%;
-}
-
-.container {
-  position: absolute;
-  top: 70px;
-  /* Agrega un espacio superior de 70px por la altura del header */
-  left: 0;
-  right: 0;
-  height: calc(100% - 70px);
-  /* Calcula la altura, restando 70px desde la altura total de la ventana */
-  display: flex;
-  justify-content: center;
-  /* Centra horizontalmente */
-  align-items: center;
-  /* Centra verticalmente */
-}
-
-.container-header-inicio {
-  height: calc(100% - 80px);
 }
 
 .global-message-error {
   span {
     color: var(--error-color);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family-error);
     font-size: small;
     text-align: center;
     display: block;
   }
 }
-
 .boton-home {
   .p-button {
     color: rgba(236, 233, 233, 0.767);
   }
 }
 .p-button-link {
-  color: #000;
+  color:var(--text-color);
   font-size: 16px;
   font-style: auto;
   font-family: "Open Sans", sans-serif;
 }
-
+.display1, .title1, .title2, .title3, .title4, .title5, .title6, .paragraph1, .paragraph2, .paragraph3 {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-color);
+}
 .display1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 72px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-display1);
   margin: 0;
 }
-
 .title1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 56px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-title1);
 }
-
 .title2 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 48px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-title2);
 }
-
 .title3 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 40px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-title3);
 }
-
 .title4 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 32px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-title4);
 }
-
 .title5 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-title5);
 }
-
 .title6 {
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  font-size: 18px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-title6);
 }
-
 .paragraph1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  font-size: 32px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-paragraph1);
 }
-
 .paragraph2 {
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  font-size: 24px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-paragraph2);
 }
-
 .paragraph3 {
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  font-size: 18px;
-  color: #0C0C20;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-paragraph3);
 }
