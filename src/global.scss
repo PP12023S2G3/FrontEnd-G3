@@ -67,17 +67,6 @@ p {
   height: calc(100% - 80px);
 }
 
-.container-content-inicio {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Ocupa toda la altura de la ventana */
-}
-
-.container-description-inicio {
-  height: 120rem;
-}
-
 .global-message-error {
   span {
     color: var(--error-color);
@@ -105,6 +94,7 @@ p {
   font-weight: bold;
   font-size: 72px;
   color: #0C0C20;
+  margin: 0;
 }
 
 .title1 {
@@ -149,3 +139,23 @@ p {
   color: #0C0C20;
 }
 
+.paragraph1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 32px;
+  color: #0C0C20;
+}
+
+.paragraph2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: #0C0C20;
+}
+
+.paragraph3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  color: #0C0C20;
+}

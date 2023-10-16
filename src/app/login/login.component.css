@@ -183,13 +183,11 @@
 
 @media screen and (max-width: 380px) {
     .container-login {
-        width: 60%;
+        width: 90%;
         height: 50%;
-        transform: translate(-50%, -50%);
         padding: 10px;
         background-color: white;
         border-radius: 10px;
-        margin-left: 20rem;
         border-style: solid;
         border-color: var(--border-box-color);
         border-width: 1px;
