@@ -99,7 +99,7 @@ export class FormDiagnosticComponent {
 
   public postResult(file : File){
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('img', file);
 
     this.resultService.postResultado(formData).subscribe({
       next: res => {

@@ -6,116 +6,96 @@
   --gradient-pink: linear-gradient(90deg, #e62d9c 0.04%, #531981 102.56%);
   --error-color: red;
   --border-box-color: #598480;
-  --font-family: "Poppins", sans-serif;
+  --font-family-all: "Poppins", sans-serif;
   --font-family-error: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --font-weight-normal: normal;
   --font-weight-bold: bold;
-  --font-size-display1: 72px;
+  --font-size-display1: 6vw;
   --font-size-title1: 56px;
   --font-size-title2: 48px;
   --font-size-title3: 40px;
-  --font-size-title4: 32px;
+  --font-size-title4: 3vw;
   --font-size-title5: 24px;
   --font-size-title6: 18px;
-  --font-size-paragraph1: 32px;
+  --font-size-paragraph1: 3.2vw;
   --font-size-paragraph2: 24px;
   --font-size-paragraph3: 18px;
-  --text-color: #0C0C20;
+  --text-color-1: #0C0C20;
   --header-height: 70px;
 }
+
 html,
 body {
   margin: 0%;
   padding: 0%;
 }
+
 * {
   font-family: var(--font-family);
 }
-div .global-label {
-  width: 40%;
-  margin-left: 8%;
-  font-size: 40px;
-}
-div h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 72px;
-  color: #131325;
-  text-align: center;
-  width: 100%;
-}
-p {
-  margin: 0;
-}
-.spacer {
-  flex: 1;
-}
-.view {
-  height: 100%;
-}
 
-.global-message-error {
-  span {
-    color: var(--error-color);
-    font-family: var(--font-family-error);
-    font-size: small;
-    text-align: center;
-    display: block;
-  }
-}
-.boton-home {
-  .p-button {
-    color: rgba(236, 233, 233, 0.767);
-  }
-}
 .p-button-link {
-  color:var(--text-color);
+  color:var(--text-color-1);
   font-size: 16px;
   font-style: auto;
-  font-family: "Open Sans", sans-serif;
 }
+
 .display1, .title1, .title2, .title3, .title4, .title5, .title6, .paragraph1, .paragraph2, .paragraph3 {
-  font-family: var(--font-family);
+  font-family: var(--font-family-all);
   font-weight: var(--font-weight-normal);
-  color: var(--text-color);
+  color: var(--text-color-1);
+  display: flex;
+  justify-content: center;
+  margin: 2vw ;
+  flex: 1;
 }
+
 .display1 {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-display1);
   margin: 0;
 }
+
 .title1 {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-title1);
 }
+
 .title2 {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-title2);
 }
+
 .title3 {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-title3);
 }
+
 .title4 {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-title4);
 }
+
 .title5 {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-title5);
 }
+
 .title6 {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-title6);
 }
+
 .paragraph1 {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-paragraph1);
 }
+
 .paragraph2 {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-paragraph2);
 }
+
 .paragraph3 {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-paragraph3);

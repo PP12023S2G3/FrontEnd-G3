@@ -2,10 +2,10 @@
   background-color: #efefef;
 }
 .inicio-imagen img {
-  min-width: 340px;
-  min-height: 300px;
-  max-width: 40vw;
-  max-height: 40vw;
+  min-width: 340px;/*minimo ancho permitido*/
+  min-height: 300px;/*minimo alto permitido*/
+  max-width: 40vw;/*maximo ancho permitido que siempre se va a agrandar porque es un porcentaje de la viewport*/
+  max-height: 40vw;/*minimo alto permitido que siempre se va a agrandar porque es un porcentaje de la viewport*/
   margin: 2vw;
 }
 .container-description-inicio {
@@ -26,7 +26,7 @@
   flex: 1;
   align-items: center; /* Centra verticalmente */
   justify-content: center;
-  max-width: 100%; /* Ajusta el tamaño de la imagen automáticamente */
+  max-width: 100%; /*  Evita que los componentes se hagan más grandes que el contenedor */
 }
 .container-login-inicio {
   flex: 1;
@@ -44,7 +44,7 @@
 }
 .title-description {
   text-align: center;
-  width: 40%;
+  width: 50%;
 }
 --Description .container-description-inicio h1,
 .container-description-inicio h4,
@@ -60,10 +60,7 @@
   width: 400px;
   height: 200px;
 }
-.conteiner-foto1 img,
-.conteiner-foto2 img,
-.conteiner-foto3 img,
-.conteiner-foto4 img {
+.conteiner-foto img {
   border: 1px solid transparent;
   border-image: var(
     --gradient-pink
@@ -76,15 +73,13 @@
   margin: 5px 20px;
   object-fit: cover; /* Ajusta la imagen para llenar el espacio del contenedor */
 }
-.conteiner-foto1,
-.conteiner-foto2,
-.conteiner-foto3,
-.conteiner-foto4 {
+.conteiner-foto {
+  flex: 1;
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
   width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
-  margin-bottom: 20px;
+  margin: 2vw;
 }
 h4 {
   width: 60%;
@@ -97,6 +92,7 @@ h4 {
 }
 .description-conteiner-foto {
   display: flex;
+  flex-wrap: wrap;
 }
 .description-conteiner-foto img {
   width: 400px;
@@ -111,8 +107,8 @@ h4 {
   width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
 }
 .nuestro-equipo-container img {
-  width: 800px;
-  height: 400px;
+  height: 60vw;
+  width: 90vw;
 }
 .description-conteiner2 {
   margin-top: 18vh;

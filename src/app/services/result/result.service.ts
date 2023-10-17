@@ -10,8 +10,8 @@ export class ResultService {
 
  // private endpoint : string ='/imagen';
  // private api : string ='https://api-resultados.onrender.com/Pruebas';
- private endpoint : string ='predict';
-  private api : string ='https://lunarpi-production.up.railway.app/';
+ private endpoint : string ='cerebro';
+  private api : string ='https://api-resultados.onrender.com/Diagnosticos/predecir/';
 
   constructor(private http: HttpClient) { }
 
