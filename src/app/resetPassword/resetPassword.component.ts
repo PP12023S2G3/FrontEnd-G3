@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @Component({
     selector: 'resetPasswordScreen',
