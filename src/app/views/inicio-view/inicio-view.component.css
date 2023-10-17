@@ -48,33 +48,6 @@
   width: 50%;
 }
 
-@media screen and (max-width: 900px) {
-  .title-description {
-    width: 90%;
-  }
-  .inicio-imagen {
-    order: 2;
-  }
-  .container-login-inicio {
-    order: 1;
-    margin-top: 2vh;
-  }
-  .title-description h1 {
-    width: 90%;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
-    font-size: 24px;
-    color: #0C0C20;
-    text-align: center;
-  }
-  .title-description  {
-    display: flex;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center;
-    text-align: center;
-  }
-}
-
 
 
 --Description
@@ -146,122 +119,10 @@ h4 {
 .nuestro-equipo-container img {
   height: 60vw;
   width: 90vw;
+  max-width: 800px;
+  max-height: 460px;
 }
 .description-conteiner2 {
   margin-top: 18vh;
 }
-@media screen and (max-width: 1280px) {
-  h4 {
-    width: 80%;
-  }
-}
 
-@media screen and (max-width: 900px) {
-  .nuestro-equipo-container img {
-    width: 600px;
-    height: 400px;
-  }
-  .description-conteiner-foto div img {
-    width: 350px;
-    height: 200px;
-  }
-
-h4 {
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  font-size: 24px;
-  color: #0C0C20;
-}
-
-h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 48px;
-  color: #0C0C20;
-}
-}
-
-@media screen and (max-width: 800px) {
-  .description-conteiner-foto div img {
-    width: 280px;
-    height: 150px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .description-conteiner-foto div img {
-    width: 350px;
-    height: 150px;
-  }
-  .description-conteiner-foto{
-    display: flex;
-    flex-direction: column; /* Cambia la dirección de flexión a columna para apilar las imágenes verticalmente */
-    align-items: center;
-    margin: 20px 0; /* Agregar espacio arriba y abajo para mejorar la separación */
-    }
-
-    .nuestro-equipo-container img {
-      width: 500px;
-      height: 300px;
-    }
-    h4 {
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      font-weight: normal;
-      font-size: 24px;
-      color: #0C0C20;
-    }
-
-    h1 {
-      font-family: "Poppins", sans-serif;
-      font-weight: bold;
-      font-size: 40px;
-      color: #0C0C20;
-    }
-}
-
-@media screen and (max-width: 500px) {
-  .description-conteiner-foto div img {
-    width: 350px;
-    height: 150px;
-  }
-  .description-conteiner-foto{
-    display: flex;
-    flex-direction: column; /* Cambia la dirección de flexión a columna para apilar las imágenes verticalmente */
-    align-items: center;
-    margin: 20px 0; /* Agregar espacio arriba y abajo para mejorar la separación */
-    }
-
-    .nuestro-equipo-container img {
-      width: 400px;
-      height: 200px;
-    }
-
-    h4 {
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      font-weight: normal;
-      font-size: 18px;
-      color: #0C0C20;
-    }
-
-    h1 {
-      font-family: "Poppins", sans-serif;
-      font-weight: bold;
-      font-size: 32px;
-      color: #0C0C20;
-    }
-}
-
-@media screen and (max-width: 450px) {
-  .description-conteiner-foto div img {
-    width: 300px;
-    height: 120px;
-  }
-  .nuestro-equipo-container img {
-    width: 380px;
-    height: 200px;
-  }
-
-}
