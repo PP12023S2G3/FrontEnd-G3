@@ -25,6 +25,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ResultViewComponent } from './views/result-view/result-view.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ResetPasswordComponent } from './resetPassword/resetPassword.component'
     ButtonModule,
     InputTextModule,
     PasswordModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
