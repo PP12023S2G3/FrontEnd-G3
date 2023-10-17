@@ -1,3 +1,7 @@
+.container-result{
+    overflow-x: hidden;
+}
+
 .container-header-result {
     display: flex;
     align-items: center;
@@ -6,15 +10,87 @@
 }
 
 .img-result-logo {
-    width: auto;
-    height: auto;
+    min-width: 30px;
+    min-height: 30px;
+    max-width: 1.918vw;
+    max-height: 1.918vw;
  
 }
 
 .title-result {
     flex-grow: 1; /* Permite que el título ocupe todo el espacio restante */
     text-align: center;
+}
+
+.container-data-result{
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+    width: 90%;
+    height: auto;
+    margin: 2% 0 0 10%;
+    
     
 }
 
+.container-data-doctor{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.title-data-doctor{
+    align-self:flex-start;
+    justify-self: flex-start;
+}
+
+
+.title-doctor{
+    font-family: var(--font-family);
+    font-weight:normal;
+    margin: 0;
+}
+
+.container-inputs-data-patient {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    flex:1;
+
+}
+
+.container-inputs-data-patient h6{
+    font-family: var(--font-family);
+    font-weight:normal;
+    margin: 0;
+}
+
+.container-inputs-data-patient input{
+    /*max-width: 15vw;
+    max-height: 14vw;*/
+    margin: 0 0 10% 0;
+    padding: 5px;
+    width: 15vw;
+   
+  
+}
+
+.container-inputs-data-patient div{
+    margin: 0 1% 0 0;
+}
+
+
+.container-preconditions-patient input{
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+
+.container-diagnostic-result-patient input{
+    width: auto;
+    height: auto;
+    margin: 0;
+}
