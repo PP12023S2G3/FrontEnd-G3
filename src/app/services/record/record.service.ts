@@ -6,21 +6,21 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserAccountService {
+export class RecordService {
 
   private apiDiagnostic : string ='https://api-resultados.onrender.com/Diagnosticos/';
 
   constructor(private http: HttpClient) { }
 
-  //para que usuario se loguee
-  public postLogin(data:FormData):Observable<any>{
-    let url=this.apiDiagnostic+'predecir/cerebro';
-    return this.http.post<any>(url,data);
+  //recuperar el historial de todos los medicos
+  public getAllRecords():Observable<any>{
+    let url=this.apiDiagnostic
+    return this.http.get<any>(url);
   }
 
-  //para que usuario resetee su contraseña
-  public postResetPassword(data:FormData):Observable<any>{
+  //recuperar el historial de un medico en particular
+  public getRecords(id:String):Observable<any>{
     let url=this.apiDiagnostic+'predecir/cerebro';
-    return this.http.post<any>(url,data);
+    return this.http.get<any>(url);
   }
 }
