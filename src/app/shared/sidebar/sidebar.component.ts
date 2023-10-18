@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,8 +9,7 @@ import { SidebarModule } from 'primeng/sidebar';
 })
 export class SidebarComponent {
  sidebarVisible: boolean = false;
+ private router: Router;
+ constructor(router: Router) { this.router = router }
 
- toggleSidebar() {
-    this.sidebarVisible = !this.sidebarVisible;
-  }
 }

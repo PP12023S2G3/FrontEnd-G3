@@ -1,7 +1,7 @@
 .button-toggle-sidebar {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 15px;
     background-image: url('./../../../assets/img/icono-producto.png');
     border: none;
     background-color: transparent;
@@ -13,11 +13,41 @@
     align-items: center;
     margin: 80px 0px auto;
 }
-.name-profile-sidebar {
+.name-header-sidebar {
     text-align: center;
     color: #FFF;
     font-size: 18px;
     font-weight: 700;
+}
+.id-header-sidebar {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+}
+.content-sidebar {
+    margin: auto;
+}
+.link-sidebar {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    text-align: center;
+    color: #EFEFEF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+}
+.link:hover {
+    text-decoration: underline;
+}
+.logout-link-sidebar {
+    display: block;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
 }
 
     
