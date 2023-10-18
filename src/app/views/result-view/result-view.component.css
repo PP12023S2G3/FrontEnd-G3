@@ -14,7 +14,6 @@
     min-height: 30px;
     max-width: 1.918vw;
     max-height: 1.918vw;
- 
 }
 
 .title-result {
@@ -27,11 +26,9 @@
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
-    width: 90%;
+    width: 85%;
     height: auto;
     margin: 2% 0 0 10%;
-    
-    
 }
 
 .container-data-doctor{
@@ -46,6 +43,16 @@
     justify-self: flex-start;
 }
 
+.container-data-doctor input{
+    margin: 0 0 10% 0;
+    padding: 10px;
+    width: 25vw;
+   text-align: center;
+   border-style: solid;
+   border-radius: 10px;
+   border-width: 1px;
+   border-color: var(--border-box-color);
+}
 
 .title-doctor{
     font-family: var(--font-family);
@@ -53,12 +60,16 @@
     margin: 0;
 }
 
+h4{
+    margin: 1.5%;
+}
+
 .container-inputs-data-patient {
     display:flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-around;
     margin: 0;
-    flex:1;
 
 }
 
@@ -69,28 +80,68 @@
 }
 
 .container-inputs-data-patient input{
-    /*max-width: 15vw;
-    max-height: 14vw;*/
     margin: 0 0 10% 0;
-    padding: 5px;
-    width: 15vw;
-   
-  
+    padding: 10px;
+    width: 15vw;  
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
 }
 
 .container-inputs-data-patient div{
     margin: 0 1% 0 0;
 }
 
-
-.container-preconditions-patient input{
-    width: auto;
-    height: auto;
+.container-inputs-data-long-patient h6{
+    font-family: var(--font-family);
+    font-weight:normal;
     margin: 0;
 }
 
-.container-diagnostic-result-patient input{
-    width: auto;
-    height: auto;
+.container-inputs-data-long-patient input{
+    width: 100%;
+    height: 4vw;
     margin: 0;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+}
+
+.container-inputs-data-long-patient div{
+    margin: 2% 1% 2% 1%;
+}
+.container-result-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-result{
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+    margin: 2%;
+    max-width: 15vw;
+    max-height: 14vw;
+    min-width: 20vw;
+    min-height: 20vw;
+}
+@media screen and (max-width: 500px) {
+    .container-data-doctor input{
+        width: 100%;
+    }
+
+    .container-inputs-data-patient{
+        flex-direction: column;
+    }
+    .container-inputs-data-patient input{
+        width: 100%;
+    }
+    .container-inputs-data-long-patient input{
+        height: 20vw;
+    }
 }
