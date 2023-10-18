@@ -1,0 +1,23 @@
+.button-toggle-sidebar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-image: url('./../../../assets/img/icono-producto.png');
+    border: none;
+    background-color: transparent;
+}
+.header-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 0px auto;
+}
+.name-profile-sidebar {
+    text-align: center;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+    
