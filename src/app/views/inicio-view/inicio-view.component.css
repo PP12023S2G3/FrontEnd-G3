@@ -46,6 +46,12 @@
 .title-description {
   text-align: center;
   width: 50%;
+  min-width: 360px;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column; /* Coloca el título debajo del contenido */
+  text-align: center;
+  align-items: center; /* Centra verticalmente */
 }
 
 
@@ -55,18 +61,25 @@
 
 .container-description-inicio h1,
 .container-description-inicio h4,
-.description-conteiner2 h1,
+.container1-description-inicio h1,
 .description-conteiner2 h4 {
   text-align: center;
 }
+
 .description-conteiner-foto {
   display: flex;
+  align-items: center;
   justify-content: center; /* Centra las imágenes horizontalmente */
+  max-width: 100%;
 }
+
 .description-conteiner-foto div img {
   width: 400px;
   height: 200px;
-}
+  min-width: 250px;
+  min-height: 150px;
+  }
+
 .conteiner-foto img {
   border: 1px solid transparent;
   border-image: var(
@@ -85,12 +98,21 @@
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
-  width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
+  width: 400px;
+  height: 200px;
+  max-width: 360px;
+  max-height: 460px;
   margin: 2vw;
 }
+
 h4 {
-  width: 60%;
+  width: 970px;
+  height: 150px;
+  min-width: 360px;
+  max-width: 85vw;
+  max-height: 35vw;
 }
+
 .description-text-conteiner {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
@@ -100,11 +122,15 @@ h4 {
 .description-conteiner-foto {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
 }
 .description-conteiner-foto img {
 
   width: 400px;
   height: 200px;
+    max-width: 500px;
+  max-height: 460px;
   background: var(--gradient-pink);
   display: flex;
 
@@ -119,10 +145,55 @@ h4 {
 .nuestro-equipo-container img {
   height: 60vw;
   width: 90vw;
-  max-width: 800px;
+  max-width: 900px;
   max-height: 460px;
 }
 .description-conteiner2 {
-  margin-top: 18vh;
+  margin-top: 20vh;
 }
 
+@media screen and (max-width: 1280px) {
+  h4 {
+    width: 80%;
+  }
+  .title-description {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+h4 {
+  font-size: 24px;
+}
+
+h1 {
+  font-size: 48px;
+}
+  .inicio-imagen {
+    order: 2;
+  }
+  .container-login-inicio {
+    order: 1;
+    margin-top: 2vh;
+  }
+}
+
+@media screen and (max-width: 640px) {
+    h4 {
+      font-size: 24px;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    h4 {
+      font-size: 18px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+}
