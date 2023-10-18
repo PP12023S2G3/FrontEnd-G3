@@ -33,14 +33,14 @@ export class LoginComponent implements OnInit {
       alert('El DNI no es válido');
       return;
     }
-
     if (!this.validarContraseña(this.persona.clave)) {
       alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y ser alfanumérica.');
       return;
     }
-    
+    if(this.validarDNI(this.persona.dni) && this.validarContraseña(this.persona.clave)) {
+      this.router.navigate(['/diagnostic']);
+    }
     console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
-    
   }
 
   validarDNI(dni: string): boolean {

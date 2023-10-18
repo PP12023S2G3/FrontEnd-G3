@@ -6,20 +6,19 @@
   left: 0;
   right: 0;
   height: 56px;
-  align-items: center;
   background: var(--gradient-green);
   color: var(--font-color-light);
 }
 .toolbar .foto img {
   width: 30px;
   height: 30px;
-}
-.toolbar .foto {
   margin-right: 10px;
-  margin-top: 0.5rem;
+  margin-top: 6px;
 }
-.tittle{
+.title {
   font-size: 32px;
   font-weight: bold;
   line-height: normal;
+  text-decoration: none;
+  color: var(--font-color-light);
 }
