@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           }
       }
       else if (this.persona.dni === dniHardcodeado && this.persona.clave === localStorage.getItem('newPassword') ) {
-        this.router.navigate(['/diagnostic']);
+        this.router.navigate(['/diagnostico']);
       }
         else {
         alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
