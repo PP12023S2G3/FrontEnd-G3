@@ -11,6 +11,7 @@ import { HistorialViewComponent } from './views/historial-view/historial-view.co
 import { DiagnosticViewComponent } from './views/diagnostic-view/diagnostic-view.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 
 //PRIMENG
@@ -31,6 +32,7 @@ import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { CalendarModule } from 'primeng/calendar';
     LoginComponent,
     FooterComponent,
     ResultViewComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserAnimationsModule,

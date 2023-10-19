@@ -8,6 +8,11 @@ import { Component } from '@angular/core';
 
 export class HistorialViewComponent{
 
+    tituloDinamico = 'Historial';
+    cambiarTitulo(nuevoTitulo: string) {
+    this.tituloDinamico = nuevoTitulo;
+  }
+
     rangeDates: Date[] | undefined;
     value: string | undefined;
 

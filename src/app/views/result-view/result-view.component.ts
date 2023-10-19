@@ -14,6 +14,11 @@ export class ResultViewComponent implements OnInit {
   diagnostic: Diagnostic = new Diagnostic(this.doctor,"","","","","","","");
   responseData: any;
 
+  tituloDinamico = 'Resultado';
+    cambiarTitulo(nuevoTitulo: string) {
+    this.tituloDinamico = nuevoTitulo;
+  }
+
   constructor() {
   }
 

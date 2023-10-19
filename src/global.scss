@@ -13,7 +13,7 @@
   --font-size-display1: 6vw;
   --font-size-title1: 56px;
   --font-size-title2: 48px;
-  --font-size-title3: 40px;
+  --font-size-title3: 36px;
   --font-size-title4: 32px;
   --font-size-title5: 24px;
   --font-size-title6: 18px;
@@ -31,7 +31,7 @@ body {
 }
 
 * {
-  font-family: var(--font-family);
+  font-family: var(--font-family-all);
 }
 
 .p-button-link {

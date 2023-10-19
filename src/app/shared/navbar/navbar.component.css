@@ -1,0 +1,16 @@
+.toolbar {
+    align-items: center;
+    display: flex;
+    padding: 0;
+    height: 56px;
+    background-color: #efefef;
+  }
+  .title{
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .title span{
+    font-size: var(--font-size-title3);
+  }
+  
