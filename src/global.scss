@@ -40,6 +40,21 @@ body {
   font-style: auto;
 }
 
+.p-button-global {
+  width: 300px;
+  height: 4rem;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--gradient-pink);
+  font-size: 15.94px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  bottom: 1rem;
+  margin-top: 1rem;
+  border: none;
+}
+
 .display1, .title1, .title2, .title3, .title4, .title5, .title6, .paragraph1, .paragraph2, .paragraph3 {
   font-family: var(--font-family-all);
   font-weight: var(--font-weight-normal);

@@ -17,6 +17,10 @@
   height: 200px;
 }
 
+.preview-image {
+  max-width: 300px; /* Ajusta el ancho máximo según tus preferencias */
+  max-height: 300px; /* Ajusta la altura máxima según tus preferencias */
+}
 /*
 -------------------------------------------------------------
 :host ::ng-deep .p-button{

@@ -9,7 +9,7 @@ import { ResultService } from 'src/app/services/result/result.service';
 })
 export class FormDiagnosticComponent {
 
-  uploadedFiles: File [] = [] ;
+  uploadedFile: File | null = null;
   maxFileSize: number = 10485760;
   minImageWidth: number = 225;
   minImageHeight: number = 225;
@@ -19,19 +19,18 @@ export class FormDiagnosticComponent {
   isResultButtonDisabled = true;
   imagenURL: string | ArrayBuffer | null = null;
   mostrarTextoInicial = true;
-  isValid=true;
+  isValid = true;
 
-  constructor(private resultService:ResultService, private router: Router) {
-   }
+  constructor(private resultService: ResultService, private router: Router) { }
 
   onUpload(event: any) {
     const uploadedFile = event.files && event.files[0];
     if (uploadedFile) {
-      this.uploadedFiles[0] = uploadedFile;
+      this.uploadedFile = uploadedFile;
       this.isChooseButtonDisabled = true;
       this.isCancelButtonVisible = true;
       this.isResultButtonDisabled = false;
-      this.getObjectURL();
+      this.getObjectURL(uploadedFile);
     } else {
       this.resetFileInput();
       console.log('No se ha seleccionado una imagen o ocurrió un error al subir el archivo.');
@@ -39,85 +38,69 @@ export class FormDiagnosticComponent {
   }
 
   diagnosticResult() {
-    if (this.uploadedFiles[0]) {
-      this.postResult(this.uploadedFiles[0])
-      alert('Imagen seleccionada: ' + this.uploadedFiles[0]);
+    if (this.uploadedFile) {
+      this.postResult(this.uploadedFile);
+      alert('Imagen seleccionada: ' + this.uploadedFile.name);
     } else {
       alert('No se ha seleccionado una imagen.');
     }
   }
 
+
   onFileSelect(event: any) {
-    this.mostrarTextoInicial = false;
     const selectedFile = event.files && event.files[0];
     if (selectedFile) {
-      const image = new Image();
-      image.src = URL.createObjectURL(selectedFile);
-      image.onload = () => {
-        if (image.width >= this.minImageWidth && image.height >= this.minImageHeight) {
-          this.isValid=true;
-        } else {
-          this.isValid=false;
-        }
-      };
+      this.uploadedFile = selectedFile;
+      this.isChooseButtonDisabled = true;
+      this.isCancelButtonVisible = true;
+      this.isResultButtonDisabled = false;
+      this.getObjectURL(selectedFile);
+    } else {
+      this.resetFileInput();
+      console.log('No se ha seleccionado una imagen o ocurrió un error al subir el archivo.');
     }
   }
 
+
   resetFileInput() {
-    this.uploadedFiles = [];
+    this.uploadedFile = null;
     this.isChooseButtonDisabled = false;
     this.isCancelButtonVisible = false;
     this.isResultButtonDisabled = true;
     this.imagenURL = "";
-    this.mostrarTextoInicial=this.uploadedFiles.length===0;
-    console.log(this.mostrarTextoInicial,this.uploadedFiles.length)
+    this.mostrarTextoInicial = true;
   }
 
-  controlMostrarTextoInicialCancel() {
-    this.mostrarTextoInicial=this.uploadedFiles.length===0;
-  }
-
-
-  getObjectURL(){
-    if (this.uploadedFiles.length > 0) {
+  getObjectURL(file: File) {
+    if (file) {
       const fileReader = new FileReader();
-      fileReader.readAsDataURL(this.uploadedFiles[0]);
+      fileReader.readAsDataURL(file);
       fileReader.onload = (event) => {
         this.imagenURL = event.target?.result as string;
       };
     }
   }
-
   onCancel() {
     this.resetFileInput();
   }
 
-  onClearUpload(){
-    this.controlMostrarTextoInicialCancel();
+  onClearUpload() {
+    this.mostrarTextoInicial = true;
   }
 
-
-  public postResult(file : File){
+  postResult(file: File) {
     const formData = new FormData();
     formData.append('img', file);
 
     this.resultService.postResult(formData).subscribe({
       next: res => {
-        console.log(res)
-       // Almacena los datos en localStorage
-       localStorage.setItem('PredictedResult', JSON.stringify(res));
-
-       // Redirige a la ruta '/result'
-       this.router.navigate(['/result']);
-       },
+        console.log(res);
+        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        this.router.navigate(['/result']);
+      },
       error: error => {
-    }
+        // Manejar errores aquí
+      }
     });
-   /* esto es lo que va a ir en historial
-    this.resultService.getResult(`1`).subscribe({
-      next:res=>{console.log(res)}
-    })*/
   }
 }
-
-

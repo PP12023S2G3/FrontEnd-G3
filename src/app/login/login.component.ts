@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     console.log(localStorage.getItem('newPassword'))
       if(localStorage.getItem('newPassword')==null){
           if (this.persona.dni === dniHardcodeado && this.persona.clave === contraseñaHardcodeada) {
-            this.router.navigate(['/diagnostic']);
+            this.router.navigate(['/diagnostico']);
           }
             else {
             alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');

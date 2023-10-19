@@ -12,7 +12,7 @@
 .container-header-result {
   display: flex;
   align-items: center;
-  margin: 2% 0 0 4%;
+  margin: 0.5% 0 0 4%;
   padding: 0;
 }
 
@@ -38,7 +38,7 @@
   border-color: var(--border-box-color);
   width: 85%;
   height: auto;
-  margin: 2% 0 0 10%;
+  margin: 0.5% 0 0 10%;
 }
 
 
