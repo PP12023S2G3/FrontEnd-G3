@@ -7,17 +7,30 @@
 
     <div class="container-data-result">
         <div class="container-data-doctor">
-            <h4 class="title-data-doctor">Datos del médico</h4>
-            <div>
-                <h6 class="title-doctor">Médico</h6>
-                <input class="input-name-dni-doctor" type="text" placeholder="Nombre y Dni del medico" pInputText
-                    [(ngModel)]="diagnostic.doctor" readonly name="doctor" />
+            <h4 class="title-data">Datos del médico</h4>
+            <div class="container-inputs-data-doctor">
+                <div>
+                    <h6 class="title-dni-doctor">DNI</h6>
+                    <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText
+                        [(ngModel)]="diagnostic.doctor.dni" readonly name="doctor-dni" />
+                </div>
+                <div>
+                    <h6 class="title-name-doctor">Nombre</h6>
+                    <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText
+                    [(ngModel)]="diagnostic.doctor.name" readonly name="doctor-lastname" />
+                </div>
+                <div>
+                    <h6 class="title-lastname-doctor">Apellido</h6>
+                    <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText
+                    [(ngModel)]="diagnostic.doctor.lastname" readonly name="doctor-lastname" />
+                </div>
+                
             </div>
 
         </div>
 
         <div class="container-data-patient">
-            <h4 class="title-data-patient">Datos del paciente</h4>
+            <h4 class="title-data">Datos del paciente</h4>
             <div class="container-inputs-data-patient">
                 <div>
                     <h6 class="title-age-patient">Edad</h6>
@@ -26,13 +39,13 @@
                 </div>
 
                 <div>
-                    <h6 class="title-weight-patient">Peso</h6>
+                    <h6 class="title-weight-patient">Peso(Kg)</h6>
                     <input class="input-weight-patient" type="text" placeholder="Peso del paciente" pInputText
                         [(ngModel)]="diagnostic.weight" readonly name="weight-patient" />
                 </div>
 
                 <div>
-                    <h6 class="title-height-patient">Altura</h6>
+                    <h6 class="title-height-patient">Altura(cm)</h6>
                     <input class="input-height-patient" type="text" placeholder="Altura del paciente" pInputText
                         [(ngModel)]="diagnostic.height" readonly name="height-patient" />
                 </div>
@@ -45,8 +58,8 @@
 
                 <div>
                     <h6 class="title-body-section-patient">Sección del cuerpo</h6>
-                    <input class="input-body-section-patient" type="text" placeholder="Sección del cuerpo"
-                        pInputText [(ngModel)]="diagnostic.sectionBody" readonly name="body-section-patient" />
+                    <input class="input-body-section-patient" type="text" placeholder="Sección del cuerpo" pInputText
+                        [(ngModel)]="diagnostic.sectionBody" readonly name="body-section-patient" />
                 </div>
 
             </div>
@@ -54,19 +67,20 @@
             <div class="container-inputs-data-long-patient">
                 <div>
                     <h6 class="title-preconditions-patient">Condiciones previas</h6>
-                    <input class="input-preconditions-patient" type="text" placeholder="Condiciones previas del paciente"
-                        pInputText [(ngModel)]="diagnostic.preconditions" readonly name="preconditions-patient" />
-    
+                    <input class="input-preconditions-patient" type="text"
+                        placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions"
+                        readonly name="preconditions-patient" />
+
                 </div>
-    
+
                 <div>
                     <h6 class="title-diagnostic-result-patient">Resultado del diagnostico</h6>
                     <input class="input-diagnostic-result-patient" type="text"
-                        placeholder="Resultado de diagnostic del paciente" pInputText
+                        placeholder="Resultado de diagnostico del paciente" pInputText
                         [(ngModel)]="diagnostic.resultDiagnostic" readonly name="diagnostic-result-patient" />
                 </div>
             </div>
-            
+
 
 
 
@@ -76,5 +90,7 @@
     <div class="container-result-image">
         <img class="img-result" alt="imagen del resultado" src="assets/img/cerebro.png">
     </div>
-
+    <div class="container-download-result">
+        <p-button type="download" label="Descargar" class="button-download-result"></p-button>
+    </div>
 </div>

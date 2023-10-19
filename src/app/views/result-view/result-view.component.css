@@ -1,5 +1,10 @@
-.container-result{
+.container-result {
     overflow-x: hidden;
+    overflow-y: hidden;
+    min-width: 300px;
+    min-height: 700px;
+    max-width: 2000px;
+    max-height: 1250px;
 }
 
 .container-header-result {
@@ -17,11 +22,12 @@
 }
 
 .title-result {
-    flex-grow: 1; /* Permite que el título ocupe todo el espacio restante */
+    flex-grow: 1;
+    /* Permite que el título ocupe todo el espacio restante */
     text-align: center;
 }
 
-.container-data-result{
+.container-data-result {
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
@@ -31,58 +37,28 @@
     margin: 2% 0 0 10%;
 }
 
-.container-data-doctor{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
 
-.title-data-doctor{
-    align-self:flex-start;
-    justify-self: flex-start;
-}
+/*-------------------------------------------DOCTOR/MEDICO-------------------------------------------------------*/
 
-.container-data-doctor input{
-    margin: 0 0 10% 0;
-    padding: 10px;
-    width: 25vw;
-   text-align: center;
-   border-style: solid;
-   border-radius: 10px;
-   border-width: 1px;
-   border-color: var(--border-box-color);
-}
-
-.title-doctor{
-    font-family: var(--font-family);
-    font-weight:normal;
-    margin: 0;
-}
-
-h4{
-    margin: 1.5%;
-}
-
-.container-inputs-data-patient {
-    display:flex;
+.container-inputs-data-doctor {
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     margin: 0;
 
 }
 
-.container-inputs-data-patient h6{
+.container-inputs-data-doctor h6 {
     font-family: var(--font-family);
-    font-weight:normal;
+    font-weight: normal;
     margin: 0;
 }
 
-.container-inputs-data-patient input{
-    margin: 0 0 10% 0;
+.container-inputs-data-doctor input {
+    margin: 0 0 0 0;
     padding: 10px;
-    width: 15vw;  
+    width: 100%;
     text-align: center;
     border-style: solid;
     border-radius: 10px;
@@ -90,17 +66,55 @@ h4{
     border-color: var(--border-box-color);
 }
 
-.container-inputs-data-patient div{
-    margin: 0 1% 0 0;
+.container-inputs-data-doctor div {
+    margin: 0 5% 0 0;
 }
 
-.container-inputs-data-long-patient h6{
+.title-data {
+    margin: 1.5%;
+}
+
+/*---------------------------------------------PACIENTE-----------------------------------------------------*/
+
+.container-inputs-data-patient {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+
+}
+
+.container-inputs-data-patient h6 {
     font-family: var(--font-family);
-    font-weight:normal;
+    font-weight: normal;
     margin: 0;
 }
 
-.container-inputs-data-long-patient input{
+.container-inputs-data-patient input {
+    margin: 0 0 10% 0;
+    padding: 10px;
+    width: 15vw;
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+}
+
+.container-inputs-data-patient div {
+    margin: 0 1% 0 0;
+}
+
+/*----------------------------------PACIENTE(CONDICIONES PREVIAS Y RESULTADO DIAGNOSTICO)------------------------------------------------*/
+
+.container-inputs-data-long-patient h6 {
+    font-family: var(--font-family);
+    font-weight: normal;
+    margin: 0;
+}
+
+.container-inputs-data-long-patient input {
     width: 100%;
     height: 4vw;
     margin: 0;
@@ -110,38 +124,80 @@ h4{
     border-color: var(--border-box-color);
 }
 
-.container-inputs-data-long-patient div{
+.container-inputs-data-long-patient div {
     margin: 2% 1% 2% 1%;
 }
-.container-result-image{
+
+.container-result-image {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.img-result{
+.img-result {
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
     margin: 2%;
-    max-width: 15vw;
-    max-height: 14vw;
-    min-width: 20vw;
-    min-height: 20vw;
+    width: 20%;
+    height: 20%;
+
 }
+
+/*---------------------------------------------BOTÓN DESCARGAR----------------------------------------*/
+
+.container-download-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+:host::ng-deep .button-download-result .p-button {
+    width: 25vw;
+    height: 4vw;
+    border-radius: 10px;
+    background: var(--gradient-pink);
+    font-size: 15.94px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    bottom: 1rem;
+    margin-top: 1rem;
+    border: none;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
 @media screen and (max-width: 500px) {
-    .container-data-doctor input{
+    .container-data-doctor input {
         width: 100%;
     }
 
-    .container-inputs-data-patient{
+    .container-inputs-data-patient {
         flex-direction: column;
     }
-    .container-inputs-data-patient input{
+
+    .container-inputs-data-patient input {
         width: 100%;
     }
-    .container-inputs-data-long-patient input{
+
+    .container-inputs-data-long-patient input {
         height: 20vw;
+    }
+
+    .img-result {
+        width: 30%;
+        height: 30%;
+    }
+
+    .container-inputs-data-doctor {
+        flex-direction: column;
+    }
+
+    :host::ng-deep .button-download-result .p-button {
+        width: 50vw;
+        height: 8vw;
     }
 }

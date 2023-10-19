@@ -1,7 +1,8 @@
-// diagnostico.ts
+import { Doctor } from "./Doctor";
+
 export class Diagnostic {
     constructor(
-        public doctor: string,
+        public doctor: Doctor,
         public age: string,
         public weight: string,
         public height: string,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Diagnostic}from './Diagnostic';
+import{Doctor} from './Doctor';
 
 @Component({
   selector: 'app-result-view',
@@ -7,7 +8,8 @@ import {Diagnostic}from './Diagnostic';
   styleUrls: ['./result-view.component.css']
 })
 export class ResultViewComponent implements OnInit {
-  diagnostic: Diagnostic = new Diagnostic("","","","","","","","");
+  doctor : Doctor = new Doctor("", "", "");
+  diagnostic: Diagnostic = new Diagnostic(this.doctor,"","","","","","","");
   responseData: any;
 
   constructor() {
@@ -15,7 +17,7 @@ export class ResultViewComponent implements OnInit {
   
 
   ngOnInit(): void {
-      this.diagnostic.doctor = "";
+      this.diagnostic.doctor = this.doctor;
       this.diagnostic.age = "";
       this.diagnostic.weight="";
       this.diagnostic.height ="";
