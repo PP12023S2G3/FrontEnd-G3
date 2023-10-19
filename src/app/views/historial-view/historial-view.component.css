@@ -37,8 +37,7 @@
     align-self: stretch;
 }
 
-:host::ng-deep .p-input-icon-left {
-    .p-inputtext {
+:host::ng-deep .p-input-icon-left .p-inputtext {
         display: flex;
         width: 400px;
         height: 60px;
@@ -46,7 +45,6 @@
         border-radius: 10px;
         background: #ffffff;
         border: 2px solid var(--border-box-color);
-    }
 }
 
 :host::ng-deep .p-calendar {
