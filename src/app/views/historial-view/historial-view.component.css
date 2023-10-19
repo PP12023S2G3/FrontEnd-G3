@@ -1,0 +1,78 @@
+.historial {
+    display: flex;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: center;
+    background: #efefef;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-table-historial {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--border-box-color);
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    align-self: stretch;
+}
+
+:host::ng-deep .p-table{
+    border: 2px solid var(--border-box-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+:host::ng-deep .p-input-icon-left {
+    .p-inputtext {
+        display: flex;
+        width: 400px;
+        height: 60px;
+        align-items: center;
+        border-radius: 10px;
+        background: #ffffff;
+        border: 2px solid var(--border-box-color);
+    }
+}
+
+:host::ng-deep .p-calendar {
+    .p-inputtext {
+        display: flex;
+        width: 400px;
+        height: 60px;
+        align-items: center;
+        border-radius: 10px;
+        background: #ffffff;
+        border: 2px solid var(--border-box-color);
+    }
+}
+
+:host::ng-deep .button-view-result .p-button {
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 10px;
+    background: var(--gradient-pink);
+    font-size: 15.94px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    border: none;
+}
+
+td, tr, th {
+    text-align: center;
+}

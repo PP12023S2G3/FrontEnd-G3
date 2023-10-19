@@ -1,1 +1,36 @@
-<p>historial-view works!</p>
+<app-sidebar/>
+<div class="historial">
+    <div class="container-table-historial">
+        <div class="filters">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText [(ngModel)]="value" />
+            </span>
+            <p-calendar  [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"></p-calendar>
+        </div>
+        <div class="table">
+            <p-table responsiveLayout="stack" [breakpoint]="'769px'" [tableStyle]="{'min-width': '50rem'}" [value]="data">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th>Código de Imágen</th>
+                        <th>Fecha</th>
+                        <th>Estudio</th>
+                        <th>Médico</th>
+                        <th>_____</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-diagexample let-columns="columns">
+                    <tr>
+                        <td><span class="p-column-title">Código de Imágen</span>{{diagexample.code}}</td>
+                        <td><span class="p-column-title">Fecha</span>{{diagexample.date}}</td>
+                        <td><span class="p-column-title">Estudio</span>{{diagexample.study}}</td>
+                        <td><span class="p-column-title">Médico</span>{{diagexample.doctor}}</td>
+                        <td><span class="p-column-title">Acción</span><p-button type="button" label="Resultado" class="button-view-result"></p-button></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div>
+    </div>
+</div>

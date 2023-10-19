@@ -27,6 +27,8 @@ import { ResultViewComponent } from './views/result-view/result-view.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { SidebarModule } from 'primeng/sidebar';
     PasswordModule,
     FileUploadModule,
     DialogModule,
-    SidebarModule
+    SidebarModule,
+    TableModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
