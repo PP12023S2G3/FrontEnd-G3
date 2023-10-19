@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.persona.dni = "";
     this.persona.clave = "";
-    
   }
 
   togglePasswordVisibility() {
@@ -38,8 +37,26 @@ export class LoginComponent implements OnInit {
       return;
     }
     if(this.validarDNI(this.persona.dni) && this.validarContraseña(this.persona.clave)) {
-      this.router.navigate(['/diagnostic']);
+      // Valores de usuario y contraseña hardcodeados (solo para demostración)
+    const dniHardcodeado = "12345678";
+    const contraseñaHardcodeada = "Contrasea123";
+    console.log(localStorage.getItem('newPassword'))
+      if(localStorage.getItem('newPassword')==null){
+          if (this.persona.dni === dniHardcodeado && this.persona.clave === contraseñaHardcodeada) {
+            this.router.navigate(['/diagnostic']);
+          }
+            else {
+            alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+          }
+      }
+      else if (this.persona.dni === dniHardcodeado && this.persona.clave === localStorage.getItem('newPassword') ) {
+        this.router.navigate(['/diagnostic']);
+      }
+        else {
+        alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      }
     }
+
     console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
   }
 
@@ -56,6 +73,7 @@ export class LoginComponent implements OnInit {
   irAResetPassword() {
     // Navegar a la página resetPassword
     this.router.navigate(['/resetPassword']);
+    localStorage.setItem('newPassword', 'Contrasea321');
   }
 }
 

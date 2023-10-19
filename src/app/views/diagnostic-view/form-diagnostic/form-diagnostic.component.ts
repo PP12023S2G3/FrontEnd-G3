@@ -101,11 +101,11 @@ export class FormDiagnosticComponent {
     const formData = new FormData();
     formData.append('img', file);
 
-    this.resultService.postResultado(formData).subscribe({
+    this.resultService.postResult(formData).subscribe({
       next: res => {
         console.log(res)
        // Almacena los datos en localStorage
-       localStorage.setItem('responseData', JSON.stringify(res));
+       localStorage.setItem('PredictedResult', JSON.stringify(res));
 
        // Redirige a la ruta '/result'
        this.router.navigate(['/result']);
@@ -113,6 +113,10 @@ export class FormDiagnosticComponent {
       error: error => {
     }
     });
+   /* esto es lo que va a ir en historial
+    this.resultService.getResult(`1`).subscribe({
+      next:res=>{console.log(res)}
+    })*/
   }
 }
 
