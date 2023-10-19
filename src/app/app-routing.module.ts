@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoViewComponent },
   { path: 'modelo', component: ModeloViewComponent },
   { path: 'historial', component: HistorialViewComponent },
-  { path: 'diagnostic', component: DiagnosticViewComponent },
+  { path: 'diagnostico', component: DiagnosticViewComponent },
   { path: 'login', component: LoginComponent },
   { path: 'result', component: ResultViewComponent },
   { path: 'resetPassword', component: ResetPasswordComponent},

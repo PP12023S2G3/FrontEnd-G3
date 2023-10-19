@@ -1,12 +1,15 @@
-export class Diagnostic{
+import { Doctor } from "./Doctor";
 
-  constructor(
-  public id_user?: number,
-  public age?: string,
-  public sex?: string,
-  public weight?: string,
-  public bodySection?: string,
-  public image?: number
-  ){}
+export class Diagnostic {
+    constructor(
+        public doctor: Doctor,
+        public age: string,
+        public weight: string,
+        public height: string,
+        public gender: string,
+        public sectionBody: string,
+        public preconditions: string,
+        public resultDiagnostic: string,
+    ){}
 
 }

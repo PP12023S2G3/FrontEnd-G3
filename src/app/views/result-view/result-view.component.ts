@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Diagnostic}from './Diagnostic';
-import{Doctor} from './Doctor';
+import { Diagnostic } from 'src/app/models/Diagnostic';
+import { Doctor } from 'src/app/models/Doctor';
+
+
 
 @Component({
   selector: 'app-result-view',
@@ -14,7 +16,7 @@ export class ResultViewComponent implements OnInit {
 
   constructor() {
   }
-  
+
 
   ngOnInit(): void {
       this.diagnostic.doctor = this.doctor;
@@ -25,7 +27,7 @@ export class ResultViewComponent implements OnInit {
       this.diagnostic.sectionBody = "";
       this.diagnostic.preconditions = "";
       this.diagnostic.resultDiagnostic = "";
-  
+
     const storedResponseData = localStorage.getItem('responseData');
     if (storedResponseData) {
       this.responseData = JSON.parse(storedResponseData);

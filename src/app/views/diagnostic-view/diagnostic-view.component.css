@@ -1,0 +1,151 @@
+.container-result {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  min-width: 300px;
+  min-height: 700px;
+  max-width: 2000px;
+  max-height: 1250px;
+  font-family: var(--font-family);
+  background-color: #EFEFEF;
+}
+
+.container-header-result {
+  display: flex;
+  align-items: center;
+  margin: 2% 0 0 4%;
+  padding: 0;
+}
+
+.img-result-logo {
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 1.918vw;
+  max-height: 1.918vw;
+}
+
+.title-result {
+  flex-grow: 1;
+  /* Permite que el título ocupe todo el espacio restante */
+  text-align: center;
+  font-size: var(--font-size-title3);
+}
+
+.container-data-result {
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+  width: 85%;
+  height: auto;
+  margin: 2% 0 0 10%;
+}
+
+
+/*-------------------------------------------DOCTOR/MEDICO-------------------------------------------------------*/
+
+.container-inputs-data-doctor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+}
+
+.container-inputs-data-doctor h6 {
+  font-size: var(--font-size-title6);
+  font-weight: normal;
+  margin: 0;
+}
+
+.container-inputs-data-doctor input {
+  margin: 0 0 0 0;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+}
+
+.container-inputs-data-doctor div {
+  margin: 0 3% 0 0;
+}
+
+.title-data {
+  margin: 1.5%;
+  font-size: var(--font-size-title5);
+}
+
+/*---------------------------------------------PACIENTE-----------------------------------------------------*/
+
+.container-inputs-data-patient {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 0 0 1%;
+
+}
+
+.container-inputs-data-patient h6 {
+  font-size: var(--font-size-title6);
+  font-weight: normal;
+  margin: 0;
+}
+
+.container-inputs-data-patient input {
+  margin: 0 0 10% 0;
+  padding: 10px;
+  width: 15vw;
+  text-align: center;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+}
+
+.container-inputs-data-patient div {
+  margin: 0 1% 0 0;
+}
+
+/*----------------------------------PACIENTE(CONDICIONES PREVIAS Y RESULTADO DIAGNOSTICO)------------------------------------------------*/
+
+.container-inputs-data-long-patient h6 {
+  font-size: var(--font-size-title6);
+  font-weight: normal;
+  margin: 0;
+}
+
+.container-inputs-data-long-patient input {
+  width: 100%;
+  height: 4vw;
+  margin: 0;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+}
+
+.container-inputs-data-long-patient div {
+  margin: 2% 1% 2% 1%;
+}
+
+.container-result-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-result {
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+  margin: 2%;
+  width: 20%;
+  height: 20%;
+
+}
