@@ -34,7 +34,7 @@
   height: 280px;
   max-width: 300px; /* Ajusta el ancho máximo según tus preferencias */
   max-height: 300px; /* Ajusta la altura máxima según tus preferencias */
-  margin-top: 1rem;
+  margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
