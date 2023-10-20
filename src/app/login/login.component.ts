@@ -62,12 +62,12 @@ export class LoginComponent implements OnInit {
 
   validarDNI(dni: string): boolean {
     // validar el DNI
-    return /^\d{8}$/.test(dni);
+    return /^\d{7,8}$/.test(dni);
   }
 
   validarContraseña(contraseña: string): boolean {
-      // Validar la contraseña
-    return /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(contraseña);
+    // Validar la contraseña
+    return /^(?=.*[A-ZñÑ])(?=.*\d)[A-Za-zñÑ\d]{8,}$/.test(contraseña);
   }
 
   irAResetPassword() {
