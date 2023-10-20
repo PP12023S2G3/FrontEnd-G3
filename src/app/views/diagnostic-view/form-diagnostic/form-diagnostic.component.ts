@@ -11,29 +11,37 @@ export class FormDiagnosticComponent {
 
   uploadedFile: File | null = null;
   maxFileSize: number = 10485760;
-  minImageWidth: number = 225;
-  minImageHeight: number = 225;
   acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
-  isChooseButtonDisabled = false;
-  isCancelButtonVisible = false;
   isResultButtonDisabled = true;
   imagenURL: string | ArrayBuffer | null = null;
-  mostrarTextoInicial = true;
-  isValid = true;
 
   constructor(private resultService: ResultService, private router: Router) { }
 
-  onUpload(event: any) {
-    const uploadedFile = event.files && event.files[0];
-    if (uploadedFile) {
-      this.uploadedFile = uploadedFile;
-      this.isChooseButtonDisabled = true;
-      this.isCancelButtonVisible = true;
+  onFileSelect(event: any) {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      this.uploadedFile = selectedFile;
       this.isResultButtonDisabled = false;
-      this.getObjectURL(uploadedFile);
+      this.getObjectURL(selectedFile);
     } else {
       this.resetFileInput();
       console.log('No se ha seleccionado una imagen o ocurrió un error al subir el archivo.');
+    }
+  }
+
+  resetFileInput() {
+    this.uploadedFile = null;
+    this.isResultButtonDisabled = true;
+    this.imagenURL = null;
+  }
+
+  getObjectURL(file: File) {
+    if (file) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = (event) => {
+        this.imagenURL = event.target?.result as string;
+      };
     }
   }
 
@@ -46,61 +54,18 @@ export class FormDiagnosticComponent {
     }
   }
 
-
-  onFileSelect(event: any) {
-    const selectedFile = event.files && event.files[0];
-    if (selectedFile) {
-      this.uploadedFile = selectedFile;
-      this.isChooseButtonDisabled = true;
-      this.isCancelButtonVisible = true;
-      this.isResultButtonDisabled = false;
-      this.getObjectURL(selectedFile);
-    } else {
-      this.resetFileInput();
-      console.log('No se ha seleccionado una imagen o ocurrió un error al subir el archivo.');
-    }
-  }
-
-
-  resetFileInput() {
-    this.uploadedFile = null;
-    this.isChooseButtonDisabled = false;
-    this.isCancelButtonVisible = false;
-    this.isResultButtonDisabled = true;
-    this.imagenURL = "";
-    this.mostrarTextoInicial = true;
-  }
-
-  getObjectURL(file: File) {
-    if (file) {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = (event) => {
-        this.imagenURL = event.target?.result as string;
-      };
-    }
-  }
-  onCancel() {
-    this.resetFileInput();
-  }
-
-  onClearUpload() {
-    this.mostrarTextoInicial = true;
-  }
-
   postResult(file: File) {
     const formData = new FormData();
-    //hardcodeo para usar api de cerebro
+    // Hardcodeo para usar API de cerebro
     this.setRequest(formData, file);
 
-
     this.resultService.postResult(formData).subscribe({
-      next: res => {
+      next: (res) => {
         console.log(res);
         localStorage.setItem('PredictedResult', JSON.stringify(res));
         this.router.navigate(['/result']);
       },
-      error: error => {
+      error: (error) => {
         // Manejar errores aquí
       }
     });
@@ -108,10 +73,10 @@ export class FormDiagnosticComponent {
 
   private setRequest(formData: FormData, file: File) {
     formData.append('imagen', file);
-    formData.append('problemasVisuales', `true`);
-    formData.append('decadenciaMotriz', `true`);
-    formData.append('epilepsia', `true`);
+    formData.append('problemasVisuales', 'true');
+    formData.append('decadenciaMotriz', 'true');
+    formData.append('epilepsia', 'true');
     formData.append('id_usuario', '3');
     formData.append('id_medico', '3');
   }
-}
+ }

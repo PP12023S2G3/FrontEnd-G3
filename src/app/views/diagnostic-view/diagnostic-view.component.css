@@ -1,10 +1,10 @@
-.container-result {
+.container-result{
   overflow-x: hidden;
   overflow-y: hidden;
   min-width: 300px;
-  min-height: 700px;
+  min-height: 1000px;
   max-width: 2000px;
-  max-height: 1250px;
+  max-height: 1500px;
   font-family: var(--font-family);
   background-color: #EFEFEF;
 }
@@ -12,7 +12,7 @@
 .container-header-result {
   display: flex;
   align-items: center;
-  margin: 0.5% 0 0 4%;
+  margin: 2% 0 0 4%;
   padding: 0;
 }
 
@@ -38,7 +38,7 @@
   border-color: var(--border-box-color);
   width: 85%;
   height: auto;
-  margin: 0.5% 0 0 10%;
+  margin: 2% 0 0 10%;
 }
 
 
@@ -149,6 +149,7 @@
   height: 20%;
 
 }
+
 
 /*--------------------------------------------------------------------------------------------------*/
 
