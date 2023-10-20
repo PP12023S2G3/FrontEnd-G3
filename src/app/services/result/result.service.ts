@@ -12,14 +12,13 @@ export class ResultService {
 
   private api : string ='https://api-resultados.onrender.com/Diagnosticos/';
   private endpointPredictResult : string ='predecir/cerebro';
-  private endpointDiagnosticRecordResult : string ='diagnostico/';
   private endpointDiagnosticRecords : string ='historial';
 
   constructor(private http: HttpClient) { }
 
   //para traer el resultado ya guardado desde historial
   public getResult(id:String):Observable<DiagnosticResp>{
-    let url=this.api +this.endpointDiagnosticRecordResult + id;
+    let url=this.api + id;
     return this.http.get<DiagnosticResp>(url);
   }
 

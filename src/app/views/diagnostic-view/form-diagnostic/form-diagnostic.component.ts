@@ -90,7 +90,9 @@ export class FormDiagnosticComponent {
 
   postResult(file: File) {
     const formData = new FormData();
-    formData.append('img', file);
+    //hardcodeo para usar api de cerebro
+    this.setRequest(formData, file);
+
 
     this.resultService.postResult(formData).subscribe({
       next: res => {
@@ -102,5 +104,14 @@ export class FormDiagnosticComponent {
         // Manejar errores aquí
       }
     });
+  }
+
+  private setRequest(formData: FormData, file: File) {
+    formData.append('imagen', file);
+    formData.append('problemasVisuales', `true`);
+    formData.append('decadenciaMotriz', `true`);
+    formData.append('epilepsia', `true`);
+    formData.append('id_usuario', '3');
+    formData.append('id_medico', '3');
   }
 }

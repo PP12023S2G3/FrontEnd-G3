@@ -149,3 +149,37 @@
   height: 20%;
 
 }
+
+/*--------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 500px) {
+  .container-data-doctor input {
+      width: 100%;
+  }
+
+  .container-inputs-data-patient {
+      flex-direction: column;
+  }
+
+  .container-inputs-data-patient input {
+      width: 100%;
+  }
+
+  .container-inputs-data-long-patient input {
+      height: 20vw;
+  }
+
+  .img-result {
+      width: 30%;
+      height: 30%;
+  }
+
+  .container-inputs-data-doctor {
+      flex-direction: column;
+  }
+
+  :host::ng-deep .button-download-result .p-button {
+      width: 50vw;
+      height: 8vw;
+  }
+}
