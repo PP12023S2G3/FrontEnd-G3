@@ -3,10 +3,26 @@
     <div class="container-table-historial">
         <div class="filters">
             <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="value" />
+                <span class="icon">
+                    <i class="pi pi-search" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
+                </span>
+                <input type="text" pInputText [(ngModel)]="value" placeholder="Código de Imágen, Estudio..."/>
             </span>
-            <p-calendar  [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"></p-calendar>
+            <span class="p-input-icon-left">
+                <span class="icon">
+                    <i class="pi pi-calendar" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
+                </span>
+                <span>
+                    <p-calendar  
+                    [(ngModel)]="rangeDates" 
+                    selectionMode="range" 
+                    [readonlyInput]="true" 
+                    placeholder="Fecha/s"
+                    [maxDate]="dateTime"
+                    [icon]="calendarIcon">
+                    </p-calendar>
+                </span>
+            </span>
         </div>
         <div class="table">
             <p-table responsiveLayout="stack" [breakpoint]="'769px'" [tableStyle]="{'min-width': '50rem'}" [value]="data">
@@ -30,7 +46,5 @@
                 </ng-template>
             </p-table>
         </div>
-    </div>
-    <div>
     </div>
 </div>

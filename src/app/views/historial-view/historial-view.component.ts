@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class HistorialViewComponent{
 
     tituloDinamico = 'Historial';
+    calendarIcon = 'pi pi-calendar';
     cambiarTitulo(nuevoTitulo: string) {
     this.tituloDinamico = nuevoTitulo;
   }
@@ -17,8 +18,10 @@ export class HistorialViewComponent{
     value: string | undefined;
 
     data: any[];
-    
+
+    dateTime = new Date();
     constructor() {
+        this.dateTime.setDate(this.dateTime.getDate());
         this.data = [
             {
                 code: '1',

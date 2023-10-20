@@ -37,7 +37,7 @@
     align-self: stretch;
 }
 
-:host::ng-deep .p-input-icon-left .p-inputtext {
+:host::ng-deep .p-input-icon-left {
         display: flex;
         width: 400px;
         height: 60px;
@@ -47,16 +47,8 @@
         border: 2px solid var(--border-box-color);
 }
 
-:host::ng-deep .p-calendar {
-    .p-inputtext {
-        display: flex;
-        width: 400px;
-        height: 60px;
-        align-items: center;
-        border-radius: 10px;
-        background: #ffffff;
-        border: 2px solid var(--border-box-color);
-    }
+:host::ng-deep .p-input-icon-left .p-inputtext{
+    padding: 0px;
 }
 
 :host::ng-deep .button-view-result .p-button {
@@ -73,4 +65,15 @@
 
 td, tr, th {
     text-align: center;
+}
+
+:host::ng-deep .p-inputtext {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: transparent;
+}
+
+:host::ng-deep .p-inputtext:focus {
+    box-shadow: none !important;
 }
