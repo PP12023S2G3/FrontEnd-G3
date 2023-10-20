@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           }
       }
       else if (this.persona.dni === dniHardcodeado && this.persona.clave === localStorage.getItem('newPassword') ) {
-        this.router.navigate(['/diagnostic']);
+        this.router.navigate(['/diagnostico']);
       }
         else {
         alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
@@ -62,12 +62,12 @@ export class LoginComponent implements OnInit {
 
   validarDNI(dni: string): boolean {
     // validar el DNI
-    return /^\d{8}$/.test(dni);
+    return /^\d{7,8}$/.test(dni);
   }
 
   validarContraseña(contraseña: string): boolean {
-      // Validar la contraseña
-    return /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(contraseña);
+    // Validar la contraseña
+    return /^(?=.*[A-ZñÑ])(?=.*\d)[A-Za-zñÑ\d]{8,}$/.test(contraseña);
   }
 
   irAResetPassword() {
