@@ -73,9 +73,9 @@ export class FormDiagnosticComponent {
 
   private setRequest(formData: FormData, file: File) {
     formData.append('imagen', file);
-    formData.append('problemasVisuales', 'true');
-    formData.append('decadenciaMotriz', 'true');
-    formData.append('epilepsia', 'true');
+    formData.append('perdida_visual', 'true');
+    formData.append('debilidad_focal', 'true');
+    formData.append('convulsiones', 'true');
     formData.append('id_usuario', '3');
     formData.append('id_medico', '3');
   }
