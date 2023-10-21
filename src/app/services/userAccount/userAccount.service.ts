@@ -20,14 +20,14 @@ export class UserAccountService {
   }
 
   //para que usuario se loguee
-  public postLogin(data:FormData):Observable<any>{
-    let url='predecir/cerebro';
+  public postLogin(data:FormData,llamadoUrl:string):Observable<any>{
+    let url='http://localhost:5001/usuarios'+llamadoUrl;
     return this.http.post<any>(url,data);
   }
 
   //para que usuario resetee su contraseña
   public postResetPassword(data:FormData):Observable<any>{
-    let url='predecir/cerebro';
+    let url='http://localhost:5001/usuariosResetPW';
    //mockUrl
     return this.http.post<any>(url,data);
   }
