@@ -4,8 +4,8 @@
     <img *ngIf="!imagenURL" src="assets/img/foto-subir-archivo.png" (click)="chooseFileInput.click()" style="cursor: pointer;" />
     <div class="image-preview-container" *ngIf="imagenURL">
       <img [src]="imagenURL" alt="Vista previa de la imagen subida" class="preview-image">
-
     </div>
   </div>
+  <p-button styleClass="p-button-global" (click)="cancelImageUpload()" label="Cancelar" *ngIf="showCancelButton"></p-button>
   <p-button styleClass="p-button-global" (click)="diagnosticResult()" label="Enviar datos" [disabled]="isResultButtonDisabled"></p-button>
 </div>

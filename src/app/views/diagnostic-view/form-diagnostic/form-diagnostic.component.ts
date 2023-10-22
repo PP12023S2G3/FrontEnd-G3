@@ -14,6 +14,7 @@ export class FormDiagnosticComponent {
   acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
   isResultButtonDisabled = true;
   imagenURL: string | ArrayBuffer | null = null;
+  showCancelButton = false;
 
   constructor(private resultService: ResultService, private router: Router) { }
 
@@ -23,16 +24,20 @@ export class FormDiagnosticComponent {
       this.uploadedFile = selectedFile;
       this.isResultButtonDisabled = false;
       this.getObjectURL(selectedFile);
+      this.showCancelButton = true; // Muestra el botón de cancelar
     } else {
       this.resetFileInput();
       console.log('No se ha seleccionado una imagen o ocurrió un error al subir el archivo.');
     }
   }
-
   resetFileInput() {
     this.uploadedFile = null;
     this.isResultButtonDisabled = true;
     this.imagenURL = null;
+  }
+  cancelImageUpload() {
+    this.resetFileInput();
+    this.showCancelButton = false; // Oculta el botón de cancelar
   }
 
   getObjectURL(file: File) {
