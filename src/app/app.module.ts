@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 
 //PRIMENG
 import { PanelModule } from 'primeng/panel';
+import {DropdownModule} from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button'
 import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { FormDiagnosticComponent } from './views/diagnostic-view/form-diagnostic/form-diagnostic.component';
@@ -63,7 +64,8 @@ import { CalendarModule } from 'primeng/calendar';
     DialogModule,
     SidebarModule,
     TableModule,
-    CalendarModule
+    CalendarModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

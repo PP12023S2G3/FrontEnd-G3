@@ -10,8 +10,8 @@ import { Doctor } from 'src/app/models/Doctor';
   styleUrls: ['./result-view.component.css']
 })
 export class ResultViewComponent implements OnInit {
-  doctor : Doctor = new Doctor("", "", "");
-  diagnostic: Diagnostic = new Diagnostic(this.doctor,"","","","","","","");
+  doctor !: Doctor;
+  diagnostic!: Diagnostic;
   responseData: any;
 
   tituloDinamico = 'Resultado';
@@ -24,14 +24,9 @@ export class ResultViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.diagnostic.doctor = this.doctor;
-      this.diagnostic.age = "";
-      this.diagnostic.weight="";
-      this.diagnostic.height ="";
-      this.diagnostic.gender ="";
-      this.diagnostic.sectionBody = "";
-      this.diagnostic.preconditions = "";
-      this.diagnostic.resultDiagnostic = "";
+      this.diagnostic = new Diagnostic();
+      this.doctor = new Doctor();
+      
 
     const storedResponseData = localStorage.getItem('responseData');
     if (storedResponseData) {

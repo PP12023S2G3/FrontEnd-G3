@@ -2,8 +2,12 @@
     align-items: center;
     display: flex;
     padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 56px;
     background-color: #efefef;
+    position: fixed;
   }
   .title{
     flex-grow: 1;
