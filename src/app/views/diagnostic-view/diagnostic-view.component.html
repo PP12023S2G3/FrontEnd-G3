@@ -6,17 +6,17 @@
         <div class="container-inputs-data-doctor">
             <div>
                 <h6 class="title-dni-doctor">DNI</h6>
-                <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText
+                <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText tabindex="1" 
                     [(ngModel)]="doctor.dni"  name="doctor-dni" />
             </div>
             <div>
                 <h6 class="title-name-doctor">Nombre</h6>
-                <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText
+                <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText tabindex="2" 
                 [(ngModel)]="doctor.name" name="doctor-lastname" />
             </div>
             <div>
                 <h6 class="title-lastname-doctor">Apellido</h6>
-                <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText
+                <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText tabindex="3" 
                 [(ngModel)]="doctor.lastname" name="doctor-lastname" />
             </div>
             
@@ -27,32 +27,32 @@
         <div class="container-inputs-data-patient">
             <div>
                 <h6 class="title-age-patient">Edad</h6>
-                <input class="input-age-patient" type="text" placeholder="Edad del paciente" pInputText
+                <input class="input-age-patient" type="text" placeholder="Edad del paciente" pInputText tabindex="4" 
                     [(ngModel)]="diagnostic.age" name="age-patient" />
             </div>
 
             <div>
                 <h6 class="title-weight-patient">Peso(Kg)</h6>
-                <input class="input-weight-patient" type="text" placeholder="Peso del paciente" pInputText
+                <input class="input-weight-patient" type="text" placeholder="Peso del paciente" pInputText tabindex="5" 
                     [(ngModel)]="diagnostic.weight" name="weight-patient" />
             </div>
 
             <div>
                 <h6 class="title-height-patient">Altura(cm)</h6>
-                <input class="input-height-patient" type="text" placeholder="Altura del paciente" pInputText
+                <input class="input-height-patient" type="text" placeholder="Altura del paciente" pInputText tabindex="6" 
                     [(ngModel)]="diagnostic.height"  name="height-patient" />
             </div>
 
             <div>
                 <h6 class="title-gender-patient">Sexo</h6>
-                <input class="input-gender-patient" type="text" placeholder="Sexo del paciente" pInputText
-                    [(ngModel)]="diagnostic.gender" name="gender-patient" />
+                <p-dropdown placeholder="Seleccionar" appendTo="body" optionLabel="label"
+                [(ngModel)]="diagnostic.gender" [options]="sexOptions" (onChange)="OnSelectedSex($event)"></p-dropdown>
             </div>
 
             <div>
                 <h6 class="title-body-section-patient">Sección del cuerpo</h6>
-                <input class="input-body-section-patient" type="text" placeholder="Sección del cuerpo" pInputText
-                    [(ngModel)]="diagnostic.sectionBody" name="body-section-patient" />
+                <p-dropdown placeholder="Seleccionar" appendTo="body" optionLabel="label"
+                [(ngModel)]="diagnostic.sectionBody" [options]="partsOptions" (onChange)="OnSelectedPart($event)"></p-dropdown>
             </div>
 
       </div>
@@ -61,7 +61,7 @@
         <div>
             <h6 class="title-preconditions-patient">Condiciones previas</h6>
             <input class="input-preconditions-patient" type="text"
-                placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions"
+                placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions" tabindex="9" 
                  name="preconditions-patient" />
 
         </div>
@@ -72,7 +72,18 @@
 
     </div>
     </div>
-    <app-form-diagnostic class="container"></app-form-diagnostic>
+    <div class="formulario">
+        <div class="container-custom-file-input">
+          <input type="file" accept="image/*" (change)="onFileSelect($event)" style="display: none;" #chooseFileInput />
+          <img *ngIf="!imagenURL" src="assets/img/foto-subir-archivo.png" (click)="chooseFileInput.click()" style="cursor: pointer;" />
+          <div class="image-preview-container" *ngIf="imagenURL">
+            <img [src]="imagenURL" alt="Vista previa de la imagen subida" class="preview-image">
+          </div>
+        </div>
+        <p-button styleClass="p-button-global" (click)="cancelImageUpload()" label="Cancelar" *ngIf="showCancelButton"></p-button>
+        <p-button styleClass="p-button-global" (click)="diagnosticResult()" label="Enviar datos" [disabled]="isResultButtonDisabled"></p-button>
+      </div>
+      
 
 </div>
 
