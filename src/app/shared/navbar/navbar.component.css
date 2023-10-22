@@ -7,7 +7,7 @@
     right: 0;
     height: 56px;
     background-color: #efefef;
-    position: fixed;
+    position: absolute;
   }
   .title{
     flex-grow: 1;
