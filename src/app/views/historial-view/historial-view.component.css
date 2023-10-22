@@ -4,8 +4,7 @@
     align-items: center;
     background: #efefef;
     justify-content: center;
-    min-height: 100vh;
-
+    margin-top: 130px;
 }
 
 .container-table-historial {
@@ -19,6 +18,7 @@
     background: #ffffff;
     box-sizing: border-box;
     min-width: 300px;
+    max-width: 1700px;
 }
 
 .filters {
