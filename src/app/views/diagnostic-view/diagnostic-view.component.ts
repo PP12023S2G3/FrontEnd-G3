@@ -13,6 +13,7 @@ export class DiagnosticViewComponent implements OnInit {
   doctor!: Doctor;
   diagnostic!: Diagnostic;
   formFieldsCompleted = false;
+  formFieldsError = false;
   uploadedFile: File | null = null;
   isResultButtonDisabled = true;
   imagenURL: string | ArrayBuffer | null = null;
@@ -29,8 +30,7 @@ export class DiagnosticViewComponent implements OnInit {
   ngOnInit(): void {
     this.sexOptions = [
       { label: 'Masculino', value: 'Masculino' },
-      { label: 'Femenino', value: 'Femenino' },
-      { label: 'Otro', value: 'Otro' },
+      { label: 'Femenino', value: 'Femenino' }
     ];
 
     this.partsOptions = [
@@ -92,14 +92,23 @@ export class DiagnosticViewComponent implements OnInit {
 
   diagnosticResult() {
     this.checkFormFields();
-    if (this.uploadedFile && this.formFieldsCompleted) {
+    this.checkFormErrorFields();
+    console.log(this.formFieldsCompleted);
+    console.log(this.formFieldsError);
+    if (this.uploadedFile && this.formFieldsCompleted && this.formFieldsError) {
       this.postResult(this.uploadedFile);
     } else {
       if (!this.uploadedFile) {
         alert('No se ha seleccionado una imagen.');
       }
+
       if (!this.formFieldsCompleted) {
         alert('Completa todos los campos del formulario antes de continuar.');
+      }
+      else {
+        if(!this.formFieldsError) {
+          alert('Datos erroneos por favor vuelva a ingresar nuevamente');
+        }
       }
     }
   }
@@ -147,16 +156,35 @@ export class DiagnosticViewComponent implements OnInit {
       this.diagnostic.weight != undefined&&
       this.diagnostic.height != undefined&&
       this.diagnostic.gender != undefined&&
-      this.diagnostic.sectionBody != undefined&&
-      this.diagnostic.preconditions != undefined
+      this.diagnostic.sectionBody != undefined
     ) {
       this.formFieldsCompleted = true;
-      console.log(this.formFieldsCompleted);
     } else {
       this.formFieldsCompleted = false;
-          console.log(this.formFieldsCompleted);
     }
-    console.log(this.formFieldsCompleted);
+  }
+
+  checkFormErrorFields() {
+    if (
+      typeof this.doctor.dni === 'number' &&
+      this.doctor.dni >= 10000000 && // DNI debe ser mayor o igual a 10,000,000
+      this.doctor.dni <= 99999999 &&  // DNI debe ser menor o igual a 99,999,999
+      typeof this.doctor.name === 'string' &&
+      this.doctor.name.length > 2 &&
+      typeof this.doctor.lastname === 'string' &&
+      this.doctor.lastname.length > 3 &&
+      typeof this.diagnostic.age === 'number' &&
+      this.diagnostic.age >= 0 &&
+      this.diagnostic.age <= 140 && // Ajusta el rango según tus requerimientos
+      typeof this.diagnostic.weight === 'number' &&
+      typeof this.diagnostic.height === 'number'
+    ) {
+      this.formFieldsError = true;
+    } else {
+      console.log(this.diagnostic);
+      console.log(this.doctor);
+      this.formFieldsError = false;
+    }
   }
 
   tituloDinamico = 'Diagnostico';

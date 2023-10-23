@@ -6,7 +6,7 @@
         <div class="container-inputs-data-doctor">
             <div>
                 <h6 class="title-dni-doctor">DNI</h6>
-                <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText tabindex="1" 
+                <input class="input-dni-doctor" type="number" placeholder="Dni del medico" pInputText tabindex="1" 
                     [(ngModel)]="doctor.dni"  name="doctor-dni" />
             </div>
             <div>
@@ -27,19 +27,19 @@
         <div class="container-inputs-data-patient">
             <div>
                 <h6 class="title-age-patient">Edad</h6>
-                <input class="input-age-patient" type="text" placeholder="Edad del paciente" pInputText tabindex="4" 
+                <input class="input-age-patient" type="number" placeholder="Edad del paciente" pInputText tabindex="4" 
                     [(ngModel)]="diagnostic.age" name="age-patient" />
             </div>
 
             <div>
                 <h6 class="title-weight-patient">Peso(Kg)</h6>
-                <input class="input-weight-patient" type="text" placeholder="Peso del paciente" pInputText tabindex="5" 
+                <input class="input-weight-patient" type="number" placeholder="Peso del paciente" pInputText tabindex="5" 
                     [(ngModel)]="diagnostic.weight" name="weight-patient" />
             </div>
 
             <div>
                 <h6 class="title-height-patient">Altura(cm)</h6>
-                <input class="input-height-patient" type="text" placeholder="Altura del paciente" pInputText tabindex="6" 
+                <input class="input-height-patient" type="number" placeholder="Altura del paciente" pInputText tabindex="6" 
                     [(ngModel)]="diagnostic.height"  name="height-patient" />
             </div>
 
