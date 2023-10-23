@@ -167,15 +167,22 @@ export class DiagnosticViewComponent implements OnInit {
   checkFormErrorFields() {
     if (
       typeof this.doctor.dni === 'number' &&
-      this.doctor.dni >= 10000000 && // DNI debe ser mayor o igual a 10,000,000
-      this.doctor.dni <= 99999999 &&  // DNI debe ser menor o igual a 99,999,999
+      this.doctor.dni >= 1000000 && // DNI debe ser mayor o igual a 1,000,000 (7 dígitos)
+      this.doctor.dni <= 99999999 &&  // DNI debe ser menor o igual a 99,999,999 (8 dígitos)
       typeof this.doctor.name === 'string' &&
       this.doctor.name.length > 2 &&
       typeof this.doctor.lastname === 'string' &&
       this.doctor.lastname.length > 3 &&
       typeof this.diagnostic.age === 'number' &&
       this.diagnostic.age >= 0 &&
-      this.diagnostic.age <= 140 && // Ajusta el rango según tus requerimientos
+      this.diagnostic.age <= 130 && 
+      typeof this.diagnostic.weight === 'number' &&
+      this.diagnostic.weight >= 1 &&
+      this.diagnostic.weight <= 200 &&
+      typeof this.diagnostic.height === 'number' &&
+      this.diagnostic.height >= 25 &&
+      this.diagnostic.height <= 230 &&
+      this.diagnostic.gender &&
       typeof this.diagnostic.weight === 'number' &&
       typeof this.diagnostic.height === 'number'
     ) {
