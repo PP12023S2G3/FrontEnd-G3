@@ -4,32 +4,32 @@
     align-items: center;
     background: #efefef;
     justify-content: center;
-    margin-top: 80px;
+    height: 100vh;
 }
 
 .container-registro {
     display: flex;
-    padding: 20px;
     flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
+    align-items: center;
     border-radius: 10px;
     border: 2px solid var(--border-box-color);
     background: #ffffff;
     box-sizing: border-box;
+    padding: 15px;
+    justify-content: center;
+    gap: 15px;
+    max-width: 700px;
     min-width: 300px;
-    max-width: 1700px;
 }
 
 .forms {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    align-content: center;
+    gap: 15px;
     align-self: stretch;
-    min-width: 300px;
+    flex-wrap: wrap;
 }
 
 .label-input-register {
@@ -38,12 +38,11 @@
     font-size: 18px;
     font-weight: bold;
     line-height: normal;
-    margin-bottom: 0px;
+    margin: 0px !important;
 }
 
 :host ::ng-deep .p-dropdown {
     min-width: 250px;
-    max-width: 20vw;
     text-align: center;
     border: transparent;
   }
@@ -73,3 +72,22 @@
 :host::ng-deep .p-inputtext:focus {
     box-shadow: none !important;
 }
+
+.p-button-link:focus, .p-button-link:enabled:focus{
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 767px) {
+    .forms {
+      flex-direction: column;
+    }
+    .container-registro{
+        border: transparent;
+        background: transparent;
+    }
+
+    .registro{
+        margin-top: 60px;
+        height: 100%;
+    }
+  }

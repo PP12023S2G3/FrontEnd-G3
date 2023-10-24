@@ -7,10 +7,8 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./registro-view.component.css']
 })
 export class RegistroComponent {
-  section: 'inicial' | 'final' = 'inicial';
   medicalSpeciality: { label: string; value: string }[] | undefined;
   user!: User;
-  showDropdown: boolean = true;
 
   constructor() {
     this.medicalSpeciality = [
@@ -23,23 +21,11 @@ export class RegistroComponent {
 
   }
 
-  siguienteEtapa() {
-    this.section = 'final';
-    this.showDropdown = false;
-  }
-
-  finalizarRegistro() {
-    
-  }
-
-  regresarEtapa() {
-    this.section = 'inicial';
-    this.showDropdown = true;
+  registrarse(){
+    console.log("Registrado");
   }
 
   OnSelectedMedicalSpeciality(event : any) {
 
   }
-  
-
 }
