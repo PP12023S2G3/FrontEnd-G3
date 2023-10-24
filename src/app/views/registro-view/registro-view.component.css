@@ -4,7 +4,7 @@
     align-items: center;
     background: #efefef;
     justify-content: center;
-    height: 100vh;
+    margin-top: 100px;
 }
 
 .container-registro {
@@ -15,9 +15,9 @@
     border: 2px solid var(--border-box-color);
     background: #ffffff;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 25px;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
     max-width: 700px;
     min-width: 300px;
 }
@@ -49,13 +49,12 @@
 
 :host::ng-deep .p-input-icon-left {
     display: flex;
-    max-width: 400px;
+    width: 300px;
     height: 60px;
     align-items: center;
     border-radius: 10px;
     background: #ffffff;
     border: 2px solid var(--border-box-color);
-    min-width: 300px;
 }
 
 :host::ng-deep .p-input-icon-left .p-inputtext{
@@ -77,17 +76,38 @@
     box-shadow: none !important;
 }
 
+:host::ng-deep .p-button-link{
+    width: 300px;
+    padding: 0px;
+}
+
+:host::ng-deep .p-button-global{
+    margin-top: 0px;
+}
+
 @media screen and (max-width: 767px) {
     .forms {
       flex-direction: column;
+      gap: 10px;
     }
     .container-registro{
         border: transparent;
         background: transparent;
+        gap: 20px;
     }
 
     .registro{
         margin-top: 60px;
         height: 100%;
+    }
+
+    :host::ng-deep .p-input-icon-left {
+        max-width: 300px;
+        max-height: 40px;
+    }
+
+    :host::ng-deep .p-button-global{
+        max-height: 40px;
+        padding: 0px;
     }
   }
