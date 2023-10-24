@@ -31,6 +31,7 @@ import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
+import { RegistroComponent } from './views/registro-view/registro-view.component';
 
 
 
@@ -49,7 +50,8 @@ import { CalendarModule } from 'primeng/calendar';
     FooterComponent,
     ResultViewComponent,
     ResetPasswordComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserAnimationsModule,

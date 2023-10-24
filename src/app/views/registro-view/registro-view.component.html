@@ -1,0 +1,77 @@
+<app-header/>
+<div class="registro">
+    <div class="container-registro">
+        <form #registroForm="ngForm" *ngIf="section === 'inicial'" class="forms">
+          <div class="campo">
+            <label class="label-input-register">Nombre</label>
+              <span class="p-input-icon-left">
+                <span class="icon">
+                  <i class="pi pi-user-edit" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                </span>
+                <input type="text" pInputText ngModel required placeholder="Ingresar nombre"/>
+            </span>
+          </div>
+          <div class="campo">
+            <label class="label-input-register">Apellido</label>
+              <span class="p-input-icon-left">
+                <span class="icon">
+                  <i class="pi pi-user-edit" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                </span>
+                <input type="text" pInputText ngModel required placeholder="Ingresar apellido"/>
+            </span>
+          </div>
+          <div class="campo">
+            <label class="label-input-register">DNI</label>
+              <span class="p-input-icon-left">
+                <span class="icon">
+                  <i class="pi pi-id-card" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                </span>
+                <input type="text" pInputText ngModel required placeholder="Ingresar DNI"/>
+            </span>
+          </div>
+          <div class="campo">
+            <label class="label-input-register">Especialidad</label>
+              <span class="p-input-icon-left">
+                <span class="icon">
+                  <i class="pi pi-briefcase" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                </span>
+                <p-dropdown
+                  *ngIf="showDropdown"
+                  placeholder="Elegir"
+                  appendTo="body" 
+                  optionLabel="label"
+                  [(ngModel)]="user.medicalSpeciality"
+                  name="medicalSpeciality"
+                  [options]="medicalSpeciality"
+                  (onChange)="OnSelectedMedicalSpeciality($event)">
+                  </p-dropdown>
+              </span>
+          </div>
+            <button class="p-button-global" style="color: white;" (click)="siguienteEtapa()">Siguiente</button>
+            <a routerLink="/login" class="go-to-login" href="">Ya estás registrado? Ingresa ahora!</a>
+          </form>
+        
+          <form *ngIf="section === 'final'" class="forms">
+            <div class="campo">
+              <label class="label-input-register">Email</label>
+                <span class="p-input-icon-left">
+                  <span class="icon">
+                    <i class="pi pi-at" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                  </span>
+                  <input type="email" pInputText ngModel required placeholder="Ingresar email"/>
+              </span>
+            </div>
+            <div class="campo">
+              <label class="label-input-register">Contraseña</label>
+                <span class="p-input-icon-left">
+                  <span class="icon">
+                    <i class="pi pi-lock" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                  </span>
+                  <input type="password" pInputText ngModel required placeholder="*********"/>
+              </span>
+            </div>
+              <button class="p-button-global" style="color: white;" (click)="finalizarRegistro()">Finalizar Registro</button>
+              <button class="p-button-global" style="color: white;" (click)="regresarEtapa()">Atrás</button>
+            </form>
+    </div>
+  </div>

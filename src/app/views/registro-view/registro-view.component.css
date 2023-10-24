@@ -1,0 +1,75 @@
+.registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #efefef;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.container-registro {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--border-box-color);
+    background: #ffffff;
+    box-sizing: border-box;
+    min-width: 300px;
+    max-width: 1700px;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+    min-width: 300px;
+}
+
+.label-input-register {
+    display: block;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: normal;
+    margin-bottom: 0px;
+}
+
+:host ::ng-deep .p-dropdown {
+    min-width: 250px;
+    max-width: 20vw;
+    text-align: center;
+    border: transparent;
+  }
+
+:host::ng-deep .p-input-icon-left {
+    display: flex;
+    max-width: 400px;
+    height: 60px;
+    align-items: center;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 2px solid var(--border-box-color);
+    min-width: 300px;
+}
+
+:host::ng-deep .p-input-icon-left .p-inputtext{
+    padding: 0px;
+}
+
+:host::ng-deep .p-inputtext {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: transparent;
+}
+
+:host::ng-deep .p-inputtext:focus {
+    box-shadow: none !important;
+}

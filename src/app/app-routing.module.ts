@@ -8,6 +8,7 @@ import { InicioViewComponent } from './views/inicio-view/inicio-view.component';
 import { LoginComponent } from './login/login.component';
 import { ResultViewComponent } from './views/result-view/result-view.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
+import { RegistroComponent } from './views/registro-view//registro-view.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'result', component: ResultViewComponent },
   { path: 'resetPassword', component: ResetPasswordComponent},
+  { path: 'register', component: RegistroComponent},
   { path: '', component: InicioViewComponent }
 ];
 
