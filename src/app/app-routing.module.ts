@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { ResultViewComponent } from './views/result-view/result-view.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 import { RegistroComponent } from './views/registro-view//registro-view.component';
+import { NewPasswordViewComponent } from './views/new-password-view/new-password-view.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'result', component: ResultViewComponent },
   { path: 'resetPassword', component: ResetPasswordComponent},
   { path: 'register', component: RegistroComponent},
-  { path: '', component: InicioViewComponent }
+  { path: '', component: InicioViewComponent },
+  { path: 'new-password', component: NewPasswordViewComponent },
 ];
 
 @NgModule({
