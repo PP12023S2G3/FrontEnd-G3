@@ -57,6 +57,11 @@ body {
   bottom: 1rem;
   margin-top: 1rem;
   border: none;
+
+  &:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+  }
 }
 
 .display1, .title1, .title2, .title3, .title4, .title5, .title6, .paragraph1, .paragraph2, .paragraph3 {
