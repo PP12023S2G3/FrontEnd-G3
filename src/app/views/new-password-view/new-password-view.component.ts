@@ -7,13 +7,18 @@ import { Component } from '@angular/core';
 })
 export class NewPasswordViewComponent {
 
-  showPassword: boolean = false;
+  showPassword1: boolean = false;
+  showPassword2: boolean = false;
 
   ngOnInit(): void {
   }
 
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+  togglePasswordVisibility(num: number) {
+    if (num == 1) {
+      this.showPassword1 = !this.showPassword1;
+    } else {
+      this.showPassword2 = !this.showPassword2;
+    }
   }
 
 }
