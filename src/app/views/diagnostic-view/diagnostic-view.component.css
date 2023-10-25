@@ -1,4 +1,4 @@
-.container-diagnostic{
+.container-diagnostic {
   overflow-x: hidden;
   overflow-y: hidden;
   min-width: 300px;
@@ -171,76 +171,81 @@
 
 
 
- .formulario{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   height: 100%;
-   padding: 20px; /* Agrega un espacio interno para el contenido */
- }
- 
- .container-custom-file-input {
- 
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     border: 1px solid var(--border-box-color);
-     border-radius: 10px;
-     background-color: white;
-     margin: 2%;
-     width: 300px;
-     height: 300px;
-     margin: 1% 0% 1%;  }
- 
- .imagen-pre{
-   width: 300px;
-   height: 200px;
- }
- 
- .preview-image {
-   width: 280px;
-   height: 280px;
-   max-width: 300px; /* Ajusta el ancho máximo según tus preferencias */
-   max-height: 300px; /* Ajusta la altura máxima según tus preferencias */
-   margin-top: 0.3rem;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
- }
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  /* Agrega un espacio interno para el contenido */
+}
+
+.container-custom-file-input {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-box-color);
+  border-radius: 10px;
+  background-color: white;
+  margin: 2%;
+  width: 300px;
+  height: 300px;
+  margin: 1% 0% 1%;
+}
+
+.imagen-pre {
+  width: 300px;
+  height: 200px;
+}
+
+.preview-image {
+  width: 280px;
+  height: 280px;
+  max-width: 300px;
+  /* Ajusta el ancho máximo según tus preferencias */
+  max-height: 300px;
+  /* Ajusta la altura máxima según tus preferencias */
+  margin-top: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /*--------------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 500px) {
   .container-data-doctor input {
-      width: 100%;
+    width: 100%;
   }
 
   .container-inputs-data-patient {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .container-inputs-data-patient input {
-      width: 100%;
+    width: 100%;
   }
 
   .container-inputs-data-long-patient input {
-      height: 20vw;
+    height: 20vw;
   }
 
   .img-result {
-      width: 30%;
-      height: 30%;
+    width: 30%;
+    height: 30%;
   }
 
   .container-inputs-data-doctor {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   :host::ng-deep .button-download-result .p-button {
-      width: 50vw;
-      height: 8vw;
+    width: 50vw;
+    height: 8vw;
   }
 
-  
+
 }

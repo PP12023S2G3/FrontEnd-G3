@@ -1,0 +1,28 @@
+.container-contact{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    min-width: 300px;
+    min-height: 1000px;
+    max-width: 2000px;
+    max-height: 1500px;
+    font-family: var(--font-family);
+    background-color: #EFEFEF;
+    margin-top: 130px;
+}
+.container-containers-contact{
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+    margin: 2% 0 0 10%;
+}
+.container-form-contact{
+    width: 50%;
+    border-radius: 10px;
+    border: 2px solid var(--border-box-color);
+    background: #ffffff;
+    box-sizing: border-box;
+}

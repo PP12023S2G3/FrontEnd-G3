@@ -1,4 +1,4 @@
-export class Comments{
+export class Comments {
 
   constructor(
 
@@ -7,6 +7,6 @@ export class Comments{
     public email?: string,
     public message?: string
 
-    ){}
+  ) { }
 
 }
