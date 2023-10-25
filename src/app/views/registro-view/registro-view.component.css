@@ -100,14 +100,4 @@
         margin-top: 60px;
         height: 100%;
     }
-
-    :host::ng-deep .p-input-icon-left {
-        max-width: 300px;
-        max-height: 40px;
-    }
-
-    :host::ng-deep .p-button-global{
-        max-height: 40px;
-        padding: 0px;
-    }
   }
