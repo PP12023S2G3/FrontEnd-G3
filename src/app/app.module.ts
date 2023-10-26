@@ -33,6 +33,7 @@ import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { RegistroComponent } from './views/registro-view/registro-view.component';
 import { NewPasswordViewComponent } from './views/new-password-view/new-password-view.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
 
@@ -69,7 +70,8 @@ import { NewPasswordViewComponent } from './views/new-password-view/new-password
     SidebarModule,
     TableModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
