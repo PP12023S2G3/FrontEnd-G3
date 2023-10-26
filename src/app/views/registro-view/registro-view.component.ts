@@ -10,6 +10,7 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
 export class RegistroComponent {
   medicalSpeciality: { label: string; value: string }[] | undefined;
   user!: User;
+  hola = "Hola"
 
   constructor(private userAccountService: UserAccountService) {
     this.medicalSpeciality = [

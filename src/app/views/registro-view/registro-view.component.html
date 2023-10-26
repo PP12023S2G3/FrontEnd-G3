@@ -6,63 +6,70 @@
           <div class="campo">
             <label class="label-input-register">Nombre</label>
               <span class="p-input-icon-left">
-                <span class="icon">
-                  <i class="pi pi-user-edit" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                </span>
-                <input type="text" pInputText ngModel required placeholder="Ingresar nombre"/>
+                  <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
+                  <input type="text" pInputText ngModel required placeholder="Ingresar nombre"/>
             </span>
           </div>
           <div class="campo">
             <label class="label-input-register">Apellido</label>
               <span class="p-input-icon-left">
-                <span class="icon">
-                  <i class="pi pi-user-edit" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                </span>
+                <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
                 <input type="text" pInputText ngModel required placeholder="Ingresar apellido"/>
             </span>
           </div>
           <div class="campo">
             <label class="label-input-register">DNI</label>
               <span class="p-input-icon-left">
-                <span class="icon">
-                  <i class="pi pi-id-card" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                </span>
+                <i class="pi pi-id-card" style="font-size: 18px; color: #797979;"></i>
                 <input type="text" pInputText ngModel required placeholder="Ingresar DNI"/>
             </span>
           </div>
           <div class="campo">
             <label class="label-input-register">Especialidad</label>
               <span class="p-input-icon-left">
-                <span class="icon">
-                  <i class="pi pi-briefcase" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                  <i class="pi pi-briefcase" style="font-size: 18px; color: #797979; z-index: 2;"></i>
+                  <p-dropdown
+                    placeholder="Elegir"
+                    appendTo="body" 
+                    optionLabel="label"
+                    [(ngModel)]="user.medicalSpeciality"
+                    name="medicalSpeciality"
+                    [options]="medicalSpeciality"
+                    (onChange)="OnSelectedMedicalSpeciality($event)">
+                    </p-dropdown>
                 </span>
-                <p-dropdown
-                  placeholder="Elegir"
-                  appendTo="body" 
-                  optionLabel="label"
-                  [(ngModel)]="user.medicalSpeciality"
-                  name="medicalSpeciality"
-                  [options]="medicalSpeciality"
-                  (onChange)="OnSelectedMedicalSpeciality($event)">
-                  </p-dropdown>
-              </span>
           </div>
           <div class="campo">
             <label class="label-input-register">Email</label>
               <span class="p-input-icon-left">
-                <span class="icon">
-                  <i class="pi pi-at" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                </span>
+                <i class="pi pi-at" style="font-size: 18px; color: #797979;"></i>
                 <input type="email" pInputText ngModel required placeholder="Ingresar email"/>
             </span>
           </div>
           <div class="campo">
             <label class="label-input-register">Contraseña</label>
               <span class="p-input-icon-left">
-                <span class="icon">
-                  <i class="pi pi-lock" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                </span>
-                <input type="password" pInputText ngModel required placeholder="*********"/>
+                <i class="pi pi-lock" style="font-size: 18px; color: #797979; z-index: 2;"></i>
+                <p-password 
+                ngModel [toggleMask]="true"
+                promptLabel=" "
+                weakLabel="Baja"
+                mediumLabel="Media"
+                strongLabel="Fuerte"
+                placeholder="Ingresar contraseña">
+                  <ng-template pTemplate="header">
+                  </ng-template>
+                  <ng-template pTemplate="footer">
+                      <br>
+                      <p class="mt-2">Sugerencias</p>
+                      <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                          <li>Al menos una minúscula</li>
+                          <li>Al menos una mayúscula</li>
+                          <li>Al menos un número</li>
+                          <li>8 caractéres mínimo</li>
+                      </ul>
+                  </ng-template>
+              </p-password>
             </span>
           </div>
         </div>

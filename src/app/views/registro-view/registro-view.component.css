@@ -42,34 +42,34 @@
 }
 
 :host ::ng-deep .p-dropdown {
-    min-width: 250px;
-    text-align: center;
-    border: transparent;
-  }
-
-:host::ng-deep .p-input-icon-left {
-    display: flex;
     width: 300px;
     height: 60px;
-    align-items: center;
-    border-radius: 10px;
-    background: #ffffff;
-    border: 2px solid var(--border-box-color);
+    text-align: left;
 }
 
-:host::ng-deep .p-input-icon-left .p-inputtext{
-    padding: 0px;
+:host ::ng-deep .p-dropdown .p-inputtext {
+    text-indent: 30px;
+    margin-top: 6px;
+}
+
+:host ::ng-deep .p-password {
+    width: 300px;
+    height: 60px;
+    text-align: left;
+}
+
+:host ::ng-deep .p-password .p-icon {
+    height: 20px;
+    width: 20px;
+}
+
+:host ::ng-deep .p-password .p-inputtext {
+    text-indent: 30px;
 }
 
 :host::ng-deep .p-inputtext {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    border: transparent;
-}
-
-:host::ng-deep .p-inputtext:focus {
-    box-shadow: none !important;
+    width: 300px;
+    height: 60px;
 }
 
 .p-button-link:focus, .p-button-link:enabled:focus{
