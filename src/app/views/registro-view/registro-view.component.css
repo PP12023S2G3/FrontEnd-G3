@@ -42,27 +42,35 @@
 }
 
 :host ::ng-deep .p-dropdown {
-    min-width: 250px;
-    text-align: center;
-    border: transparent;
-  }
-
-:host::ng-deep .p-input-icon-left {
-    display: flex;
-    width: 300px;
-    height: 60px;
-    align-items: center;
-    border-radius: 10px;
-    background: #ffffff;
-    border: 2px solid var(--border-box-color);
+    width: 258px;
+    text-align: left;
 }
 
-:host::ng-deep .p-input-icon-left .p-inputtext{
+:host ::ng-deep .p-dropdown .p-inputtext {
+    text-indent: 30px;
+}
+
+:host ::ng-deep .p-password {
+    width: 258px;
+    text-align: left;
+}
+
+:host ::ng-deep .p-password .p-icon {
+    height: 20px;
+    width: 20px;
+}
+
+:host ::ng-deep .p-password .p-inputtext {
+    text-indent: 30px;
+}
+
+
+/*:host::ng-deep .p-input-icon-left .p-inputtext{
     padding: 0px;
 }
 
 :host::ng-deep .p-inputtext {
-    width: 100%;
+    width: 300px;
     display: flex;
     align-items: center;
     border: transparent;
@@ -70,7 +78,7 @@
 
 :host::ng-deep .p-inputtext:focus {
     box-shadow: none !important;
-}
+}*/
 
 .p-button-link:focus, .p-button-link:enabled:focus{
     box-shadow: none !important;
@@ -84,6 +92,13 @@
 :host::ng-deep .p-button-global{
     margin-top: 0px;
 }
+
+:host ::ng-deep .medicalSpeciality .p-placeholder::before {
+    content: '\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0';
+    background-image: url('https://picsum.photos/200');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+   }
 
 @media screen and (max-width: 767px) {
     .forms {

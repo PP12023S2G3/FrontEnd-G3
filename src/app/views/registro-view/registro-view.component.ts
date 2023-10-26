@@ -9,6 +9,7 @@ import { User } from 'src/app/models/User';
 export class RegistroComponent {
   medicalSpeciality: { label: string; value: string }[] | undefined;
   user!: User;
+  hola = "Hola"
 
   constructor() {
     this.medicalSpeciality = [
