@@ -1,4 +1,9 @@
-.container-contact{
+h2 {
+    font-size: var(--font-size-title4);
+    margin: 0;
+}
+
+.container-contact {
     overflow-x: hidden;
     overflow-y: hidden;
     min-width: 300px;
@@ -7,22 +12,78 @@
     max-height: 1500px;
     font-family: var(--font-family);
     background-color: #EFEFEF;
-    margin-top: 130px;
+    margin-top: 10%;
 }
-.container-containers-contact{
+
+.container-containers-contact {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     background-color: #FFFFFF;
-    border-style: solid;
-    border-radius: 10px;
-    border-width: 1px;
-    border-color: var(--border-box-color);
-    margin: 2% 0 0 10%;
+    margin: 1% 0 0 5%;
 }
-.container-form-contact{
-    width: 50%;
-    border-radius: 10px;
-    border: 2px solid var(--border-box-color);
+
+.container-form-contact {
     background: #ffffff;
     box-sizing: border-box;
+    font-size: var(--font-size-title6);
+    font-weight: normal;
+    width: 70%;
+}
+
+form {
+    margin-right: 5%;
+    border-radius: 10px;
+    border: 1px solid var(--border-box-color);
+}
+
+.container-field-contact {
+    margin: 2%
+}
+
+.title-input-contact{
+    font-size: var(--font-size-title6);
+    font-weight: bold;
+    margin: 0;
+}
+
+.container-field-contact input {
+    padding: 10px;
+    border: none;
+}
+
+.span-input-contact {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 0.996px solid #D1D1D1;
+    width: 95%;
+}
+
+:host::ng-deep .p-dropdown {
+    min-width: 224px;
+    max-width: 20vw;
+    border: none;
+}
+
+.container-field-message-contact {
+    margin: 2%
+}
+
+.container-field-message-contact input {
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 10px;
+    border: 0.996px solid #D1D1D1;
+    width: 95%;
+    height: 20vw;
+}
+.button-submit {
+    display: flex;
+    justify-content: end;
+}
+
+:host::ng-deep .p-button {
+    bottom: 0;
 }
