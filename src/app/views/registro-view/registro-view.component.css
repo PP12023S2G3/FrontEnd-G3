@@ -42,16 +42,19 @@
 }
 
 :host ::ng-deep .p-dropdown {
-    width: 258px;
+    width: 300px;
+    height: 60px;
     text-align: left;
 }
 
 :host ::ng-deep .p-dropdown .p-inputtext {
     text-indent: 30px;
+    margin-top: 6px;
 }
 
 :host ::ng-deep .p-password {
-    width: 258px;
+    width: 300px;
+    height: 60px;
     text-align: left;
 }
 
@@ -64,21 +67,10 @@
     text-indent: 30px;
 }
 
-
-/*:host::ng-deep .p-input-icon-left .p-inputtext{
-    padding: 0px;
-}
-
 :host::ng-deep .p-inputtext {
     width: 300px;
-    display: flex;
-    align-items: center;
-    border: transparent;
+    height: 60px;
 }
-
-:host::ng-deep .p-inputtext:focus {
-    box-shadow: none !important;
-}*/
 
 .p-button-link:focus, .p-button-link:enabled:focus{
     box-shadow: none !important;
@@ -92,13 +84,6 @@
 :host::ng-deep .p-button-global{
     margin-top: 0px;
 }
-
-:host ::ng-deep .medicalSpeciality .p-placeholder::before {
-    content: '\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0';
-    background-image: url('https://picsum.photos/200');
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-   }
 
 @media screen and (max-width: 767px) {
     .forms {
