@@ -47,7 +47,6 @@ export class DiagnosticViewComponent implements OnInit {
     if (selectedFile) {
       const image = new Image();
       image.src = window.URL.createObjectURL(selectedFile);
-  
       image.onload = () => {
         if (
           selectedFile.size <= this.maxFileSize &&
@@ -114,11 +113,10 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   postResult(file: File) {
-    const formData = new FormData();
-    // Hardcodeo para usar API de cerebro
-    this.setRequest(formData, file);
 
-    this.resultService.postResult(formData).subscribe({
+    const req=this.createRequestHeart(file,1,1);
+
+    this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
         console.log(res);
         localStorage.setItem('PredictedResult', JSON.stringify(res));
@@ -128,6 +126,32 @@ export class DiagnosticViewComponent implements OnInit {
         // Manejar errores aquí
       }
     });
+
+    const reqBrain=this.createRequestBrain(file,true,true,true,4,4);
+
+    this.resultService.postResultBrain(reqBrain).subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.setItem('PredictedResultbrain', JSON.stringify(res));
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+
+    const reqLungs=this.createRequestLungs(file,true,true,true,4,4);
+
+    this.resultService.postResultLungs(reqLungs).subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        this.router.navigate(['/result']);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+
   }
 
   OnSelectedSex(event : any) {
@@ -138,14 +162,39 @@ export class DiagnosticViewComponent implements OnInit {
 
   }
 
-  private setRequest(formData: FormData, file: File) {
-    formData.append('imagen', file);
-    formData.append('perdida_visual', 'true');
-    formData.append('debilidad_focal', 'true');
-    formData.append('convulsiones', 'true');
-    formData.append('id_usuario', '3');
-    formData.append('id_medico', '3');
+  private createRequestBrain(imagen: File,
+    perdida_visual:boolean,debilidad_focal:boolean,convulsiones:boolean,
+    id_usuario:number,id_medico:number):FormData {
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('perdida_visual', `${perdida_visual}`);
+    formData.append('debilidad_focal', `${debilidad_focal}`);
+    formData.append('convulsiones', `${convulsiones}`);
+    formData.append('id_usuario', `${id_usuario}`);
+    formData.append('id_medico', `${id_medico}`);
+    return formData;
   }
+
+  private createRequestLungs(imagen: File,
+    puntadaLateral: boolean, fiebre: boolean, dificultadRespiratoria: boolean,
+    idUsuario: number, idMedico: number):FormData  {
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('puntada_lateral', `${puntadaLateral}`);
+    formData.append('fiebre', `${fiebre}`);
+    formData.append('dificultad_respiratoria', `${dificultadRespiratoria}`);
+    formData.append('id_usuario', `${idUsuario}`);
+    formData.append('id_medico', `${idMedico}`);
+    return formData;
+}
+private createRequestHeart(imagen: File,idUsuario: number,
+  idMedico: number) :FormData{
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('id_medico', `${idMedico}`);
+  return formData;
+}
 
   checkFormFields() {
     if (
@@ -175,7 +224,7 @@ export class DiagnosticViewComponent implements OnInit {
       this.doctor.lastname.length > 3 &&
       typeof this.diagnostic.age === 'number' &&
       this.diagnostic.age >= 0 &&
-      this.diagnostic.age <= 130 && 
+      this.diagnostic.age <= 130 &&
       typeof this.diagnostic.weight === 'number' &&
       this.diagnostic.weight >= 1 &&
       this.diagnostic.weight <= 200 &&

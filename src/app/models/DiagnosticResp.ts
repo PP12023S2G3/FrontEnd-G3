@@ -7,7 +7,7 @@ export interface DiagnosticResp {
     fecha: string;
     resultado: string;
     nombre_usuario: string;
-    id_usuario: number;
-    id_medico: number;
+    usuario_id: number;
+    usuario_medico_id: number;
     nombre_medico: string;
 }
