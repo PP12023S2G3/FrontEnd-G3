@@ -6,4 +6,5 @@ export interface SuccessfulLogInResp {
     email: string;
     especialidad: string;
     establecimiento_id:string;
+    token: string;
 }

@@ -1,13 +1,22 @@
+.container-login-inicio{
+    display: flex;
+    justify-content: center;
+}
+
 .container-login {
-    width: 450px;
-    height: 50%;
-    padding: 10px;
-    background-color: var(--font-color-light);
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    flex-wrap: wrap;
     border-radius: 10px;
-    border-style: solid;
-    border-width: 1px;
-    background-color: white;
-    float: right;
+    border: 2px solid var(--border-box-color);
+    background: #ffffff;
+    box-sizing: border-box;
+    padding: 25px;
+    justify-content: center;
+    gap: 25px;
+    max-width: 700px;
+    min-width: 300px;
 }
 
 .title-welcome-login {
@@ -21,56 +30,18 @@
     margin: auto 10px 20px 10px;
 }
 
-.label-input-login {
+.label-input-register {
     display: block;
-    width: 32px;
     color: #000;
     font-size: 18px;
     font-weight: bold;
     line-height: normal;
-    padding: 10px 0px;
-    margin: 15px 0px;
-    margin-bottom: 0px;
-}
-
-.input-datos-iniciar-sesion {
-    width: 100%;
-    height: 49.813px;
-    border: 0.996px solid #D1D1D1;
-}
-
-.noBorder {
-    border: none;
-    width: 95%;
-    border-radius: 10px;
-}
-
-.loginInput {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 60px;
-    border-radius: 10px;
-    border: 0.996px solid #D1D1D1;
-    padding-left: 10px;
-}
-
-.loginIcon {
-    font-size: 1.5rem;
-    color: #797979;
-    padding: 0.5rem;
-}
-
-.loginForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 0px !important;
 }
 
 .container-button-link {
     text-align: right;
 }
-
 
 :host::ng-deep .button-enter-login .p-button {
     width: 97%;
@@ -88,113 +59,48 @@
 
 }
 
-@media screen and (max-width: 1280px) {
-    .container-login {
-        width: 380px;
-    }
-
-    :host::ng-deep .button-enter-login .p-button {
-        width: 97%;
-        /*width: 418.32px;*/
-        height: 4rem;
-        bottom: 1rem;
-        margin-top: 1rem;
-    }
-
-    .input-datos-iniciar-sesion {
-        width: 90%;
-        margin-left: 5%;
-
-    }
-
-    :host::ng-deep .button-link .p-button {
-        text-align: right;
-    }
-
-    :host::ng-deep .pi-id-card {
-        /* position: absolute; */
-        left: 0.2rem;
-        top: 10rem;
-        font-size: 1.5rem;
-    }
-
-    :host::ng-deep .pi-lock {
-        /* position: absolute; */
-        left: 0.2rem;
-        top: 16.625rem;
-        font-size: 1.5rem;
-    }
-
-
+:host ::ng-deep .p-password {
+    width: 300px;
+    height: 60px;
+    text-align: left;
 }
 
-@media screen and (max-width: 1080px) {
-    .container-login {
-        width: 320px;
-    }
+:host ::ng-deep .p-password .p-icon {
+    height: 20px;
+    width: 20px;
 }
 
-@media screen and (max-width: 900px) {
-    .container-login {
-        width: 450px;
-    }
+:host ::ng-deep .p-password .p-inputtext {
+    text-indent: 30px;
 }
 
+:host::ng-deep .p-inputtext {
+    width: 300px;
+    height: 60px;
+}
 
-@media screen and (max-width: 582px) {
-    .container-login {
-        width: 350px;
+.p-button-link:focus, .p-button-link:enabled:focus{
+    box-shadow: none !important;
+}
+
+:host::ng-deep .p-button-link{
+    padding: 0px;
+    font-size: 14px !important;
+    text-align: right;
+}
+
+:host::ng-deep .p-button-global{
+    margin-top: 0px;
+}
+
+:host::ng-deep .title4{
+    margin: 0px;
+}
+
+@media screen and (max-width: 767px) {
+    .container-login{
+        border: transparent;
+        background: transparent;
+        gap: 20px;
     }
   }
-
-@media screen and (max-width: 360px) {
-
-    .description-text-conteiner .description-conteiner-foto {
-        width: 30%;
-        margin-left: -55%;
-    }
-
-    .description-text-conteiner .description-conteiner-foto img {
-        width: 400px;
-        height: 250px;
-        margin-left: 40%;
-    }
-
-    .title-welcome-login {
-        font-weight: bold;
-        font-size: 25px;
-    }
-
-    .label-input-login {
-        font-size: 16px;
-    }
-
-    .nuestro-equipo-container {
-        margin-left: -50%;
-    }
-
-    .nuestro-equipo-container img {
-        width: 435px;
-        height: 250px;
-    }
-
-}
-
-@media screen and (max-width: 380px) {
-    .container-login {
-        width: 90%;
-        height: 50%;
-        padding: 10px;
-        background-color: white;
-        border-radius: 10px;
-        border-style: solid;
-        border-color: var(--border-box-color);
-        border-width: 1px;
-    }
-
-    .content {
-        overflow-x: hidden;
-        overflow-y: hidden;
-    }
-
-}

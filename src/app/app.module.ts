@@ -38,6 +38,7 @@ import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { LoginViewComponent } from './views/login-view/login-view.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ResetPasswordComponent,
     NavbarComponent,
     RegistroComponent,
-    NewPasswordViewComponent
+    NewPasswordViewComponent,
+    LoginViewComponent
   ],
   imports: [
     BrowserAnimationsModule,
