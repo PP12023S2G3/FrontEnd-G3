@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Comments } from 'src/app/models/Comment';
 
+
 @Component({
   selector: 'app-contacto-view',
   templateUrl: './contacto-view.component.html',

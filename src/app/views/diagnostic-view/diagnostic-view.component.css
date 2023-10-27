@@ -61,7 +61,7 @@
 }
 
 .container-inputs-data-doctor input {
-  margin: 0 0 0 0;
+  margin: 0 0 2% 0;
   padding: 10px;
   width: 100%;
   text-align: center;
@@ -98,7 +98,7 @@
 }
 
 .container-inputs-data-patient input {
-  margin: 0 0 10% 0;
+  margin: 0 0 2% 0;
   padding: 10px;
   text-align: center;
   border-style: solid;
@@ -247,5 +247,30 @@
     height: 8vw;
   }
 
+
+}
+
+.errors{
+  color: red;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left;
+  display: contents;
+}
+
+:host::ng-deep .p-calendar {
+  margin: 0 0 10% 0;
+  padding: 0px;
+  height: 49px;
+  min-height: 47px;
+  max-width: 47px;
+  min-width: 224px;
+  max-width: 20vw;
+  text-align: center;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+}
+:host::ng-deep .p-input-icon-left {
 
 }

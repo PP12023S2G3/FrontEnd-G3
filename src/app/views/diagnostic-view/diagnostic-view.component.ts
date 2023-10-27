@@ -3,15 +3,18 @@ import { Router } from '@angular/router';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
 import { ResultService } from 'src/app/services/result/result.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-diagnostic-view',
   templateUrl: './diagnostic-view.component.html',
-  styleUrls: ['./diagnostic-view.component.css']
+  styleUrls: ['./diagnostic-view.component.css'],
+  providers: [MessageService],
 })
 export class DiagnosticViewComponent implements OnInit {
   doctor!: Doctor;
   diagnostic!: Diagnostic;
+  isValid=false;
   formFieldsCompleted = false;
   formFieldsError = false;
   uploadedFile: File | null = null;
@@ -24,9 +27,13 @@ export class DiagnosticViewComponent implements OnInit {
   acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
   sexOptions: { label: string; value: string; }[] | undefined;
   partsOptions: { label: string; value: string; }[] | undefined;
+  calendarIcon = 'pi pi-calendar';
+  dateUser: Date[] | undefined;
+  minValidDate!: Date;
+  maxValidDate!: Date;
 
-  constructor(private resultService: ResultService, private router: Router) { }
-  
+  constructor(private resultService: ResultService,private messageService: MessageService, private router: Router) { }
+
   ngOnInit(): void {
     this.sexOptions = [
       { label: 'Masculino', value: 'Masculino' },
@@ -40,6 +47,10 @@ export class DiagnosticViewComponent implements OnInit {
 
     this.diagnostic = new Diagnostic();
     this.doctor = new Doctor();
+
+    const today = new Date();
+    this.minValidDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
+    this.maxValidDate = today;
   }
 
   onFileSelect(event: any) {
@@ -47,6 +58,7 @@ export class DiagnosticViewComponent implements OnInit {
     if (selectedFile) {
       const image = new Image();
       image.src = window.URL.createObjectURL(selectedFile);
+
       image.onload = () => {
         if (
           selectedFile.size <= this.maxFileSize &&
@@ -59,13 +71,23 @@ export class DiagnosticViewComponent implements OnInit {
           this.getObjectURL(selectedFile);
           this.showCancelButton = true; // Muestra el botón de cancelar
         } else {
-          alert('La imagen no cumple con los requisitos. Asegúrate de que sea una imagen válida con el tamaño adecuado.');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'La imagen no cumple con los requisitos',
+            life: 2000,
+          });
           this.resetFileInput();
         }
       };
     } else {
       this.resetFileInput();
-      console.log('No se ha seleccionado una imagen o ocurrió un error al subir el archivo.');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
+        life: 3000,
+      });
     }
   }
 
@@ -98,16 +120,21 @@ export class DiagnosticViewComponent implements OnInit {
       this.postResult(this.uploadedFile);
     } else {
       if (!this.uploadedFile) {
-        alert('No se ha seleccionado una imagen.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se ha seleccionado una imagen.',
+          life: 2000,
+        });
       }
 
       if (!this.formFieldsCompleted) {
-        alert('Completa todos los campos del formulario antes de continuar.');
-      }
-      else {
-        if(!this.formFieldsError) {
-          alert('Datos erroneos por favor vuelva a ingresar nuevamente');
-        }
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Completa todos los campos del formulario antes de continuar',
+          life: 2000,
+        });
       }
     }
   }
@@ -201,7 +228,6 @@ private createRequestHeart(imagen: File,idUsuario: number,
       this.doctor.dni != undefined &&
       this.doctor.name != undefined&&
       this.doctor.lastname != undefined&&
-      this.diagnostic.age != undefined&&
       this.diagnostic.weight != undefined&&
       this.diagnostic.height != undefined&&
       this.diagnostic.gender != undefined&&

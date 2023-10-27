@@ -71,7 +71,7 @@ import { NewPasswordViewComponent } from './views/new-password-view/new-password
     CalendarModule,
     DropdownModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
