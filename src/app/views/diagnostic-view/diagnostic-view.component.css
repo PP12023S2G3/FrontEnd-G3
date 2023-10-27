@@ -258,7 +258,7 @@
 }
 
 :host::ng-deep .p-calendar {
-  margin: 0 0 10% 0;
+  margin: 0 0 3.5% 0;
   padding: 0px;
   height: 49px;
   min-height: 47px;
