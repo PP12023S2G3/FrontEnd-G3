@@ -101,3 +101,18 @@
         height: 100%;
     }
   }
+
+  .errors{
+    color: red;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    display: contents;
+    width: 300px;
+  }
+  .errors span{
+    color: red;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    display: contents;
+    width: 300px;
+  }

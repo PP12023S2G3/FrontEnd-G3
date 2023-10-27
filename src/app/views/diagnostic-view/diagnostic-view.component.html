@@ -9,7 +9,7 @@
             <div>
                 <h6 class="title-dni-doctor">DNI</h6>
                 <input class="input-dni-doctor" type="number" placeholder="Dni del medico" pInputText tabindex="1"
-                    [(ngModel)]="doctor.dni" #dni="ngModel" name="dni" id="dni" required pattern="^\d{7,8}$"/>
+                    [(ngModel)]="doctor.dni" #dni="ngModel" name="dni" id="dni" required pattern="^[0-9]{7,8}$"/>
                     <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
                       <div>
                         <span *ngIf="dni.errors?.['required']">
@@ -18,7 +18,7 @@
                       </div>
                       <div>
                         <span *ngIf="dni.errors?.['pattern']">
-                          Debe ser entre 7 y 8 digitos.
+                          Debe ser entre 7 y 8 digitos numericos.
                         </span>
                     </div>
                     </div>
