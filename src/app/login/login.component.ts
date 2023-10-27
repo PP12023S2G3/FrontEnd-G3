@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from './Persona';
+
 import { Router } from '@angular/router';
 import { UserAccountService } from '../services/userAccount/userAccount.service';
 import { LogInRequest } from '../models/LogInRequest';
+import { Persona } from '../models/Persona';
 
 @Component({
   selector: 'app-login',
@@ -31,11 +32,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log("ENTRO AL ONSUBMIT");
     // Validar el DNI y la contraseña aquí
-    if (!this.validarDNI(this.persona.dni)) {
+    if (!this.persona.dni || this.validarDNI(this.persona.dni)) {
       alert('El DNI no es válido');
       return;
     }
-    if (!this.validarContraseña(this.persona.clave)) {
+    if (!this.persona.clave || this.validarContraseña(this.persona.clave)) {
       alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y ser alfanumérica.');
       return;
     }
