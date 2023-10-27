@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Persona } from '../models/Persona';
 import { Router } from '@angular/router';
 import { UserAccountService } from '../services/userAccount/userAccount.service';
 import { LogInRequest } from '../models/LogInRequest';
-import { Persona } from '../models/Persona';
 
 @Component({
   selector: 'app-login',
@@ -30,39 +29,23 @@ export class LoginComponent implements OnInit {
   }*/
 
   onSubmit() {
-    console.log("ENTRO AL ONSUBMIT");
     // Validar el DNI y la contraseña aquí
-    if (!this.persona.dni || this.validarDNI(this.persona.dni)) {
+    if (/*!this.persona.dni ||*/ !this.validarDNI(this.persona.dni)) {
       alert('El DNI no es válido');
       return;
     }
-    if (!this.persona.clave || this.validarContraseña(this.persona.clave)) {
+    if (/*!this.persona.clave ||*/ !this.validarContraseña(this.persona.clave)) {
       alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y ser alfanumérica.');
       return;
     }
-    if(this.validarDNI(this.persona.dni) && this.validarContraseña(this.persona.clave)) {
-      // Valores de usuario y contraseña hardcodeados (solo para demostración)
-    const dniHardcodeado = "12345678";
-    const contraseñaHardcodeada = "Contrasea123";
-    console.log(localStorage.getItem('newPassword'))
-      if(localStorage.getItem('newPassword')==null){
-          if (this.persona.dni === dniHardcodeado && this.persona.clave === contraseñaHardcodeada) {
-            this.postLogIn();
-            this.router.navigate(['/diagnostico']);
-          }
-            else {
-            alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-          }
-      }
-      else if (this.persona.dni === dniHardcodeado && this.persona.clave === localStorage.getItem('newPassword') ) {
-        this.router.navigate(['/diagnostico']);
-      }
-        else {
-        alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-      }
+    if(!this.validarDNI(this.persona.dni) && !this.validarContraseña(this.persona.clave)) {
+      alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      return;
     }
-
-    console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
+    else {
+      console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
+      this.postLogIn()
+    }
   }
 
   validarDNI(dni: string): boolean {
@@ -81,17 +64,48 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('newPassword', 'Contrasea321');
   }
 
+  noAutorizado() {
+    console.error('Acceso no autorizado. Por favor, verifica los datos.');
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+  
+
   private postLogIn() {
-    const req=new LogInRequest("43898021","farias123");
+    const req=new LogInRequest(this.persona.dni,this.persona.clave);
 
     this.userAccountService.postLogIn(req).subscribe({
-      next: (res) => {
+      /*next: (res) => {
         console.log(res);
         localStorage.setItem('sign', JSON.stringify(res));
       },
       error: (error) => {
         // Manejar errores aquí
+      }*/
+      next: (res) => {
+        if (res) {
+          if (res.token) {
+            localStorage.setItem('token', res.token);
+            console.log('Acceso autorizado con token.');
+            this.router.navigate(['/diagnostico']);
+          } else {
+            // Respuesta sin token (código de estado 200)
+            console.log('Acceso autorizado sin token.');
+            this.router.navigate(['/diagnostico']);
+          }
+        } else {
+          console.log('El servidor no proporcionó una respuesta válida.');
+          this.noAutorizado();
+        }
+      },
+      error: (error) => {
+        if (error.status === 401 || error.status === 404) {
+          this.noAutorizado();
+        } else {
+          console.error('Error en el inicio de sesión:', error);
+        }
       }
+      
     });
   }
 

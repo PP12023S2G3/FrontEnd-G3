@@ -1,28 +1,31 @@
 <div class="container-login-inicio">
-<div class="container-login">
-  <h2 class="title-welcome-login">Bienvenid@!</h2>
-  <form (ngSubmit)="onSubmit()">
-    <div class="container-field-login"> <!--campos==field-->
-      <label class="label-input-login">DNI</label>
-        <span class="loginInput">
-          <i class="pi pi-id-card loginIcon"></i>
-          <input class="noBorder" type="text" placeholder="Ingresar DNI" pInputText
-          [(ngModel)]="persona.dni" required name="dni" />
-        </span>
-    </div>
-    <div class="container-field-login">
-      <label class="label-input-login">Contraseña</label>
-      <span class="loginInput">
-        <i class="pi pi-lock loginIcon"></i>
-        <input class="noBorder" [type]="showPassword ? 'text' : 'password'" placeholder="********" id="password" pInputText [(ngModel)]="persona.clave" name="password" required />
-        <i class="pi pi-eye loginIcon" (click)="togglePasswordVisibility()"></i>
+  <div class="container-login">
+    <h2 class="title4">Bienvenid@!</h2>
+    <div class="campo">
+      <label class="label-input-register">DNI</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-id-card" style="font-size: 18px; color: #797979;"></i>
+          <input type="text" pInputText [(ngModel)]="persona.dni" required placeholder="Ingresar DNI"/>
       </span>
-
+    </div>
+    <div class="campo">
+      <label class="label-input-register">Contraseña</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-lock" style="font-size: 18px; color: #797979; z-index: 2;"></i>
+          <p-password 
+            [(ngModel)]="persona.clave" 
+            [toggleMask]="true" 
+            [feedback]="false"
+            placeholder="Ingresar contraseña">
+          </p-password>
+      </span>
     </div>
     <div class="container-button-link">
-      <p-button class="button-link" label="¿Olvidaste tu contraseña?" (click)="irAResetPassword()" styleClass="p-button-link"></p-button>
+      <p-button styleClass="p-button-link" label="¿Olvidaste tu contraseña?" (click)="irAResetPassword()"></p-button>
     </div>
-    <p-button type="submit" label="Ingresar" class="button-enter-login"></p-button>
-  </form>
-</div>
-</div>
+    <button type="submit" label="Ingresar" class="p-button-global" style="color: white;" (click)="onSubmit()">Ingresar</button>
+    <div class="container-button-link">
+      <p-button styleClass="p-button-link" label="¿No estás registrado? Registrate ahora" routerLink="/register"></p-button>
+    </div>
+  </div>
+  </div>
