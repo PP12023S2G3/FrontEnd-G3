@@ -150,7 +150,7 @@ export class DiagnosticViewComponent implements OnInit {
   postResult(file: File) {
 
     const req=this.createRequestHeart(file,1,1);
-
+    console.log(req);
     this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
         console.log(res);
@@ -206,7 +206,7 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('debilidad_focal', `${debilidad_focal}`);
     formData.append('convulsiones', `${convulsiones}`);
     formData.append('id_usuario', `${id_usuario}`);
-    formData.append('id_medico', `${id_medico}`);
+    formData.append('dni_medico', `${id_medico}`);
     return formData;
   }
 
@@ -219,7 +219,7 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('fiebre', `${fiebre}`);
     formData.append('dificultad_respiratoria', `${dificultadRespiratoria}`);
     formData.append('id_usuario', `${idUsuario}`);
-    formData.append('id_medico', `${idMedico}`);
+    formData.append('dni_medico', `${idMedico}`);
     return formData;
 }
 private createRequestHeart(imagen: File,idUsuario: number,
@@ -227,7 +227,7 @@ private createRequestHeart(imagen: File,idUsuario: number,
   const formData = new FormData();
   formData.append('imagen', imagen);
   formData.append('id_usuario', `${idUsuario}`);
-  formData.append('id_medico', `${idMedico}`);
+  formData.append('dni_medico', `${idMedico}`);
   return formData;
 }
 
