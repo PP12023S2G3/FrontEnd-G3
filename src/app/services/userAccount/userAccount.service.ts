@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 //import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { DoctorResp } from 'src/app/models/DoctorResp';
 import { SuccessfulRegistrationResp } from 'src/app/models/SuccessfulRegistrationResp';
 import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
@@ -24,13 +24,15 @@ export class UserAccountService {
   //para que usuario se registre
     public postSignIn(data:FormData):Observable<SuccessfulRegistrationResp>{
     let url=this.apiUsers+this.endpointSignIn;
-    return this.http.post<SuccessfulRegistrationResp>(url,data);
+    return this.http.post<SuccessfulRegistrationResp>(url,data).pipe(
+      catchError(this.handleError));
   }
 
   //para que usuario se loguee
   public postLogIn(logInRequest:LogInRequest):Observable<SuccessfulLogInResp>{
     let url=this.apiUsers+this.endpointLogIn;
-    return this.http.post<SuccessfulLogInResp>(url,logInRequest);
+    return this.http.post<SuccessfulLogInResp>(url,logInRequest).pipe(
+      catchError(this.handleError));
   }
 
   //para que usuario resetee su contraseña
@@ -51,6 +53,22 @@ export class UserAccountService {
    public getDoctors():Observable<DoctorResp[]>{
     let url=this.apiUsers+this.endpointDoctors;
     return this.http.get<DoctorResp[]>(url);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === HttpStatusCode.BadRequest) {
+      // Verifica si la respuesta contiene un mensaje de error personalizado del backend
+      if (error.error && error.error.Error) {
+        return throwError(() => new Error(error.error.Error));
+      } else {
+        return throwError(() => new Error("Hay un problema con la solicitud"));
+      }
+    } else if (error.status === HttpStatusCode.NotFound) {
+      return throwError(() => new Error("No se encuentra el contenido solicitado"));
+    } else if (error.status === HttpStatusCode.Conflict) {
+      return throwError(() => new Error("Hubo un conflicto con el estado actual del recurso"));
+    }
+    return throwError(() => new Error("Ups, algo salió mal"));
   }
 
 }

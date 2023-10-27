@@ -13,6 +13,7 @@ export class RegistroComponent {
   medicalSpeciality?: { label: string; value: string }[] | undefined;
   user!: User;
   form = false;
+  rolId!: number;
 
   constructor(private userAccountService: UserAccountService,private messageService: MessageService) {
     this.medicalSpeciality = [
@@ -49,20 +50,20 @@ export class RegistroComponent {
     //const req=this.createRequestSignIn("maasdsu","fedacscu","dffcu","sfdnu","fsdnu",1,3,"mansu");
 
     const especialidad = this.user.medicalSpeciality ? this.user.medicalSpeciality.value : '';
-    let rolId: number;
+
 
     if (especialidad === 'Neurólogo' ||
     especialidad === 'Cardiólogo' ||
     especialidad === 'Neumonólogo' ||
     especialidad === 'Kinesiólogo') {
-      rolId = 4;
+      this.rolId = 4;
     }
     else if (especialidad === 'Auditor' ||
     especialidad === 'Jefe de Área') {
-      rolId = 1;
+      this.rolId = 1;
     }
     else{
-      rolId = 3;
+      this.rolId = 3;
     }
 
     // Momentáneamente se permiten vacíos hasta que estén las validaciones!
@@ -72,13 +73,14 @@ export class RegistroComponent {
       this.user.dni || '',
       this.user.email || '',
       this.user.password || '',
-      rolId,
+      this.rolId,
       3,
       especialidad,
     );
 
     if(this.user.name!=undefined && this.user.lastName!=undefined && this.user.email!=undefined &&
-      this.user.dni!=undefined && this.user.password!=undefined && especialidad !=undefined) {
+      this.user.dni!=undefined && this.user.password!=undefined && this.user.medicalSpeciality?.value !=undefined) {
+        console.log(this.user);
      this.isDataIndalid();
       if(!this.form){
 
@@ -86,9 +88,18 @@ export class RegistroComponent {
       next: (res) => {
         console.log(res);
         localStorage.setItem('sign', JSON.stringify(res));
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Registro exitoso',
+          life: 2000,
+        });
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error:  (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
   }
@@ -115,13 +126,15 @@ export class RegistroComponent {
   if (
     (!this.user.name || this.user.name.length < 2) &&
     (!this.user.lastName || this.user.lastName.length < 2) &&
-    (!this.user.dni || this.user.dni.length < 1000000 || this.user.dni.length > 99999999) &&
+    (!this.user.dni || this.user.dni.length < 7 || this.user.dni.length > 8) &&
     (!this.user.password || this.user.password.length < 8) &&
     (!this.user.email || this.user.email.length < 4)
   ) {
+    console.log("es true");
     this.form = true;
   }
   else {
+    console.log("es false");
     this.form=false;
   }
  }
@@ -133,7 +146,7 @@ export class RegistroComponent {
     formData.append('dni', dni);
     formData.append('email', email);
     formData.append('password', password);
-    formData.append('rol_id', `${rolId}`);
+    formData.append('rol_id', `${this.rolId}`);
     if (establecimientoId !== undefined) {
         formData.append('establecimiento_id', `${establecimientoId}`);
     }

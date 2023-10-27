@@ -8,7 +8,7 @@
         <div class="container-inputs-data-doctor">
             <div>
                 <h6 class="title-dni-doctor">DNI</h6>
-                <input class="input-dni-doctor" type="number" placeholder="Dni del medico" pInputText tabindex="1"
+                <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText tabindex="1"
                     [(ngModel)]="doctor.dni" #dni="ngModel" name="dni" id="dni" required pattern="^[0-9]{7,8}$"/>
                     <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
                       <div>

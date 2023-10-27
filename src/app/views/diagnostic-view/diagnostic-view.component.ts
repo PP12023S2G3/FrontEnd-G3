@@ -136,6 +136,14 @@ export class DiagnosticViewComponent implements OnInit {
           life: 2000,
         });
       }
+      else if (!this.formFieldsError){
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Datos del formulario erroneos',
+          life: 2000,
+        });
+      }
     }
   }
 
@@ -238,29 +246,19 @@ private createRequestHeart(imagen: File,idUsuario: number,
       this.formFieldsCompleted = false;
     }
   }
-
   checkFormErrorFields() {
-    if (
-      typeof this.doctor.dni === 'number' &&
-      this.doctor.dni >= 1000000 && // DNI debe ser mayor o igual a 1,000,000 (7 dígitos)
-      this.doctor.dni <= 99999999 &&  // DNI debe ser menor o igual a 99,999,999 (8 dígitos)
-      typeof this.doctor.name === 'string' &&
-      this.doctor.name.length > 2 &&
-      typeof this.doctor.lastname === 'string' &&
-      this.doctor.lastname.length > 3 &&
-      typeof this.diagnostic.age === 'number' &&
-      this.diagnostic.age >= 0 &&
-      this.diagnostic.age <= 130 &&
-      typeof this.diagnostic.weight === 'number' &&
-      this.diagnostic.weight >= 1 &&
-      this.diagnostic.weight <= 200 &&
-      typeof this.diagnostic.height === 'number' &&
-      this.diagnostic.height >= 25 &&
-      this.diagnostic.height <= 230 &&
-      this.diagnostic.gender &&
-      typeof this.diagnostic.weight === 'number' &&
-      typeof this.diagnostic.height === 'number'
-    ) {
+    const dniPattern = /^[0-9]{7,8}$/;
+
+    const validDNI = this.doctor?.dni && dniPattern.test(this.doctor.dni.toString()); // Validar el DNI
+
+    const validName = this.doctor?.name && typeof this.doctor.name === 'string' && this.doctor.name.length >= 2;
+    const validLastName = this.doctor?.lastname && typeof this.doctor.lastname === 'string' && this.doctor.lastname.length >= 2;
+
+    const validWeight = this.diagnostic?.weight && typeof this.diagnostic.weight === 'number' && this.diagnostic.weight >= 1 && this.diagnostic.weight <= 200;
+    const validHeight = this.diagnostic?.height && typeof this.diagnostic.height === 'number' && this.diagnostic.height >= 25 && this.diagnostic.height <= 230;
+
+
+    if (validDNI && validName && validLastName && validWeight && validHeight) {
       this.formFieldsError = true;
     } else {
       console.log(this.diagnostic);
