@@ -33,10 +33,8 @@ import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { RegistroComponent } from './views/registro-view/registro-view.component';
 import { NewPasswordViewComponent } from './views/new-password-view/new-password-view.component';
-import { ToastModule } from 'primeng/toast';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {MessageService} from 'primeng/api';
+
+
 
 @NgModule({
   declarations: [
@@ -71,9 +69,7 @@ import {MessageService} from 'primeng/api';
     SidebarModule,
     TableModule,
     CalendarModule,
-    DropdownModule,
-    ToastModule,
-    MessageModule
+    DropdownModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

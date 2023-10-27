@@ -1,4 +1,9 @@
-.container-contact{
+h2 {
+    font-size: var(--font-size-title4);
+    margin: 0;
+}
+
+.container-contact {
     overflow-x: hidden;
     overflow-y: hidden;
     min-width: 300px;
@@ -7,22 +12,124 @@
     max-height: 1500px;
     font-family: var(--font-family);
     background-color: #EFEFEF;
-    margin-top: 130px;
+    margin-top: 10%;
 }
-.container-containers-contact{
+
+.container-containers-contact {
     display: flex;
-    align-items: center;
+    flex-wrap: nowrap;
+    align-items: flex-start;
     background-color: #FFFFFF;
-    border-style: solid;
-    border-radius: 10px;
-    border-width: 1px;
-    border-color: var(--border-box-color);
-    margin: 2% 0 0 10%;
+    margin: 1% 0 0 5%;
 }
-.container-form-contact{
-    width: 50%;
-    border-radius: 10px;
-    border: 2px solid var(--border-box-color);
+
+/*-------------------------------------------FORMULARIO------------------------------------------------------------------*/
+
+.container-form-contact {
+    /*CONTIENE TODO EL FORMULARIO*/
     background: #ffffff;
     box-sizing: border-box;
+    font-size: var(--font-size-title6);
+    font-weight: normal;
+    width: 70%;
+}
+
+.container-data-form-contact {
+    /*AFECTA SOLO A LA ENTRADA DE DATOS DEL FORM*/
+    border-radius: 10px;
+    border: 1px solid var(--border-box-color);
+}
+
+.title-input-contact {
+    /*AFECTA TODOS LOS SUBTITULOS*/
+    font-size: var(--font-size-title6);
+    font-weight: bold;
+    margin: 0;
+}
+
+.container-field-contact {
+    /*AFECTA TODOS LOS CAMPOS A COMPLETAR*/
+    margin: 2%
+}
+
+.container-field-contact input {
+    /*AFECTA TODOS LOS INPUT DEL FORM*/
+    padding: 10px;
+    border: none;
+    width: 90%;
+}
+
+.span-input-contact {
+    /*AFECTA TODOS LOS SPAN DE FORM*/
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 0.996px solid #D1D1D1;
+    width: 95%;
+}
+
+:host::ng-deep .p-dropdown {
+    min-width: 224px;
+    max-width: 20vw;
+    border: none;
+}
+
+:host::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: none;
+
+}
+
+.container-field-message-contact {
+    /*AFECTA SOLO AL CAMPO DE MENSAJE*/
+    margin: 2%
+}
+
+.container-field-message-contact input {
+    /*AFECTA SOLO AL INPUT DEL MENSAJE*/
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 10px;
+    border: 0.996px solid #D1D1D1;
+}
+
+:host::ng-deep .p-inputtextarea {
+    width: 95%;
+
+}
+
+:host::ng-deep .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: #3B82F6;
+}
+
+form {
+    margin-right: 5%;
+}
+
+/*----------------------------------------BOTON ENVIAR------------------------------------------------------------------------*/
+.button-submit {
+    display: flex;
+    justify-content: end;
+    margin: 3% 5% 0 0;
+}
+
+:host::ng-deep .p-button {
+    bottom: 0;
+}
+
+/*-----------------------------------------------DATOS CONTACTO-------------------------------------------------------------------------------*/
+
+
+.container-data-contact {
+    border-radius: 10px;
+    border: 1px solid var(--border-box-color);
+    width: 40%;
+    height: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5% 0 0 0;
 }

@@ -20,5 +20,4 @@ export class NewPasswordViewComponent {
       this.showPassword2 = !this.showPassword2;
     }
   }
-
 }

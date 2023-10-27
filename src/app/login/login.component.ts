@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from './Persona';
 import { Router } from '@angular/router';
+import { UserAccountService } from '../services/userAccount/userAccount.service';
+import { LogInRequest } from '../models/LogInRequest';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,8 @@ export class LoginComponent implements OnInit {
   persona: Persona = new Persona("", "");
   showPassword: boolean = false;
   private router: Router;
-  constructor(router: Router) { this.router = router }
+
+  constructor(private userAccountService: UserAccountService,router: Router) { this.router = router }
 
   ngOnInit(): void {
     this.persona.dni = "";
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit {
     console.log(localStorage.getItem('newPassword'))
       if(localStorage.getItem('newPassword')==null){
           if (this.persona.dni === dniHardcodeado && this.persona.clave === contraseñaHardcodeada) {
+            this.postLogIn();
             this.router.navigate(['/diagnostico']);
           }
             else {
@@ -75,5 +79,20 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/resetPassword']);
     localStorage.setItem('newPassword', 'Contrasea321');
   }
+
+  private postLogIn() {
+    const req=new LogInRequest("43898021","farias123");
+
+    this.userAccountService.postLogIn(req).subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.setItem('sign', JSON.stringify(res));
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+  }
+
 }
 

@@ -1,45 +1,52 @@
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 
 <div class="container-contact">
-    <h2 class="subtitle-how-help-contact">¿Cómo podemos ayudarte</h2>
     <div class="container-containers-contact">
         <div class="container-form-contact">
+            <h2 class="subtitle-how-help-contact">¿Cómo podemos ayudarte?</h2>
             <form (ngSubmit)="onSubmit()">
-                <div class="container-field-contact">
-                    <h6 class="title-input-contact">Nombre y apellido</h6>
-                    <span class="span-input-contact">
-                        <i class="pi pi-user" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                        <input type="text" placeholder="Ingresar nombre y apellido" pInputText [(ngModel)]="comments.name"
-                            name="nameLastname-contact" />
-                    </span>
+                <div class="container-data-form-contact">
+                    <div class="container-field-contact">
+                        <h6 class="title-input-contact">Nombre y apellido</h6>
+                        <span class="span-input-contact">
+                            <i class="pi pi-user" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                            <input type="text" placeholder="Ingresar nombre y apellido" pInputText [(ngModel)]="comments.name"
+                                name="nameLastname-contact" />
+                        </span>
+                    </div>
+            
+                    <div class="container-field-contact">
+                        <h6 class="title-input-contact">Email</h6>
+                        <span class="span-input-contact">
+                            <i class="pi pi-at" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                            <input type="email" placeholder="Ingresar email" pInputText [(ngModel)]="comments.email"
+                                name="email-contact" />
+                        </span>
+                    </div>
+            
+                    <div class="container-field-contact">
+                        <h6 class="title-input-contact">Tipo de mensaje</h6>
+                        <span class="span-input-contact">
+                            <i class="pi pi-user" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                            <p-dropdown placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.message"
+                            [options]="messageOptions" (onChange)="OnSelectedMessage($event)"></p-dropdown>
+                        </span>
+                        
+                    </div>
+            
+                    <div class="container-field-message-contact">
+                        <h6 class="title-input-contact">Mensaje</h6>
+                        <textarea id="message" type="text" rows="5" cols="30" pInputTextarea [autoResize]="true" [(ngModel)]="comments.message" name="message-contact" ></textarea>
+                     
+                    </div>
                 </div>
-        
-                <div class="container-field-contact">
-                    <h6 class="title-input-contact">Email</h6>
-                    <span class="span-input-contact">
-                        <i class="pi pi-at" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                        <input type="email" placeholder="Ingresar email" pInputText [(ngModel)]="comments.email"
-                            name="email-contact" />
-                    </span>
+                <div class="button-submit">
+                    <p-button styleClass="p-button-global" type="submit" label="Enviar"></p-button>
+
                 </div>
-        
-                <div class="container-field-contact">
-                    <h6 class="title-input-contact">Tipo de mensaje</h6>
-                    <span class="span-input-contact">
-                        <i class="pi pi-user" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                    </span>
-                    <p-dropdown placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.message"
-                        [options]="messageOptions" (onChange)="OnSelectedMessage($event)"></p-dropdown>
-                </div>
-        
-                <div class="container-field-contact">
-                    <h6 class="title-input-contact">Mensaje</h6>
-                    <input type="text" pInputText [(ngModel)]="comments.message" name="email-contact" />
-                </div>
-        
-                <p-button styleClass="p-button-global" type="submit" label="Enviar"></p-button>
-        
+
             </form>
+            
         </div>
         
 
