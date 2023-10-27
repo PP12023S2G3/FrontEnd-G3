@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 <div class="container-diagnostic">
   <div class="container-data-result">
@@ -6,41 +8,120 @@
         <div class="container-inputs-data-doctor">
             <div>
                 <h6 class="title-dni-doctor">DNI</h6>
-                <input class="input-dni-doctor" type="number" placeholder="Dni del medico" pInputText tabindex="1" 
-                    [(ngModel)]="doctor.dni"  name="dni" id="dni" />
-            </div>
-            <div>
+                <input class="input-dni-doctor" type="number" placeholder="Dni del medico" pInputText tabindex="1"
+                    [(ngModel)]="doctor.dni" #dni="ngModel" name="dni" id="dni" required pattern="^\d{7,8}$"/>
+                    <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
+                      <div>
+                        <span *ngIf="dni.errors?.['required']">
+                          Indique un DNI
+                        </span>
+                      </div>
+                      <div>
+                        <span *ngIf="dni.errors?.['pattern']">
+                          Debe ser entre 7 y 8 digitos.
+                        </span>
+                    </div>
+                    </div>
+                  </div>
+
+              <div>
                 <h6 class="title-name-doctor">Nombre</h6>
-                <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText tabindex="2" 
-                [(ngModel)]="doctor.name" name="name" id="name"/>
+                <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText tabindex="2"
+                [(ngModel)]="doctor.name" name="name" #name="ngModel" id="name"   pattern="^(?![0-9])[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{2,}$"  required/>
+                <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;">
+                  <div>
+                    <span *ngIf="name.errors?.['required']">
+                      Indique un nombre
+                    </span>
+                  </div>
+                  <div>
+                    <span *ngIf="name.errors?.['pattern']">
+                      No debe contener numeros
+                    </span>
+                </div>
+                </div>
             </div>
             <div>
                 <h6 class="title-lastname-doctor">Apellido</h6>
-                <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText tabindex="3" 
-                [(ngModel)]="doctor.lastname" name="lastname" id="lastname"/>
+                <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText tabindex="3"
+                [(ngModel)]="doctor.lastname" name="lastname" id="lastname" #lastname="ngModel"  pattern="^(?![0-9])[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{2,}$" required/>
+                <div *ngIf="lastname.invalid && (lastname.touched)" class="errors" style="margin-top: 0.3rem;">
+                  <div>
+                    <span *ngIf="lastname.errors?.['required']">
+                      Indique un apellido
+                    </span>
+                  </div>
+                  <div>
+                    <span *ngIf="lastname.errors?.['pattern']">
+                      No debe contener numeros
+                    </span>
+                </div>
+                </div>
             </div>
-            
+
         </div>
     </div>
     <div class="container-data-patient">
         <h4 class="title-data">Datos del paciente</h4>
         <div class="container-inputs-data-patient">
             <div>
-                <h6 class="title-age-patient">Edad</h6>
-                <input class="input-age-patient" type="number" placeholder="Edad del paciente" pInputText tabindex="4" 
-                    [(ngModel)]="diagnostic.age" name="age" id="age"/>
+                <h6 class="title-age-patient">Fecha de nacimiento</h6>
+
+                <p-calendar
+                [(ngModel)]="dateUser"
+                selectionMode="single"
+                [readonlyInput]="true"
+                [minDate]="minValidDate"
+                [maxDate]="maxValidDate"
+                placeholder="Fecha de Nacimiento"
+                [icon]="calendarIcon" #date="ngModel">
+                </p-calendar>
+                    <div *ngIf="date.invalid && (date.touched)" class="errors" style="margin-top: -4rem;">
+                      <div>
+                        <span *ngIf="date.invalid">
+                          Indique una fecha
+                        </span>
+                      </div>
+                    </div>
+
             </div>
 
             <div>
-                <h6 class="title-weight-patient">Peso(Kg)</h6>
-                <input class="input-weight-patient" type="number" placeholder="Peso del paciente" pInputText tabindex="5" 
-                    [(ngModel)]="diagnostic.weight" name="weight" id="weight"/>
+              <h6 class="title-weight-patient">Peso(Kg)</h6>
+              <input class="input-weight-patient" type="number" placeholder="Peso del paciente" pInputText tabindex="5"
+                [(ngModel)]="diagnostic.weight" name="weight" #weight="ngModel" id="weight"
+                pattern="^(?:[1-9]|[1-9][0-9]|1[0-9]{2}|200)$" required/>
+              <div *ngIf="weight.invalid && (weight.touched)" class="errors" style="margin-top: -4rem;">
+                <div>
+                  <span *ngIf="weight.errors?.['required']">
+                    Indique un peso
+                  </span>
+                </div>
+                <div>
+                  <span *ngIf="weight.errors?.['pattern']">
+                    Debe ser entre 1 y 200.
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div>
-                <h6 class="title-height-patient">Altura(cm)</h6>
-                <input class="input-height-patient" type="number" placeholder="Altura del paciente" pInputText tabindex="6" 
-                    [(ngModel)]="diagnostic.height"  name="height" id="height"/>
+              <h6 class="title-height-patient">Altura(cm)</h6>
+              <input class="input-height-patient" type="number" placeholder="Altura del paciente" pInputText tabindex="6"
+                [(ngModel)]="diagnostic.height"  name="height" #height="ngModel" id="height"
+                pattern="^(?:[2-9]|[1-9][0-9]|1[0-9]{2}|200|2[5-9]|[3-9][0-9]|[1-9][0-9]{2}|1[0-9]{3}|2[0-2][0-9]|230)$" required/>
+              <div *ngIf="height.invalid && (height.touched)" class="errors" style="margin-top: -4rem;">
+                <div>
+                  <span *ngIf="height.errors?.['required']">
+                    Indique una altura
+                  </span>
+                </div>
+                <div>
+                  <span *ngIf="height.errors?.['pattern']">
+                    Debe ser entre 25 y 230.
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -61,7 +142,7 @@
         <div>
             <h6 class="title-preconditions-patient">Condiciones previas</h6>
             <input class="input-preconditions-patient" type="text"
-                placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions" tabindex="9" 
+                placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions" tabindex="9"
                  name="preconditions-patient" />
 
         </div>
@@ -83,7 +164,7 @@
         <p-button styleClass="p-button-global" (click)="cancelImageUpload()" label="Cancelar" *ngIf="showCancelButton"></p-button>
         <p-button styleClass="p-button-global" (click)="diagnosticResult()" label="Enviar datos" [disabled]="isResultButtonDisabled"></p-button>
       </div>
-      
+
 
 </div>
 
