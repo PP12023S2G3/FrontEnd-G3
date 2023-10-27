@@ -11,46 +11,32 @@ import { Persona } from '../models/Persona';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  persona!: Persona;
+  persona: Persona = new Persona("", "");
   showPassword: boolean = false;
   private router: Router;
 
   constructor(private userAccountService: UserAccountService,router: Router) { this.router = router }
 
   ngOnInit(): void {
-    this.persona = new Persona();
-    this.userAccountService.getDoctors().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error) => {
-        // Manejar errores aquí
-      }
-    });
+    this.persona.dni = "";
+    this.persona.clave = "";
   }
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  onSubmit(){
-
-  }
-
-  irAResetPassword(){
-
-  }
   /*mostrarInfo() {
     console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
   }*/
 
-  /*onSubmit() {
+  onSubmit() {
     console.log("ENTRO AL ONSUBMIT");
     // Validar el DNI y la contraseña aquí
-    if (!this.validarDNI(this.persona.dni)) {
+    if (!this.persona.dni || this.validarDNI(this.persona.dni)) {
       alert('El DNI no es válido');
       return;
     }
-    if (!this.validarContraseña(this.persona.clave)) {
+    if (!this.persona.clave || this.validarContraseña(this.persona.clave)) {
       alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y ser alfanumérica.');
       return;
     }
@@ -93,7 +79,7 @@ export class LoginComponent implements OnInit {
     // Navegar a la página resetPassword
     this.router.navigate(['/resetPassword']);
     localStorage.setItem('newPassword', 'Contrasea321');
-  } */
+  }
 
   private postLogIn() {
     const req=new LogInRequest("43898021","farias123");
