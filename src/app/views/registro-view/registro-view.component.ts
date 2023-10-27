@@ -8,23 +8,25 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
   styleUrls: ['./registro-view.component.css']
 })
 export class RegistroComponent {
-  medicalSpeciality: { label: string; value: string }[] | undefined;
+  medicalSpeciality?: { label: string; value: string }[] | undefined;
   user!: User;
-  hola = "Hola"
 
   constructor(private userAccountService: UserAccountService) {
     this.medicalSpeciality = [
       { label: 'Neurólogo', value: 'Neurólogo' },
       { label: 'Cardiólogo', value: 'Cardiólogo' },
-      { label: 'Neumonólogo', value: 'Neumonólogo' }
+      { label: 'Neumonólogo', value: 'Neumonólogo' },
+      { label: 'Kinesiólogo', value: 'Kinesiólogo' },
+      { label: 'Tec. Imágenes', value: 'Tec. Imágenes' },
+      { label: 'Jefe de Área', value: 'Jefe de Área' },
+      { label: 'Auditor', value: 'Auditor' },
     ];
 
     this.user = new User();
-
   }
 
   registrarse(){
-    this.userAccountService.getDoctors().subscribe({
+    /*this.userAccountService.getDoctors().subscribe({
       next: (res) => {
         console.log(res);
         localStorage.setItem('docs', JSON.stringify(res));
@@ -32,14 +34,43 @@ export class RegistroComponent {
       error: (error) => {
         // Manejar errores aquí
       }
-    });
+    });*/
 
-    console.log("Registrado");
     this.postSignIn();
+    console.log("Registrado");
   }
 
   private postSignIn() {
-    const req=this.createRequestSignIn("maasdsu","fedacscu","dffcu","sfdnu","fsdnu",1,3,"mansu");
+    //const req=this.createRequestSignIn("maasdsu","fedacscu","dffcu","sfdnu","fsdnu",1,3,"mansu");
+
+    const especialidad = this.user.medicalSpeciality ? this.user.medicalSpeciality.value : '';
+    let rolId: number;
+
+    if (especialidad === 'Neurólogo' || 
+    especialidad === 'Cardiólogo' || 
+    especialidad === 'Neumonólogo' ||
+    especialidad === 'Kinesiólogo') {
+      rolId = 4;
+    } 
+    else if (especialidad === 'Auditor' ||
+    especialidad === 'Jefe de Área') {
+      rolId = 1;
+    }
+    else{
+      rolId = 3;
+    }
+
+    // Momentáneamente se permiten vacíos hasta que estén las validaciones
+    const req = this.createRequestSignIn(
+      this.user.name || '',
+      this.user.lastName || '',
+      this.user.dni || '',
+      this.user.email || '',
+      this.user.password || '',
+      rolId,
+      3,
+      especialidad,
+    );
 
     this.userAccountService.postSignIn(req).subscribe({
       next: (res) => {
@@ -69,6 +100,6 @@ export class RegistroComponent {
 
 
   OnSelectedMedicalSpeciality(event : any) {
-
+    this.user.medicalSpeciality = event.value;
   }
 }

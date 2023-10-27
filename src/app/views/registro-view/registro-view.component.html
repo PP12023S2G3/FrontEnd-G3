@@ -7,21 +7,21 @@
             <label class="label-input-register">Nombre</label>
               <span class="p-input-icon-left">
                   <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
-                  <input type="text" pInputText ngModel required placeholder="Ingresar nombre"/>
+                  <input type="text" pInputText [(ngModel)]="user.name" required placeholder="Ingresar nombre"/>
             </span>
           </div>
           <div class="campo">
             <label class="label-input-register">Apellido</label>
               <span class="p-input-icon-left">
                 <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
-                <input type="text" pInputText ngModel required placeholder="Ingresar apellido"/>
+                <input type="text" pInputText [(ngModel)]="user.lastName" required placeholder="Ingresar apellido"/>
             </span>
           </div>
           <div class="campo">
             <label class="label-input-register">DNI</label>
               <span class="p-input-icon-left">
                 <i class="pi pi-id-card" style="font-size: 18px; color: #797979;"></i>
-                <input type="text" pInputText ngModel required placeholder="Ingresar DNI"/>
+                <input type="text" pInputText [(ngModel)]="user.dni" required placeholder="Ingresar DNI"/>
             </span>
           </div>
           <div class="campo">
@@ -43,7 +43,7 @@
             <label class="label-input-register">Email</label>
               <span class="p-input-icon-left">
                 <i class="pi pi-at" style="font-size: 18px; color: #797979;"></i>
-                <input type="email" pInputText ngModel required placeholder="Ingresar email"/>
+                <input type="email" pInputText [(ngModel)]="user.email" required placeholder="Ingresar email"/>
             </span>
           </div>
           <div class="campo">
@@ -51,7 +51,8 @@
               <span class="p-input-icon-left">
                 <i class="pi pi-lock" style="font-size: 18px; color: #797979; z-index: 2;"></i>
                 <p-password 
-                ngModel [toggleMask]="true"
+                [(ngModel)]="user.password"
+                [toggleMask]="true"
                 promptLabel=" "
                 weakLabel="Baja"
                 mediumLabel="Media"
@@ -61,7 +62,7 @@
                   </ng-template>
                   <ng-template pTemplate="footer">
                       <br>
-                      <p class="mt-2">Sugerencias</p>
+                      <p class="mt-2">La contraseña debe tener</p>
                       <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
                           <li>Al menos una minúscula</li>
                           <li>Al menos una mayúscula</li>

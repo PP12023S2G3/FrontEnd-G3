@@ -5,7 +5,7 @@ export class User{
   public dni?: string,
   public name?: string,
   public lastName?: string,
-  public medicalSpeciality?: string,
+  public medicalSpeciality?: { label: string; value: string },
   public email?: string,
   public password?: string
   ){}
