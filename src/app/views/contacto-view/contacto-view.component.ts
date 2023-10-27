@@ -21,8 +21,8 @@ export class ContactoViewComponent implements OnInit {
       {label: 'tipo 1', value : 'valor tipo 1'},
       {label: 'tipo 2', value: 'valor tipo 2'}
     ];
-    
-    
+
+
     this.comments = new Comments();
 
   }
@@ -31,7 +31,7 @@ export class ContactoViewComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
   }
 
 
