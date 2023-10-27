@@ -60,7 +60,7 @@ export class RegistroComponent {
       rolId = 3;
     }
 
-    // Momentáneamente se permiten vacíos hasta que estén las validaciones
+    // Momentáneamente se permiten vacíos hasta que estén las validaciones!
     const req = this.createRequestSignIn(
       this.user.name || '',
       this.user.lastName || '',
