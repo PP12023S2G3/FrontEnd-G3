@@ -166,7 +166,7 @@
 }
 
 .container-data-patient {
-  min-height: 400px; 
+  min-height: 500px; 
 }
 
 /*------------------------------------------IMAGEN--------------------------------------------------------*/
@@ -275,9 +275,9 @@
 }
 
 :host ::ng-deep .p-datepicker{
-  width: auto;
-  position: absolute;
-
+  min-width: 400px;
+  position: static;
+  min-height: 400px; 
   top: 0;
   left: 0;
 }
