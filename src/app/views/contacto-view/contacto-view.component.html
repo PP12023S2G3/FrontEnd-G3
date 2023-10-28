@@ -25,10 +25,10 @@
                     </div>
             
                     <div class="container-field-contact">
-                        <h6 class="title-input-contact">Tipo de mensaje</h6>
+                        <h6 class="title-input-contact">Asunto</h6>
                         <span class="span-input-contact">
                             <i class="pi pi-user" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                            <p-dropdown placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.message"
+                            <p-dropdown placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.issue"
                             [options]="messageOptions" (onChange)="OnSelectedMessage($event)"></p-dropdown>
                         </span>
                         

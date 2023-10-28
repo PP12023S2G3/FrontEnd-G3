@@ -32,6 +32,7 @@ h2 {
     font-size: var(--font-size-title6);
     font-weight: normal;
     width: 70%;
+    margin: 2%;
 }
 
 .container-data-form-contact {
@@ -49,11 +50,12 @@ h2 {
 
 .container-field-contact {
     /*AFECTA TODOS LOS CAMPOS A COMPLETAR*/
-    margin: 2%
+    margin: 3% 2% 0 2%;
 }
 
 .container-field-contact input {
     /*AFECTA TODOS LOS INPUT DEL FORM*/
+
     padding: 10px;
     border: none;
     width: 90%;
@@ -66,12 +68,13 @@ h2 {
     border-radius: 10px;
     border: 0.996px solid #D1D1D1;
     width: 95%;
+    background-color: #FFFFFF;
 }
 
 :host::ng-deep .p-dropdown {
+    border: none;
     min-width: 224px;
     max-width: 20vw;
-    border: none;
 }
 
 :host::ng-deep .p-dropdown:not(.p-disabled).p-focus {
@@ -91,6 +94,7 @@ h2 {
     align-items: flex-start;
     border-radius: 10px;
     border: 0.996px solid #D1D1D1;
+   
 }
 
 :host::ng-deep .p-inputtextarea {
@@ -112,12 +116,15 @@ form {
 /*----------------------------------------BOTON ENVIAR------------------------------------------------------------------------*/
 .button-submit {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin: 3% 5% 0 0;
 }
 
 :host::ng-deep .p-button {
     bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+
 }
 
 /*-----------------------------------------------DATOS CONTACTO-------------------------------------------------------------------------------*/
@@ -126,10 +133,65 @@ form {
 .container-data-contact {
     border-radius: 10px;
     border: 1px solid var(--border-box-color);
-    width: 40%;
+    width: 50%;
     height: 30vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5% 0 0 0;
+    margin: 5% 5% 0 0;
+    background-color: #FFFFFF;
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 700px) {
+    .container-containers-contact {
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-data-contact {
+        width: 70%;
+        height: 60vw;
+
+    }
+    :host::ng-deep .p-button {
+        width: 0;
+        min-width: 36vw;
+        height: 7vw;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .container-containers-contact{
+        background-color: transparent;
+    }
+
+    :host::ng-deep .p-button {
+        width: 0;
+        min-width: 40vw;
+        height: 9vw;
+    }
+
+    :host::ng-deep .p-dropdown {
+        width: 0;
+        min-width: 40vw;
+    }
+
+    .container-field-contact input {
+        width: 0;
+        min-width: 40vw;
+       
+    }
+    .container-form-contact {
+        background: transparent;
+    }
+    
+    .container-data-form-contact {
+        border-radius: 0;
+        border: none;
+    }
 }
