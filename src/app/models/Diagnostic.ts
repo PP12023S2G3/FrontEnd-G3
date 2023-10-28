@@ -7,7 +7,7 @@ export class Diagnostic {
         public weight?: number,
         public height?: number,
         public gender?: number,
-        public sectionBody?: string,
+        public sectionBody?: number,
         public preconditions?: string,
         public resultDiagnostic?: string,
     ){}

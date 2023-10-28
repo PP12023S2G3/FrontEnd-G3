@@ -68,30 +68,10 @@ export class LoginComponent implements OnInit {
 
   private postLogIn() {
     const req=new LogInRequest(this.persona.dni,this.persona.clave);
-
     this.userAccountService.postLogIn(req).subscribe({
-      /*next: (res) => {
-        console.log(res);
-        localStorage.setItem('sign', JSON.stringify(res));
-      },
-      error: (error) => {
-        // Manejar errores aquí
-      }*/
       next: (res) => {
-        if (res) {
-          if (res.token) {
-            localStorage.setItem('token', res.token);
-            console.log('Acceso autorizado con token.');
-            this.router.navigate(['/diagnostico']);
-          } else {
-            // Respuesta sin token (código de estado 200)
-            console.log('Acceso autorizado sin token.');
-            this.router.navigate(['/diagnostico']);
-          }
-        } else {
-          console.log('El servidor no proporcionó una respuesta válida.');
-          this.noAutorizado();
-        }
+          this.userAccountService.saveDataInLocalStorage(res);
+          this.router.navigate(['/diagnostico']);
       },
       error: (error: { message: any }) => {
         this.messageService.add({

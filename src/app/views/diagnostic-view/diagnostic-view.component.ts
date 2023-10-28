@@ -4,6 +4,7 @@ import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
 import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
+import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 @Component({
   selector: 'app-diagnostic-view',
@@ -25,24 +26,29 @@ export class DiagnosticViewComponent implements OnInit {
   minImageWidth: number = 225;
   minImageHeight: number = 225;
   acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
-  sexOptions: { label: string; value: string; }[] | undefined;
-  partsOptions: { label: string; value: string; }[] | undefined;
+  sexOptions: { label: string; value: number; }[] | undefined;
+  partsOptions: { label: string; value: number; }[] | undefined;
   calendarIcon = 'pi pi-calendar';
   dateUser: Date[] | undefined;
   minValidDate!: Date;
   maxValidDate!: Date;
+  IdUser!:number;
+  selectedIDpartOption!:number;
 
-  constructor(private resultService: ResultService,private messageService: MessageService, private router: Router) { }
+  constructor(private resultService: ResultService,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) { 
+    this.IdUser = parseInt(this.userAccountService.userId);
+    console.log(this.IdUser);
+  }
 
   ngOnInit(): void {
     this.sexOptions = [
-      { label: 'Masculino', value: 'Masculino' },
-      { label: 'Femenino', value: 'Femenino' }
+      { label: 'Masculino', value: 1 },
+      { label: 'Femenino', value: 2 }
     ];
 
     this.partsOptions = [
-      { label: 'Cerebro', value: '1' },
-      { label: 'Corazon', value: '2' },
+      { label: 'Cerebro', value: 1 },
+      { label: 'Corazon', value: 2 },
     ];
 
     this.diagnostic = new Diagnostic();
@@ -51,6 +57,7 @@ export class DiagnosticViewComponent implements OnInit {
     const today = new Date();
     this.minValidDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
     this.maxValidDate = today;
+    this.selectedIDpartOption = 1;
   }
 
   onFileSelect(event: any) {
@@ -114,8 +121,7 @@ export class DiagnosticViewComponent implements OnInit {
   diagnosticResult() {
     this.checkFormFields();
     this.checkFormErrorFields();
-    console.log(this.formFieldsCompleted);
-    console.log(this.formFieldsError);
+    this.diagnostic.sectionBody = this.selectedIDpartOption;
     if (this.uploadedFile && this.formFieldsCompleted && this.formFieldsError) {
       this.postResult(this.uploadedFile);
     } else {
@@ -149,8 +155,9 @@ export class DiagnosticViewComponent implements OnInit {
 
   postResult(file: File) {
 
-    const req=this.createRequestHeart(file,1,1);
-    console.log(req);
+    if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedIDpartOption ==2) {
+    const req=this.createRequestHeart(file,this.IdUser, this.doctor.dni);
+
     this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
         console.log(res);
@@ -161,7 +168,8 @@ export class DiagnosticViewComponent implements OnInit {
         // Manejar errores aquí
       }
     });
-
+    }
+    /*
     const reqBrain=this.createRequestBrain(file,true,true,true,4,4);
 
     this.resultService.postResultBrain(reqBrain).subscribe({
@@ -185,7 +193,7 @@ export class DiagnosticViewComponent implements OnInit {
       error: (error) => {
         // Manejar errores aquí
       }
-    });
+    });*/
 
   }
 
@@ -194,10 +202,15 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   OnSelectedPart(event : any) {
-
+    if (!event.value) {
+      this.selectedIDpartOption = 0;
+    }
+    else {
+    this.selectedIDpartOption = event.value.value;
+    }
   }
 
-  private createRequestBrain(imagen: File,
+ /*private createRequestBrain(imagen: File,
     perdida_visual:boolean,debilidad_focal:boolean,convulsiones:boolean,
     id_usuario:number,id_medico:number):FormData {
     const formData = new FormData();
@@ -221,13 +234,13 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('id_usuario', `${idUsuario}`);
     formData.append('dni_medico', `${idMedico}`);
     return formData;
-}
+  } */
 private createRequestHeart(imagen: File,idUsuario: number,
-  idMedico: number) :FormData{
+  dniMedico: string) :FormData{
   const formData = new FormData();
   formData.append('imagen', imagen);
   formData.append('id_usuario', `${idUsuario}`);
-  formData.append('dni_medico', `${idMedico}`);
+  formData.append('dni_medico', `${dniMedico}`);
   return formData;
 }
 
@@ -239,7 +252,7 @@ private createRequestHeart(imagen: File,idUsuario: number,
       this.diagnostic.weight != undefined&&
       this.diagnostic.height != undefined&&
       this.diagnostic.gender != undefined&&
-      this.diagnostic.sectionBody != undefined
+      this.selectedIDpartOption != undefined
     ) {
       this.formFieldsCompleted = true;
     } else {

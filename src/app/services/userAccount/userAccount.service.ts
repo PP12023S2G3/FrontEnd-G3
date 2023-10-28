@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 //import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { DoctorResp } from 'src/app/models/DoctorResp';
 import { SuccessfulRegistrationResp } from 'src/app/models/SuccessfulRegistrationResp';
 import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
 import { LogInRequest } from 'src/app/models/LogInRequest';
+
+const USER_LOCAL_STORAGE_KEY = 'userData';
+const USERID_LOCAL_STORAGE_KEY = 'userId';
+const ROLE_LOCAL_STORAGE_KEY = 'role';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +20,15 @@ export class UserAccountService {
   private endpointDoctors: string='medicos';
   private endpointSignIn: string='registro';
   private endpointLogIn: string='login';
+  private user = new BehaviorSubject<SuccessfulLogInResp | null>(null);
+  user$ = this.user.asObservable();
+  isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
+  userId:any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.loadUserFromLocalStorage();
+    this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
+  }
 
 // ver tipos de datos de las respuestas, probar
 
@@ -54,6 +65,38 @@ export class UserAccountService {
     let url=this.apiUsers+this.endpointDoctors;
     return this.http.get<DoctorResp[]>(url);
   }
+
+  saveDataInLocalStorage(response: any): void {
+    const userToken = response.access_token;
+    const user: SuccessfulLogInResp = {
+      id: response.id,
+      nombre: response.nombre,
+      rol_id: response.rol_id,
+      dni: response.dni,
+      email: response.email,
+      especialidad: response.especialidad,
+      establecimiento_id: response.establecimiento_id,
+      token: response.token
+    };
+    this.userId = response.id;
+    this.saveRoleToLocalStore(response.rol_id);
+    this.saveIdUserToLocalStore(this.userId);
+  }
+
+  saveRoleToLocalStore(role: any) {
+    localStorage.setItem(ROLE_LOCAL_STORAGE_KEY, role);
+  }
+
+  saveIdUserToLocalStore(userId: string): void {
+    localStorage.setItem(USERID_LOCAL_STORAGE_KEY, userId);
+  }
+
+  private loadUserFromLocalStorage(): void {
+    localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
+    localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
+  }
+
+//TODO: cuando se tengan los errores del back sacar un handleError.
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === HttpStatusCode.BadRequest) {
