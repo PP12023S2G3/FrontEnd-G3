@@ -43,7 +43,6 @@ export class RegistroComponent {
 
 
     this.postSignIn();
-    console.log("Registrado");
   }
 
   private postSignIn() {
@@ -80,13 +79,13 @@ export class RegistroComponent {
 
     if(this.user.name!=undefined && this.user.lastName!=undefined && this.user.email!=undefined &&
       this.user.dni!=undefined && this.user.password!=undefined && this.user.medicalSpeciality?.value !=undefined) {
-        console.log(this.user);
      this.isDataIndalid();
+
       if(!this.form){
 
       this.userAccountService.postSignIn(req).subscribe({
       next: (res) => {
-        console.log(res);
+
         localStorage.setItem('sign', JSON.stringify(res));
         this.messageService.add({
           severity: 'success',
@@ -122,22 +121,25 @@ export class RegistroComponent {
   }
 }
 
- isDataIndalid() {
-  if (
-    (!this.user.name || this.user.name.length < 2) &&
-    (!this.user.lastName || this.user.lastName.length < 2) &&
-    (!this.user.dni || this.user.dni.length < 7 || this.user.dni.length > 8) &&
-    (!this.user.password || this.user.password.length < 8) &&
-    (!this.user.email || this.user.email.length < 4)
-  ) {
-    console.log("es true");
+isDataIndalid() {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]*$/;
+  const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const dniPattern = /^[0-9]{7,8}$/;
+
+  const isNameValid = this.user.name && this.user.name.length >= 2;
+  const isLastNameValid = this.user.lastName && this.user.lastName.length >= 2;
+  const isDniValid = this.user.dni && dniPattern.test(this.user.dni);
+  const isPasswordValid = this.user.password && this.user.password.length >= 8 && passwordPattern.test(this.user.password);
+  const isEmailValid = this.user.email && this.user.email.length >= 4 && emailPattern.test(this.user.email);
+
+  if (isNameValid && isLastNameValid && isDniValid && isPasswordValid && isEmailValid) {
+    this.form = false;
+  } else {
     this.form = true;
   }
-  else {
-    console.log("es false");
-    this.form=false;
-  }
- }
+
+  console.log("this.form en isDataIndalid:", this.form);
+}
 
   private createRequestSignIn(nombre: string, apellido: string, dni: string, email: string, password: string, rolId: number, establecimientoId: number | undefined, especialidad: string) :FormData {
     const formData = new FormData();

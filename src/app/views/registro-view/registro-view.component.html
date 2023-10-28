@@ -118,7 +118,7 @@
                 mediumLabel="Media"
                 strongLabel="Fuerte"
                 placeholder="Ingresar contraseña"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]*$"
                 #password="ngModel"
                 required
               >
@@ -132,6 +132,7 @@
                     <li>Al menos una mayúscula</li>
                     <li>Al menos un número</li>
                     <li>8 caractéres mínimo</li>
+                    <li>No debe contener caracteres especiales</li>
                   </ul>
                 </ng-template>
               </p-password>
