@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="container-login-inicio">
   <div class="container-login">
     <h2 class="title4">Bienvenid@!</h2>
@@ -5,8 +6,18 @@
       <label class="label-input-register">DNI</label>
         <span class="p-input-icon-left">
           <i class="pi pi-id-card" style="font-size: 18px; color: #797979;"></i>
-          <input type="text" pInputText [(ngModel)]="persona.dni" required placeholder="Ingresar DNI"/>
+          <input type="text" pInputText [(ngModel)]="persona.dni" #dni="ngModel" required  pattern="^[0-9]{7,8}$" placeholder="Ingresar DNI"/>
       </span>
+      <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
+        <div>
+          <span *ngIf="dni.errors?.['required']">
+          </span>
+        </div>
+        <div>
+          <span *ngIf="dni.errors?.['pattern']">
+          </span>
+      </div>
+      </div>
     </div>
     <div class="campo">
       <label class="label-input-register">Contraseña</label>
@@ -16,9 +27,23 @@
             [(ngModel)]="persona.clave" 
             [toggleMask]="true" 
             [feedback]="false"
-            placeholder="Ingresar contraseña">
+            #password="ngModel"
+            placeholder="Ingresar contraseña"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]*$"
+            >
           </p-password>
       </span>
+      <div *ngIf="password.invalid && (password.touched)" class="errors" style="margin-top: 0.3rem;">
+        <div>
+          <span *ngIf="password.errors?.['required']">
+            Indique una contraseña
+          </span>
+        </div>
+        <div>
+          <span *ngIf="password.errors?.['pattern']">
+          </span>
+        </div>
+      </div>
     </div>
     <div class="container-button-link">
       <p-button styleClass="p-button-link" label="¿Olvidaste tu contraseña?" (click)="irAResetPassword()"></p-button>

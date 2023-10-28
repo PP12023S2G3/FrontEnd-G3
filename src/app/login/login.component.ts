@@ -3,18 +3,22 @@ import { Persona } from '../models/Persona';
 import { Router } from '@angular/router';
 import { UserAccountService } from '../services/userAccount/userAccount.service';
 import { LogInRequest } from '../models/LogInRequest';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   persona: Persona = new Persona("", "");
   showPassword: boolean = false;
   private router: Router;
+  formFieldsCompleted =false;
+  form!: boolean;
 
-  constructor(private userAccountService: UserAccountService,router: Router) { this.router = router }
+  constructor(private userAccountService: UserAccountService,router: Router,private messageService: MessageService) { this.router = router }
 
   ngOnInit(): void {
     this.persona.dni = "";
@@ -24,38 +28,22 @@ export class LoginComponent implements OnInit {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  /*mostrarInfo() {
-    console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
-  }*/
 
   onSubmit() {
-    // Validar el DNI y la contraseña aquí
-    if (/*!this.persona.dni ||*/ !this.validarDNI(this.persona.dni)) {
-      alert('El DNI no es válido');
-      return;
-    }
-    if (/*!this.persona.clave ||*/ !this.validarContraseña(this.persona.clave)) {
-      alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y ser alfanumérica.');
-      return;
-    }
-    if(!this.validarDNI(this.persona.dni) && !this.validarContraseña(this.persona.clave)) {
-      alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-      return;
+    this.checkFormFields();
+    console.log(this.formFieldsCompleted);
+    if(!this.formFieldsCompleted){
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Completa todos los campos del formulario antes de continuar',
+        life: 2000,
+      });
+      console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
     }
     else {
-      console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
       this.postLogIn()
     }
-  }
-
-  validarDNI(dni: string): boolean {
-    // validar el DNI
-    return /^\d{7,8}$/.test(dni);
-  }
-
-  validarContraseña(contraseña: string): boolean {
-    // Validar la contraseña
-    return /^(?=.*[A-ZñÑ])(?=.*\d)[A-Za-zñÑ\d]{8,}$/.test(contraseña);
   }
 
   irAResetPassword() {
@@ -70,6 +58,13 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   
+  checkFormFields() {
+    if (this.persona.dni != undefined && this.persona.clave != undefined && this.persona.dni != '' && this.persona.clave!='') {
+      this.formFieldsCompleted = true;
+    } else {
+      this.formFieldsCompleted = false;
+    }
+  }
 
   private postLogIn() {
     const req=new LogInRequest(this.persona.dni,this.persona.clave);
@@ -98,12 +93,12 @@ export class LoginComponent implements OnInit {
           this.noAutorizado();
         }
       },
-      error: (error) => {
-        if (error.status === 401 || error.status === 404) {
-          this.noAutorizado();
-        } else {
-          console.error('Error en el inicio de sesión:', error);
-        }
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
       
     });

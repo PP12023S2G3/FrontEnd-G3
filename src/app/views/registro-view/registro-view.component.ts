@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 import {MessageService} from 'primeng/api';
-import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-registro-view',
   templateUrl: './registro-view.component.html',

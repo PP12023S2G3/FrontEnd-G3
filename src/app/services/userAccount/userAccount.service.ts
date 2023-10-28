@@ -32,7 +32,7 @@ export class UserAccountService {
   public postLogIn(logInRequest:LogInRequest):Observable<SuccessfulLogInResp>{
     let url=this.apiUsers+this.endpointLogIn;
     return this.http.post<SuccessfulLogInResp>(url,logInRequest).pipe(
-      catchError(this.handleError));
+      catchError(this.handleErrorLogin));
   }
 
   //para que usuario resetee su contraseña
@@ -67,6 +67,22 @@ export class UserAccountService {
       return throwError(() => new Error("No se encuentra el contenido solicitado"));
     } else if (error.status === HttpStatusCode.Conflict) {
       return throwError(() => new Error("Hubo un conflicto con el estado actual del recurso"));
+    }
+    return throwError(() => new Error("Ups, algo salió mal"));
+  }
+
+  private handleErrorLogin(error: HttpErrorResponse) {
+    if (error.status === HttpStatusCode.BadRequest) {
+      // Verifica si la respuesta contiene un mensaje de error personalizado del backend
+      if (error.error && error.error.Error) {
+        return throwError(() => new Error(error.error.Error));
+      } else {
+        return throwError(() => new Error("Hay un problema con la solicitud"));
+      }
+    } else if (error.status === HttpStatusCode.NotFound) {
+      return throwError(() => new Error("El usuario ingresado no existe"));
+    } else if (error.status === HttpStatusCode.Unauthorized) {
+      return throwError(() => new Error("Credenciales invalidas"));
     }
     return throwError(() => new Error("Ups, algo salió mal"));
   }
