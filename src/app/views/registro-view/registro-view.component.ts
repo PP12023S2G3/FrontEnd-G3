@@ -122,7 +122,7 @@ export class RegistroComponent {
 }
 
 isDataIndalid() {
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]*$/;
+  const passwordPattern = /^(?=.*[a-zñÑ])(?=.*[A-ZÑñ])(?=.*\d)[a-zA-Z0-9ñÑ]*$/;
   const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const dniPattern = /^[0-9]{7,8}$/;
 
