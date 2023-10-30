@@ -3,14 +3,21 @@
   margin-top: 1rem;
 }
 
+.container-footer{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-logo-footer{
+  margin-right: 15px;
+}
+
 :host ::ng-deep .p-button {
   background: transparent;
   border: transparent;
   box-shadow: none;
-}
-
-p {
-  font-size: 32px;
 }
 
 .container-links-footer .container-logo-footer {
@@ -31,13 +38,12 @@ p {
   padding: 20px;
   position: relative;
   height: 120px;
-  left: -1%;
-  margin-right: -1%;
   margin-top: 4rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .container-links-footer  {
-  margin-right: 20px; /* Espaciado derecho para separar elementos de tipo <p> de los botones */
   font-weight: bold;
 }
 
@@ -55,56 +61,4 @@ p {
 
 :host::ng-deep .container-social-network-footer .p-button{
   margin-top: 0%; /* Espaciado superior para separar las redes del contenido superior */
-  margin-right: 20px;
-
-}
-
-@media screen and (max-width: 650px) {
-
-  .footer {
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-  .container-links-footer .container-logo-footer img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .container-links-footer p {
-    margin: 20px;
-    margin-top: -1rem;
-  }
-
-  .container-links-footer .container-logo-footer {
-    margin-top: -3rem;
-    float: right;
-    margin-left: 25px;
-  }
-
-}
-
-@media screen and (max-width: 400px) {
-
-  .footer {
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-  .container-links-footer .container-logo-footer img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .container-links-footer .container-logo-footer p {
-    margin: 20px;
-    margin-top: -1rem;
-  }
-
-  .container-links-footer .container-logo-footer {
-    margin-top: -3rem;
-    float: right;
-    margin-left: 25px;
-  }
-
 }

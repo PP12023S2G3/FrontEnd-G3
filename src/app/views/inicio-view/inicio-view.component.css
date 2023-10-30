@@ -4,24 +4,25 @@
 
 .inicio-imagen img {
   min-width: 340px;/*minimo ancho permitido*/
-  min-height: 300px;/*minimo alto permitido*/
   max-width: 40vw;/*maximo ancho permitido que siempre se va a agrandar porque es un porcentaje de la viewport*/
-  max-height: 40vw;/*minimo alto permitido que siempre se va a agrandar porque es un porcentaje de la viewport*/
   margin: 2vw;
 }
 .container-description-inicio {
   margin-top: 10%;
 }
 .container-content-inicio {
-  margin-top: 50px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
 }
 .content {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Centra verticalmente */
+  align-items: center;
   justify-content: center;
   height: 100%;
   flex-wrap: wrap;
+  margin-top: 70px;
 }
 .inicio-imagen {
   display: flex;
@@ -108,10 +109,7 @@
 
 h4 {
   width: 970px;
-  height: 150px;
-  min-width: 360px;
   max-width: 85vw;
-  max-height: 35vw;
 }
 
 .description-text-conteiner {
@@ -144,36 +142,17 @@ h4 {
   width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
 }
 .nuestro-equipo-container img {
-  height: 60vw;
+  height: 45vw;
   width: 90vw;
   max-width: 900px;
   max-height: 460px;
 }
 .description-conteiner2 {
-  margin-top: 20vh;
+  margin-top: 10%;
 }
 
-@media screen and (max-width: 1280px) {
-  h4 {
-    width: 80%;
-  }
-  .title-description {
-    text-align: center;
-  }
-}
 
-@media screen and (max-width: 900px) {
-h4 {
-  font-size: 24px;
-}
-
-h1 {
-  font-size: 48px;
-}
-
-}
-
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     h4 {
       font-size: 24px;
     }
