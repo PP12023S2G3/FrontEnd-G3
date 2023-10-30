@@ -125,9 +125,11 @@ isDataIndalid() {
   const passwordPattern = /^(?=.*[a-zñÑ])(?=.*[A-ZÑñ])(?=.*\d)[a-zA-Z0-9ñÑ]*$/;
   const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const dniPattern = /^[0-9]{7,8}$/;
+  const namePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+  const lastNamePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
 
-  const isNameValid = this.user.name && this.user.name.length >= 2;
-  const isLastNameValid = this.user.lastName && this.user.lastName.length >= 2;
+  const isNameValid = this.user.name && this.user.name.length >= 2 && namePattern.test(this.user.name);
+  const isLastNameValid = this.user.lastName && this.user.lastName.length >= 2 && lastNamePattern.test(this.user.lastName);
   const isDniValid = this.user.dni && dniPattern.test(this.user.dni);
   const isPasswordValid = this.user.password && this.user.password.length >= 8 && passwordPattern.test(this.user.password);
   const isEmailValid = this.user.email && this.user.email.length >= 4 && emailPattern.test(this.user.email);
