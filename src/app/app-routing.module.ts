@@ -10,6 +10,7 @@ import { ResultViewComponent } from './views/result-view/result-view.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 import { RegistroComponent } from './views/registro-view//registro-view.component';
 import { NewPasswordViewComponent } from './views/new-password-view/new-password-view.component';
+import { LogoutComponent } from './shared/logout/logout.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegistroComponent},
   { path: '', component: InicioViewComponent },
   { path: 'new-password', component: NewPasswordViewComponent },
+  { path: 'logout', component: LogoutComponent }
 ];
 
 @NgModule({
