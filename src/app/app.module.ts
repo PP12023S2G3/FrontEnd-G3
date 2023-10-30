@@ -39,6 +39,8 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LoginViewComponent } from './views/login-view/login-view.component';
+import { LogoutService } from './shared/logout/logout.service';
+import { LogoutComponent } from './shared/logout/logout.component';
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { LoginViewComponent } from './views/login-view/login-view.component';
     NavbarComponent,
     RegistroComponent,
     NewPasswordViewComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserAnimationsModule,

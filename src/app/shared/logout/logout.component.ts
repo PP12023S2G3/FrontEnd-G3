@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogoutService } from './logout.service';
 
 @Component({
   selector: 'app-logout',
@@ -6,12 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent {
-  visible : boolean = true; //cambiar
+  esVisible: boolean = true;
+  
+  constructor(private logoutService: LogoutService) {
+    this.logoutService.getLogoutVisible().subscribe(() => {
+      this.esVisible = false;
+    });
+  }
 
-  ocultarLogout() {
-    this.visible = false;
+  updateSharedValue() {
+    this.logoutService.updateLogoutVisible(false);
   }
-  mostrarLogout() {
-    this.visible = true;
-  }
+  
 }

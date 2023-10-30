@@ -1,4 +1,4 @@
-<p-sidebar [(visible)]="sidebarVisible" [style]="{background: 'linear-gradient(#797979, #4c707d, #1b6581, #4b5c8b)'}" [showCloseIcon]="false">
+<p-sidebar  [(visible)]="sidebarVisible" [style]="{background: 'linear-gradient(#797979, #4c707d, #1b6581, #4b5c8b)'}" [showCloseIcon]="false">
     <ng-template pTemplate="header">
       <div class="header-sidebar">
         <img src="./../../../assets/img/profile.png" alt="">
@@ -14,10 +14,10 @@
       <a routerLink="/contacto" class="link-sidebar link" href="">Contacto</a>
     </ng-template>
     <ng-template pTemplate="footer">
-      <a href="" class="logout-link-sidebar link">Cerrar sesión</a>
+      <a (click)="this.updateLogoutVisible()" class="logout-link-sidebar link">Cerrar sesión</a>
     </ng-template>
 </p-sidebar>
 <button (click)="sidebarVisible = true" class="button-toggle-sidebar">
   <img src="./../../../assets/img/LogoSpin.png" alt="" width="36" height="36">
 </button>
-
+<app-logout *ngIf="this.esVisible == true"></app-logout>

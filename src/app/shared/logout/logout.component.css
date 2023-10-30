@@ -1,11 +1,15 @@
 .container {
+    position: fixed;
+    top: 0px;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 9999;
 }
-.container-logout {
+.container-logout { 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +21,8 @@
     height: 330px;
     padding: 50px;
     gap: 50px;
-    margin: 10% auto auto;
+    z-index: 10000;
+    position: absolute;
 }
 .container-data-logout {
     text-align: center;

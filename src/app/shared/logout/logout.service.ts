@@ -1,20 +1,19 @@
-// logout-modal.service.ts
+// shared.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class LogoutService {
-  private logoutState = new BehaviorSubject<boolean>(false);
+  private logoutVisible = new BehaviorSubject<boolean>(true);
 
-  get logoutState$(): Observable<boolean> {
-    return this.logoutState.asObservable();
+  getLogoutVisible(): Observable<boolean> {
+    return this.logoutVisible.asObservable();
   }
 
-  mostrarLogout() {
-    this.logoutState.next(true);
+  updateLogoutVisible(newValue: boolean) {
+    this.logoutVisible.next(newValue);
   }
 
-  ocultarLogout() {
-    this.logoutState.next(false);
-  }
 }
