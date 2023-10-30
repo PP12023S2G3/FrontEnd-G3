@@ -17,6 +17,7 @@
     height: 330px;
     padding: 50px;
     gap: 50px;
+    margin: 10% auto auto;
 }
 .container-data-logout {
     text-align: center;
