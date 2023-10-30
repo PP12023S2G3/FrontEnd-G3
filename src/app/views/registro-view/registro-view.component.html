@@ -8,7 +8,7 @@
             <label class="label-input-register">Nombre</label>
               <span class="p-input-icon-left">
                   <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
-                  <input type="text" pInputText [(ngModel)]="user.name" #name="ngModel" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required placeholder="Ingresar nombre"/>
+                  <input type="text" pInputText [(ngModel)]="user.name" #name="ngModel" id="nombre" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required placeholder="Ingresar nombre"/>
             </span>
             <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;">
               <div>
@@ -32,7 +32,7 @@
             <label class="label-input-register">Apellido</label>
               <span class="p-input-icon-left">
                 <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
-                <input type="text" pInputText [(ngModel)]="user.lastName" #lastname="ngModel" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required  placeholder="Ingresar apellido"/>
+                <input type="text" pInputText [(ngModel)]="user.lastName" #lastname="ngModel" id="apellido" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required  placeholder="Ingresar apellido"/>
             </span>
             <div *ngIf="lastname.invalid && (lastname.touched)" class="errors" style="margin-top: 0.3rem;">
             <div>
@@ -56,7 +56,7 @@
             <label class="label-input-register">DNI</label>
               <span class="p-input-icon-left">
                 <i class="pi pi-id-card" style="font-size: 18px; color: #797979;"></i>
-                <input type="text" pInputText [(ngModel)]="user.dni" #dni="ngModel" required pattern="^[0-9]{7,8}$"
+                <input type="text" pInputText [(ngModel)]="user.dni" #dni="ngModel" id="dni" required pattern="^[0-9]{7,8}$"
                 placeholder="Ingresar DNI"/>
             </span>
             <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
@@ -91,7 +91,7 @@
             <label class="label-input-register">Email</label>
             <span class="p-input-icon-left">
               <i class="pi pi-at" style="font-size: 18px; color: #797979;"></i>
-              <input type="email" pInputText [(ngModel)]="user.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Ingresar email"/>
+              <input type="email" pInputText [(ngModel)]="user.email" #email="ngModel" id="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Ingresar email"/>
             </span>
             <div *ngIf="email.invalid && (email.touched)" class="errors" style="margin-top: 0.3rem;">
               <div>
@@ -113,6 +113,7 @@
               <p-password
                 [(ngModel)]="user.password"
                 [toggleMask]="true"
+                id="password"
                 promptLabel=" "
                 weakLabel="Baja"
                 mediumLabel="Media"
