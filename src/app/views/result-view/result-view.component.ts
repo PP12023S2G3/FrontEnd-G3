@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
+import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 
 
 
@@ -10,8 +11,8 @@ import { Doctor } from 'src/app/models/Doctor';
   styleUrls: ['./result-view.component.css']
 })
 export class ResultViewComponent implements OnInit {
-  doctor !: Doctor;
-  diagnostic!: Diagnostic;
+  doctor !: any;
+  diagnostic!: any;
   responseData: any;
 
   tituloDinamico = 'Resultado';
@@ -19,14 +20,13 @@ export class ResultViewComponent implements OnInit {
     this.tituloDinamico = nuevoTitulo;
   }
 
-  constructor() {
+  constructor(private resultDTO: ResultcDTO) {
   }
 
 
   ngOnInit(): void {
-      this.diagnostic = new Diagnostic();
-      this.doctor = new Doctor();
-      
+      this.diagnostic = this.resultDTO.getCompanyInformation();
+
 
     const storedResponseData = localStorage.getItem('responseData');
     if (storedResponseData) {

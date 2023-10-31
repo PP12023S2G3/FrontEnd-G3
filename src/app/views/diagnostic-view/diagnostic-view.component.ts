@@ -5,6 +5,7 @@ import { Doctor } from 'src/app/models/Doctor';
 import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
+import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 
 @Component({
   selector: 'app-diagnostic-view',
@@ -33,11 +34,12 @@ export class DiagnosticViewComponent implements OnInit {
   minValidDate!: Date;
   maxValidDate!: Date;
   IdUser!:number;
-  selectedIDpartOption!:number;
+  selectedpartOption!:string;
+  selectedsexOption!:string;
 
-  constructor(private resultService: ResultService,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) { 
+  constructor(private resultService: ResultService,
+    private resultDTO: ResultcDTO,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
     this.IdUser = parseInt(this.userAccountService.userId);
-    console.log(this.IdUser);
   }
 
   ngOnInit(): void {
@@ -57,7 +59,6 @@ export class DiagnosticViewComponent implements OnInit {
     const today = new Date();
     this.minValidDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
     this.maxValidDate = today;
-    this.selectedIDpartOption = 1;
   }
 
   onFileSelect(event: any) {
@@ -121,7 +122,12 @@ export class DiagnosticViewComponent implements OnInit {
   diagnosticResult() {
     this.checkFormFields();
     this.checkFormErrorFields();
-    this.diagnostic.sectionBody = this.selectedIDpartOption;
+    this.diagnostic.sectionBody = this.selectedpartOption;
+    this.diagnostic.gender = this.selectedsexOption;
+    this.diagnostic.doctor = this.doctor;
+    if(this.uploadedFile){
+    this.diagnostic.image = this.uploadedFile; }
+
     if (this.uploadedFile && this.formFieldsCompleted && this.formFieldsError) {
       this.postResult(this.uploadedFile);
     } else {
@@ -154,13 +160,13 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   postResult(file: File) {
-
-    if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedIDpartOption ==2) {
+    this.resultDTO.setCompanyInformation(this.diagnostic);
+    console.log(this.diagnostic);
+    if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
     const req=this.createRequestHeart(file,this.IdUser, this.doctor.dni);
 
     this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
-        console.log(res);
         localStorage.setItem('PredictedResult', JSON.stringify(res));
         this.router.navigate(['/result']);
       },
@@ -198,15 +204,20 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   OnSelectedSex(event : any) {
-
+    if (!event.value) {
+      this.selectedsexOption = '';
+    }
+    else {
+      this.selectedsexOption = event.value.label;
+    }
   }
 
   OnSelectedPart(event : any) {
     if (!event.value) {
-      this.selectedIDpartOption = 0;
+      this.selectedpartOption = '';
     }
     else {
-    this.selectedIDpartOption = event.value.value;
+    this.selectedpartOption = event.value.label;
     }
   }
 
@@ -252,7 +263,8 @@ private createRequestHeart(imagen: File,idUsuario: number,
       this.diagnostic.weight != undefined&&
       this.diagnostic.height != undefined&&
       this.diagnostic.gender != undefined&&
-      this.selectedIDpartOption != undefined
+      this.selectedpartOption != undefined &&
+      this.selectedsexOption != undefined
     ) {
       this.formFieldsCompleted = true;
     } else {
