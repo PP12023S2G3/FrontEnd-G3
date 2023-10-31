@@ -8,7 +8,7 @@ import { LogoutService } from './logout.service';
 })
 export class LogoutComponent {
   esVisible: boolean = true;
-  
+
   constructor(private logoutService: LogoutService) {
     this.logoutService.getLogoutVisible().subscribe(() => {
       this.esVisible = false;
@@ -18,5 +18,9 @@ export class LogoutComponent {
   updateSharedValue() {
     this.logoutService.updateLogoutVisible(false);
   }
-  
+
+  clearSession() {
+    this.logoutService.clearLocalStorage();
+  }
+
 }
