@@ -38,6 +38,18 @@ export class HistorialViewComponent{
                 study: 'Cerebro',
                 doctor: 'Arroyo',
             },
+            {
+              code: '3',
+              date: '2023-10-18',
+              study: 'Corazon',
+              doctor: 'Insua',
+          },
+          {
+              code: '4',
+              date: '2023-03-15',
+              study: 'Rodilla',
+              doctor: 'Mendez',
+          },
         ];
     }
     private getRecordAll() {

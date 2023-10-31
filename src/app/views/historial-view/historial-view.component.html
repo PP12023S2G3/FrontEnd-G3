@@ -6,17 +6,18 @@
                 <span class="icon">
                     <i class="pi pi-search" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
                 </span>
-                <input type="text" pInputText [(ngModel)]="value" placeholder="Código de Imágen, Estudio..."/>
+                <input type="text" (input)="dtTransactions.filterGlobal($any($event.target).value, 'contains')"
+                pInputText [(ngModel)]="value" placeholder="Código de Imágen, Estudio..."/>
             </span>
             <span class="p-input-icon-left">
                 <span class="icon">
                     <i class="pi pi-calendar" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
                 </span>
                 <span>
-                    <p-calendar  
-                    [(ngModel)]="rangeDates" 
-                    selectionMode="range" 
-                    [readonlyInput]="true" 
+                    <p-calendar
+                    [(ngModel)]="rangeDates"
+                    selectionMode="range"
+                    [readonlyInput]="true"
                     placeholder="Fecha/s"
                     [maxDate]="dateTime"
                     [icon]="calendarIcon">
@@ -25,7 +26,19 @@
             </span>
         </div>
         <div class="table">
-            <p-table responsiveLayout="stack" [breakpoint]="'768px'" [tableStyle]="{'min-width': '300px'}" [value]="data">
+            <p-table responsiveLayout="stack"
+             [breakpoint]="'768px'"
+             [tableStyle]="{'min-width': '300px'}"
+             [value]="data"
+             id="tableTransactions"
+             #dtTransactions
+             [paginator]="true"
+             [rows]="3"
+             [rowsPerPageOptions]="[1, 2, 3, 4 , 5 , 6]"
+             [globalFilterFields]="['code','date','doctor','study']"
+             selectionMode="single"
+             autocomplete="off"
+             >
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th>Código de Imágen</th>
