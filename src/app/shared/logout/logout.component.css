@@ -78,3 +78,45 @@
     color:  #9C237E;
     cursor: pointer;
 }
+
+@media screen and (max-width: 575px) {
+    .container-logout {
+        height: 50%;
+        margin: auto;
+        width: 98vw;
+        gap: 10px;
+        margin: 1vw;
+        padding: 15px;
+    }
+    .title-logout {
+        margin: 0% 0% 50px;
+    }
+    .button-container-logout{
+        flex-direction: column;
+        justify-content: space-between;
+        width: 90vw;
+        gap: 10px;
+    }
+    .button-logout {
+        width: 98%;
+    }
+    .container-gradient-border {
+        width: 100%;
+    }
+}
+
+@media (min-width:576px) and (max-width: 768px) {
+    .container-logout {
+        width: 96%;
+    }
+    .button-container-logout {
+        width: 100%;
+    }
+    .container-gradient-border {
+        width: 100%;
+    }
+    .button-logout {
+        width: 98%;
+        max-width: 300px;
+    }
+}
