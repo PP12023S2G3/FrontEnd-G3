@@ -274,10 +274,13 @@ private createRequestHeart(imagen: File,idUsuario: number,
   checkFormErrorFields() {
     const dniPattern = /^[0-9]{7,8}$/;
 
+    const namePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+    const lastNamePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+  
     const validDNI = this.doctor?.dni && dniPattern.test(this.doctor.dni.toString()); // Validar el DNI
 
-    const validName = this.doctor?.name && typeof this.doctor.name === 'string' && this.doctor.name.length >= 2;
-    const validLastName = this.doctor?.lastname && typeof this.doctor.lastname === 'string' && this.doctor.lastname.length >= 2;
+    const validName = this.doctor?.name && typeof this.doctor.name === 'string' && this.doctor.name.length >= 2 && namePattern.test(this.doctor.name);
+    const validLastName = this.doctor?.lastname && typeof this.doctor.lastname === 'string' && this.doctor.lastname.length >= 2 && lastNamePattern.test(this.doctor.lastname);
 
     const validWeight = this.diagnostic?.weight && typeof this.diagnostic.weight === 'number' && this.diagnostic.weight >= 1 && this.diagnostic.weight <= 200;
     const validHeight = this.diagnostic?.height && typeof this.diagnostic.height === 'number' && this.diagnostic.height >= 25 && this.diagnostic.height <= 230;
