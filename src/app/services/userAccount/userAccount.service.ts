@@ -25,7 +25,7 @@ export class UserAccountService {
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
   userId:any;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.loadUserFromLocalStorage();
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
   }
@@ -109,7 +109,13 @@ export class UserAccountService {
     } else if (error.status === HttpStatusCode.NotFound) {
       return throwError(() => new Error("No se encuentra el contenido solicitado"));
     } else if (error.status === HttpStatusCode.Conflict) {
-      return throwError(() => new Error("Hubo un conflicto con el estado actual del recurso"));
+      return throwError(() => new Error("El usuario ya está registrado"));
+    }
+    else if (error.status === HttpStatusCode.InternalServerError) {
+      return throwError(() => new Error("Error interno del servidor"));
+    }
+    else if (error.status === HttpStatusCode.BadRequest) {
+      return throwError(() => new Error("Solicitud inválida"));
     }
     return throwError(() => new Error("Ups, algo salió mal"));
   }
@@ -126,6 +132,9 @@ export class UserAccountService {
       return throwError(() => new Error("El usuario ingresado no existe"));
     } else if (error.status === HttpStatusCode.Unauthorized) {
       return throwError(() => new Error("Credenciales invalidas"));
+    }
+    else if (error.status === HttpStatusCode.InternalServerError) {
+      return throwError(() => new Error("	Error interno del servidor"));
     }
     return throwError(() => new Error("Ups, algo salió mal"));
   }
