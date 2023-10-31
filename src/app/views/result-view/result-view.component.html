@@ -1,5 +1,5 @@
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
-<div class="container-result" *ngIf="diagnostic  && doctor">
+<div class="container-result" *ngIf="diagnostic">
     <div class="container-data-result">
         <div class="container-data-doctor">
             <h4 class="title-data">Datos del médico</h4>
@@ -30,7 +30,7 @@
                 <div>
                     <h6 class="title-age-patient">Fecha de nacimiento</h6>
                     <input class="input-age-patient" type="text" placeholder="Fecha de nacimiento" pInputText
-                        [(ngModel)]="diagnostic.dateOfBirth" readonly name="age-patient" />
+                        [(ngModel)]="formattedDate"  readonly name="age-patient" />
                 </div>
 
                 <div>

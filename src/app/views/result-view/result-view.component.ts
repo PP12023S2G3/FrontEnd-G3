@@ -16,6 +16,8 @@ export class ResultViewComponent implements OnInit {
   responseData: any;
 
   tituloDinamico = 'Resultado';
+  formattedDate: any;
+
     cambiarTitulo(nuevoTitulo: string) {
     this.tituloDinamico = nuevoTitulo;
   }
@@ -26,7 +28,10 @@ export class ResultViewComponent implements OnInit {
 
   ngOnInit(): void {
       this.diagnostic = this.resultDTO.getCompanyInformation();
-
+      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      this.formattedDate = this.diagnostic.dateOfBirth.toLocaleDateString('es-ES', options); // Puedes cambiar 'es-ES' según tu preferencia de idioma
+      console.log(this.formattedDate);
+      console.log(this.diagnostic);
 
     const storedResponseData = localStorage.getItem('responseData');
     if (storedResponseData) {
