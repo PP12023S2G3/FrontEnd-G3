@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./inicio-view.component.css']
 })
 export class InicioViewComponent {
+  
 
 }

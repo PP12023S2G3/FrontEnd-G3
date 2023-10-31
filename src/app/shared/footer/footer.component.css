@@ -5,9 +5,10 @@
 
 .container-footer{
   display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
 }
 
 .container-logo-footer{
@@ -20,27 +21,17 @@
   box-shadow: none;
 }
 
-.container-links-footer .container-logo-footer {
-  margin-top: -4.7rem;
-  float: right;
-  margin-left: 15px;
-}
-
-.container-links-footer .container-logo-footer img {
-  width: 60px;
-  height: 60px;
-}
-
 .footer {
   background: var(--gradient-green);
   color: var(--font-color-light);
   text-align: left; /* Alinear texto a la izquierda */
   padding: 20px;
   position: relative;
-  height: 120px;
-  margin-top: 4rem;
   overflow-x: hidden;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .container-links-footer  {
@@ -56,7 +47,6 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-
 }
 
 :host::ng-deep .container-social-network-footer .p-button{

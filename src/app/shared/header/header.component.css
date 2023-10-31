@@ -22,3 +22,9 @@
   text-decoration: none;
   color: var(--font-color-light);
 }
+
+@media screen and (max-width: 767.5px) {
+  .toolbar{
+    justify-content: center;
+  }
+}
