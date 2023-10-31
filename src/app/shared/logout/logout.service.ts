@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LogoutService {
+
+
   private logoutVisible = new BehaviorSubject<boolean>(true);
 
   getLogoutVisible(): Observable<boolean> {
@@ -16,4 +18,7 @@ export class LogoutService {
     this.logoutVisible.next(newValue);
   }
 
+  clearLocalStorage() {
+    localStorage.clear();
+  }
 }
