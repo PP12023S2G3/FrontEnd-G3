@@ -82,6 +82,15 @@ td, tr, th {
     box-shadow: none !important;
 }
 
+:host::ng-deep .p-button-filter{
+  content: "\e9b7";
+  color: white;
+  background: var(--gradient-pink);
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
+}
+
 @media screen and (max-width: 767px) {
     .filters {
       flex-direction: column;

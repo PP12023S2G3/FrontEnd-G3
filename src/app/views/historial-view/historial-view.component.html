@@ -20,10 +20,17 @@
                     [readonlyInput]="true"
                     placeholder="Fecha/s"
                     [maxDate]="dateTime"
-                    [icon]="calendarIcon">
+                    [icon]="calendarIcon"
+                    (onSelect)="applyDateFilter()">
+                    >
                     </p-calendar>
                 </span>
             </span>
+            <div *ngIf="isFilter">
+            <span class="icon">
+              <p-button icon="pi pi-filter-slash" styleClass="p-button-filter" (click)="clearFilter()" class="p-button-text"></p-button>
+            </span>
+          </div>
         </div>
         <div class="table">
             <p-table responsiveLayout="stack"
