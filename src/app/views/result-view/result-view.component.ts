@@ -27,7 +27,9 @@ export class ResultViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.diagnostic = this.resultDTO.getCompanyInformation();
+this.diagnostic = new Diagnostic();
+this.doctor = new Doctor();
+  /*    this.diagnostic = this.resultDTO.getCompanyInformation();
       const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
       this.formattedDate = this.diagnostic.dateOfBirth.toLocaleDateString('es-ES', options); // Puedes cambiar 'es-ES' según tu preferencia de idioma
       console.log(this.formattedDate);
@@ -38,6 +40,6 @@ export class ResultViewComponent implements OnInit {
       this.responseData = JSON.parse(storedResponseData);
       // Haz algo con los datos recibidos
       console.log(this.responseData);
-    }
+    } */
   }
 }
