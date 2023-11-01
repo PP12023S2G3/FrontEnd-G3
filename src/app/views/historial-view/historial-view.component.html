@@ -21,6 +21,7 @@
                     placeholder="Fecha/s"
                     [maxDate]="dateTime"
                     [icon]="calendarIcon"
+                    [dateFormat]="'yy-mm-dd'"
                     (onSelect)="applyDateFilter()">
                     >
                     </p-calendar>
@@ -36,13 +37,13 @@
             <p-table responsiveLayout="stack"
              [breakpoint]="'768px'"
              [tableStyle]="{'min-width': '300px'}"
-             [value]="data"
+             [value]="isFilter ? filteredData : data"
              id="tableTransactions"
              #dtTransactions
              [paginator]="true"
              [rows]="3"
              [rowsPerPageOptions]="[1, 2, 3, 4 , 5 , 6]"
-             [globalFilterFields]="['code','date','doctor','study']"
+             [globalFilterFields]="['code','doctor','study']"
              selectionMode="single"
              autocomplete="off"
              >
