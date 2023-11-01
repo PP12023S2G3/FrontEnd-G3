@@ -1,6 +1,10 @@
 .inicio-imagen img {
-  min-width: 340px;/*minimo ancho permitido*/
-  max-width: 40vw;/*maximo ancho permitido que siempre se va a agrandar porque es un porcentaje de la viewport*/
+  height: 45vw;
+  width: 50vw;
+  min-width: 300px;
+  min-height: 250px;
+  max-width: 900px;
+  max-height: 800px;
   margin: 2vw;
 }
 .container-description-inicio {
@@ -92,6 +96,13 @@ h4 {
   text-align: center;
 }
 
+h1 {
+  width: 970px;
+  max-width: 85vw;
+  font-size: 72px;
+  text-align: center;
+}
+
 .paragraph3{
   margin: 0px;
   text-align: center;
@@ -122,10 +133,6 @@ h4 {
   max-width: 900px;
   max-height: 460px;
 }
-.description-conteiner2 {
-  margin-top: 10%;
-}
-
 
 @media screen and (max-width: 767.5px) {
     h4 {
