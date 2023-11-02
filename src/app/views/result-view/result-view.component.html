@@ -85,6 +85,21 @@
     <div class="container-result-image">
         <img class="img-result" alt="imagen del resultado" src="assets/img/cerebro.png">
     </div>
+    <div>
+        <p>¿Este resultado te parece correcto?</p>
+
+        <div>
+            <p-button styleClass="p-button-global" label="Si"></p-button>
+            <p-button class="more-studies" styleClass="p-button-global" (onClick)="buttonEnabled()" label="Se necesitan más estudios"></p-button>
+        </div>
+        <p>¿Qué resultado sería mejor en este caso?</p>
+        <div>
+            <p-button class="case" styleClass="p-button-global" [disabled]="!botonesHabilitados" label="{{ buttonText1 }}"></p-button>
+            <p-button class="case" styleClass="p-button-global" [disabled]="!botonesHabilitados" label="{{ buttonText2 }}"></p-button>
+
+        </div>
+
+    </div>
     <div class="container-download-result">
         <p-button styleClass="p-button-global" type="download" label="Descargar"></p-button>
     </div>
