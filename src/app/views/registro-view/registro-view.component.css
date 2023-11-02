@@ -77,7 +77,6 @@
 }
 
 :host::ng-deep .p-button-link{
-    width: 300px;
     padding: 0px;
     font-size: 14px !important;
 }
@@ -86,33 +85,42 @@
     margin-top: 0px;
 }
 
-.modal-title-reset {
-    color: #000;
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-    margin: auto;
-  }
-  .modal-content-reset {
-    color: #797979;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    margin: 0%;
-    position: relative;
-    top: 20px;
-  }
-  .modal-inicio-reset {
-    display: block;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    color: #000;
-    margin-bottom: 30px;
-  }
-  .blur-div{
+:host::ng-deep .p-dialog .p-dialog-header {
+    justify-content: center;
+    padding: 0px;
+}
+
+:host::ng-deep .p-dialog .p-dialog-content {
+    justify-content: center;
+    padding: 0px;
+}
+
+:host::ng-deep .p-dialog .p-dialog-footer {
+    justify-content: center;
+    padding: 0px;
+    display: flex;
+}
+
+:host::ng-deep .p-dialog {
+    gap: 25px;
+    padding: 15px;
+    background: white;
+    border: 2px solid var(--border-box-color);
+    border-radius: 10px;
+    width: 85vw;
+    max-width: 400px;
+}
+
+.paragraph3{
+    margin: 0px;
+}
+
+.title4{
+    margin: 0px;
+}
+.blur-div{
     filter: blur(2px);
-  }
+}
 
 @media screen and (max-width: 767px) {
     .forms {
@@ -128,6 +136,13 @@
     .registro{
         margin-top: 60px;
         height: 100%;
+    }
+
+    .title4 {
+        justify-content: center;
+        font-size: 24px;
+        padding: 0px;
+        margin: 0px;
     }
   }
 

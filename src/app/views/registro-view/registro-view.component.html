@@ -155,4 +155,21 @@
           <button class="p-button-global" style="color: white;" (click)="registrarse()">Registrarse</button>
           <p-button styleClass="p-button-link" label="¿Ya estás registrado? Ingresa ahora" routerLink="/login"></p-button>
     </div>
+    <p-dialog 
+    [draggable]="false" 
+    [blockScroll]="true" 
+    header="Header" 
+    [closable]="false" 
+    [(visible)]="visible"
+    position="center">
+      <ng-template pTemplate="header">
+          <h4 class="title4">Creación de cuenta</h4>
+      </ng-template>  
+      <p class="paragraph3" style="color: #797979; text-align: center;">  
+        Tu cuenta ha sido creada exitosamente
+      </p>
+      <ng-template pTemplate="footer">
+        <a routerLink="/login" class="p-button-link" href="">Iniciar sesión</a>
+      </ng-template>
+    </p-dialog>
   </div>

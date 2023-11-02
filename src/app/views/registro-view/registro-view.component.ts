@@ -14,6 +14,7 @@ export class RegistroComponent {
   user!: User;
   form = false;
   rolId!: number;
+  visible: boolean = false;
 
   constructor(private userAccountService: UserAccountService,private messageService: MessageService) {
     this.medicalSpeciality = [
@@ -92,6 +93,8 @@ export class RegistroComponent {
           summary: 'Registro exitoso',
           life: 2000,
         });
+        this.visible = true;
+        this.desenfocarFondo();
       },
       error:  (error: { message: any }) => {
         this.messageService.add({
@@ -162,4 +165,9 @@ isDataIndalid() {
   OnSelectedMedicalSpeciality(event : any) {
     this.user.medicalSpeciality = event.value;
   }
+
+  desenfocarFondo() {
+    var containerBlur = document.querySelector(".container-registro");
+      containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
+  } 
 }
