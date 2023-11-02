@@ -41,6 +41,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LoginViewComponent } from './views/login-view/login-view.component';
 import { LogoutService } from './shared/logout/logout.service';
 import { LogoutComponent } from './shared/logout/logout.component';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -81,7 +83,9 @@ import { LogoutComponent } from './shared/logout/logout.component';
     DropdownModule,
     MessageModule,
     ToastModule,
-    InputTextareaModule
+    InputTextareaModule,
+    TriStateCheckboxModule,
+    CheckboxModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

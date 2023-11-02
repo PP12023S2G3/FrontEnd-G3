@@ -151,10 +151,18 @@
       <div class="container-inputs-data-long-patient">
         <div>
             <h6 class="title-preconditions-patient">Condiciones previas</h6>
-            <input class="input-preconditions-patient" type="text"
-                placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions" tabindex="9"
-                 name="preconditions-patient" />
-
+            <div class="container-checkbox">
+              <div *ngIf="selectedpartOption" class="checkbox-group">
+                <div *ngFor="let checkbox of checkboxes[selectedpartOption]" class="checkbox-item">
+                  <p-checkbox
+                    [name]="checkbox"
+                    [value]="checkbox"
+                    [(ngModel)]="checkboxState[checkbox]"
+                  ></p-checkbox>
+                  <span>{{ checkbox }}</span>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
 

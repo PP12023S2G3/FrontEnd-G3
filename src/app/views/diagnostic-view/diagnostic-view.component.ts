@@ -36,6 +36,13 @@ export class DiagnosticViewComponent implements OnInit {
   IdUser!:number;
   selectedpartOption!:string;
   selectedsexOption!:string;
+  checkboxState: { [key: string]: boolean } = {};
+
+  checkboxes: { [key: string]: string[] } = {
+    Cerebro: ['Pérdida visual', 'Debilidad focal', 'Convulsiones'],
+    Pulmón: ['Puntada lateral', 'Fiebre', 'Dificultad respiratoria'],
+    Riñón: ['Sangre en orina', 'Dolor en zona lumbar', 'Cansancio'],
+  };
 
   constructor(private resultService: ResultService,
     private resultDTO: ResultcDTO,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
@@ -51,6 +58,8 @@ export class DiagnosticViewComponent implements OnInit {
     this.partsOptions = [
       { label: 'Cerebro', value: 1 },
       { label: 'Corazon', value: 2 },
+      { label: 'Pulmón', value: 3 },
+      { label: 'Riñón', value: 4 },
     ];
 
     this.diagnostic = new Diagnostic();
@@ -276,7 +285,7 @@ private createRequestHeart(imagen: File,idUsuario: number,
 
     const namePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
     const lastNamePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
-  
+
     const validDNI = this.doctor?.dni && dniPattern.test(this.doctor.dni.toString()); // Validar el DNI
 
     const validName = this.doctor?.name && typeof this.doctor.name === 'string' && this.doctor.name.length >= 2 && namePattern.test(this.doctor.name);

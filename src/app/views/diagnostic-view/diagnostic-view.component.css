@@ -2,9 +2,9 @@
   overflow-x: hidden;
   overflow-y: hidden;
   min-width: 300px;
-  min-height: 1000px;
+  min-height: 1200px;
   max-width: 2000px;
-  max-height: 1500px;
+  max-height: 1700px;
   font-family: var(--font-family);
   background-color: #EFEFEF;
   margin-top: 130px;
@@ -121,10 +121,10 @@
   margin: 0;
 }
 
-.container-inputs-data-long-patient input {
+.container-inputs-data-long-patient .container-checkbox {
   width: 100%;
   min-height: 4vw;
-  max-height: 12vw;
+  max-height: 10vw;
   margin: 0;
   border-style: solid;
   border-radius: 10px;
@@ -166,7 +166,7 @@
 }
 
 .container-data-patient {
-  min-height: 500px; 
+  min-height: 500px;
 }
 
 /*------------------------------------------IMAGEN--------------------------------------------------------*/
@@ -206,9 +206,7 @@
   width: 280px;
   height: 280px;
   max-width: 300px;
-  /* Ajusta el ancho máximo según tus preferencias */
   max-height: 300px;
-  /* Ajusta la altura máxima según tus preferencias */
   margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -217,6 +215,37 @@
 }
 
 /*--------------------------------------------------------------------------------------------------*/
+
+
+@media screen and (max-width: 800px) {
+  .container-inputs-data-long-patient .container-checkbox {
+    width: 100%;
+    min-height: 20vw;
+    max-height: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container-inputs-data-long-patient {
+
+    min-height: 12vw;
+    max-height: 40vw;
+  }
+  .checkbox-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .checkbox-item {
+    padding-right: 2rem;
+  }
+  .checkbox-item span {
+    margin-left: 10px;
+  }
+
+}
 
 @media screen and (max-width: 500px) {
   .container-data-doctor input {
@@ -227,12 +256,12 @@
     flex-direction: column;
   }
 
-  .container-inputs-data-patient input {
+  .container-inputs-data-patient .container-checkbox{
     width: 100%;
   }
 
-  .container-inputs-data-long-patient input {
-    height: 20vw;
+  .container-inputs-data-long-patient {
+    height: 50vw;
   }
 
   .img-result {
@@ -249,7 +278,15 @@
     height: 8vw;
   }
 
+  .checkbox-item {
 
+  }
+  .container-checkbox  {
+    margin-left: 3rem;
+  }
+  .checkbox-item span {
+    margin-left: 10px;
+  }
 }
 
 .errors{
@@ -277,7 +314,24 @@
 :host ::ng-deep .p-datepicker{
   min-width: 400px;
   position: static;
-  min-height: 400px; 
+  min-height: 400px;
   top: 0;
   left: 0;
+}
+
+.container-checkbox {
+  width: 100%;
+  min-height: 400px;
+}
+.checkbox-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.checkbox-item {
+  padding-left: 3rem;
+}
+.checkbox-item span {
+  margin-left: 10px;
 }
