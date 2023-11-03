@@ -3,4 +3,7 @@ export interface PredictedResultBrain {
     meningioma: number;
     no_tumor: number;
     pituitary: number;
+    id: number;
+    imagen_id: number;
+
 }

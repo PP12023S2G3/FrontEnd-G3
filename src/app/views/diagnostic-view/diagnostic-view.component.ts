@@ -172,7 +172,7 @@ export class DiagnosticViewComponent implements OnInit {
     this.resultDTO.setCompanyInformation(this.diagnostic);
     console.log(this.diagnostic);
     if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
-    const req=this.createRequestHeart(file,this.IdUser, this.doctor.dni);
+    const req=this.createRequestHeart(file,true, this.doctor.dni,true,"nacimient",23,23,"sexo",2,"doc");
 
     this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
@@ -184,8 +184,8 @@ export class DiagnosticViewComponent implements OnInit {
       }
     });
     }
-    /*
-    const reqBrain=this.createRequestBrain(file,true,true,true,4,4);
+
+    const reqBrain=this.createRequestBrain(file,true,true,true,"fechadenacimiento",4,7,"sexo",3,"1");
 
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
@@ -197,7 +197,7 @@ export class DiagnosticViewComponent implements OnInit {
       }
     });
 
-    const reqLungs=this.createRequestLungs(file,true,true,true,4,4);
+    const reqLungs=this.createRequestLungs(file,true,true,true,"nacimiento",23,123,"sexo",3,"1");
 
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
@@ -208,9 +208,49 @@ export class DiagnosticViewComponent implements OnInit {
       error: (error) => {
         // Manejar errores aquí
       }
-    });*/
+    });
+
+    const reqKnee=this.createRequestKnee(file,true,true,true,"nacimiento",23,123,"sexo",2,"doc");
+
+    this.resultService.postResultKnee(reqKnee).subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        this.router.navigate(['/result']);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+
+    const reqKidney=this.createRequestKidney(file,true,true,true,true,true,"nacimiento",23,123,"sexo",3,"1");
+
+    this.resultService.postResultKidney(reqKidney).subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        this.router.navigate(['/result']);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+
+    const reqWrist=this.createRequestWrist(file,true,true,true,"naciminto",3,23,"sexo",2,"doc");
+
+    this.resultService.postResultWrist(reqWrist).subscribe({
+      next: (res) => {
+        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        this.router.navigate(['/result']);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
 
   }
+
+
 
   OnSelectedSex(event : any) {
     if (!event.value) {
@@ -230,35 +270,103 @@ export class DiagnosticViewComponent implements OnInit {
     }
   }
 
- /*private createRequestBrain(imagen: File,
-    perdida_visual:boolean,debilidad_focal:boolean,convulsiones:boolean,
-    id_usuario:number,id_medico:number):FormData {
+  private createRequestBrain(imagen: File,
+    perdida_visual:boolean,debilidad_focal:boolean,convulsiones:boolean,fecha_nacimiento:string,peso:number,
+    altura:number,sexo:string,id_usuario:number,dni_medico:string):FormData {
     const formData = new FormData();
     formData.append('imagen', imagen);
     formData.append('perdida_visual', `${perdida_visual}`);
     formData.append('debilidad_focal', `${debilidad_focal}`);
     formData.append('convulsiones', `${convulsiones}`);
     formData.append('id_usuario', `${id_usuario}`);
-    formData.append('dni_medico', `${id_medico}`);
+    formData.append('dni_medico', `${dni_medico}`);
+    formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+    formData.append('peso', `${peso}`);
+    formData.append('altura', `${altura}`);
+    formData.append('sexo', `${sexo}`);
     return formData;
   }
 
   private createRequestLungs(imagen: File,
     puntadaLateral: boolean, fiebre: boolean, dificultadRespiratoria: boolean,
-    idUsuario: number, idMedico: number):FormData  {
+    fecha_nacimiento:string,peso:number,altura:number,sexo:string,
+    idUsuario: number, dni_medico: string):FormData  {
     const formData = new FormData();
     formData.append('imagen', imagen);
     formData.append('puntada_lateral', `${puntadaLateral}`);
     formData.append('fiebre', `${fiebre}`);
     formData.append('dificultad_respiratoria', `${dificultadRespiratoria}`);
+    formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+    formData.append('peso', `${peso}`);
+    formData.append('altura', `${altura}`);
+    formData.append('sexo', `${sexo}`);
     formData.append('id_usuario', `${idUsuario}`);
-    formData.append('dni_medico', `${idMedico}`);
+    formData.append('dni_medico', `${dni_medico}`);
     return formData;
-  } */
-private createRequestHeart(imagen: File,idUsuario: number,
+  }
+private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
+  disnea:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
   const formData = new FormData();
   formData.append('imagen', imagen);
+  formData.append('palpitaciones', `${palpitaciones}`);
+  formData.append('dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo', `${dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo}`);
+  formData.append('disnea', `${disnea}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
+
+private createRequestKidney(imagen: File,hermaturia:boolean,dolor_lumbar:boolean,
+  dolor_abdominal:boolean,fiebre:boolean,perdida_peso:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('hermaturia', `${hermaturia}`);
+  formData.append('dolor_lumbar', `${dolor_lumbar}`);
+  formData.append('dolor_abdominal', `${dolor_abdominal}`);
+  formData.append('fiebre', `${fiebre}`);
+  formData.append('perdida_peso', `${perdida_peso}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
+private createRequestKnee(archivo: File,sensacion_inestabilidad:boolean,CA_positiva:boolean,
+  impotencia_funcional:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('archivo', archivo);
+  formData.append('sensacion_inestabilidad', `${sensacion_inestabilidad}`);
+  formData.append('CA_positiva', `${CA_positiva}`);
+  formData.append('impotencia_funcional', `${impotencia_funcional}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
+private createRequestWrist(imagen: File,limitacion_funcional:boolean,edema:boolean,
+  deformidad:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('limitacion_funcional', `${limitacion_funcional}`);
+  formData.append('edema', `${edema}`);
+  formData.append('deformidad', `${deformidad}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
   formData.append('id_usuario', `${idUsuario}`);
   formData.append('dni_medico', `${dniMedico}`);
   return formData;

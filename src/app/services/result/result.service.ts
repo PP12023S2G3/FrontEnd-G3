@@ -8,6 +8,8 @@ import { PredictedResultHeart } from 'src/app/models/PredictedResultHeart';
 import { PredictedResultBrain } from 'src/app/models/PredictedResultBrain';
 import { PredictedResultLungs } from 'src/app/models/PredictedResultLungs';
 import { PredictedResultKnee } from 'src/app/models/PredictedResultKnee';
+import { PredictedResultKidney } from 'src/app/models/PredictedResultKidney';
+import { PredictedResultWrist } from 'src/app/models/PredictedResultWrist';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +19,10 @@ export class ResultService {
   private api : string ='https://api-resultados.onrender.com/Diagnosticos/';
   private endpointPredictResultBrain : string ='predecir/cerebro';
   private endpointPredictResultLungs : string ='predecir/pulmones';
+  private endpointPredictResultWrist : string ='predecir/muñeca';
   private endpointPredictResultHeart : string ='predecir/corazon';
   private endpointPredictResultKnee : string ='predecir/rodilla';
+  private endpointPredictResultKidney : string ='predecir/riñones';
   private endpointDiagnosticRecords : string ='historial';
 
   constructor(private http: HttpClient) { }
@@ -31,14 +35,24 @@ export class ResultService {
     return this.http.post<PredictedResultBrain>(url,data).pipe(
       catchError(this.handleErrorPost));
   }
+  public postResultHeart(data:FormData):Observable<PredictedResultHeart>{
+    let url=this.api+this.endpointPredictResultHeart;
+    return this.http.post<PredictedResultHeart>(url,data).pipe(
+      catchError(this.handleErrorPost));
+  }
+  public postResultWrist(data:FormData):Observable<PredictedResultWrist>{
+    let url=this.api+this.endpointPredictResultWrist;
+    return this.http.post<PredictedResultWrist>(url,data).pipe(
+      catchError(this.handleErrorPost));
+  }
   public postResultLungs(data:FormData):Observable<PredictedResultLungs>{
     let url=this.api+this.endpointPredictResultLungs;
     return this.http.post<PredictedResultLungs>(url,data).pipe(
       catchError(this.handleErrorPost));
   }
-  public postResultHeart(data:FormData):Observable<PredictedResultHeart>{
-    let url=this.api+this.endpointPredictResultHeart;
-    return this.http.post<PredictedResultHeart>(url,data).pipe(
+  public postResultKidney(data:FormData):Observable<PredictedResultKidney>{
+    let url=this.api+this.endpointPredictResultKidney;
+    return this.http.post<PredictedResultKidney>(url,data).pipe(
       catchError(this.handleErrorPost));
   }
   public postResultKnee(data:FormData):Observable<PredictedResultKnee>{
