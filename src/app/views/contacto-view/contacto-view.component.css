@@ -11,7 +11,6 @@ h2 {
     max-width: 2000px;
     max-height: 1500px;
     font-family: var(--font-family);
-    background-color: #EFEFEF;
     margin-top: 10%;
 }
 
@@ -19,15 +18,17 @@ h2 {
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
-    background-color: #FFFFFF;
     margin: 1% 0 0 5%;
 }
 
+#p-dropdown {
+    border-radius: 10px;
+    width: 100%;
+}
 /*-------------------------------------------FORMULARIO------------------------------------------------------------------*/
 
 .container-form-contact {
     /*CONTIENE TODO EL FORMULARIO*/
-    background: #ffffff;
     box-sizing: border-box;
     font-size: var(--font-size-title6);
     font-weight: normal;
@@ -39,13 +40,15 @@ h2 {
     /*AFECTA SOLO A LA ENTRADA DE DATOS DEL FORM*/
     border-radius: 10px;
     border: 1px solid var(--border-box-color);
+    background-color: #FFFFFF;
 }
 
 .title-input-contact {
     /*AFECTA TODOS LOS SUBTITULOS*/
     font-size: var(--font-size-title6);
     font-weight: bold;
-    margin: 0;
+    margin-right: 5%;
+    background-color: #FFFFFF;
 }
 
 .container-field-contact {
@@ -69,6 +72,10 @@ h2 {
     border: 0.996px solid #D1D1D1;
     width: 95%;
     background-color: #FFFFFF;
+}
+
+.subtitle-how-help-contact {
+    margin-left: 7%;
 }
 
 :host::ng-deep .p-dropdown {
@@ -112,6 +119,8 @@ h2 {
 form {
     margin-right: 5%;
 }
+
+
 
 /*----------------------------------------BOTON ENVIAR------------------------------------------------------------------------*/
 .button-submit {

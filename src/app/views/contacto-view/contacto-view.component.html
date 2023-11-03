@@ -1,9 +1,9 @@
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 
 <div class="container-contact">
+    <h2 class="subtitle-how-help-contact">¿Cómo podemos ayudarte?</h2>
     <div class="container-containers-contact">
         <div class="container-form-contact">
-            <h2 class="subtitle-how-help-contact">¿Cómo podemos ayudarte?</h2>
             <form (ngSubmit)="onSubmit()">
                 <div class="container-data-form-contact">
                     <div class="container-field-contact">
@@ -28,8 +28,8 @@
                         <h6 class="title-input-contact">Asunto</h6>
                         <span class="span-input-contact">
                             <i class="pi pi-user" style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                            <p-dropdown placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.issue"
-                            [options]="messageOptions" (onChange)="OnSelectedMessage($event)"></p-dropdown>
+                            <p-dropdown id="p-dropdown" [style]="{'minWidth':'100%'}" placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.issue"
+                            [options]="messageOptions" (onChange)="OnSelectedMessage($event)" styles="width: 230px;  background-color: #3B82F6;"></p-dropdown>
                         </span>
                         
                     </div>
