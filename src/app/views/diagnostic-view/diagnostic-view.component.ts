@@ -177,7 +177,7 @@ export class DiagnosticViewComponent implements OnInit {
     this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-        this.router.navigate(['/result']);
+        //this.router.navigate(['/result']);
       },
       error: (error) => {
         // Manejar errores aquí
@@ -190,20 +190,21 @@ export class DiagnosticViewComponent implements OnInit {
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
         console.log(res);
-        localStorage.setItem('PredictedResultbrain', JSON.stringify(res));
+        localStorage.setItem('idResult', JSON.stringify(res.id));
+        this.router.navigate(['/result']);
       },
       error: (error) => {
         // Manejar errores aquí
       }
     });
-
+/*
     const reqLungs=this.createRequestLungs(file,true,true,true,"nacimiento",23,123,"sexo",3,"1");
 
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
         console.log(res);
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-        this.router.navigate(['/result']);
+
       },
       error: (error) => {
         // Manejar errores aquí
@@ -216,7 +217,7 @@ export class DiagnosticViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-        this.router.navigate(['/result']);
+
       },
       error: (error) => {
         // Manejar errores aquí
@@ -229,7 +230,7 @@ export class DiagnosticViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-        this.router.navigate(['/result']);
+
       },
       error: (error) => {
         // Manejar errores aquí
@@ -241,13 +242,13 @@ export class DiagnosticViewComponent implements OnInit {
     this.resultService.postResultWrist(reqWrist).subscribe({
       next: (res) => {
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-        this.router.navigate(['/result']);
+
       },
       error: (error) => {
         // Manejar errores aquí
       }
     });
-
+*/
   }
 
 
@@ -286,7 +287,7 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('sexo', `${sexo}`);
     return formData;
   }
-
+/*
   private createRequestLungs(imagen: File,
     puntadaLateral: boolean, fiebre: boolean, dificultadRespiratoria: boolean,
     fecha_nacimiento:string,peso:number,altura:number,sexo:string,
@@ -304,6 +305,7 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('dni_medico', `${dni_medico}`);
     return formData;
   }
+  */
 private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
   disnea:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
@@ -320,7 +322,7 @@ private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irr
   formData.append('dni_medico', `${dniMedico}`);
   return formData;
 }
-
+/*
 private createRequestKidney(imagen: File,hermaturia:boolean,dolor_lumbar:boolean,
   dolor_abdominal:boolean,fiebre:boolean,perdida_peso:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
@@ -371,7 +373,7 @@ private createRequestWrist(imagen: File,limitacion_funcional:boolean,edema:boole
   formData.append('dni_medico', `${dniMedico}`);
   return formData;
 }
-
+*/
   checkFormFields() {
     if (
       this.doctor.dni != undefined &&

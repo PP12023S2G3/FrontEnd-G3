@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
+import { ResultService } from 'src/app/services/result/result.service';
 
 
 
@@ -21,13 +22,28 @@ export class ResultViewComponent implements OnInit {
   tituloDinamico = 'Resultado';
   formattedDate: any;
 
-  
 
-  constructor(private resultDTO: ResultcDTO) {
+
+  constructor(private resultDTO: ResultcDTO,private resultService: ResultService) {
   }
 
 
   ngOnInit(): void {
+    const idResult = localStorage.getItem('idResult');
+    const roleId = localStorage.getItem('role');
+
+    if (idResult&&roleId) {
+      // Realizar la llamada a tu servicio aquí, por ejemplo:
+        this.resultService.getRecord(parseInt(idResult),roleId).subscribe({
+        next: (res) => {
+           // la respuesta de aca contiene todo lo necesario para mostrar en resultado
+          console.log(res);
+        },
+        error: (error) => {
+          // Manejar errores aquí
+        }
+      });
+    }
     this.diagnostic = new Diagnostic();
     this.diagnostic.sectionBody = "Cerebro";
     this.doctor = new Doctor();
@@ -37,7 +53,7 @@ export class ResultViewComponent implements OnInit {
         this.formattedDate = this.diagnostic.dateOfBirth.toLocaleDateString('es-ES', options); // Puedes cambiar 'es-ES' según tu preferencia de idioma
         console.log(this.formattedDate);
         console.log(this.diagnostic);
-  
+
       const storedResponseData = localStorage.getItem('responseData');
       if (storedResponseData) {
         this.responseData = JSON.parse(storedResponseData);
@@ -49,7 +65,7 @@ export class ResultViewComponent implements OnInit {
 
   buttonEnabled() {
     this.botonesHabilitados = true;
-    
+
   }
   buttonCase() {
     switch (this.diagnostic.sectionBody) {
@@ -82,7 +98,7 @@ export class ResultViewComponent implements OnInit {
         this.buttonText2 = 'Botón 2';
         break;
     }
-    
+
   }
 
 }

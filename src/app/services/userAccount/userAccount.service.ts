@@ -10,6 +10,7 @@ import { LogInRequest } from 'src/app/models/LogInRequest';
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
 const ROLE_LOCAL_STORAGE_KEY = 'role';
+const TOKEN_LOCAL_STORAGE_KEY = 'token';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class UserAccountService {
   private endpointDoctors: string='medicos';
   private endpointSignIn: string='registro';
   private endpointLogIn: string='login';
+  private endpointAuth: string='verificarUsuario';
   private user = new BehaviorSubject<SuccessfulLogInResp | null>(null);
   user$ = this.user.asObservable();
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
@@ -45,6 +47,12 @@ export class UserAccountService {
     return this.http.post<SuccessfulLogInResp>(url,logInRequest).pipe(
       catchError(this.handleErrorLogin));
   }
+  //para que usuario se pueda autenticar con token
+  public postAuth(token:string):Observable<SuccessfulLogInResp>{
+    let url=this.apiUsers+this.endpointAuth;
+    return this.http.post<SuccessfulLogInResp>(url,{token:`${token}`}).pipe(
+      catchError(this.handleErrorLogin));
+  }
 
   //para que usuario resetee su contraseña
   public postResetPassword(data:FormData):Observable<any>{
@@ -67,7 +75,7 @@ export class UserAccountService {
   }
 
   saveDataInLocalStorage(response: any): void {
-    const userToken = response.access_token;
+    const userToken = response.token;
     const user: SuccessfulLogInResp = {
       id: response.id,
       nombre: response.nombre,
@@ -81,6 +89,11 @@ export class UserAccountService {
     this.userId = response.id;
     this.saveRoleToLocalStore(response.rol_id);
     this.saveIdUserToLocalStore(this.userId);
+    this.saveTokenToLocalStore(userToken);
+  }
+
+  saveTokenToLocalStore(token: any) {
+    !localStorage.getItem('token')&&localStorage.setItem(TOKEN_LOCAL_STORAGE_KEY, token);
   }
 
   saveRoleToLocalStore(role: any) {
