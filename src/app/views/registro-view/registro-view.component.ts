@@ -87,7 +87,6 @@ export class RegistroComponent {
 
       this.userAccountService.postSignIn(req).subscribe({
       next: (res) => {
-        this.loaderService.updateIsLoading(true);
         localStorage.setItem('sign', JSON.stringify(res));
         this.messageService.add({
           severity: 'success',
@@ -104,6 +103,7 @@ export class RegistroComponent {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
   }
