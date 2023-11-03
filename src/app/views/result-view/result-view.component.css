@@ -2,11 +2,11 @@
     overflow-x: hidden;
     overflow-y: hidden;
     min-width: 300px;
-    min-height: 1000px;
+    min-height: 1200px;
     max-width: 2000px;
-    max-height: 1500px;
+    max-height: 1700px;
     font-family: var(--font-family);
-    background-color: #EFEFEF;
+    background-color: var(--background-color-light);
     margin-top: 90px;
 }
 
@@ -160,12 +160,34 @@
     justify-content: center;
 }
 .container-feedback p{
-    margin: 0;
+    margin: 0.5rem 0 0.5rem 0 ;
+    font-size: var(--font-size-title6);
+    text-align: center;
 }
 
 :host::ng-deep .container-feedback .p-button{
-    margin: 1.5rem 0 0 1rem;
+    margin: 1rem 0 0 1rem;
 }
+
+.container-comment h6 {
+    font-size: var(--font-size-title6);
+    font-weight: normal;
+    margin: 0;
+}
+
+.container-comment input{
+    min-height: 4vw;
+    max-height: 12vw;
+    margin: 0 0 0.5rem 0;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+    width: 50vw;
+    height: 6vw;
+    text-align: center;
+}
+
 
 /*---------------------------------------------BOTÓN DESCARGAR----------------------------------------*/
 
@@ -175,19 +197,21 @@
     justify-content: center;
 
 }
-
+:host::ng-deep .container-download-result .p-button {
+    margin-top: 1.5rem;
+}
 
 /*--------------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 700px) {
     :host::ng-deep .container-feedback .p-button{
-        width: 40vw;
+        width: 35vw;
         height: 3rem;
     }
     :host::ng-deep .container-download-result .p-button {
         width: 40vw;
-        height: 6vw;
-        margin-top: 2rem;
+        height: 4rem;
+      
     }
 }
 
@@ -218,10 +242,13 @@
     }
     :host::ng-deep .container-feedback .p-button{
         width: 35vw;
-        height: 2.5rem;
+        height: 3rem; 
+        padding: 0;  
     }
-
+    :host::ng-deep .container-download-result .p-button {
+        width: 35vw;
+        height: 3rem;
+        padding: 0;
+    }
     
-
-
 }
