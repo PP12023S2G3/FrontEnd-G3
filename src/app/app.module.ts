@@ -43,6 +43,7 @@ import { LogoutService } from './shared/logout/logout.service';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { CheckboxModule } from 'primeng/checkbox';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     RegistroComponent,
     NewPasswordViewComponent,
     LoginViewComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -85,7 +87,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     ToastModule,
     InputTextareaModule,
     TriStateCheckboxModule,
-    CheckboxModule
+    CheckboxModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

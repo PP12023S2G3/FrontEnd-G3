@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 import {MessageService} from 'primeng/api';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-registro-view',
@@ -16,7 +17,7 @@ export class RegistroComponent {
   rolId!: number;
   visible: boolean = false;
 
-  constructor(private userAccountService: UserAccountService,private messageService: MessageService) {
+  constructor(private userAccountService: UserAccountService,private messageService: MessageService, private loaderService: LoaderService) {
     this.medicalSpeciality = [
       { label: 'Neurólogo', value: 'Neurólogo' },
       { label: 'Cardiólogo', value: 'Cardiólogo' },
@@ -42,7 +43,7 @@ export class RegistroComponent {
     });*/
 
 
-
+    this.loaderService.updateIsLoading(true);
     this.postSignIn();
   }
 
@@ -86,7 +87,7 @@ export class RegistroComponent {
 
       this.userAccountService.postSignIn(req).subscribe({
       next: (res) => {
-
+        this.loaderService.updateIsLoading(true);
         localStorage.setItem('sign', JSON.stringify(res));
         this.messageService.add({
           severity: 'success',
@@ -95,6 +96,7 @@ export class RegistroComponent {
         });
         this.visible = true;
         this.desenfocarFondo();
+        this.loaderService.updateIsLoading(false);
       },
       error:  (error: { message: any }) => {
         this.messageService.add({
