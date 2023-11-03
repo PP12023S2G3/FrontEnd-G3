@@ -24,8 +24,7 @@ export class ResultViewComponent implements OnInit {
   responseData: any;
 
   tituloDinamico = 'Resultado';
-  formattedDate: any;
-  
+  formattedDate: any; 
 
 
 
@@ -50,7 +49,7 @@ export class ResultViewComponent implements OnInit {
       });
     }
     this.diagnostic = new Diagnostic();
-    this.diagnostic.sectionBody = "Cerebro";
+    this.diagnostic.sectionBody = "Riñon";
     this.doctor = new Doctor();
 
     this.changeLabelCases();

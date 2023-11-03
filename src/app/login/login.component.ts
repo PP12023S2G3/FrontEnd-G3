@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserAccountService } from '../services/userAccount/userAccount.service';
 import { LogInRequest } from '../models/LogInRequest';
 import {MessageService} from 'primeng/api';
+import { LoaderService } from '../shared/loader/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   formFieldsCompleted =false;
   form!: boolean;
 
-  constructor(private userAccountService: UserAccountService,router: Router,private messageService: MessageService) { this.router = router }
+  constructor(private userAccountService: UserAccountService,router: Router,private messageService: MessageService, private loaderService: LoaderService) { this.router = router }
 
   ngOnInit(): void {
     this.persona.dni = "";
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
       console.log("Usuario dni: " + this.persona.dni + " Usuario clave: " + this.persona.clave);
     }
     else {
+      this.loaderService.updateIsLoading(true);
       this.postLogIn()
     }
   }
@@ -71,6 +73,7 @@ export class LoginComponent implements OnInit {
     this.userAccountService.postLogIn(req).subscribe({
       next: (res) => {
           this.userAccountService.saveDataInLocalStorage(res);
+          this.loaderService.updateIsLoading(false);
           this.router.navigate(['/diagnostico']);
       },
       error: (error: { message: any }) => {
@@ -79,8 +82,8 @@ export class LoginComponent implements OnInit {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
-      
     });
   }
 
