@@ -114,6 +114,7 @@ export class RegistroComponent {
       detail: 'Datos erroneos por favor corregir',
       life: 2000,
     });
+    this.loaderService.updateIsLoading(false);
   }
   }
   else {
@@ -123,6 +124,7 @@ export class RegistroComponent {
       detail: 'Completa todos los campos del formulario antes de continuar',
       life: 2000,
     });
+    this.loaderService.updateIsLoading(false);
   }
 }
 
