@@ -7,7 +7,7 @@
     max-height: 1500px;
     font-family: var(--font-family);
     background-color: #EFEFEF;
-    margin-top: 130px;
+    margin-top: 90px;
 }
 
 .container-header-result {
@@ -39,7 +39,7 @@
     border-color: var(--border-box-color);
     width: 85%;
     height: auto;
-    margin: 2% 0 0 10%;
+    margin: 0 0 0 10%;
 }
 
 
@@ -98,7 +98,7 @@
 }
 
 .container-inputs-data-patient input {
-    margin: 0 0 10% 0;
+    margin: 0 0 5% 0;
     padding: 10px;
     text-align: center;
     border-style: solid;
@@ -151,6 +151,22 @@
 
 }
 
+/*------------------------------------------------FEEDBACK-----------------------------------------------------------*/
+
+.container-feedback{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container-feedback p{
+    margin: 0;
+}
+
+:host::ng-deep .container-feedback .p-button{
+    margin: 1.5rem 0 0 1rem;
+}
+
 /*---------------------------------------------BOTÓN DESCARGAR----------------------------------------*/
 
 .container-download-result {
@@ -160,28 +176,20 @@
 
 }
 
-:host::ng-deep .p-button {
-    width: 300px;
-    height: 4rem;
-    align-items: center;
-    border-radius: 10px;
-    background: var(--gradient-pink);
-    font-size: 15.94px;
-    font-style: normal;
-    font-weight: bold;
-    line-height: normal;
-    bottom: 1rem;
-    margin-top: 1rem;
-    border: none;
-    color: white;
-}
-
-:host::ng-deep  .p-button:hover {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    cursor: pointer;
-}
 
 /*--------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 700px) {
+    :host::ng-deep .container-feedback .p-button{
+        width: 40vw;
+        height: 3rem;
+    }
+    :host::ng-deep .container-download-result .p-button {
+        width: 40vw;
+        height: 6vw;
+        margin-top: 2rem;
+    }
+}
 
 @media screen and (max-width: 500px) {
     .container-data-doctor input {
@@ -208,11 +216,12 @@
     .container-inputs-data-doctor {
         flex-direction: column;
     }
-
-    :host::ng-deep .button-download-result .p-button {
-        width: 50vw;
-        height: 8vw;
+    :host::ng-deep .container-feedback .p-button{
+        width: 35vw;
+        height: 2.5rem;
     }
+
+    
 
 
 }

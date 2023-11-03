@@ -12,15 +12,20 @@ import { ResultService } from 'src/app/services/result/result.service';
   styleUrls: ['./result-view.component.css']
 })
 export class ResultViewComponent implements OnInit {
-  buttonText1 !: string;
-  buttonText2 !: string;
-  botonesHabilitados: boolean = false;
+  buttonTextLabel1 !: string;
+  buttonTextLabel2 !: string;
+  buttonsCases: boolean = true;
+  buttonDownload : boolean = true;
+  buttonNo : boolean = false;
+  buttonYes : boolean = false;
+
   doctor !: any;
   diagnostic!: any;
   responseData: any;
 
   tituloDinamico = 'Resultado';
   formattedDate: any;
+  
 
 
 
@@ -47,7 +52,8 @@ export class ResultViewComponent implements OnInit {
     this.diagnostic = new Diagnostic();
     this.diagnostic.sectionBody = "Cerebro";
     this.doctor = new Doctor();
-    this.buttonCase();
+
+    this.changeLabelCases();
     /*    this.diagnostic = this.resultDTO.getCompanyInformation();
         const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
         this.formattedDate = this.diagnostic.dateOfBirth.toLocaleDateString('es-ES', options); // Puedes cambiar 'es-ES' según tu preferencia de idioma
@@ -62,43 +68,52 @@ export class ResultViewComponent implements OnInit {
       } */
   }
 
+  disableButton(buttonDisable: number) {
+    if (buttonDisable === 1) {
+      this.buttonDownload = false; //habilitar
+      this.buttonsCases = true; //deshabilitar
+    } else {
+      this.buttonDownload = true; //deshabilitar
+      this.buttonsCases = false; //habilitar
+    }
+  }  
 
-  buttonEnabled() {
-    this.botonesHabilitados = true;
-
-  }
-  buttonCase() {
+  changeLabelCases() {
     switch (this.diagnostic.sectionBody) {
       case 'Cerebro':
-        this.buttonText1 = 'Hematoma';
-        this.buttonText2 = 'Otro';
+        this.buttonTextLabel1 = 'Hematoma';
+        this.buttonTextLabel2 = 'Otro';
         break;
       case 'Pulmones':
-        this.buttonText1 = 'Neumonía';
-        this.buttonText2 = 'Otro';
+        this.buttonTextLabel1 = 'Neumonía';
+        this.buttonTextLabel2 = 'Otro';
         break;
       case 'Corazon':
-        this.buttonText1 = 'Ritmia';
-        this.buttonText2 = 'Otro';
+        this.buttonTextLabel1 = 'Ritmia';
+        this.buttonTextLabel2 = 'Otro';
         break;
       case 'Riñon':
-        this.buttonText1 = 'Infeccion urinaria';
-        this.buttonText2 = 'Otro';
+        this.buttonTextLabel1 = 'Infeccion urinaria';
+        this.buttonTextLabel2 = 'Otro';
         break;
       case 'Rodilla':
-        this.buttonText1 = 'Artritis';
-        this.buttonText2 = 'Otro';
+        this.buttonTextLabel1 = 'Artritis';
+        this.buttonTextLabel2 = 'Otro';
         break;
       case 'Muñeca':
-        this.buttonText1 = 'Quebradura';
-        this.buttonText2 = 'Otro';
+        this.buttonTextLabel1 = 'Quebradura';
+        this.buttonTextLabel2 = 'Otro';
         break;
       default:
-        this.buttonText1 = 'Botón 1';
-        this.buttonText2 = 'Botón 2';
+        this.buttonTextLabel1 = 'Botón 1';
+        this.buttonTextLabel2 = 'Botón 2';
         break;
     }
 
+  }
+
+  enableButtonDownload(){
+    this.buttonDownload = false; //habilitar
   }
 
 }
