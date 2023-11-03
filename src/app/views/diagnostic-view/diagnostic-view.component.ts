@@ -36,6 +36,7 @@ export class DiagnosticViewComponent implements OnInit {
   IdUser!:number;
   selectedpartOption!:string;
   selectedsexOption!:string;
+  selectedOption!: string;
   checkboxState: { [key: string]: boolean } = {};
 
   checkboxes: { [key: string]: string[] } = {
@@ -47,6 +48,7 @@ export class DiagnosticViewComponent implements OnInit {
   constructor(private resultService: ResultService,
     private resultDTO: ResultcDTO,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
     this.IdUser = parseInt(this.userAccountService.userId);
+    
   }
 
   ngOnInit(): void {
@@ -69,6 +71,21 @@ export class DiagnosticViewComponent implements OnInit {
     this.minValidDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
     this.maxValidDate = today;
   }
+
+// Función para registrar cambios en las opciones seleccionadas y obtener el estado de cada opción
+onCheckboxChange( option: string) {
+  const opcionesSeleccionadas = this.checkboxState;
+    const opcionesPermitidas = this.checkboxes[this.selectedpartOption];
+    const opcionesMostradas = opcionesPermitidas.map(
+      (opcion) =>
+        `${opcion}=${opcionesSeleccionadas[opcion] ? 'true' : 'false'}`
+    );
+
+    console.log(
+      'Datos enviados con éxito. Opciones enviadas: ' +
+        opcionesMostradas.join(', ')
+    );
+}
 
   onFileSelect(event: any) {
     const selectedFile = event.target.files[0];
@@ -171,7 +188,7 @@ export class DiagnosticViewComponent implements OnInit {
   postResult(file: File) {
     this.resultDTO.setCompanyInformation(this.diagnostic);
     console.log(this.diagnostic);
-    if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
+   /* if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
     const req=this.createRequestHeart(file,true, this.doctor.dni,true,"nacimient",23,23,"sexo",2,"doc");
 
     this.resultService.postResultHeart(req).subscribe({
@@ -183,9 +200,10 @@ export class DiagnosticViewComponent implements OnInit {
         // Manejar errores aquí
       }
     });
-    }
+    } */
+    
 
-    const reqBrain=this.createRequestBrain(file,true,true,true,"fechadenacimiento",4,7,"sexo",3,"1");
+   /* const reqBrain=this.createRequestBrain(file,true,true,true,"fechadenacimiento",4,7,"sexo",3,"1");
 
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
@@ -196,8 +214,9 @@ export class DiagnosticViewComponent implements OnInit {
       error: (error) => {
         // Manejar errores aquí
       }
-    });
-/*
+    });*/
+
+
     const reqLungs=this.createRequestLungs(file,true,true,true,"nacimiento",23,123,"sexo",3,"1");
 
     this.resultService.postResultLungs(reqLungs).subscribe({
@@ -248,7 +267,7 @@ export class DiagnosticViewComponent implements OnInit {
         // Manejar errores aquí
       }
     });
-*/
+
   }
 
 
@@ -287,7 +306,7 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('sexo', `${sexo}`);
     return formData;
   }
-/*
+
   private createRequestLungs(imagen: File,
     puntadaLateral: boolean, fiebre: boolean, dificultadRespiratoria: boolean,
     fecha_nacimiento:string,peso:number,altura:number,sexo:string,
@@ -305,8 +324,8 @@ export class DiagnosticViewComponent implements OnInit {
     formData.append('dni_medico', `${dni_medico}`);
     return formData;
   }
-  */
-private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
+  
+/*private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
   disnea:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
   const formData = new FormData();
@@ -321,8 +340,8 @@ private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irr
   formData.append('id_usuario', `${idUsuario}`);
   formData.append('dni_medico', `${dniMedico}`);
   return formData;
-}
-/*
+} */
+
 private createRequestKidney(imagen: File,hermaturia:boolean,dolor_lumbar:boolean,
   dolor_abdominal:boolean,fiebre:boolean,perdida_peso:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
@@ -373,7 +392,7 @@ private createRequestWrist(imagen: File,limitacion_funcional:boolean,edema:boole
   formData.append('dni_medico', `${dniMedico}`);
   return formData;
 }
-*/
+
   checkFormFields() {
     if (
       this.doctor.dni != undefined &&

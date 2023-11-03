@@ -10,7 +10,8 @@ export class Diagnostic {
         public sectionBody?: string,
         public preconditions?: string,
         public resultDiagnostic?: string,
-        public image?: File
+        public image?: File,
+        public selectedOptions?: { [key: string]: boolean } 
     ){}
 
 }

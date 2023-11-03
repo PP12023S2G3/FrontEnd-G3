@@ -158,6 +158,8 @@
                     [name]="checkbox"
                     [value]="checkbox"
                     [(ngModel)]="checkboxState[checkbox]"
+                    (ngModelChange)="onCheckboxChange(checkbox)"
+
                   ></p-checkbox>
                   <span>{{ checkbox }}</span>
                 </div>
