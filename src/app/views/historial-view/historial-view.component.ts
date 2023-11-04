@@ -76,7 +76,7 @@ export class HistorialViewComponent{
     }
 
     private getRecordAll() {
-        this.resultService.getRecordAll("98","4").subscribe({
+        this.resultService.getRecordAll(localStorage.getItem("userId")||"",localStorage.getItem("role")||"").subscribe({
             next: (res) => {
               console.log(res);
               localStorage.setItem('records', JSON.stringify(res));

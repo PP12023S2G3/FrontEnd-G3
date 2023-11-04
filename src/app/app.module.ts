@@ -44,6 +44,8 @@ import { LogoutComponent } from './shared/logout/logout.component';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/middlewares/interceptor.service';
 
 
 @NgModule({
@@ -88,8 +90,13 @@ import { LoaderComponent } from './shared/loader/loader.component';
     InputTextareaModule,
     TriStateCheckboxModule,
     CheckboxModule,
+    HttpClientModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

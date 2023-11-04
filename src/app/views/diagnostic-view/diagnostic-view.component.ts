@@ -6,6 +6,7 @@ import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
+import * as JSZip from 'jszip';
 
 @Component({
   selector: 'app-diagnostic-view',
@@ -26,7 +27,7 @@ export class DiagnosticViewComponent implements OnInit {
   maxFileSize: number = 10485760;
   minImageWidth: number = 225;
   minImageHeight: number = 225;
-  acceptedFileTypes: string = 'image/jpeg,image/png,application/dicom';
+  acceptedFileTypes: string = 'image/jpeg,image/png,application/x-zip-compressed';
   sexOptions: { label: string; value: number; }[] | undefined;
   partsOptions: { label: string; value: number; }[] | undefined;
   calendarIcon = 'pi pi-calendar';
@@ -48,7 +49,7 @@ export class DiagnosticViewComponent implements OnInit {
   constructor(private resultService: ResultService,
     private resultDTO: ResultcDTO,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
     this.IdUser = parseInt(this.userAccountService.userId);
-    
+
   }
 
   ngOnInit(): void {
@@ -201,9 +202,7 @@ onCheckboxChange( option: string) {
       }
     });
     } */
-    
-
-   /* const reqBrain=this.createRequestBrain(file,true,true,true,"fechadenacimiento",4,7,"sexo",3,"1");
+    const reqBrain=this.resultService.createRequestBrain(file,true,true,true,"fechadenacimiento",4,7,"sexo",3,"1");
 
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
@@ -214,10 +213,28 @@ onCheckboxChange( option: string) {
       error: (error) => {
         // Manejar errores aquí
       }
-    });*/
+    });
+/*
+    const req=this.resultService.createRequestHeart(file,true,true,true,"nacimient",23,23,"sexo",2,"doc");
+
+    this.resultService.postResultHeart(req).subscribe({
+      next: (res) => {
+        console.log('Contraccion ventricular prematura:', res['Contraccion ventricular prematura']);
+        console.log('Fusion de latido ventricular y normal:', res['Fusion de latido ventricular y normal']);
+        console.log('Infarto de miocardio:', res['Infarto de miocardio']);
+        console.log('Latido no clasificable:', res['Latido no clasificable']);
+        console.log('Latido normal:', res['Latido normal']);
+        console.log('Latido prematuro supraventricular:', res['Latido prematuro supraventricular']);
+        console.log('id:', res.id);
+        console.log('imagen_id:', res.imagen_id);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
 
 
-    const reqLungs=this.createRequestLungs(file,true,true,true,"nacimiento",23,123,"sexo",3,"1");
+    const reqLungs=this.resultService.createRequestLungs(file,true,true,true,"nacimiento",23,123,"sexo",3,"1");
 
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
@@ -230,12 +247,16 @@ onCheckboxChange( option: string) {
       }
     });
 
-    const reqKnee=this.createRequestKnee(file,true,true,true,"nacimiento",23,123,"sexo",2,"doc");
+    const reqKnee=this.resultService.createRequestKnee(file,true,true,true,"nacimiento",23,123,"sexo",2,"doc");
 
     this.resultService.postResultKnee(reqKnee).subscribe({
       next: (res) => {
         console.log(res);
-        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        console.log('prediction:', res.prediction);
+        console.log('LCA sano:', res.prediction['LCA sano']);
+        console.log('Rotura en el LCA:', res.prediction['Rotura en el LCA']);
+        console.log('id:', res.id);
+        console.log('imagen_id:', res.imagen_id);
 
       },
       error: (error) => {
@@ -243,7 +264,7 @@ onCheckboxChange( option: string) {
       }
     });
 
-    const reqKidney=this.createRequestKidney(file,true,true,true,true,true,"nacimiento",23,123,"sexo",3,"1");
+    const reqKidney=this.resultService.createRequestKidney(file,true,true,true,true,true,"nacimiento",23,123,"sexo",3,"1");
 
     this.resultService.postResultKidney(reqKidney).subscribe({
       next: (res) => {
@@ -256,18 +277,21 @@ onCheckboxChange( option: string) {
       }
     });
 
-    const reqWrist=this.createRequestWrist(file,true,true,true,"naciminto",3,23,"sexo",2,"doc");
+    const reqWrist=this.resultService.createRequestWrist(file,true,true,true,"naciminto",3,23,"sexo",2,"doc");
 
     this.resultService.postResultWrist(reqWrist).subscribe({
       next: (res) => {
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-
+        console.log('Fractura:', res.Fractura);
+        console.log('Sin fractura:', res['Sin fractura']);
+        console.log('id:', res.id);
+        console.log('imagen_id:', res.imagen_id);
       },
       error: (error) => {
         // Manejar errores aquí
       }
     });
-
+*/
   }
 
 
@@ -289,109 +313,6 @@ onCheckboxChange( option: string) {
     this.selectedpartOption = event.value.label;
     }
   }
-
-  private createRequestBrain(imagen: File,
-    perdida_visual:boolean,debilidad_focal:boolean,convulsiones:boolean,fecha_nacimiento:string,peso:number,
-    altura:number,sexo:string,id_usuario:number,dni_medico:string):FormData {
-    const formData = new FormData();
-    formData.append('imagen', imagen);
-    formData.append('perdida_visual', `${perdida_visual}`);
-    formData.append('debilidad_focal', `${debilidad_focal}`);
-    formData.append('convulsiones', `${convulsiones}`);
-    formData.append('id_usuario', `${id_usuario}`);
-    formData.append('dni_medico', `${dni_medico}`);
-    formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
-    formData.append('peso', `${peso}`);
-    formData.append('altura', `${altura}`);
-    formData.append('sexo', `${sexo}`);
-    return formData;
-  }
-
-  private createRequestLungs(imagen: File,
-    puntadaLateral: boolean, fiebre: boolean, dificultadRespiratoria: boolean,
-    fecha_nacimiento:string,peso:number,altura:number,sexo:string,
-    idUsuario: number, dni_medico: string):FormData  {
-    const formData = new FormData();
-    formData.append('imagen', imagen);
-    formData.append('puntada_lateral', `${puntadaLateral}`);
-    formData.append('fiebre', `${fiebre}`);
-    formData.append('dificultad_respiratoria', `${dificultadRespiratoria}`);
-    formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
-    formData.append('peso', `${peso}`);
-    formData.append('altura', `${altura}`);
-    formData.append('sexo', `${sexo}`);
-    formData.append('id_usuario', `${idUsuario}`);
-    formData.append('dni_medico', `${dni_medico}`);
-    return formData;
-  }
-  
-/*private createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
-  disnea:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
-  dniMedico: string) :FormData{
-  const formData = new FormData();
-  formData.append('imagen', imagen);
-  formData.append('palpitaciones', `${palpitaciones}`);
-  formData.append('dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo', `${dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo}`);
-  formData.append('disnea', `${disnea}`);
-  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
-  formData.append('peso', `${peso}`);
-  formData.append('altura', `${altura}`);
-  formData.append('sexo', `${sexo}`);
-  formData.append('id_usuario', `${idUsuario}`);
-  formData.append('dni_medico', `${dniMedico}`);
-  return formData;
-} */
-
-private createRequestKidney(imagen: File,hermaturia:boolean,dolor_lumbar:boolean,
-  dolor_abdominal:boolean,fiebre:boolean,perdida_peso:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
-  dniMedico: string) :FormData{
-  const formData = new FormData();
-  formData.append('imagen', imagen);
-  formData.append('hermaturia', `${hermaturia}`);
-  formData.append('dolor_lumbar', `${dolor_lumbar}`);
-  formData.append('dolor_abdominal', `${dolor_abdominal}`);
-  formData.append('fiebre', `${fiebre}`);
-  formData.append('perdida_peso', `${perdida_peso}`);
-  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
-  formData.append('peso', `${peso}`);
-  formData.append('altura', `${altura}`);
-  formData.append('sexo', `${sexo}`);
-  formData.append('id_usuario', `${idUsuario}`);
-  formData.append('dni_medico', `${dniMedico}`);
-  return formData;
-}
-private createRequestKnee(archivo: File,sensacion_inestabilidad:boolean,CA_positiva:boolean,
-  impotencia_funcional:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
-  dniMedico: string) :FormData{
-  const formData = new FormData();
-  formData.append('archivo', archivo);
-  formData.append('sensacion_inestabilidad', `${sensacion_inestabilidad}`);
-  formData.append('CA_positiva', `${CA_positiva}`);
-  formData.append('impotencia_funcional', `${impotencia_funcional}`);
-  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
-  formData.append('peso', `${peso}`);
-  formData.append('altura', `${altura}`);
-  formData.append('sexo', `${sexo}`);
-  formData.append('id_usuario', `${idUsuario}`);
-  formData.append('dni_medico', `${dniMedico}`);
-  return formData;
-}
-private createRequestWrist(imagen: File,limitacion_funcional:boolean,edema:boolean,
-  deformidad:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
-  dniMedico: string) :FormData{
-  const formData = new FormData();
-  formData.append('imagen', imagen);
-  formData.append('limitacion_funcional', `${limitacion_funcional}`);
-  formData.append('edema', `${edema}`);
-  formData.append('deformidad', `${deformidad}`);
-  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
-  formData.append('peso', `${peso}`);
-  formData.append('altura', `${altura}`);
-  formData.append('sexo', `${sexo}`);
-  formData.append('id_usuario', `${idUsuario}`);
-  formData.append('dni_medico', `${dniMedico}`);
-  return formData;
-}
 
   checkFormFields() {
     if (

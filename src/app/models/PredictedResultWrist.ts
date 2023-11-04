@@ -1,6 +1,6 @@
 export interface PredictedResultWrist {
     Fractura: number;
-    Sinfractura: number;
+    'Sin fractura': number;
     id: number;
     imagen_id: number;
 }

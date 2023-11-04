@@ -114,5 +114,109 @@ export class ResultService {
     return throwError(() => new Error("Ups, algo salió mal"));
   }
 
+  //aca empiezan los metodos para crear request de cada diagnostico
+
+  createRequestBrain(imagen: File,
+    perdida_visual:boolean,debilidad_focal:boolean,convulsiones:boolean,fecha_nacimiento:string,peso:number,
+    altura:number,sexo:string,id_usuario:number,dni_medico:string):FormData {
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('perdida_visual', `${perdida_visual}`);
+    formData.append('debilidad_focal', `${debilidad_focal}`);
+    formData.append('convulsiones', `${convulsiones}`);
+    formData.append('id_usuario', `${id_usuario}`);
+    formData.append('dni_medico', `${dni_medico}`);
+    formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+    formData.append('peso', `${peso}`);
+    formData.append('altura', `${altura}`);
+    formData.append('sexo', `${sexo}`);
+    return formData;
+  }
+
+  createRequestLungs(imagen: File,
+    puntadaLateral: boolean, fiebre: boolean, dificultadRespiratoria: boolean,
+    fecha_nacimiento:string,peso:number,altura:number,sexo:string,
+    idUsuario: number, dni_medico: string):FormData  {
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('puntada_lateral', `${puntadaLateral}`);
+    formData.append('fiebre', `${fiebre}`);
+    formData.append('dificultad_respiratoria', `${dificultadRespiratoria}`);
+    formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+    formData.append('peso', `${peso}`);
+    formData.append('altura', `${altura}`);
+    formData.append('sexo', `${sexo}`);
+    formData.append('id_usuario', `${idUsuario}`);
+    formData.append('dni_medico', `${dni_medico}`);
+    return formData;
+  }
+
+createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
+  disnea:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('palpitaciones', `${palpitaciones}`);
+  formData.append('dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo', `${dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo}`);
+  formData.append('disnea', `${disnea}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
+
+createRequestKidney(imagen: File,hermaturia:boolean,dolor_lumbar:boolean,
+  dolor_abdominal:boolean,fiebre:boolean,perdida_peso:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('hermaturia', `${hermaturia}`);
+  formData.append('dolor_lumbar', `${dolor_lumbar}`);
+  formData.append('dolor_abdominal', `${dolor_abdominal}`);
+  formData.append('fiebre', `${fiebre}`);
+  formData.append('perdida_peso', `${perdida_peso}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
+createRequestKnee(archivo: File,sensacion_inestabilidad:boolean,CA_positiva:boolean,
+  impotencia_funcional:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('archivo', archivo);
+  formData.append('sensacion_inestabilidad', `${sensacion_inestabilidad}`);
+  formData.append('CA_positiva', `${CA_positiva}`);
+  formData.append('impotencia_funcional', `${impotencia_funcional}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
+createRequestWrist(imagen: File,limitacion_funcional:boolean,edema:boolean,
+  deformidad:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
+  dniMedico: string) :FormData{
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+  formData.append('limitacion_funcional', `${limitacion_funcional}`);
+  formData.append('edema', `${edema}`);
+  formData.append('deformidad', `${deformidad}`);
+  formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
+  formData.append('peso', `${peso}`);
+  formData.append('altura', `${altura}`);
+  formData.append('sexo', `${sexo}`);
+  formData.append('id_usuario', `${idUsuario}`);
+  formData.append('dni_medico', `${dniMedico}`);
+  return formData;
+}
 
 }

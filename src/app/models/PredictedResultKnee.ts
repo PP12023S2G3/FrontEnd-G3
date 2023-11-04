@@ -1,8 +1,8 @@
 export interface PredictedResultKnee {
-    1: number;
-    2: number;
-    3: number;
-    4: number;
+    prediction: {
+        'LCA sano': number;
+        'Rotura en el LCA': number;
+    },
     id: number;
     imagen_id: number;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
+import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
 
 
@@ -24,15 +25,27 @@ export class ResultViewComponent implements OnInit {
   responseData: any;
 
   tituloDinamico = 'Resultado';
-  formattedDate: any; 
+  formattedDate: any;
 
 
 
-  constructor(private resultDTO: ResultcDTO,private resultService: ResultService) {
+  constructor(private resultDTO: ResultcDTO,private resultService: ResultService,private feedbackService: FeedbackService) {
   }
 
 
   ngOnInit(): void {
+//ejemplo de como llamar al servicio de feedback
+    const reqFeedbackBrain=this.feedbackService.createRequestFeedbackBrain(1,true,true,true,true,"comentario");
+
+    this.feedbackService.postFeedbackBrain(reqFeedbackBrain).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('role');
 
@@ -75,7 +88,7 @@ export class ResultViewComponent implements OnInit {
       this.buttonDownload = true; //deshabilitar
       this.buttonsCases = false; //habilitar
     }
-  }  
+  }
 
   changeLabelCases() {
     switch (this.diagnostic.sectionBody) {
