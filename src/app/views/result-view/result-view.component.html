@@ -12,12 +12,12 @@
                 <div>
                     <h6 class="title-name-doctor">Nombre</h6>
                     <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText
-                    [(ngModel)]="doctor.name" readonly name="doctor-lastname" />
+                        [(ngModel)]="doctor.name" readonly name="doctor-lastname" />
                 </div>
                 <div>
                     <h6 class="title-lastname-doctor">Apellido</h6>
                     <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText
-                    [(ngModel)]="doctor.lastname" readonly name="doctor-lastname" />
+                        [(ngModel)]="doctor.lastname" readonly name="doctor-lastname" />
                 </div>
 
             </div>
@@ -30,7 +30,7 @@
                 <div>
                     <h6 class="title-age-patient">Fecha de nacimiento</h6>
                     <input class="input-age-patient" type="text" placeholder="Fecha de nacimiento" pInputText
-                        [(ngModel)]="formattedDate"  readonly name="age-patient" />
+                        [(ngModel)]="formattedDate" readonly name="age-patient" />
                 </div>
 
                 <div>
@@ -62,10 +62,13 @@
             <div class="container-inputs-data-long-patient">
                 <div>
                     <h6 class="title-preconditions-patient">Condiciones previas</h6>
-                    <input class="input-preconditions-patient" type="text"
-                        placeholder="Condiciones previas del paciente" pInputText [(ngModel)]="diagnostic.preconditions"
-                        readonly name="preconditions-patient" />
-
+                    <div class="container-checkbox">
+                        <div *ngFor="let checkbox of checkboxes[diagnostic.sectionBody]" class="checkbox-item">
+                            <p-checkbox [name]="checkbox" [value]="checkbox"
+                                [(ngModel)]="diagnostic.preconditions"></p-checkbox>
+                            <span>{{ checkbox }}</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -86,23 +89,33 @@
     <div class="container-feedback">
         <p>¿Este resultado te parece correcto?</p>
 
-        <div class="button-normal-feedback">
-            <p-button styleClass="p-button-global" (onClick)="disableButton(1)" [disabled]="buttonYes" label="Si"></p-button>
-            <p-button styleClass="p-button-global" (onClick)="disableButton(2)" [disabled]="buttonNo" label="No"></p-button>
+        <div class="buttons-normal-feedback">
+            <p-button styleClass="p-button-global" (onClick)="disableButton(1)" [disabled]="buttonYes"
+                label="Si"></p-button>
+            <p-button styleClass="p-button-global" (onClick)="disableButton(2)" [disabled]="buttonNo"
+                label="No"></p-button>
         </div>
-        <p>¿Qué resultado sería mejor en este caso?</p>
-        <div class="button-normal-feedback">
-            <p-button styleClass="p-button-global" [disabled]="buttonsCases" (onClick)="enableButtonDownload()" label="{{ buttonTextLabel1 }}"></p-button>
-            <p-button  styleClass="p-button-global" [disabled]="buttonsCases" (onClick)="enableButtonDownload()" label="{{ buttonTextLabel2 }}"></p-button>
+
+        <div *ngIf="!buttonsCases">
+            <p>¿Qué resultado sería mejor en este caso?</p>
+            <div class="buttons-normal-feedback">
+
+                <p-button styleClass="p-button-global" [disabled]="buttonsCases" (onClick)="enableButtonDownload()"
+                    label="{{ buttonTextLabel1 }}"></p-button>
+                <p-button styleClass="p-button-global" [disabled]="buttonsCases" (onClick)="enableButtonDownload()"
+                    label="{{ buttonTextLabel2 }}"></p-button>
+            </div>
+            <p> En caso de no coincidir deja un comentario por favor</p>
+            <div class="container-comment">
+                <h6 >Comentario</h6>
+                <input class="input-comment" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment"
+                    pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" /> 
+            </div>
         </div>
-        <p> En caso de no coincidir deja un comentario por favor</p>
-        <div class="container-comment">
-            <h6 class="title-comment">Comentario</h6>
-            <input class="input-comment" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" /> <!--[(ngModel)]="diagnostic.comentario"-->
-        </div>
+
     </div>
 
     <div class="container-download-result">
-        <p-button styleClass="p-button-global" type="download"  [disabled]="buttonDownload" label="Descargar"></p-button>
+        <p-button styleClass="p-button-global" type="download" [disabled]="buttonDownload" label="Descargar"></p-button>
     </div>
 </div>
