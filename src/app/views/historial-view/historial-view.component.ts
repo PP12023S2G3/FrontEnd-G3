@@ -76,7 +76,7 @@ export class HistorialViewComponent{
     }
 
     private getRecordAll() {
-        this.resultService.getRecordAll(localStorage.getItem("userId")||"",localStorage.getItem("role")||"").subscribe({
+        this.resultService.getRecordAll("2",localStorage.getItem("role")||"").subscribe({
             next: (res) => {
               console.log(res);
               localStorage.setItem('records', JSON.stringify(res));
@@ -88,7 +88,7 @@ export class HistorialViewComponent{
           });
     }
     private getRecord() {
-        this.resultService.getRecord(22,"4").subscribe({
+        this.resultService.getRecord(696,"4").subscribe({
             next: (res) => {
               console.log(res);
               localStorage.setItem('record1', JSON.stringify(res));

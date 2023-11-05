@@ -88,9 +88,38 @@ onCheckboxChange( option: string) {
     );
 }
 
-  onFileSelect(event: any) {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
+onFileSelect(event: any) {
+  const selectedFile = event.target.files[0];
+  if (selectedFile) {
+    if (selectedFile.type === 'application/x-zip-compressed') {
+      console.log("hola")
+      const jszip = new JSZip();
+      jszip.loadAsync(selectedFile)
+        .then((zip) => {
+          if (
+            selectedFile.size <= this.maxFileSize &&
+            this.acceptedFileTypes.split(',').includes(selectedFile.type)
+          ) {
+            this.uploadedFile = selectedFile;
+            this.isResultButtonDisabled = false;
+            this.getObjectURL(selectedFile);
+            this.showCancelButton = true; // Muestra el botón de cancelar
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'La imagen no cumple con los requisitos',
+              life: 2000,
+            });
+            this.resetFileInput();
+          }
+        })
+        .catch((error) => {
+          console.error('Error al cargar el archivo ZIP:', error);
+        });
+    } else {
+      // No es un archivo ZIP, maneja el caso de imágenes o tipos de archivo válidos
+      // (código anterior para imágenes)
       const image = new Image();
       image.src = window.URL.createObjectURL(selectedFile);
 
@@ -115,16 +144,18 @@ onCheckboxChange( option: string) {
           this.resetFileInput();
         }
       };
-    } else {
-      this.resetFileInput();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
-        life: 3000,
-      });
     }
+  } else {
+    this.resetFileInput();
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
+      life: 3000,
+    });
   }
+}
+
 
   resetFileInput() {
     this.uploadedFile = null;
@@ -206,27 +237,34 @@ onCheckboxChange( option: string) {
 
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
-        console.log(res);
+
         localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
+        console.log(res);
+        console.log(res.pituitary);
+        console.log(res.no_tumor);
+        console.log(res.meningioma);
+        console.log(res.glioma);
+        console.log(res.imagen_id);
+        console.log(res.id);
       },
       error: (error) => {
         // Manejar errores aquí
       }
     });
-/*
+
     const req=this.resultService.createRequestHeart(file,true,true,true,"nacimient",23,23,"sexo",2,"doc");
 
     this.resultService.postResultHeart(req).subscribe({
       next: (res) => {
-        console.log('Contraccion ventricular prematura:', res['Contraccion ventricular prematura']);
-        console.log('Fusion de latido ventricular y normal:', res['Fusion de latido ventricular y normal']);
-        console.log('Infarto de miocardio:', res['Infarto de miocardio']);
-        console.log('Latido no clasificable:', res['Latido no clasificable']);
-        console.log('Latido normal:', res['Latido normal']);
-        console.log('Latido prematuro supraventricular:', res['Latido prematuro supraventricular']);
-        console.log('id:', res.id);
+        console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
+        console.log('Fusion de latido ventricular y normal:', res.fusionVentricularNormal);
+        console.log('Infarto de miocardio:', res.infarto);
+        console.log('Latido no clasificable:', res.no_clasificable);
+        console.log('Latido normal:', res.normal);
+        console.log('Latido prematuro supraventricular:', res.prematuroSupraventricular);
         console.log('imagen_id:', res.imagen_id);
+        console.log('id:', res.id);
       },
       error: (error) => {
         // Manejar errores aquí
@@ -239,8 +277,10 @@ onCheckboxChange( option: string) {
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
         console.log(res);
-        localStorage.setItem('PredictedResult', JSON.stringify(res));
-
+        console.log(res.pneumonia);
+        console.log(res.no_pneumonia);
+        console.log(res.imagen_id);
+        console.log(res.id);
       },
       error: (error) => {
         // Manejar errores aquí
@@ -253,8 +293,8 @@ onCheckboxChange( option: string) {
       next: (res) => {
         console.log(res);
         console.log('prediction:', res.prediction);
-        console.log('LCA sano:', res.prediction['LCA sano']);
-        console.log('Rotura en el LCA:', res.prediction['Rotura en el LCA']);
+        console.log('LCA sano:', res.prediction.lcaSano);
+        console.log('Rotura en el LCA:', res.prediction.roturaLCA);
         console.log('id:', res.id);
         console.log('imagen_id:', res.imagen_id);
 
@@ -269,8 +309,12 @@ onCheckboxChange( option: string) {
     this.resultService.postResultKidney(reqKidney).subscribe({
       next: (res) => {
         console.log(res);
-        localStorage.setItem('PredictedResult', JSON.stringify(res));
-
+        console.log(res.tumor);
+        console.log(res.quiste);
+        console.log(res.piedra);
+        console.log(res.normal);
+        console.log(res.imagen_id);
+        console.log(res.id);
       },
       error: (error) => {
         // Manejar errores aquí
@@ -282,16 +326,16 @@ onCheckboxChange( option: string) {
     this.resultService.postResultWrist(reqWrist).subscribe({
       next: (res) => {
         localStorage.setItem('PredictedResult', JSON.stringify(res));
-        console.log('Fractura:', res.Fractura);
-        console.log('Sin fractura:', res['Sin fractura']);
-        console.log('id:', res.id);
+        console.log('Fractura:', res.fractura);
+        console.log('Sin fractura:', res.sano);
         console.log('imagen_id:', res.imagen_id);
+        console.log('id:', res.id);
       },
       error: (error) => {
         // Manejar errores aquí
       }
     });
-*/
+
   }
 
 

@@ -9,7 +9,7 @@ import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/h
 })
 export class FeedbackService {
 
-  private api : string ='https://api-resultados.onrender.com/Diagnosticos/Feedback';
+  private api : string ='https://api-resultados.onrender.com/Feedback';
   private endpointBrain:string="/cerebro";
   private endpointHeart:string="/corazon";
   private endpointWrist:string="/muñeca";
@@ -19,42 +19,44 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  public postFeedbackBrain(data:FormData):Observable<any>{
-    let url=this.api+this.endpointBrain;
-    return this.http.post<any>(url,data).pipe(
-      catchError(this.handleErrorPost));
-  }
-  public postFeedbackHeart(data: FormData): Observable<any> {
-    let url = this.api + this.endpointHeart;
-    return this.http.post<any>(url, data).pipe(
+  public postFeedbackBrain(imagen_id: number, glioma: boolean, meningioma: boolean, pituitary: boolean, no_tumor: boolean, comentario: string): Observable<any> {
+    let url = this.api + this.endpointBrain + `?imagen_id=${imagen_id}&glioma=${glioma}&meningioma=${meningioma}&pituitary=${pituitary}&no_tumor=${no_tumor}&comentario=${comentario}`;
+    return this.http.post<any>(url, null).pipe(
       catchError(this.handleErrorPost)
     );
   }
 
-  public postFeedbackWrist(data: FormData): Observable<any> {
-    let url = this.api + this.endpointWrist;
-    return this.http.post<any>(url, data).pipe(
+  public postFeedbackHeart(imagen_id: number, contraccion_ventricular_prematura: boolean, fusion_de_latido_ventricular_y_normal: boolean, infarto_de_miocardio: boolean, latido_no_clasificable: boolean, latido_normal: boolean, latido_prematuro_supraventricular: boolean, comentario: string): Observable<any> {
+    let url = this.api + this.endpointHeart + `?imagen_id=${imagen_id}&contraccion_ventricular_prematura=${contraccion_ventricular_prematura}&fusion_de_latido_ventricular_y_normal=${fusion_de_latido_ventricular_y_normal}&infarto_de_miocardio=${infarto_de_miocardio}&latido_no_clasificable=${latido_no_clasificable}&latido_normal=${latido_normal}&latido_prematuro_supraventricular=${latido_prematuro_supraventricular}&comentario=${comentario}`;
+    return this.http.post<any>(url, null).pipe(
       catchError(this.handleErrorPost)
     );
   }
 
-  public postFeedbackLungs(data: FormData): Observable<any> {
-    let url = this.api + this.endpointLungs;
-    return this.http.post<any>(url, data).pipe(
+  public postFeedbackWrist(imagen_id: number, fractura: boolean, sano: boolean, comentario: string): Observable<any> {
+    let url = this.api + this.endpointWrist + `?imagen_id=${imagen_id}&fractura=${fractura}&sano=${sano}&comentario=${comentario}`;
+    return this.http.post<any>(url, null).pipe(
       catchError(this.handleErrorPost)
     );
   }
 
-  public postFeedbackKidney(data: FormData): Observable<any> {
-    let url = this.api + this.endpointKidney;
-    return this.http.post<any>(url, data).pipe(
+  public postFeedbackLungs(imagen_id: number, pneumonia: boolean, no_pneumonia: boolean, comentario: string): Observable<any> {
+    let url = this.api + this.endpointLungs + `?imagen_id=${imagen_id}&pneumonia=${pneumonia}&no_pneumonia=${no_pneumonia}&comentario=${comentario}`;
+    return this.http.post<any>(url, null).pipe(
       catchError(this.handleErrorPost)
     );
   }
 
-  public postFeedbackKnee(data: FormData): Observable<any> {
-    let url = this.api + this.endpointKnee;
-    return this.http.post<any>(url, data).pipe(
+  public postFeedbackKidney(imagen_id: number, quiste: boolean, piedra: boolean, tumor: boolean, normal: boolean, comentario: string): Observable<any> {
+    let url = this.api + this.endpointKidney + `?imagen_id=${imagen_id}&quiste=${quiste}&piedra=${piedra}&tumor=${tumor}&normal=${normal}&comentario=${comentario}`;
+    return this.http.post<any>(url, null).pipe(
+      catchError(this.handleErrorPost)
+    );
+  }
+
+  public postFeedbackKnee(imagen_id: number, rotura_lca: boolean, lca_sano: boolean, comentario: string): Observable<any> {
+    let url = this.api + this.endpointKnee + `?imagen_id=${imagen_id}&rotura_lca=${rotura_lca}&lca_sano=${lca_sano}&comentario=${comentario}`;
+    return this.http.post<any>(url, null).pipe(
       catchError(this.handleErrorPost)
     );
   }
@@ -96,74 +98,6 @@ export class FeedbackService {
       return throwError(() => new Error("	Error interno del servidor"));
     }
     return throwError(() => new Error("Ups, algo salió mal"));
-  }
-
-  //aca empiezan los metodos para crear request
-  createRequestFeedbackBrain(imagen_id: number, glioma: boolean,meningioma : boolean, no_tumor: boolean, pituitary: boolean, comentario: string): FormData  {
-    const formData = new FormData();
-  formData.append('imagen_id', `${imagen_id}`);
-  formData.append('glioma', `${glioma}`);
-  formData.append('meningioma', `${meningioma}`);
-  formData.append('no_tumor', `${no_tumor}`);
-  formData.append('pituitary', `${pituitary}`);
-  formData.append('comentario', comentario);
-
-  return formData;
-  }
-  createRequestFeedbackHeart(imagen_id: number, contraccion_ventricular_prematura: boolean, fusion_de_latido_ventricular_y_normal: boolean, infarto_de_miocardio: boolean, latido_no_clasificable: boolean, latido_normal: boolean, latido_prematuro_supraventricular: boolean, comentario: string): FormData {
-    const formData = new FormData();
-    formData.append('imagen_id', `${imagen_id}`);
-    formData.append('contraccion_ventricular_prematura', `${contraccion_ventricular_prematura}`);
-    formData.append('fusion_de_latido_ventricular_y_normal', `${fusion_de_latido_ventricular_y_normal}`);
-    formData.append('infarto_de_miocardio', `${infarto_de_miocardio}`);
-    formData.append('latido_no_clasificable', `${latido_no_clasificable}`);
-    formData.append('latido_normal', `${latido_normal}`);
-    formData.append('latido_prematuro_supraventricular', `${latido_prematuro_supraventricular}`);
-    formData.append('comentario', comentario);
-
-    return formData;
-  }
-
-  createRequestFeedbackWrist(imagen_id: number, fractura: boolean, sin_fractura: boolean, comentario: string): FormData {
-    const formData = new FormData();
-    formData.append('imagen_id', `${imagen_id}`);
-    formData.append('fractura', `${fractura}`);
-    formData.append('sin_fractura', `${sin_fractura}`);
-    formData.append('comentario', comentario);
-
-    return formData;
-  }
-
-  createRequestFeedbackLungs(imagen_id: number,pneumonia: boolean, no_pneumonia: boolean, comentario: string): FormData {
-    const formData = new FormData();
-    formData.append('imagen_id', `${imagen_id}`);
-    formData.append('pneumonia', `${pneumonia}`);
-    formData.append('no_pneumonia', `${no_pneumonia}`);
-    formData.append('comentario', comentario);
-
-    return formData;
-  }
-
-  createRequestFeedbackKidney(imagen_id: number, quiste: boolean,piedra: boolean,tumor: boolean,normal: boolean, comentario: string): FormData {
-    const formData = new FormData();
-    formData.append('imagen_id', `${imagen_id}`);
-    formData.append('quiste', `${quiste}`);
-    formData.append('piedra', `${piedra}`);
-    formData.append('tumor', `${tumor}`);
-    formData.append('normal', `${normal}`);
-    formData.append('comentario', comentario);
-
-    return formData;
-  }
-
-  createRequestFeedbackKnee(imagen_id: number, rotura_lca: boolean, lca_sano: boolean, comentario: string): FormData {
-    const formData = new FormData();
-    formData.append('imagen_id', `${imagen_id}`);
-    formData.append('rotura_lca', `${rotura_lca}`);
-    formData.append('lca_sano', `${lca_sano}`);
-    formData.append('comentario', comentario);
-
-    return formData;
   }
 
 }

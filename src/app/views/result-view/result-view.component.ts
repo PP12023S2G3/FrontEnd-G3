@@ -34,10 +34,8 @@ export class ResultViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-//ejemplo de como llamar al servicio de feedback
-    const reqFeedbackBrain=this.feedbackService.createRequestFeedbackBrain(1,true,true,true,true,"comentario");
-
-    this.feedbackService.postFeedbackBrain(reqFeedbackBrain).subscribe({
+//318 319
+    this.feedbackService.postFeedbackBrain(318,true,true,true,true,"comentario").subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -45,19 +43,68 @@ export class ResultViewComponent implements OnInit {
         // Manejar errores aquí
       }
     });
+    // Para el método postFeedbackWrist
+//315 323
+this.feedbackService.postFeedbackWrist(315, false, true,"comentario").subscribe({
+  next: (res) => {
+    console.log(res);
+  },
+  error: (error) => {
+    // Manejar errores aquí
+  }
+});
+
+//314 320
+this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
+  next: (res) => {
+    console.log(res);
+  },
+  error: (error) => {
+    // Manejar errores aquí
+  }
+});
+
+//316 321
+this.feedbackService.postFeedbackKidney(321, true,true,true, true, "comentario").subscribe({
+  next: (res) => {
+    console.log(res);
+  },
+  error: (error) => {
+    // Manejar errores aquí
+  }
+});
+//324 325
+this.feedbackService.postFeedbackKnee(325, false, true, "comentario").subscribe({
+  next: (res) => {
+    console.log(res);
+  },
+  error: (error) => {
+    // Manejar errores aquí
+  }
+});
+// Para el método postFeedbackHeart
+//317 322
+this.feedbackService.postFeedbackHeart(322, false, false, false,false,false, true, "comentario").subscribe({
+  next: (res) => {
+    console.log(res);
+  },
+  error: (error) => {
+    // Manejar errores aquí
+  }
+});
+
 
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('role');
 
     if (idResult&&roleId) {
-      // Realizar la llamada a tu servicio aquí, por ejemplo:
         this.resultService.getRecord(parseInt(idResult),roleId).subscribe({
         next: (res) => {
            // la respuesta de aca contiene todo lo necesario para mostrar en resultado
-          console.log(res);
+
         },
         error: (error) => {
-          // Manejar errores aquí
+
         }
       });
     }

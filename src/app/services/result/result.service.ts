@@ -151,13 +151,13 @@ export class ResultService {
     return formData;
   }
 
-createRequestHeart(imagen: File,palpitaciones:boolean,dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo:boolean,
+createRequestHeart(imagen: File,palpitaciones:boolean,dolor_superior_izquierdo:boolean,
   disnea:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
   const formData = new FormData();
   formData.append('imagen', imagen);
   formData.append('palpitaciones', `${palpitaciones}`);
-  formData.append('dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo', `${dolor_toracico_irradiado_a_cuello_mandíbula_miembro_superior_izquierdo}`);
+  formData.append('dolor_superior_izquierdo', `${dolor_superior_izquierdo}`);
   formData.append('disnea', `${disnea}`);
   formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
   formData.append('peso', `${peso}`);
@@ -202,12 +202,12 @@ createRequestKnee(archivo: File,sensacion_inestabilidad:boolean,CA_positiva:bool
   formData.append('dni_medico', `${dniMedico}`);
   return formData;
 }
-createRequestWrist(imagen: File,limitacion_funcional:boolean,edema:boolean,
+createRequestWrist(imagen: File,dolor_con_limitacion:boolean,edema:boolean,
   deformidad:boolean,fecha_nacimiento:string,peso:number,altura:number,sexo:string,idUsuario: number,
   dniMedico: string) :FormData{
   const formData = new FormData();
   formData.append('imagen', imagen);
-  formData.append('limitacion_funcional', `${limitacion_funcional}`);
+  formData.append('dolor_con_limitacion', `${dolor_con_limitacion}`);
   formData.append('edema', `${edema}`);
   formData.append('deformidad', `${deformidad}`);
   formData.append('fecha_nacimiento', `${fecha_nacimiento}`);
