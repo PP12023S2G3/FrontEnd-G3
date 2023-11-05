@@ -14,6 +14,7 @@ import * as JSZip from 'jszip';
   styleUrls: ['./diagnostic-view.component.css'],
   providers: [MessageService],
 })
+
 export class DiagnosticViewComponent implements OnInit {
   doctor!: Doctor;
   diagnostic!: Diagnostic;
@@ -39,12 +40,52 @@ export class DiagnosticViewComponent implements OnInit {
   selectedsexOption!:string;
   selectedOption!: string;
   checkboxState: { [key: string]: boolean } = {};
+  selectedOptions: string[] = [];
 
-  checkboxes: { [key: string]: string[] } = {
-    Cerebro: ['Pérdida visual', 'Debilidad focal', 'Convulsiones'],
-    Pulmón: ['Puntada lateral', 'Fiebre', 'Dificultad respiratoria'],
-    Riñón: ['Sangre en orina', 'Dolor en zona lumbar', 'Cansancio'],
+  selectedOptionsCerebro: { [key: string]: boolean } = {
+    'Pérdida visual': false,
+    'Debilidad focal': false,
+    'Convulsiones': false
   };
+
+  selectedOptionsPulmon: { [key: string]: boolean } = {
+    'Puntada lateral': false,
+    'Fiebre': false,
+    'Dificultad respiratoria': false
+  };
+
+  selectedOptionsRinion: { [key: string]: boolean } = {
+    'Hermaturia': false,
+    'Dolor lumbar': false,
+    'Dolor abdominal': false,
+    'Fiebre': false,
+    'Perdida de peso' : false
+  };
+
+  selectedOptionsRodilla: { [key: string]: boolean } = {
+    'Sensacion de inestabilidad': false,
+    'CA positiva': false,
+    'Impotencia funcional': false
+  };
+
+  selectedOptionsCorazon: { [key: string]: boolean } = {
+    'Palpitaciones': false,
+    'Dolor superior izquierdo': false,
+    'Disnea': false
+  };
+
+  selectedOptionsMunieca: { [key: string]: boolean } = {
+    'Dolor con limitacion': false,
+    'Edema': false,
+    'Deformidad': false
+  };
+
+  formattedDate: string = ''; // Variable para almacenar la fecha formateada
+
+
+  getObjectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
 
   constructor(private resultService: ResultService,
     private resultDTO: ResultcDTO,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
@@ -63,6 +104,8 @@ export class DiagnosticViewComponent implements OnInit {
       { label: 'Corazon', value: 2 },
       { label: 'Pulmón', value: 3 },
       { label: 'Riñón', value: 4 },
+      { label: 'Rodilla', value: 5 },
+      { label: 'Muñeca', value: 6 },
     ];
 
     this.diagnostic = new Diagnostic();
@@ -73,19 +116,27 @@ export class DiagnosticViewComponent implements OnInit {
     this.maxValidDate = today;
   }
 
-// Función para registrar cambios en las opciones seleccionadas y obtener el estado de cada opción
-onCheckboxChange( option: string) {
-  const opcionesSeleccionadas = this.checkboxState;
-    const opcionesPermitidas = this.checkboxes[this.selectedpartOption];
-    const opcionesMostradas = opcionesPermitidas.map(
-      (opcion) =>
-        `${opcion}=${opcionesSeleccionadas[opcion] ? 'true' : 'false'}`
-    );
+onCheckboxChange(section: string, option: string) {
+  if (section === 'Cerebro') {
+    if (this.selectedOptionsCerebro[option]) {
+      // El usuario desmarcó la casilla
+      console.log(option + ' en Cerebro fue marcado');
+    } else {
+      // El usuario marcó la casilla
+      console.log(option + ' en Cerebro fue desmarcado');
+    }
+  } else if (section === 'Pulmón') {
+    if (this.selectedOptionsPulmon[option]) {
+      // El usuario desmarcó la casilla
+      console.log(option + ' en Pulmón fue marcado');
+    } else {
+      // El usuario marcó la casilla
+      console.log(option + ' en Pulmón fue desmarcado');
+    }
+  }
+  console.log( this.selectedOptionsCerebro['Convulsiones']);
 
-    console.log(
-      'Datos enviados con éxito. Opciones enviadas: ' +
-        opcionesMostradas.join(', ')
-    );
+  // Agrega condiciones para otras secciones si es necesario
 }
 
 onFileSelect(event: any) {
@@ -338,7 +389,18 @@ onFileSelect(event: any) {
 
   }
 
-
+  formatDate() {
+    if (this.diagnostic.dateOfBirth) {
+      const date = this.diagnostic.dateOfBirth;
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Añade un 0 si es un solo dígito
+      const day = String(date.getDate()).padStart(2, '0'); // Añade un 0 si es un solo dígito
+  
+      this.formattedDate = `${year}-${month}-${day}`;
+    } else {
+      this.formattedDate = ''; // Si la fecha es undefined, establece la variable como cadena vacía
+    }
+  }
 
   OnSelectedSex(event : any) {
     if (!event.value) {

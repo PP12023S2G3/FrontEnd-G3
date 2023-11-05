@@ -84,7 +84,9 @@
                 [minDate]="minValidDate"
                 [maxDate]="maxValidDate"
                 placeholder="Fecha de Nacimiento"
+                (ngModelChange)="formatDate()" 
                 [icon]="calendarIcon" #date="ngModel">
+
                 </p-calendar>
                     <div *ngIf="date.invalid && (date.touched)" class="errors" style="margin-top: -4rem;">
                       <div>
@@ -153,17 +155,45 @@
             <h6 class="title-preconditions-patient">Condiciones previas</h6>
             <div class="container-checkbox">
               <div *ngIf="selectedpartOption" class="checkbox-group">
-                <div *ngFor="let checkbox of checkboxes[selectedpartOption]" class="checkbox-item">
-                  <p-checkbox
-                    [name]="checkbox"
-                    [value]="checkbox"
-                    [(ngModel)]="checkboxState[checkbox]"
-                    (ngModelChange)="onCheckboxChange(checkbox)"
 
-                  ></p-checkbox>
-                  <span>{{ checkbox }}</span>
+                <div *ngIf="selectedpartOption === 'Cerebro'" class="checkbox-item">
+                  <label *ngFor="let option of getObjectKeys(selectedOptionsCerebro)">
+                    <input type="checkbox" [(ngModel)]="selectedOptionsCerebro[option]" (ngModelChange)="onCheckboxChange('Cerebro', option)"> {{ option }}
+                  </label>
                 </div>
-              </div>
+                
+                <div *ngIf="selectedpartOption === 'Pulmón'" class="checkbox-item">
+                  <label *ngFor="let option of getObjectKeys(selectedOptionsPulmon)">
+                    <input type="checkbox" [(ngModel)]="selectedOptionsPulmon[option]" (ngModelChange)="onCheckboxChange('Pulmón', option)"> {{ option }}
+                  </label>
+                </div>
+
+                <div *ngIf="selectedpartOption === 'Riñón'" class="checkbox-item">
+                  <label *ngFor="let option of getObjectKeys(selectedOptionsRinion)">
+                    <input type="checkbox" [(ngModel)]="selectedOptionsRinion[option]" (ngModelChange)="onCheckboxChange('Riñón', option)"> {{ option }}
+                  </label>
+                </div>
+
+                <div *ngIf="selectedpartOption === 'Muñeca'" class="checkbox-item">
+                  <label *ngFor="let option of getObjectKeys(selectedOptionsMunieca)">
+                    <input type="checkbox" [(ngModel)]="selectedOptionsMunieca[option]" (ngModelChange)="onCheckboxChange('Muñeca', option)"> {{ option }}
+                  </label>
+                </div>
+
+                <div *ngIf="selectedpartOption === 'Rodilla'" class="checkbox-item">
+                  <label *ngFor="let option of getObjectKeys(selectedOptionsRodilla)">
+                    <input type="checkbox" [(ngModel)]="selectedOptionsRodilla[option]" (ngModelChange)="onCheckboxChange('Rodilla', option)"> {{ option }}
+                  </label>
+                </div>
+
+                <div *ngIf="selectedpartOption === 'Corazon'" class="checkbox-item">
+                  <label *ngFor="let option of getObjectKeys(selectedOptionsCorazon)">
+                    <input type="checkbox" [(ngModel)]="selectedOptionsCorazon[option]" (ngModelChange)="onCheckboxChange('Corazon', option)"> {{ option }}
+                  </label>
+                </div>
+
+                </div>
+           
             </div>
         </div>
       </div>
