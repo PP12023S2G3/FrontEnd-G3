@@ -96,7 +96,7 @@
                 label="No"></p-button>
         </div>
 
-        <div class="container-result-feedback" *ngIf="!buttonsCases">
+        <div *ngIf="!buttonsCases">
             <p>¿Qué resultado sería mejor en este caso?</p>
             <div class="buttons-normal-feedback">
 
@@ -107,7 +107,7 @@
             </div>
             <p> En caso de no coincidir deja un comentario por favor</p>
             <div class="container-comment">
-                <h6 class="title-comment">Comentario</h6>
+                <h6 >Comentario</h6>
                 <input class="input-comment" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment"
                     pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" /> 
             </div>

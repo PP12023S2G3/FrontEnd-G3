@@ -183,6 +183,9 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    width: 85%;
+    height: auto;
+    margin: 0 0 0 10%;
 
 }
 
@@ -208,7 +211,16 @@
     margin: 0;
 }
 
-
+.container-comment input {
+    width: 100%;
+    min-height: 4vw;
+    max-height: 12vw;
+    margin: 0;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+}
 
 
 
@@ -299,6 +311,9 @@
         width: 35vw;
         height: 3rem;
         padding: 0;
+    }
+    .container-comment input {
+        height: 20vw;
     }
    
 }

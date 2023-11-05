@@ -69,7 +69,7 @@ export class ResultViewComponent implements OnInit {
     }
 
     this.diagnostic = new Diagnostic();
-    this.diagnostic.sectionBody = "Riñón";
+    this.diagnostic.sectionBody = "Cerebro";
     this.doctor = new Doctor();
 
     this.changeLabelCases();
