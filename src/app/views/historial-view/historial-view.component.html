@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 <div class="historial">
     <div class="container-table-historial">
@@ -42,7 +44,7 @@
              #dtTransactions
              [paginator]="true"
              [rows]="3"
-             [rowsPerPageOptions]="[1, 2, 3, 4 , 5 , 6]"
+             [rowsPerPageOptions]="[1, 2, 3, 4 , 5]"
              [globalFilterFields]="['code','doctor','study']"
              selectionMode="single"
              autocomplete="off"
@@ -56,8 +58,8 @@
                         <th>_____</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-diagexample let-columns="columns">
-                    <tr *ngFor="let record of records">
+                <ng-template pTemplate="body" let-record let-columns="columns">
+                    <tr>
                         <td><span class="p-column-title">Código de Imágen</span>{{record.imagen_id}}</td>
                         <td><span class="p-column-title">Fecha</span>{{record.fecha}}</td>
                         <td><span class="p-column-title">Estudio</span>{{record.modelo_nombre}}</td>

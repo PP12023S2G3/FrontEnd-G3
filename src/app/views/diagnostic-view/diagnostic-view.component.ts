@@ -229,6 +229,7 @@ onFileSelect(event: any) {
     this.diagnostic.sectionBody = this.selectedpartOption;
     this.diagnostic.gender = this.selectedsexOption;
     this.diagnostic.doctor = this.doctor;
+    console.log(this.selectedpartOption);
     if(this.uploadedFile){
     this.diagnostic.image = this.uploadedFile; }
 
@@ -276,6 +277,7 @@ onFileSelect(event: any) {
       
       this.resultService.postResultHeart(req).subscribe({
         next: (res) => {
+          localStorage.setItem('idResult', JSON.stringify(res.id));
           this.router.navigate(['/result']);
           console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
           console.log('Fusion de latido ventricular y normal:', res.fusionVentricularNormal);
@@ -304,6 +306,7 @@ onFileSelect(event: any) {
 
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
+        localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
         console.log(res);
         console.log(res.pituitary);
@@ -331,6 +334,7 @@ onFileSelect(event: any) {
 
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
+        localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
         console.log(res);
         console.log(res.pneumonia);
@@ -357,6 +361,7 @@ onFileSelect(event: any) {
 
     this.resultService.postResultKnee(reqKnee).subscribe({
       next: (res) => {
+        localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
         console.log(res);
         console.log('prediction:', res.prediction);
@@ -384,6 +389,7 @@ onFileSelect(event: any) {
 
     this.resultService.postResultKidney(reqKidney).subscribe({
       next: (res) => {
+        localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
         console.log(res);
         console.log(res.tumor);
@@ -412,6 +418,7 @@ onFileSelect(event: any) {
 
     this.resultService.postResultWrist(reqWrist).subscribe({
       next: (res) => {
+        localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
         console.log('Fractura:', res.fractura);
         console.log('Sin fractura:', res.sano);

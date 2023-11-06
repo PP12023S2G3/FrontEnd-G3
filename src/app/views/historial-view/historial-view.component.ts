@@ -1,14 +1,16 @@
-import { Component, untracked } from '@angular/core';
+import { Component, OnInit, untracked } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result/result.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-historial-view',
   templateUrl: './historial-view.component.html',
-  styleUrls: ['./historial-view.component.css']
+  styleUrls: ['./historial-view.component.css'],
+  providers: [MessageService],
 })
 
-export class HistorialViewComponent{
+export class HistorialViewComponent implements OnInit {
 
     tituloDinamico = 'Historial';
     calendarIcon = 'pi pi-calendar';
@@ -21,13 +23,16 @@ export class HistorialViewComponent{
     rangeDates: Date[] | undefined;
     value: string | undefined;
 
-    records: any[]=[];
+    records: any;
 
     dateTime = new Date();
-    constructor(private resultService: ResultService, private router: Router) {
+    constructor(private messageService: MessageService,private resultService: ResultService, private router: Router) {
         this.getRecordAll();
         this.dateTime.setDate(this.dateTime.getDate());
     }
+  ngOnInit(): void {
+    this.getRecordAll();
+  }
     applyDateFilter() {
       if (this.rangeDates) {
         this.isFilter = true;
@@ -55,8 +60,13 @@ export class HistorialViewComponent{
             next: (res) => {
               this.records=res.historial;
             },
-            error: (error) => {
-              // Manejar errores aquí
+            error: (error: { message: any }) => {
+              console.log(error);
+              this.messageService.add({
+                severity: 'error',
+                summary: error.message,
+                life: 2000,
+              });
             }
           });
     }
