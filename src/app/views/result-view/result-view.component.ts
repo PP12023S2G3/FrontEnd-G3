@@ -216,6 +216,18 @@ onCheckboxChange( option: string) {
   enableButtonDownload() {
     this.buttonDownload = false; //habilitar
   }
+  getHighestKeyValue(): { key: string, value: any } {
+    let highestValue: any = null;
+    let highestKeyValue: { key: string, value: any } = { key: '', value: null };
+console.log(this.resultadoList)
+    for (const item of this.resultadoList) {
+      if (highestValue === null || item.value > highestValue) {
+        highestValue = item.value;
+        highestKeyValue = { key: item.key, value: item.value };
+      }
+    }
 
+    return highestKeyValue;
+  }
 
 }

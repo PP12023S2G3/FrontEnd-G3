@@ -71,9 +71,9 @@
 
                 <div>
                     <h6 class="title-diagnostic-result-patient">Resultado del diagnostico</h6>
-                    <ul>
-                        <li *ngFor="let item of resultadoList">{{ item.key }}: {{ item.value }}</li>
-                    </ul>
+                    <div *ngIf="resultadoList.length > 0">
+                        <p>{{ getHighestKeyValue().key }}: {{ getHighestKeyValue().value }}</p>
+                      </div>
                 </div>
             </div>
 
