@@ -30,7 +30,6 @@ export class HistorialViewComponent implements OnInit {
 
     dateTime = new Date();
     constructor(private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router) {
-        this.getRecordAll();
         this.dateTime.setDate(this.dateTime.getDate());
         this.IdRole = this.userAccountService.roleId;
         console.log(this.IdRole);
@@ -47,16 +46,16 @@ export class HistorialViewComponent implements OnInit {
       this.isFilter = true;
       const startDate = this.formatDateToString(this.rangeDates[0]);
       const endDate = this.formatDateToString(this.rangeDates[1]);
-  
+
       this.filteredData = this.records.filter((item: any) => {
-        const itemDate = item.fecha.split(' ')[0]; 
+        const itemDate = item.fecha.split(' ')[0];
         return itemDate >= startDate && itemDate <= endDate;
       });
     } else {
       this.filteredData = this.records;
     }
   }
-  
+
   formatDateToString(date: Date): string {
     return date.toISOString().slice(0, 10);
   }
@@ -69,7 +68,7 @@ export class HistorialViewComponent implements OnInit {
 
     private getRecordAll() {
       //:TODO este rol y id de usuario esta harcodeado
-      if(this.IdRole) {
+
         this.resultService.getRecordAll(this.IdUser,this.IdRole).subscribe({
             next: (res) => {
               this.records=res.historial;
@@ -83,7 +82,7 @@ export class HistorialViewComponent implements OnInit {
               });
             }
           });
-    }
+
   }
     getRecord(id_diagnostico:number) {
       localStorage.setItem('idResult', JSON.stringify(id_diagnostico));
