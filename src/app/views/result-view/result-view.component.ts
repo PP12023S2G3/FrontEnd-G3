@@ -5,6 +5,7 @@ import { Doctor } from 'src/app/models/Doctor';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 
@@ -14,8 +15,7 @@ import { ResultService } from 'src/app/services/result/result.service';
   styleUrls: ['./result-view.component.css']
 })
 export class ResultViewComponent implements OnInit {
-  buttonTextLabel1 !: string;
-  buttonTextLabel2 !: string;
+  textComment: string = '';
   buttonsCases: boolean = true;
   buttonDownload: boolean = true;
   buttonNo: boolean = false;
@@ -34,16 +34,16 @@ export class ResultViewComponent implements OnInit {
   resultadoList: { key: string, value: any }[] = [];
 
   labelModels: { [key: string]: string[] } = {
-    Cerebro: ['Glioma', 'Meningioma', 'Pituitary','No tumor'],
-    Corazón: ['Contracción ventricular prematura', 'Fusión de latido ventricular y normal', 'Infarto de miocardio','Latido no clasificable','Latido normal','Latido prematuro supraventricular'],
+    Cerebro: ['Glioma', 'Meningioma', 'Pituitary', 'No tumor'],
+    Corazón: ['Contracción ventricular prematura', 'Fusión de latido ventricular y normal', 'Infarto de miocardio', 'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
     Rodilla: ['Rotura LCA', 'LCA Sano'],
-    Muñeca: ['Fractura','Sin fractura'],
-    Pulmones: ['Neumonía','No neumonía'],
-     Riñon: ['Quistes','Cálculos','Tumor','Normal'],
+    Muñeca: ['Fractura', 'Sin fractura'],
+    Pulmones: ['Neumonía', 'No neumonía'],
+    Riñon: ['Quistes', 'Cálculos', 'Tumor', 'Normal'],
   };
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
-  
+
 
   constructor(private resultDTO: ResultcDTO, private resultService: ResultService, private feedbackService: FeedbackService) {
   }
@@ -127,8 +127,8 @@ export class ResultViewComponent implements OnInit {
     this.diagnostic = new Diagnostic();
     this.diagnostic.sectionBody = "Cerebro";
     this.doctor = new Doctor();
-   
-    
+  
+
 
     /*    this.diagnostic = this.resultDTO.getCompanyInformation();
         const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -165,23 +165,23 @@ export class ResultViewComponent implements OnInit {
     const buttons = [];
 
     for (let i = 0; i < labels.length; i++) {
-      
-        buttons.push({ label: labels[i]});
+
+      buttons.push({ label: labels[i] });
     }
 
     return buttons;
-}
+  }
 
-  disableButtonYes() { /*buttonDisable: number*/
-    /*
-    if (buttonDisable === 1) {
-      this.buttonDownload = false; //habilitar
-      this.buttonsCases = true; //deshabilitar
-    } else {
-      this.buttonDownload = true; //deshabilitar
-      this.buttonsCases = false; //habilitar
-    }*/
+  inputEnableButtonDownload() {
+    if(this.textComment.length > 2){
+      this.buttonDownload = false;
+    }else{
+      this.buttonDownload = true;
+    }
+  }
 
+
+  disableButtonYes() {
     this.buttonDownload = false;
     this.buttonsCases = true; //deshabilitar
   }

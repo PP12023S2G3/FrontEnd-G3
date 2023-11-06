@@ -104,7 +104,7 @@
             <p> En caso de no coincidir deja un comentario por favor</p>
             <div class="container-comment">
                 <h6 >Comentario</h6>
-                <input class="input-comment" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment"
+                <input class="input-comment" [(ngModel)]="textComment" (input)="inputEnableButtonDownload()" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment"
                     pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
             </div>
         </div>
