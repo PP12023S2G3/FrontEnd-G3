@@ -45,13 +45,13 @@
              [paginator]="true"
              [rows]="3"
              [rowsPerPageOptions]="[1, 2, 3, 4 , 5]"
-             [globalFilterFields]="['code','doctor','study']"
+             [globalFilterFields]="['imagen_id','modelo_nombre', 'nombre_medico']"
              selectionMode="single"
              autocomplete="off"
              >
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th>Código de Imágen</th>
+                        <th>Código de Informe</th>
                         <th>Fecha</th>
                         <th>Estudio</th>
                         <th>Médico</th>
@@ -60,7 +60,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-record let-columns="columns">
                     <tr>
-                        <td><span class="p-column-title">Código de Imágen</span>{{record.imagen_id}}</td>
+                        <td><span class="p-column-title">Código de Informe</span>{{record.imagen_id}}</td>
                         <td><span class="p-column-title">Fecha</span>{{record.fecha}}</td>
                         <td><span class="p-column-title">Estudio</span>{{record.modelo_nombre}}</td>
                         <td><span class="p-column-title">Médico</span>{{record.nombre_medico}}</td>

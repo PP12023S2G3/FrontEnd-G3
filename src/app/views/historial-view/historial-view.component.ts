@@ -41,20 +41,25 @@ export class HistorialViewComponent implements OnInit {
   ngOnInit(): void {
     this.getRecordAll();
   }
-    applyDateFilter() {
-      if (this.rangeDates) {
-        this.isFilter = true;
-        const startDate = this.rangeDates[0];
-        const endDate = this.rangeDates[1];
 
-        this.filteredData = this.records.filter((item: any) => {
-          const itemDate = new Date(item.date);
-          return itemDate >= startDate && itemDate <= endDate;
-        });
-      } else {
-        this.filteredData = this.records;
-      }
+  applyDateFilter() {
+    if (this.rangeDates) {
+      this.isFilter = true;
+      const startDate = this.formatDateToString(this.rangeDates[0]);
+      const endDate = this.formatDateToString(this.rangeDates[1]);
+  
+      this.filteredData = this.records.filter((item: any) => {
+        const itemDate = item.fecha.split(' ')[0]; 
+        return itemDate >= startDate && itemDate <= endDate;
+      });
+    } else {
+      this.filteredData = this.records;
     }
+  }
+  
+  formatDateToString(date: Date): string {
+    return date.toISOString().slice(0, 10);
+  }
 
     clearFilter() {
       this.isFilter = false;
