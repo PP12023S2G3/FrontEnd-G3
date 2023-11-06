@@ -61,7 +61,7 @@
                             <li *ngFor="let item of datosComplementariosList">
                                 <span *ngIf="item.value; else noCheck">&#10003;</span>
                                 <span *ngIf="!item.value; else noCross">&#10007;</span>
-                                {{ item.key }}: {{ item.value }}
+                                {{ item.key }}
                                 <ng-template #noCheck>&nbsp;</ng-template>
                                 <ng-template #noCross>&nbsp;</ng-template>
                             </li>
