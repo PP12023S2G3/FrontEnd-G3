@@ -88,20 +88,18 @@
         <p>¿Este resultado te parece correcto?</p>
 
         <div class="buttons-normal-feedback">
-            <p-button styleClass="p-button-global" (onClick)="disableButton(1)" [disabled]="buttonYes"
+            <p-button styleClass="p-button-global" (onClick)="disableButtonYes()" [disabled]="buttonYes"
                 label="Si"></p-button>
-            <p-button styleClass="p-button-global" (onClick)="disableButton(2)" [disabled]="buttonNo"
+            <p-button styleClass="p-button-global" (onClick)="disableButtonNo()" [disabled]="buttonNo"
                 label="No"></p-button>
         </div>
 
         <div *ngIf="!buttonsCases">
             <p>¿Qué resultado sería mejor en este caso?</p>
-            <div class="buttons-normal-feedback">
 
-                <p-button styleClass="p-button-global" [disabled]="buttonsCases" (onClick)="enableButtonDownload()"
-                    label="{{ buttonTextLabel1 }}"></p-button>
-                <p-button styleClass="p-button-global" [disabled]="buttonsCases" (onClick)="enableButtonDownload()"
-                    label="{{ buttonTextLabel2 }}"></p-button>
+            <div class="generate-buttons-feedback">
+                <p-button *ngFor="let button of generateButtons()" styleClass="p-button-global" 
+                    [disabled]="buttonsCases" (onClick)="enableButtonDownload($event)" label="{{ button.label }}"></p-button>
             </div>
             <p> En caso de no coincidir deja un comentario por favor</p>
             <div class="container-comment">

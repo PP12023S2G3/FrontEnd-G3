@@ -27,22 +27,23 @@ export class ResultViewComponent implements OnInit {
 
   tituloDinamico = 'Resultado';
   formattedDate: any;
-  result:DiagnosticResp|any;
+  result: DiagnosticResp | any;
 
-  datos_paciente:any;
-  resultado:any;
+  datos_paciente: any;
+  resultado: any;
   resultadoList: { key: string, value: any }[] = [];
 
-  checkboxState: { [key: string]: boolean } = {};
-
-  checkboxes: { [key: string]: string[] } = {
-    Cerebro: ['Pérdida visual', 'Debilidad focal', 'Convulsiones'],
-    Pulmón: ['Puntada lateral', 'Fiebre', 'Dificultad respiratoria'],
-    Riñón: ['Sangre en orina', 'Dolor en zona lumbar', 'Cansancio'],
+  labelModels: { [key: string]: string[] } = {
+    Cerebro: ['Glioma', 'Meningioma', 'Pituitary','No tumor'],
+    Corazón: ['Contracción ventricular prematura', 'Fusión de latido ventricular y normal', 'Infarto de miocardio','Latido no clasificable','Latido normal','Latido prematuro supraventricular'],
+    Rodilla: ['Rotura LCA', 'LCA Sano'],
+    Muñeca: ['Fractura','Sin fractura'],
+    Pulmones: ['Neumonía','No neumonía'],
+     Riñon: ['Quistes','Cálculos','Tumor','Normal'],
   };
   datosComplementarios: any;
-  datosComplementariosList: { key: string; value: any; }[]=[];
-
+  datosComplementariosList: { key: string; value: any; }[] = [];
+  
 
   constructor(private resultDTO: ResultcDTO, private resultService: ResultService, private feedbackService: FeedbackService) {
   }
@@ -50,8 +51,8 @@ export class ResultViewComponent implements OnInit {
 
   ngOnInit(): void {
     //318 319
-    this.feedbackService.postFeedbackBrain(318,true,true,true,true,"comentario").subscribe({
-   next: (res) => {
+    this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
+      next: (res) => {
         console.log(res);
       },
       error: (error) => {
@@ -59,54 +60,54 @@ export class ResultViewComponent implements OnInit {
       }
     });
     // Para el método postFeedbackWrist
-//315 323
-this.feedbackService.postFeedbackWrist(315, false, true,"comentario").subscribe({
-  next: (res) => {
-    console.log(res);
-  },
-  error: (error) => {
-    // Manejar errores aquí
-  }
-});
+    //315 323
+    this.feedbackService.postFeedbackWrist(315, false, true, "comentario").subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
 
-//314 320
-this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
-  next: (res) => {
-    console.log(res);
-  },
-  error: (error) => {
-    // Manejar errores aquí
-  }
-});
+    //314 320
+    this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
 
-//316 321
-this.feedbackService.postFeedbackKidney(321, true,true,true, true, "comentario").subscribe({
-  next: (res) => {
-    console.log(res);
-  },
-  error: (error) => {
-    // Manejar errores aquí
-  }
-});
-//324 325
-this.feedbackService.postFeedbackKnee(325, false, true, "comentario").subscribe({
-  next: (res) => {
-    console.log(res);
-  },
-  error: (error) => {
-    // Manejar errores aquí
-  }
-});
-// Para el método postFeedbackHeart
-//317 322
-this.feedbackService.postFeedbackHeart(322, false, false, false,false,false, true, "comentario").subscribe({
-  next: (res) => {
-    console.log(res);
-  },
-  error: (error) => {
-    // Manejar errores aquí
-  }
-});
+    //316 321
+    this.feedbackService.postFeedbackKidney(321, true, true, true, true, "comentario").subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+    //324 325
+    this.feedbackService.postFeedbackKnee(325, false, true, "comentario").subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
+    // Para el método postFeedbackHeart
+    //317 322
+    this.feedbackService.postFeedbackHeart(322, false, false, false, false, false, true, "comentario").subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error) => {
+        // Manejar errores aquí
+      }
+    });
 
 
     const idResult = localStorage.getItem('idResult');
@@ -126,8 +127,9 @@ this.feedbackService.postFeedbackHeart(322, false, false, false,false,false, tru
     this.diagnostic = new Diagnostic();
     this.diagnostic.sectionBody = "Cerebro";
     this.doctor = new Doctor();
+   
+    
 
-    this.changeLabelCases();
     /*    this.diagnostic = this.resultDTO.getCompanyInformation();
         const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
         this.formattedDate = this.diagnostic.dateOfBirth.toLocaleDateString('es-ES', options); // Puedes cambiar 'es-ES' según tu preferencia de idioma
@@ -153,73 +155,47 @@ this.feedbackService.postFeedbackHeart(322, false, false, false,false,false, tru
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({ key, value }));
   }
+  enableButtonDownload($event: any) {
+    this.buttonDownload = false; //habilitar
+    console.log("EStoy llamando");
+    console.log($event);
+  }
+  generateButtons() {
+    const labels = this.labelModels[this.diagnostic.sectionBody] || [];
+    const buttons = [];
 
-// Función para registrar cambios en las opciones seleccionadas y obtener el estado de cada opción
-onCheckboxChange( option: string) {
-  const opcionesSeleccionadas = this.checkboxState;
-    const opcionesPermitidas = this.checkboxes[this.diagnostic.sectionBody];
-    const opcionesMostradas = opcionesPermitidas.map(
-      (opcion) =>
-        `${opcion}=${opcionesSeleccionadas[opcion] ? 'true' : 'false'}`
-    );
+    for (let i = 0; i < labels.length; i++) {
+      
+        buttons.push({ label: labels[i]});
+    }
 
-    console.log(
-      'Datos enviados con éxito. Opciones enviadas: ' +
-        opcionesMostradas.join(', ')
-    );
+    return buttons;
 }
 
-  disableButton(buttonDisable: number) {
+  disableButtonYes() { /*buttonDisable: number*/
+    /*
     if (buttonDisable === 1) {
       this.buttonDownload = false; //habilitar
       this.buttonsCases = true; //deshabilitar
     } else {
       this.buttonDownload = true; //deshabilitar
       this.buttonsCases = false; //habilitar
-    }
+    }*/
+
+    this.buttonDownload = false;
+    this.buttonsCases = true; //deshabilitar
   }
 
-  changeLabelCases() {
-    switch (this.diagnostic.sectionBody) {
-      case 'Cerebro':
-        this.buttonTextLabel1 = 'Hematoma';
-        this.buttonTextLabel2 = 'Otro';
-        break;
-      case 'Pulmones':
-        this.buttonTextLabel1 = 'Neumonía';
-        this.buttonTextLabel2 = 'Otro';
-        break;
-      case 'Corazón':
-        this.buttonTextLabel1 = 'Ritmia';
-        this.buttonTextLabel2 = 'Otro';
-        break;
-      case 'Riñón':
-        this.buttonTextLabel1 = 'Infeccion urinaria';
-        this.buttonTextLabel2 = 'Otro';
-        break;
-      case 'Rodilla':
-        this.buttonTextLabel1 = 'Artritis';
-        this.buttonTextLabel2 = 'Otro';
-        break;
-      case 'Muñeca':
-        this.buttonTextLabel1 = 'Quebradura';
-        this.buttonTextLabel2 = 'Otro';
-        break;
-      default:
-        this.buttonTextLabel1 = 'Botón 1';
-        this.buttonTextLabel2 = 'Botón 2';
-        break;
-    }
+  disableButtonNo() {
+    this.buttonDownload = true;
+    this.buttonsCases = false; //habilitar
 
   }
 
-  enableButtonDownload() {
-    this.buttonDownload = false; //habilitar
-  }
   getHighestKeyValue(): { key: string, value: any } {
     let highestValue: any = null;
     let highestKeyValue: { key: string, value: any } = { key: '', value: null };
-console.log(this.resultadoList)
+    console.log(this.resultadoList)
     for (const item of this.resultadoList) {
       if (highestValue === null || item.value > highestValue) {
         highestValue = item.value;
