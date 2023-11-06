@@ -119,24 +119,19 @@ export class DiagnosticViewComponent implements OnInit {
 onCheckboxChange(section: string, option: string) {
   if (section === 'Cerebro') {
     if (this.selectedOptionsCerebro[option]) {
-      // El usuario desmarcó la casilla
       console.log(option + ' en Cerebro fue marcado');
     } else {
-      // El usuario marcó la casilla
       console.log(option + ' en Cerebro fue desmarcado');
     }
   } else if (section === 'Pulmón') {
     if (this.selectedOptionsPulmon[option]) {
-      // El usuario desmarcó la casilla
       console.log(option + ' en Pulmón fue marcado');
     } else {
-      // El usuario marcó la casilla
       console.log(option + ' en Pulmón fue desmarcado');
     }
   }
   console.log( this.selectedOptionsCerebro['Convulsiones']);
 
-  // Agrega condiciones para otras secciones si es necesario
 }
 
 onFileSelect(event: any) {
@@ -264,32 +259,51 @@ onFileSelect(event: any) {
           detail: 'Datos del formulario erroneos',
           life: 2000,
         });
-      }
+      } 
     }
   }
 
   postResult(file: File) {
     this.resultDTO.setCompanyInformation(this.diagnostic);
     console.log(this.diagnostic);
-   /* if (this.doctor && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
-    const req=this.createRequestHeart(file,true, this.doctor.dni,true,"nacimient",23,23,"sexo",2,"doc");
+    if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
 
-    this.resultService.postResultHeart(req).subscribe({
-      next: (res) => {
-        localStorage.setItem('PredictedResult', JSON.stringify(res));
-        //this.router.navigate(['/result']);
-      },
-      error: (error) => {
-        // Manejar errores aquí
-      }
-    });
-    } */
-    const reqBrain=this.resultService.createRequestBrain(file,true,true,true,"fechadenacimiento",4,7,"sexo",3,"1");
+      const req=this.resultService.createRequestHeart(file,this.selectedOptionsCorazon['Palpitaciones'],
+      this.selectedOptionsCorazon['Dolor superior izquierdo'],this.selectedOptionsCorazon['Disnea'],this.formattedDate,this.diagnostic.weight,
+      this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
+   
+      console.log(req);
+      
+      this.resultService.postResultHeart(req).subscribe({
+        next: (res) => {
+          this.router.navigate(['/result']);
+          console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
+          console.log('Fusion de latido ventricular y normal:', res.fusionVentricularNormal);
+          console.log('Infarto de miocardio:', res.infarto);
+          console.log('Latido no clasificable:', res.no_clasificable);
+          console.log('Latido normal:', res.normal);
+          console.log('Latido prematuro supraventricular:', res.prematuroSupraventricular);
+          console.log('imagen_id:', res.imagen_id);
+          console.log('id:', res.id);
+        },
+        error: (error: { message: any }) => {
+          console.log(error);
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
+    else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Cerebro') {
+
+    const reqBrain=this.resultService.createRequestBrain(file,this.selectedOptionsCerebro['Pérdida visual'],this.selectedOptionsCerebro['Debilidad focal'],
+    this.selectedOptionsCerebro['Convulsiones'],this.formattedDate,this.diagnostic.weight,
+      this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
-
-        localStorage.setItem('idResult', JSON.stringify(res.id));
         this.router.navigate(['/result']);
         console.log(res);
         console.log(res.pituitary);
@@ -299,49 +313,51 @@ onFileSelect(event: any) {
         console.log(res.imagen_id);
         console.log(res.id);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
+   
+   } 
+   else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Pulmón') {
 
-    const req=this.resultService.createRequestHeart(file,true,true,true,"nacimient",23,23,"sexo",2,"doc");
-
-    this.resultService.postResultHeart(req).subscribe({
-      next: (res) => {
-        console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
-        console.log('Fusion de latido ventricular y normal:', res.fusionVentricularNormal);
-        console.log('Infarto de miocardio:', res.infarto);
-        console.log('Latido no clasificable:', res.no_clasificable);
-        console.log('Latido normal:', res.normal);
-        console.log('Latido prematuro supraventricular:', res.prematuroSupraventricular);
-        console.log('imagen_id:', res.imagen_id);
-        console.log('id:', res.id);
-      },
-      error: (error) => {
-        // Manejar errores aquí
-      }
-    });
-
-
-    const reqLungs=this.resultService.createRequestLungs(file,true,true,true,"nacimiento",23,123,"sexo",3,"1");
+    const reqLungs=this.resultService.createRequestLungs(file,this.selectedOptionsPulmon['Puntada lateral'],this.selectedOptionsPulmon['Fiebre']
+    ,this.selectedOptionsPulmon['Dificultad respiratoria'],this.formattedDate,this.diagnostic.weight,
+      this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
+        this.router.navigate(['/result']);
         console.log(res);
         console.log(res.pneumonia);
         console.log(res.no_pneumonia);
         console.log(res.imagen_id);
         console.log(res.id);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
+  }
 
-    const reqKnee=this.resultService.createRequestKnee(file,true,true,true,"nacimiento",23,123,"sexo",2,"doc");
+  else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Rodilla') {
+
+
+    const reqKnee=this.resultService.createRequestKnee(file,this.selectedOptionsRodilla['Sensacion de inestabilidad'],
+    this.selectedOptionsRodilla['CA positiva'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
+      this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
     this.resultService.postResultKnee(reqKnee).subscribe({
       next: (res) => {
+        this.router.navigate(['/result']);
         console.log(res);
         console.log('prediction:', res.prediction);
         console.log('LCA sano:', res.prediction.lcaSano);
@@ -350,15 +366,25 @@ onFileSelect(event: any) {
         console.log('imagen_id:', res.imagen_id);
 
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
+  }
 
-    const reqKidney=this.resultService.createRequestKidney(file,true,true,true,true,true,"nacimiento",23,123,"sexo",3,"1");
+  else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Riñón') {
+
+    const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hermaturia'],this.selectedOptionsRinion['Dolor lumbar'],
+    this.selectedOptionsRinion['Dolor abdominal'],this.selectedOptionsRinion['Fiebre'],this.selectedOptionsRinion['Perdida de peso'],this.formattedDate,this.diagnostic.weight,
+      this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
     this.resultService.postResultKidney(reqKidney).subscribe({
       next: (res) => {
+        this.router.navigate(['/result']);
         console.log(res);
         console.log(res.tumor);
         console.log(res.quiste);
@@ -367,26 +393,40 @@ onFileSelect(event: any) {
         console.log(res.imagen_id);
         console.log(res.id);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
 
-    const reqWrist=this.resultService.createRequestWrist(file,true,true,true,"naciminto",3,23,"sexo",2,"doc");
+    }
+
+    else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Muñeca') {
+
+    const reqWrist=this.resultService.createRequestWrist(file,this.selectedOptionsMunieca['Dolor con limitacion'],this.selectedOptionsMunieca['Edema'],
+    this.selectedOptionsMunieca['Deformidad'],this.formattedDate,this.diagnostic.weight,
+      this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
     this.resultService.postResultWrist(reqWrist).subscribe({
       next: (res) => {
-        localStorage.setItem('PredictedResult', JSON.stringify(res));
+        this.router.navigate(['/result']);
         console.log('Fractura:', res.fractura);
         console.log('Sin fractura:', res.sano);
         console.log('imagen_id:', res.imagen_id);
         console.log('id:', res.id);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
-
+  }
   }
 
   formatDate() {
@@ -429,7 +469,8 @@ onFileSelect(event: any) {
       this.diagnostic.height != undefined&&
       this.diagnostic.gender != undefined&&
       this.selectedpartOption != undefined &&
-      this.selectedsexOption != undefined
+      this.selectedsexOption != undefined &&
+      this.formattedDate != ''
     ) {
       this.formFieldsCompleted = true;
     } else {
@@ -454,8 +495,6 @@ onFileSelect(event: any) {
     if (validDNI && validName && validLastName && validWeight && validHeight) {
       this.formFieldsError = true;
     } else {
-      console.log(this.diagnostic);
-      console.log(this.doctor);
       this.formFieldsError = false;
     }
   }
