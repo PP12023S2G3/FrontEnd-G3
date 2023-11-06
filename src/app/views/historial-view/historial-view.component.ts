@@ -1,4 +1,5 @@
 import { Component, untracked } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result/result.service';
 
 @Component({
@@ -20,39 +21,12 @@ export class HistorialViewComponent{
     rangeDates: Date[] | undefined;
     value: string | undefined;
 
-    data: any[];
+    records: any[]=[];
 
     dateTime = new Date();
-    constructor(private resultService: ResultService) {
+    constructor(private resultService: ResultService, private router: Router) {
         this.getRecordAll();
-        this.getRecord();
         this.dateTime.setDate(this.dateTime.getDate());
-        this.data = [
-            {
-                code: 1,
-                date: '2023-10-08',
-                study: 'Cerebro',
-                doctor: 'Pérez',
-            },
-            {
-                code: 2,
-                date: '2023-09-08',
-                study: 'Cerebro',
-                doctor: 'Arroyo',
-            },
-            {
-              code: 3,
-              date: '2023-06-08',
-              study: 'Corazon',
-              doctor: 'Insua',
-          },
-          {
-              code: 4,
-              date: '2023-03-15',
-              study: 'Rodilla',
-              doctor: 'Mendez',
-          },
-        ];
     }
     applyDateFilter() {
       if (this.rangeDates) {
@@ -60,39 +34,37 @@ export class HistorialViewComponent{
         const startDate = this.rangeDates[0];
         const endDate = this.rangeDates[1];
 
-        this.filteredData = this.data.filter((item: any) => {
+        this.filteredData = this.records.filter((item: any) => {
           const itemDate = new Date(item.date);
           return itemDate >= startDate && itemDate <= endDate;
         });
       } else {
-        this.filteredData = this.data;
+        this.filteredData = this.records;
       }
     }
 
     clearFilter() {
       this.isFilter = false;
       this.rangeDates = undefined; // Limpia el rango de fechas (si estás usando rangeDates)
-      this.filteredData = this.data; // Restablece los datos filtrados
+      this.filteredData = this.records; // Restablece los datos filtrados
     }
 
     private getRecordAll() {
-        this.resultService.getRecordAll("2",localStorage.getItem("role")||"").subscribe({
+      //:TODO este rol y id de usuario esta harcodeado
+        this.resultService.getRecordAll("234",'1').subscribe({
             next: (res) => {
-              console.log(res);
-              localStorage.setItem('records', JSON.stringify(res));
-
+              this.records=res.historial;
             },
             error: (error) => {
               // Manejar errores aquí
             }
           });
     }
-    private getRecord() {
-        this.resultService.getRecord(696,"4").subscribe({
+    getRecord(id_diagnostico:number) {
+        this.resultService.getRecord(id_diagnostico,localStorage.getItem("role")||"").subscribe({
             next: (res) => {
-              console.log(res);
-              localStorage.setItem('record1', JSON.stringify(res));
-
+              localStorage.setItem('idResult', JSON.stringify(res.id));
+              this.router.navigate(['/result']);
             },
             error: (error) => {
               // Manejar errores aquí
