@@ -11,5 +11,5 @@ export interface DiagnosticResp {
     nombre_usuario: string;
     resultado: string;
     usuario_id: number;
-    usuario_medico_id: number;
+    usuario_medico_dni: number;
 }

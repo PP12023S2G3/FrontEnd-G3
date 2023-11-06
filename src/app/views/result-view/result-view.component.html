@@ -2,22 +2,21 @@
 <div class="container-result">
     <div class="container-data-result">
         <div class="container-data-doctor">
+
             <h4 class="title-data">Datos del médico</h4>
             <div class="container-inputs-data-doctor">
                 <div>
                     <h6 class="title-dni-doctor">DNI</h6>
-                    <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText
-                        [(ngModel)]="doctor.dni" readonly name="doctor-dni" />
+                        <input id="disabled-input1" type="text" pInputText [disabled]="true" value={{result?.usuario_medico_dni}}/>
                 </div>
                 <div>
                     <h6 class="title-name-doctor">Nombre</h6>
-                    <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText
-                        [(ngModel)]="doctor.name" readonly name="doctor-lastname" />
+                    <input id="disabled-input2" type="text" pInputText [disabled]="true" value={{result?.nombre_medico}}/>
+
                 </div>
                 <div>
                     <h6 class="title-lastname-doctor">Apellido</h6>
-                    <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText
-                        [(ngModel)]="doctor.lastname" readonly name="doctor-lastname" />
+                    <input id="disabled-input3" type="text" pInputText [disabled]="true" value={{result?.nombre_medico}}/>
                 </div>
 
             </div>
@@ -29,32 +28,27 @@
             <div class="container-inputs-data-patient">
                 <div>
                     <h6 class="title-age-patient">Fecha de nacimiento</h6>
-                    <input class="input-age-patient" type="text" placeholder="Fecha de nacimiento" pInputText
-                        [(ngModel)]="formattedDate" readonly name="age-patient" />
+                    <input id="disabled-input4" type="text" pInputText [disabled]="true" value={{datos_paciente?.fecha_nacimiento}}/>
                 </div>
 
                 <div>
                     <h6 class="title-weight-patient">Peso(Kg)</h6>
-                    <input class="input-weight-patient" type="text" placeholder="Peso del paciente" pInputText
-                        [(ngModel)]="diagnostic.weight" readonly name="weight-patient" />
+                    <input id="disabled-input5" type="text" pInputText [disabled]="true" value={{datos_paciente?.peso}}/>
                 </div>
 
                 <div>
                     <h6 class="title-height-patient">Altura(cm)</h6>
-                    <input class="input-height-patient" type="text" placeholder="Altura del paciente" pInputText
-                        [(ngModel)]="diagnostic.height" readonly name="height-patient" />
+                    <input id="disabled-input6" type="text" pInputText [disabled]="true" value={{datos_paciente?.altura}}/>
                 </div>
 
                 <div>
                     <h6 class="title-gender-patient">Sexo</h6>
-                    <input class="input-gender-patient" type="text" placeholder="Sexo del paciente" pInputText
-                        [(ngModel)]="diagnostic.gender" readonly name="gender-patient" />
+                    <input id="disabled-input7" type="text" pInputText [disabled]="true" value={{datos_paciente?.sexo}}/>
                 </div>
 
                 <div>
                     <h6 class="title-body-section-patient">Sección del cuerpo</h6>
-                    <input class="input-body-section-patient" type="text" placeholder="Sección del cuerpo" pInputText
-                        [(ngModel)]="diagnostic.sectionBody" readonly name="body-section-patient" />
+                    <input id="disabled-input8" type="text" pInputText [disabled]="true" value={{result?.modelo_nombre}}/>
                 </div>
 
             </div>
@@ -63,19 +57,23 @@
                 <div>
                     <h6 class="title-preconditions-patient">Condiciones previas</h6>
                     <div class="container-checkbox">
-                        <div *ngFor="let checkbox of checkboxes[diagnostic.sectionBody]" class="checkbox-item">
-                            <p-checkbox [name]="checkbox" [value]="checkbox"
-                                [(ngModel)]="diagnostic.preconditions"></p-checkbox>
-                            <span>{{ checkbox }}</span>
-                        </div>
+                        <ul>
+                            <li *ngFor="let item of datosComplementariosList">
+                                <span *ngIf="item.value; else noCheck">&#10003;</span>
+                                <span *ngIf="!item.value; else noCross">&#10007;</span>
+                                {{ item.key }}: {{ item.value }}
+                                <ng-template #noCheck>&nbsp;</ng-template>
+                                <ng-template #noCross>&nbsp;</ng-template>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
                 <div>
                     <h6 class="title-diagnostic-result-patient">Resultado del diagnostico</h6>
-                    <input class="input-diagnostic-result-patient" type="text"
-                        placeholder="Resultado de diagnostico del paciente" pInputText
-                        [(ngModel)]="diagnostic.resultDiagnostic" readonly name="diagnostic-result-patient" />
+                    <ul>
+                        <li *ngFor="let item of resultadoList">{{ item.key }}: {{ item.value }}</li>
+                    </ul>
                 </div>
             </div>
 
@@ -109,7 +107,7 @@
             <div class="container-comment">
                 <h6 >Comentario</h6>
                 <input class="input-comment" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment"
-                    pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" /> 
+                    pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
             </div>
         </div>
 

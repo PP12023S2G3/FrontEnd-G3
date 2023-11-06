@@ -195,6 +195,10 @@
     text-align: center;
 }
 
+ul{
+    list-style-type: none;
+}
+
 :host::ng-deep .container-feedback .p-button {
     margin: 1rem 0 0 1rem;
 }
@@ -256,7 +260,7 @@
     .checkbox-item span {
         margin-left: 10px;
     }
-    
+
 
 }
 
@@ -271,8 +275,8 @@
         width: 40vw;
         height: 4rem;
     }
-    
-        
+
+
 }
 
 @media screen and (max-width: 500px) {
@@ -315,5 +319,5 @@
     .container-comment input {
         height: 20vw;
     }
-   
+
 }
