@@ -26,10 +26,12 @@ export class UserAccountService {
   user$ = this.user.asObservable();
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
   userId:any;
+  roleId:any;
 
   constructor(private http: HttpClient) {
     this.loadUserFromLocalStorage();
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
+    this.roleId = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
   }
 
 // ver tipos de datos de las respuestas, probar

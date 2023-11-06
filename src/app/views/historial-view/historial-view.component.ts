@@ -2,6 +2,7 @@ import { Component, OnInit, untracked } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
+import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 @Component({
   selector: 'app-historial-view',
@@ -16,6 +17,8 @@ export class HistorialViewComponent implements OnInit {
     calendarIcon = 'pi pi-calendar';
     filteredData: any[] = [];
     isFilter = false;
+    IdRole: any;
+    IdUser: any;
     cambiarTitulo(nuevoTitulo: string) {
     this.tituloDinamico = nuevoTitulo;
   }
@@ -26,10 +29,15 @@ export class HistorialViewComponent implements OnInit {
     records: any;
 
     dateTime = new Date();
-    constructor(private messageService: MessageService,private resultService: ResultService, private router: Router) {
+    constructor(private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router) {
         this.getRecordAll();
         this.dateTime.setDate(this.dateTime.getDate());
+        this.IdRole = this.userAccountService.roleId;
+        console.log(this.IdRole);
+        this.IdUser = this.userAccountService.userId;
+        console.log(this.IdUser);
     }
+
   ngOnInit(): void {
     this.getRecordAll();
   }
@@ -56,7 +64,8 @@ export class HistorialViewComponent implements OnInit {
 
     private getRecordAll() {
       //:TODO este rol y id de usuario esta harcodeado
-        this.resultService.getRecordAll("234",'1').subscribe({
+      if(this.IdRole) {
+        this.resultService.getRecordAll(this.IdUser,this.IdRole).subscribe({
             next: (res) => {
               this.records=res.historial;
             },
@@ -70,6 +79,7 @@ export class HistorialViewComponent implements OnInit {
             }
           });
     }
+  }
     getRecord(id_diagnostico:number) {
       localStorage.setItem('idResult', JSON.stringify(id_diagnostico));
       this.router.navigate(['/result']);
