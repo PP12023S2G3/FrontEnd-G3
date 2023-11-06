@@ -321,3 +321,23 @@ ul{
     }
 
 }
+
+:host ::ng-deep .p-button{
+    width: 300px;
+    height: 4rem;
+    align-items: center;
+    border-radius: 10px;
+    background: var(--gradient-pink);
+    font-size: 15.94px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    bottom: 1rem;
+    margin-top: 1rem;
+    border: none;
+  
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+      cursor: pointer;
+    }
+  }

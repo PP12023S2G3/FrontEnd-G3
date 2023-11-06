@@ -155,10 +155,10 @@ export class ResultViewComponent implements OnInit {
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({ key, value }));
   }
-  enableButtonDownload($event: any) {
+  enableButtonDownload(label: string) {
+    console.log("Botón clicado:", label);
     this.buttonDownload = false; //habilitar
     console.log("EStoy llamando");
-    console.log($event);
   }
   generateButtons() {
     const labels = this.labelModels[this.diagnostic.sectionBody] || [];
