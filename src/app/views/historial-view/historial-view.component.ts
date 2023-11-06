@@ -61,15 +61,8 @@ export class HistorialViewComponent{
           });
     }
     getRecord(id_diagnostico:number) {
-        this.resultService.getRecord(id_diagnostico,localStorage.getItem("role")||"").subscribe({
-            next: (res) => {
-              localStorage.setItem('idResult', JSON.stringify(res.id));
-              this.router.navigate(['/result']);
-            },
-            error: (error) => {
-              // Manejar errores aquí
-            }
-          });
+      localStorage.setItem('idResult', JSON.stringify(id_diagnostico));
+      this.router.navigate(['/result']);
     }
 
 }
