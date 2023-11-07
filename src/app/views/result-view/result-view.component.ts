@@ -37,11 +37,11 @@ export class ResultViewComponent implements OnInit {
 
   labelModels: { [key: string]: string[] } = {
     Cerebro: ['Glioma', 'Meningioma', 'Pituitary', 'No tumor'],
-    Corazón: ['Contracción ventricular prematura', 'Fusión de latido ventricular y normal', 'Infarto de miocardio', 'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
+    Corazon: ['Contracción ventricular prematura', 'Fusión de latido ventricular y normal', 'Infarto de miocardio', 'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
     Rodilla: ['Rotura LCA', 'LCA Sano'],
     Muñeca: ['Fractura', 'Sin fractura'],
     Pulmones: ['Neumonía', 'No neumonía'],
-    Riñon: ['Quistes', 'Cálculos', 'Tumor', 'Normal'],
+    Riñones: ['Quistes', 'Cálculos', 'Tumor', 'Normal'],
   };
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
@@ -139,6 +139,9 @@ export class ResultViewComponent implements OnInit {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
           this.setValueResultDiagnostic(res);
+          if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones"|| res.modelo_nombre === "Pulmon") {
+            this.diagnostic.sectionBody = res.modelo_nombre;
+          }
         },
         error: (error: { message: any }) => {
           this.messageService.add({
@@ -150,8 +153,9 @@ export class ResultViewComponent implements OnInit {
       });
     }
 
+    
     this.diagnostic = new Diagnostic();
-    this.diagnostic.sectionBody = "Cerebro";
+    
     this.doctor = new Doctor();
 
 
