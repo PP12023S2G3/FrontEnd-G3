@@ -131,7 +131,7 @@ export class ResultViewComponent implements OnInit {
       }
     });
 
-
+*/
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('role');
 
@@ -148,12 +148,12 @@ export class ResultViewComponent implements OnInit {
           });
         }
       });
-    } */
+    }
 
     this.diagnostic = new Diagnostic();
     this.diagnostic.sectionBody = "Cerebro";
     this.doctor = new Doctor();
-  
+
 
 
     /*    this.diagnostic = this.resultDTO.getCompanyInformation();
