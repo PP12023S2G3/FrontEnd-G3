@@ -46,6 +46,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/middlewares/interceptor.service';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { AuthInterceptor } from './services/middlewares/interceptor.service';
     TriStateCheckboxModule,
     CheckboxModule,
     HttpClientModule,
+    SelectButtonModule,
   ],
   providers: [MessageService,{
     provide: HTTP_INTERCEPTORS,
