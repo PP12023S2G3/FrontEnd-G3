@@ -5,14 +5,16 @@ import { Doctor } from 'src/app/models/Doctor';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
-
+import {MessageService} from 'primeng/api';
 
 
 @Component({
   selector: 'app-result-view',
   templateUrl: './result-view.component.html',
-  styleUrls: ['./result-view.component.css']
+  styleUrls: ['./result-view.component.css'],
+  providers: [MessageService]
 })
+
 export class ResultViewComponent implements OnInit {
   buttonTextLabel1 !: string;
   buttonTextLabel2 !: string;
@@ -45,7 +47,7 @@ export class ResultViewComponent implements OnInit {
   datosComplementariosList: { key: string; value: any; }[] = [];
   
 
-  constructor(private resultDTO: ResultcDTO, private resultService: ResultService, private feedbackService: FeedbackService) {
+  constructor(private resultDTO: ResultcDTO,private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
   }
 
 
@@ -55,8 +57,12 @@ export class ResultViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
     // Para el método postFeedbackWrist
@@ -65,8 +71,12 @@ export class ResultViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
 
@@ -75,8 +85,12 @@ export class ResultViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
 
@@ -85,8 +99,12 @@ export class ResultViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
     //324 325
@@ -94,8 +112,12 @@ export class ResultViewComponent implements OnInit {
       next: (res) => {
         console.log(res);
       },
-      error: (error) => {
-        // Manejar errores aquí
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
       }
     });
     // Para el método postFeedbackHeart
@@ -118,8 +140,12 @@ export class ResultViewComponent implements OnInit {
         next: (res) => {
           this.setValueResultDiagnostic(res);
         },
-        error: (error) => {
-
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
         }
       });
     }
