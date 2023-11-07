@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MessageService} from 'primeng/api';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { DiagnosticResp } from 'src/app/models/DiagnosticResp';
 import { Doctor } from 'src/app/models/Doctor';
