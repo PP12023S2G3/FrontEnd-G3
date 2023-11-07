@@ -17,6 +17,7 @@ import {MessageService} from 'primeng/api';
 
 export class ResultViewComponent implements OnInit {
   textComment: string = '';
+  containerMoreOptions : boolean = true;
   buttonsCases: boolean = true;
   buttonDownload: boolean = true;
   buttonNo: boolean = false;
@@ -180,11 +181,14 @@ export class ResultViewComponent implements OnInit {
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({ key, value }));
   }
+
+
   enableButtonDownload(label: string) {
     console.log("Botón clicado:", label);
     this.buttonDownload = false; //habilitar
     console.log("EStoy llamando");
   }
+
   generateButtons() {
     const labels = this.labelModels[this.diagnostic.sectionBody] || [];
     const buttons = [];
@@ -199,21 +203,24 @@ export class ResultViewComponent implements OnInit {
 
   inputEnableButtonDownload() {
     if(this.textComment.length > 2){
-      this.buttonDownload = false;
+      this.buttonsCases = true; //dehabilitar botones
+      this.buttonDownload = false; //habilitar descarga
     }else{
-      this.buttonDownload = true;
+      this.buttonDownload = true; //deshabilitar descarga
+      this.buttonsCases = false; //habilitar botones
     }
   }
 
 
   disableButtonYes() {
     this.buttonDownload = false;
-    this.buttonsCases = true; //deshabilitar
+    this.containerMoreOptions = true; //deshabilitar
   }
 
   disableButtonNo() {
     this.buttonDownload = true;
-    this.buttonsCases = false; //habilitar
+    this.containerMoreOptions = false; //habilitar
+    this.buttonsCases = false;
 
   }
 

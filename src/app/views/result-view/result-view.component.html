@@ -8,16 +8,19 @@
             <div class="container-inputs-data-doctor">
                 <div>
                     <h6 class="title-dni-doctor">DNI</h6>
-                        <input id="disabled-input1" type="text" pInputText [disabled]="true" value={{result?.usuario_medico_dni}}/>
+                    <input id="disabled-input1" type="text" pInputText [disabled]="true"
+                        value={{result?.usuario_medico_dni}} />
                 </div>
                 <div>
                     <h6 class="title-name-doctor">Nombre</h6>
-                    <input id="disabled-input2" type="text" pInputText [disabled]="true" value={{result?.nombre_medico}}/>
+                    <input id="disabled-input2" type="text" pInputText [disabled]="true"
+                        value={{result?.nombre_medico}} />
 
                 </div>
                 <div>
                     <h6 class="title-lastname-doctor">Apellido</h6>
-                    <input id="disabled-input3" type="text" pInputText [disabled]="true" value={{result?.nombre_medico}}/>
+                    <input id="disabled-input3" type="text" pInputText [disabled]="true"
+                        value={{result?.nombre_medico}} />
                 </div>
 
             </div>
@@ -29,27 +32,32 @@
             <div class="container-inputs-data-patient">
                 <div>
                     <h6 class="title-age-patient">Fecha de nacimiento</h6>
-                    <input id="disabled-input4" type="text" pInputText [disabled]="true" value={{datos_paciente?.fecha_nacimiento}}/>
+                    <input id="disabled-input4" type="text" pInputText [disabled]="true"
+                        value={{datos_paciente?.fecha_nacimiento}} />
                 </div>
 
                 <div>
                     <h6 class="title-weight-patient">Peso(Kg)</h6>
-                    <input id="disabled-input5" type="text" pInputText [disabled]="true" value={{datos_paciente?.peso}}/>
+                    <input id="disabled-input5" type="text" pInputText [disabled]="true"
+                        value={{datos_paciente?.peso}} />
                 </div>
 
                 <div>
                     <h6 class="title-height-patient">Altura(cm)</h6>
-                    <input id="disabled-input6" type="text" pInputText [disabled]="true" value={{datos_paciente?.altura}}/>
+                    <input id="disabled-input6" type="text" pInputText [disabled]="true"
+                        value={{datos_paciente?.altura}} />
                 </div>
 
                 <div>
                     <h6 class="title-gender-patient">Sexo</h6>
-                    <input id="disabled-input7" type="text" pInputText [disabled]="true" value={{datos_paciente?.sexo}}/>
+                    <input id="disabled-input7" type="text" pInputText [disabled]="true"
+                        value={{datos_paciente?.sexo}} />
                 </div>
 
                 <div>
                     <h6 class="title-body-section-patient">Sección del cuerpo</h6>
-                    <input id="disabled-input8" type="text" pInputText [disabled]="true" value={{result?.modelo_nombre}}/>
+                    <input id="disabled-input8" type="text" pInputText [disabled]="true"
+                        value={{result?.modelo_nombre}} />
                 </div>
 
             </div>
@@ -74,7 +82,7 @@
                     <h6 class="title-diagnostic-result-patient">Resultado del diagnostico</h6>
                     <div *ngIf="resultadoList.length > 0">
                         <p>{{ getHighestKeyValue().key }}: {{ getHighestKeyValue().value }}</p>
-                      </div>
+                    </div>
                 </div>
             </div>
 
@@ -95,18 +103,19 @@
                 label="No"></p-button>
         </div>
 
-        <div *ngIf="!buttonsCases">
+        <div *ngIf="!containerMoreOptions">
             <p>¿Qué resultado sería mejor en este caso?</p>
 
             <div class="generate-buttons-feedback">
-                <button pButton *ngFor="let button of generateButtons()" styleClass="p-button-global" 
-                    [disabled]="buttonsCases" (click)="enableButtonDownload(button.label)" label="{{ button.label }}"></button>
+                <button pButton *ngFor="let button of generateButtons()" styleClass="p-button-global"
+                    [disabled]="buttonsCases" (click)="enableButtonDownload(button.label)"
+                    label="{{ button.label }}"></button>
             </div>
             <p> En caso de no coincidir deja un comentario por favor</p>
             <div class="container-comment">
-                <h6 >Comentario</h6>
-                <input class="input-comment" [(ngModel)]="textComment" (input)="inputEnableButtonDownload()" type="text" placeholder=" Ejemplo: Gripe" pInputText name="comment"
-                    pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
+                <h6>Comentario</h6>
+                <input class="input-comment" [(ngModel)]="textComment" (input)="inputEnableButtonDownload()" type="text"
+                    placeholder=" Ejemplo: Gripe" pInputText name="comment" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
             </div>
         </div>
 
