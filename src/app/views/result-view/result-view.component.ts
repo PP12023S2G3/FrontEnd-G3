@@ -5,7 +5,7 @@ import { Doctor } from 'src/app/models/Doctor';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
-
+import {MessageService} from 'primeng/api';
 
 
 @Component({
