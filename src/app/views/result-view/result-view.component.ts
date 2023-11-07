@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MessageService} from 'primeng/api';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { DiagnosticResp } from 'src/app/models/DiagnosticResp';
 import { Doctor } from 'src/app/models/Doctor';
@@ -52,7 +53,7 @@ export class ResultViewComponent implements OnInit {
 
   ngOnInit(): void {
     //318 319
-    this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
+  /*  this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -147,7 +148,7 @@ export class ResultViewComponent implements OnInit {
           });
         }
       });
-    }
+    } */
 
     this.diagnostic = new Diagnostic();
     this.diagnostic.sectionBody = "Cerebro";
