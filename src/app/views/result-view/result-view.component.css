@@ -209,6 +209,14 @@ ul{
     justify-content: center;
 }
 
+.generate-buttons-feedback {
+    display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+
 .container-comment h6 {
     font-size: var(--font-size-title6);
     font-weight: normal;
@@ -274,6 +282,9 @@ ul{
     :host::ng-deep .container-download-result .p-button {
         width: 40vw;
         height: 4rem;
+    }
+    :host::ng-deep .generate-buttons-feedback .p-button{
+        padding: 0;
     }
 
 

@@ -106,10 +106,12 @@
         <div *ngIf="!containerMoreOptions">
             <p>¿Qué resultado sería mejor en este caso?</p>
 
-            <div class="generate-buttons-feedback">
-                <button pButton *ngFor="let button of generateButtons()" styleClass="p-button-global"
-                    [disabled]="buttonsCases" (click)="enableButtonDownload(button.label)"
-                    label="{{ button.label }}"></button>
+            <div class="generate-buttons-feedback" >
+                <div *ngFor="let button of buttonsModels">
+                    <button pButton styleClass="p-button-global" (click)="selectButton(button.id)"
+                    label="{{ button.label }}" [disabled]="button.idActivate" [id]="button.id"></button>
+                </div>
+                
             </div>
             <p> En caso de no coincidir deja un comentario por favor</p>
             <div class="container-comment">

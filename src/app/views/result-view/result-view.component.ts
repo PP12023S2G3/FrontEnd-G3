@@ -6,6 +6,7 @@ import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
+import { forEach } from 'jszip';
 
 
 @Component({
@@ -43,6 +44,8 @@ export class ResultViewComponent implements OnInit {
     Pulmones: ['Neumonía', 'No neumonía'],
     Riñones: ['Quistes', 'Cálculos', 'Tumor', 'Normal'],
   };
+  buttonsModels: any[] = [];
+
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
 
@@ -141,6 +144,8 @@ export class ResultViewComponent implements OnInit {
           this.setValueResultDiagnostic(res);
           if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones"|| res.modelo_nombre === "Pulmon") {
             this.diagnostic.sectionBody = res.modelo_nombre;
+            this.buttonsModels = [];
+            this.generateButtons();
           }
         },
         error: (error: { message: any }) => {
@@ -155,9 +160,9 @@ export class ResultViewComponent implements OnInit {
 
     
     this.diagnostic = new Diagnostic();
-    
     this.doctor = new Doctor();
-
+   
+   
 
 
     /*    this.diagnostic = this.resultDTO.getCompanyInformation();
@@ -187,22 +192,30 @@ export class ResultViewComponent implements OnInit {
   }
 
 
-  enableButtonDownload(label: string) {
-    console.log("Botón clicado:", label);
+  enableButtonDownload() {
     this.buttonDownload = false; //habilitar
     console.log("EStoy llamando");
   }
 
-  generateButtons() {
-    const labels = this.labelModels[this.diagnostic.sectionBody] || [];
-    const buttons = [];
+  selectButton(id: number) {
+    for (let i = 0; i < this.buttonsModels.length; i++) {
+      if (this.buttonsModels[i].id === id) {
+        this.buttonsModels[i].idActivate = false;
+        this.enableButtonDownload();
+      } else {
+        this.buttonsModels[i].idActivate = true;
 
-    for (let i = 0; i < labels.length; i++) {
-
-      buttons.push({ label: labels[i] });
+      }
     }
+   
+  }
 
-    return buttons;
+  generateButtons(): void {
+    const labels = this.labelModels[this.diagnostic.sectionBody] || [];
+    for (let i = 0; i < labels.length; i++) {
+      this.buttonsModels.push({ label: labels[i], id: i, idActivate: false });
+    }
+   
   }
 
   inputEnableButtonDownload() {
