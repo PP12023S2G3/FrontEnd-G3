@@ -5,7 +5,7 @@ import { Doctor } from 'src/app/models/Doctor';
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { forEach } from 'jszip';
 
 
@@ -18,11 +18,12 @@ import { forEach } from 'jszip';
 
 export class ResultViewComponent implements OnInit {
   textComment: string = '';
-  containerMoreOptions : boolean = true;
-  buttonsCases: boolean = true;
-  buttonDownload: boolean = true;
+  containerMoreOptions: boolean = true;
+  buttonsCases: boolean = false;
+  buttonSubmitFeedback: boolean = true;
   buttonNo: boolean = false;
   buttonYes: boolean = false;
+  inputDisable : boolean = false;
 
   doctor !: any;
   diagnostic!: any;
@@ -50,91 +51,91 @@ export class ResultViewComponent implements OnInit {
   datosComplementariosList: { key: string; value: any; }[] = [];
 
 
-  constructor(private resultDTO: ResultcDTO,private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
+  constructor(private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
   }
 
 
   ngOnInit(): void {
     //318 319
-  /*  this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error: { message: any }) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: error.message,
-          life: 2000,
-        });
-      }
-    });
-    // Para el método postFeedbackWrist
-    //315 323
-    this.feedbackService.postFeedbackWrist(315, false, true, "comentario").subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error: { message: any }) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: error.message,
-          life: 2000,
-        });
-      }
-    });
-
-    //314 320
-    this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error: { message: any }) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: error.message,
-          life: 2000,
-        });
-      }
-    });
-
-    //316 321
-    this.feedbackService.postFeedbackKidney(321, true, true, true, true, "comentario").subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error: { message: any }) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: error.message,
-          life: 2000,
-        });
-      }
-    });
-    //324 325
-    this.feedbackService.postFeedbackKnee(325, false, true, "comentario").subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error: { message: any }) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: error.message,
-          life: 2000,
-        });
-      }
-    });
-    // Para el método postFeedbackHeart
-    //317 322
-    this.feedbackService.postFeedbackHeart(322, false, false, false, false, false, true, "comentario").subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error) => {
-        // Manejar errores aquí
-      }
-    });
-
-*/
+    /*  this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+      // Para el método postFeedbackWrist
+      //315 323
+      this.feedbackService.postFeedbackWrist(315, false, true, "comentario").subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+  
+      //314 320
+      this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+  
+      //316 321
+      this.feedbackService.postFeedbackKidney(321, true, true, true, true, "comentario").subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+      //324 325
+      this.feedbackService.postFeedbackKnee(325, false, true, "comentario").subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+      // Para el método postFeedbackHeart
+      //317 322
+      this.feedbackService.postFeedbackHeart(322, false, false, false, false, false, true, "comentario").subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          // Manejar errores aquí
+        }
+      });
+  
+  */
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('role');
 
@@ -142,7 +143,7 @@ export class ResultViewComponent implements OnInit {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
           this.setValueResultDiagnostic(res);
-          if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones"|| res.modelo_nombre === "Pulmon") {
+          if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones" || res.modelo_nombre === "Pulmon") {
             this.diagnostic.sectionBody = res.modelo_nombre;
             this.buttonsModels = [];
             this.generateButtons();
@@ -158,11 +159,11 @@ export class ResultViewComponent implements OnInit {
       });
     }
 
-    
+
     this.diagnostic = new Diagnostic();
     this.doctor = new Doctor();
-   
-   
+
+
 
 
     /*    this.diagnostic = this.resultDTO.getCompanyInformation();
@@ -192,8 +193,8 @@ export class ResultViewComponent implements OnInit {
   }
 
 
-  enableButtonDownload() {
-    this.buttonDownload = false; //habilitar
+  enableButtonSubmitFeedback() {
+    this.buttonSubmitFeedback = false; //habilitar
     console.log("EStoy llamando");
   }
 
@@ -201,13 +202,14 @@ export class ResultViewComponent implements OnInit {
     for (let i = 0; i < this.buttonsModels.length; i++) {
       if (this.buttonsModels[i].id === id) {
         this.buttonsModels[i].idActivate = false;
-        this.enableButtonDownload();
+        this.enableButtonSubmitFeedback();
+        this.inputDisable = true;
       } else {
         this.buttonsModels[i].idActivate = true;
 
       }
     }
-   
+
   }
 
   generateButtons(): void {
@@ -215,30 +217,29 @@ export class ResultViewComponent implements OnInit {
     for (let i = 0; i < labels.length; i++) {
       this.buttonsModels.push({ label: labels[i], id: i, idActivate: false });
     }
-   
+
   }
 
-  inputEnableButtonDownload() {
-    if(this.textComment.length > 2){
-      this.buttonsCases = true; //dehabilitar botones
-      this.buttonDownload = false; //habilitar descarga
-    }else{
-      this.buttonDownload = true; //deshabilitar descarga
-      this.buttonsCases = false; //habilitar botones
-    }
+  inputEnableButtonSubmitFeedback() {
+      if(this.inputDisable === false && this.textComment.length > 2){
+        for (let i = 0; i < this.buttonsModels.length; i++) {
+        this.buttonsModels[i].idActivate = true;
+        }
+        this.buttonSubmitFeedback = false; 
+      }else if(this.textComment.length < 2){
+        this.buttonSubmitFeedback = true; 
+      }
   }
 
 
   disableButtonYes() {
-    this.buttonDownload = false;
+    this.buttonSubmitFeedback = false;
     this.containerMoreOptions = true; //deshabilitar
   }
 
   disableButtonNo() {
-    this.buttonDownload = true;
+    this.buttonSubmitFeedback = true;
     this.containerMoreOptions = false; //habilitar
-    this.buttonsCases = false;
-
   }
 
   getHighestKeyValue(): { key: string, value: any } {
