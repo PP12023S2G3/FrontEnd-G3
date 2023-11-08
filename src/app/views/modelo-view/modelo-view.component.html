@@ -1,2 +1,77 @@
-<p>modelo-view works!</p>
-<app-sidebar></app-sidebar>
+<app-navbar [pageTitle]="tituloDinamico"></app-navbar>
+<div class="models-container">
+    <div>
+        <p class="paragraph2">Los modelos de inteligencia artificial pueden analizar imágenes médicas tales como 
+            radiografías o resonancias magnéticas para detectar automáticamente diferentes anomalías. 
+        </p>
+    </div>
+    <div class="models-section">
+        <div class="first">
+            <div class="model">
+                <h4 class="title5">Modelo Cerebro</h4>
+                <p class="paragraph3">Se desarrolló un modelo basado en imágenes de resonancia magnética para detectar tumores 
+                    en pacientes y clasificarlos en cuatro categorías: glioma, meningioma, tumor hipofisario 
+                    y sin tumor. Se probaron varios modelos, siendo el elegido el CNN Manual por su alta precisión 
+                    del 96% en las pruebas con 7600 imágenes. Se utilizaron 38000 imágenes para entrenamiento y prueba, 
+                    distribuyendo equitativamente las clases con 9500 imágenes cada una, debido a limitaciones de recursos.
+                </p>
+            </div>
+            <div class="model">
+                <h4 class="title5">Modelo Muñeca</h4>
+                <p class="paragraph3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                    fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                </p>
+            </div>
+            <div class="model">
+                <h4 class="title5">Modelo Riñón</h4>
+                <p class="paragraph3">Se desarrolló un modelo de CNN Manual para detectar enfermedades renales, como quistes, piedras, tumores 
+                    o riñones sanos, a partir de imágenes de tomografía computarizada. El modelo clasifica los problemas en 
+                    cuatro grupos: quistes (C), piedras (S), tumores (T) y normal (N). Se entrenó con 11756 imágenes, divididas 
+                    equitativamente en las clases, y se evaluó con 2939 imágenes por clase en un conjunto de entrenamiento y 
+                    prueba con una relación de 80-20%. El modelo alcanzó una alta precisión del 99.87% y un bajo nivel de 
+                    error del 0.0048 en las pruebas.
+                </p>
+            </div>
+        </div>
+        <div class="second">
+            <div class="model">
+                <h4 class="title5">Modelo Rodilla</h4>
+                <p class="paragraph3">Se desarrolló un modelo CNN3D para detectar lesiones en el ligamento cruzado anterior (LCA) a partir de 
+                    imágenes de Resonancia Magnética Nuclear (RMN) de la rodilla en el plano sagital. La elección de este 
+                    modelo se basó en su capacidad para interpretar imágenes tridimensionales de manera integral, lo que 
+                    resultó en una detección eficiente de las lesiones del LCA. El modelo se entrenó con 1490 imágenes 
+                    seleccionadas cuidadosamente, centrándose en la región del LCA en el plano sagital y reduciendo la 
+                    información irrelevante para simplificar el análisis. Se utilizaron diversas métricas, como Accuracy y 
+                    AUC, para evaluar la precisión del modelo tanto en los datos de entrenamiento como en los de validación.
+                </p>
+            </div>
+            <div class="model">
+                <h4 class="title5">Modelo Corazón</h4>
+                <p class="paragraph3">Para desarrollar un modelo de detección de enfermedades cardíacas basado en imágenes de electrocardiogramas, 
+                    se utilizó un conjunto de datos que incluía diversas etiquetas para los latidos cardíacos. Se probaron varios 
+                    modelos de inteligencia artificial, como ResNet50 e InceptionV3, junto con una Red Neuronal Personalizada. 
+                    A pesar de que ResNet50 inicialmente mostró un alto rendimiento en precisión y AUC, tuvo dificultades para 
+                    clasificar correctamente nuevas imágenes. Por lo tanto, se optó por desarrollar una Red Neuronal Convolucional 
+                    (CNN) personalizada con capas especializadas para mejorar la precisión en la clasificación de las imágenes de 
+                    electrocardiogramas.
+                </p>
+            </div>
+            <div class="model">
+                <h4 class="title5">Modelo Pulmón</h4>
+                <p class="paragraph3">Para desarrollar el modelo de detección de enfermedades pulmonares, se utilizó ResNet50V2, un modelo residual 
+                    preentrenado de la familia ResNet. Fue entrenado para identificar la presencia de neumonía en imágenes de 
+                    rayos X de tórax, con un conjunto de datos que incluía 10489 imágenes, divididas equitativamente entre pacientes 
+                    con la enfermedad y pacientes sin ella (5249 imágenes para cada grupo).
+                    Antes de decidirse por ResNet50V2, el equipo evaluó otras opciones, como un modelo convolucional desarrollado 
+                    internamente y un modelo preentrenado SVM. Sin embargo, ResNet50V2 fue elegido por su velocidad y eficiencia 
+                    en el uso de recursos. El modelo logró hacer predicciones rápidas sin sobrecargar los sistemas y mostró una 
+                    alta precisión del 98% en 2100 imágenes.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
