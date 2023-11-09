@@ -33,7 +33,8 @@ export class UserAccountService {
   userId:any;
   roleId:any;
   userRole!: Role ;
- especialidadByRoleid4 = 'Medico';
+  especialidadByRoleid4 = 'Medico';
+  especialidadByRoleid3 = 'ProfDelaSalud';
   userWithToken!:any;
 
   constructor(private http: HttpClient) {
@@ -89,6 +90,9 @@ export class UserAccountService {
 
     if(response.rol_id == 4) {
       response.especialidad = this.especialidadByRoleid4;
+    }
+    else if (response.rol_id == 3) {
+      response.especialidad = this.especialidadByRoleid3;
     }
 
    const userWithToken: UserWithToken = {
