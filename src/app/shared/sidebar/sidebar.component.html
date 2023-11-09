@@ -8,10 +8,8 @@
     </ng-template>
     <ng-template pTemplate="content">
       <div class="content-sidebar"></div>
-      <a routerLink="/diagnostico" class="link-sidebar link" href="">Diagnóstico</a>
-      <a routerLink="/historial" class="link-sidebar link" href="">Historial</a>
-      <a routerLink="/modelo" class="link-sidebar link" href="">Modelos</a>
-      <a routerLink="/contacto" class="link-sidebar link" href="">Contacto</a>
+      <a *ngFor="let item of getMenuItemsForRole(role)" [routerLink]="item.link" class="link-sidebar link" href="">{{ item.label }}</a>
+
     </ng-template>
     <ng-template pTemplate="footer">
       <a (click)="this.updateLogoutVisible()" class="logout-link-sidebar link">Cerrar sesión</a>

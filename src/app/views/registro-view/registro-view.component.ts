@@ -172,6 +172,6 @@ isDataIndalid() {
 
   desenfocarFondo() {
     var containerBlur = document.querySelector(".container-registro");
-      containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
-  } 
+      containerBlur != null ? containerBlur.classList.add("blur-div"): "";
+  }
 }

@@ -6,10 +6,13 @@ import { DoctorResp } from 'src/app/models/DoctorResp';
 import { SuccessfulRegistrationResp } from 'src/app/models/SuccessfulRegistrationResp';
 import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
 import { LogInRequest } from 'src/app/models/LogInRequest';
+import { UserWithToken } from 'src/app/models/UserWithToken';
+import { Role } from 'src/app/models/roles';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
 const ROLE_LOCAL_STORAGE_KEY = 'role';
+const ROLEID_LOCAL_STORAGE_KEY = 'roleId';
 const TOKEN_LOCAL_STORAGE_KEY = 'token';
 
 @Injectable({
@@ -22,16 +25,21 @@ export class UserAccountService {
   private endpointSignIn: string='registro';
   private endpointLogIn: string='login';
   private endpointAuth: string='verificarUsuario';
-  private user = new BehaviorSubject<SuccessfulLogInResp | null>(null);
+
+
+  private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
   userId:any;
   roleId:any;
+  userRole!: Role ;
+ especialidadByRoleid4 = 'Medico';
+  userWithToken!:any;
 
   constructor(private http: HttpClient) {
     this.loadUserFromLocalStorage();
+    this.roleId = localStorage.getItem(ROLEID_LOCAL_STORAGE_KEY);
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
-    this.roleId = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
   }
 
 // ver tipos de datos de las respuestas, probar
@@ -78,20 +86,29 @@ export class UserAccountService {
 
   saveDataInLocalStorage(response: any): void {
     const userToken = response.token;
-    const user: SuccessfulLogInResp = {
-      id: response.id,
-      nombre: response.nombre,
-      rol_id: response.rol_id,
-      dni: response.dni,
-      email: response.email,
-      especialidad: response.especialidad,
-      establecimiento_id: response.establecimiento_id,
-      token: response.token
+
+    if(response.rol_id == 4) {
+      response.especialidad = this.especialidadByRoleid4;
+    }
+
+   const userWithToken: UserWithToken = {
+        username: response.nombre,
+        role: response.especialidad,
+        token: response.token,
     };
+
+
+    this.userRole = response.especialidad;
+    this.pushNewUser(userWithToken);
     this.userId = response.id;
-    this.saveRoleToLocalStore(response.rol_id);
+    this.saveRoleIdToLocalStore(response.rol_id);
+    this.saveRoleToLocalStore(response.especialidad);
     this.saveIdUserToLocalStore(this.userId);
-    this.saveTokenToLocalStore(userToken);
+    this.saveTokenToLocalStore(response.token);
+  }
+
+  saveRoleIdToLocalStore(roleId: any) {
+   localStorage.setItem(ROLEID_LOCAL_STORAGE_KEY, roleId);
   }
 
   saveTokenToLocalStore(token: any) {
@@ -106,9 +123,26 @@ export class UserAccountService {
     localStorage.setItem(USERID_LOCAL_STORAGE_KEY, userId);
   }
 
-  private loadUserFromLocalStorage(): void {
-    localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
-    localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
+  private pushNewUser(userWithToken: UserWithToken) {
+    this.user.next(userWithToken);
+    console.log(this.user);
+  }
+
+  getCurrentUser(): UserWithToken | null {
+    return this.user.getValue();
+  }
+
+  public loadUserFromLocalStorage(): void {
+    const userToken = localStorage.getItem(TOKEN_LOCAL_STORAGE_KEY);
+    const rol = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
+    if (userToken) {
+      const userWithToken: UserWithToken = {
+        username: '',
+        token: userToken,
+        role: rol || ''
+      };
+      this.pushNewUser(userWithToken);
+  }
   }
 
 //TODO: cuando se tengan los errores del back sacar un handleError.
