@@ -24,7 +24,7 @@
     padding-bottom: 15px;
 }
 
-.first, .second{
+.first{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -44,7 +44,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .first, .second{
+    .first{
         flex-direction: column;
     }
 }
