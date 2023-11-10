@@ -12,6 +12,7 @@ import { RegistroComponent } from './views/registro-view//registro-view.componen
 import { NewPasswordViewComponent } from './views/new-password-view/new-password-view.component';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { AuthGuard } from './auth/AuthGuard';
+import { TwofactorViewComponent } from './views/two-factor-view/two-factor-view.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -64,7 +65,8 @@ const routes: Routes = [
   canActivate: [AuthGuard],
   data: {
     allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
-  } }
+  } },
+  { path: 'two-factor', component: TwofactorViewComponent}
 ];
 
 @NgModule({
