@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-historial-view',
@@ -29,7 +31,7 @@ export class HistorialViewComponent implements OnInit {
     records: any;
 
     dateTime = new Date();
-    constructor(private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router) {
+    constructor(private location: Location, private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router) {
         this.dateTime.setDate(this.dateTime.getDate());
         this.IdRole = this.userAccountService.roleId;
         console.log(this.IdRole);
@@ -37,9 +39,15 @@ export class HistorialViewComponent implements OnInit {
         console.log(this.IdUser);
     }
 
-  ngOnInit(): void {
-    this.getRecordAll();
-  }
+    ngOnInit(): void {
+      this.getRecordAll();
+      const hasReloaded = localStorage.getItem('hasReloaded');
+      if (!hasReloaded) {
+        localStorage.setItem('hasReloaded', 'true');
+        location.reload();
+      }
+    }
+  
 
   applyDateFilter() {
     if (this.rangeDates) {

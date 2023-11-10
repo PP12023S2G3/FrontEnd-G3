@@ -74,7 +74,8 @@ export class LoginComponent implements OnInit {
       next: (res) => {
           this.userAccountService.saveDataInLocalStorage(res);
           this.loaderService.updateIsLoading(false);
-          this.router.navigate(['/diagnostico']);
+          const userRoleId = res.rol_id;
+      this.redirectBasedOnUserRoleId(userRoleId);
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -87,5 +88,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  private redirectBasedOnUserRoleId(userRoleId: number) {
+    switch (userRoleId) {
+      case 1:
+      case 3:
+        this.router.navigate(['/diagnostico']);
+        break;
+      case 4:
+        this.router.navigate(['/historial']);
+        break;
+      default:
+        this.router.navigate(['/inicio']);
+        break;
+    }
+  }
 }
 

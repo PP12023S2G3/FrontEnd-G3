@@ -22,12 +22,9 @@ export class InicioViewComponent {
     this.userAccountService.postAuth(token).subscribe({
       next: (res) => {
           this.userAccountService.saveDataInLocalStorage(res);
-          this.router.navigate(['/diagnostico']);
       },
         error: (error: { message: any }) => {
-
         }
-
       });
     }
   }
