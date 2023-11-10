@@ -84,7 +84,7 @@ export class ResultViewComponent implements OnInit {
           });
         }
       });
-  
+
       //314 320
       this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
         next: (res) => {
@@ -98,7 +98,7 @@ export class ResultViewComponent implements OnInit {
           });
         }
       });
-  
+
       //316 321
       this.feedbackService.postFeedbackKidney(321, true, true, true, true, "comentario").subscribe({
         next: (res) => {
@@ -135,14 +135,15 @@ export class ResultViewComponent implements OnInit {
           // Manejar errores aquí
         }
       });
-  
+
   */
     const idResult = localStorage.getItem('idResult');
-    const roleId = localStorage.getItem('role');
+    const roleId = localStorage.getItem('roleId');
 
     if (idResult && roleId) {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
+
           this.setValueResultDiagnostic(res);
           if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones" || res.modelo_nombre === "Pulmon") {
             this.diagnostic.sectionBody = res.modelo_nombre;
@@ -186,6 +187,7 @@ export class ResultViewComponent implements OnInit {
     if (this.result.nombre_medico === null) {
       this.result.nombre_medico = '';
     }
+    console.log(this.result);
     this.datos_paciente = JSON.parse(this.result.datos_paciente);
     this.resultado = JSON.parse(this.result.resultado);
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
@@ -202,7 +204,7 @@ export class ResultViewComponent implements OnInit {
     let condicionesPrevias = "\n";
     this.datosComplementariosList.map((conPrev) => {
       const newKey = conPrev.key.replaceAll("_", " ");
-      condicionesPrevias += "-   " + newKey + ": " + (conPrev.value ? "Si" : "No") + "\n"; 
+      condicionesPrevias += "-   " + newKey + ": " + (conPrev.value ? "Si" : "No") + "\n";
     })
 
     resultadopdf = resultadopdf + 'DNI: ' + this.result.usuario_medico_dni + '\n' +
@@ -280,9 +282,9 @@ export class ResultViewComponent implements OnInit {
         for (let i = 0; i < this.buttonsModels.length; i++) {
         this.buttonsModels[i].idActivate = true;
         }
-        this.buttonSubmitFeedback = false; 
+        this.buttonSubmitFeedback = false;
       }else if(this.textComment.length < 2){
-        this.buttonSubmitFeedback = true; 
+        this.buttonSubmitFeedback = true;
       }
   }
 
@@ -300,44 +302,44 @@ export class ResultViewComponent implements OnInit {
   getHighestKeyValue(): { key: string, value: any } {
     let highestValue: any = null;
     let highestKeyValue: { key: string, value: any } = { key: '', value: null };
-    const prediction = this.resultado['prediction']; 
-    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado); 
-   
-    const keyTranslations: { [key: string]: string } = { 
-      "LCA sano": 'Ligamento cruzado anterior sano', 
-      lcaSano: 'Ligamento cruzado anterior sano', 
-      roturaLCA: 'Rotura de ligamento cruzado anterior', 
-      normal: 'Normal', 
-      piedra: 'Piedra', 
-      quiste: 'Quiste', 
-      tumor: 'Tumor', 
-      no_pneumonia: 'No neumonía', 
-      pneumonia: 'Neumonía', 
-      fractura: 'Fractura', 
-      sano: 'Sano', 
-      glioma: 'Glioma', 
-      meningioma: 'Meningioma', 
-      pituitary: 'Pituitaria', 
-      no_tumor: 'No tumor', 
-      contraccionVentricular: 'Contraccion ventricular', 
-      fusionVentricularNormal: 'Fusión ventricular normal', 
-      infarto: 'Infarto', 
-      prematuroSupraventricular: 'Prematuro supraventricular', 
-      no_clasificable: 'No clasificable', 
-    }; 
-   
-    for (const [key, value] of resultEntries) { 
-      if (typeof value === 'number' && (highestValue === null || value > highestValue)) { 
-        highestValue = value; 
-        const translatedKey = keyTranslations[key] || key; 
-        highestKeyValue = { key: translatedKey, value }; 
-      } 
-    } 
-   
-    if (highestKeyValue.value !== null && highestKeyValue.value >= 0 && highestKeyValue.value <= 1) { 
-      highestKeyValue.value *= 100; 
-    } 
-    return highestKeyValue; 
+    const prediction = this.resultado['prediction'];
+    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado);
+
+    const keyTranslations: { [key: string]: string } = {
+      "LCA sano": 'Ligamento cruzado anterior sano',
+      lcaSano: 'Ligamento cruzado anterior sano',
+      roturaLCA: 'Rotura de ligamento cruzado anterior',
+      normal: 'Normal',
+      piedra: 'Piedra',
+      quiste: 'Quiste',
+      tumor: 'Tumor',
+      no_pneumonia: 'No neumonía',
+      pneumonia: 'Neumonía',
+      fractura: 'Fractura',
+      sano: 'Sano',
+      glioma: 'Glioma',
+      meningioma: 'Meningioma',
+      pituitary: 'Pituitaria',
+      no_tumor: 'No tumor',
+      contraccionVentricular: 'Contraccion ventricular',
+      fusionVentricularNormal: 'Fusión ventricular normal',
+      infarto: 'Infarto',
+      prematuroSupraventricular: 'Prematuro supraventricular',
+      no_clasificable: 'No clasificable',
+    };
+
+    for (const [key, value] of resultEntries) {
+      if (typeof value === 'number' && (highestValue === null || value > highestValue)) {
+        highestValue = value;
+        const translatedKey = keyTranslations[key] || key;
+        highestKeyValue = { key: translatedKey, value };
+      }
+    }
+
+    if (highestKeyValue.value !== null && highestKeyValue.value >= 0 && highestKeyValue.value <= 1) {
+      highestKeyValue.value *= 100;
+    }
+    return highestKeyValue;
   }
 
 }

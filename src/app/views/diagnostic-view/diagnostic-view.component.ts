@@ -260,7 +260,7 @@ onFileSelect(event: any) {
           detail: 'Datos del formulario erroneos',
           life: 2000,
         });
-      } 
+      }
     }
   }
 
@@ -272,9 +272,9 @@ onFileSelect(event: any) {
       const req=this.resultService.createRequestHeart(file,this.selectedOptionsCorazon['Palpitaciones'],
       this.selectedOptionsCorazon['Dolor superior izquierdo'],this.selectedOptionsCorazon['Disnea'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-   
+
       console.log(req);
-      
+
       this.resultService.postResultHeart(req).subscribe({
         next: (res) => {
           localStorage.setItem('idResult', JSON.stringify(res.id));
@@ -324,8 +324,8 @@ onFileSelect(event: any) {
         });
       }
     });
-   
-   } 
+
+   }
    else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Pulmón') {
 
     const reqLungs=this.resultService.createRequestLungs(file,this.selectedOptionsPulmon['Puntada lateral'],this.selectedOptionsPulmon['Fiebre']
@@ -442,7 +442,7 @@ onFileSelect(event: any) {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0'); // Añade un 0 si es un solo dígito
       const day = String(date.getDate()).padStart(2, '0'); // Añade un 0 si es un solo dígito
-  
+
       this.formattedDate = `${year}-${month}-${day}`;
     } else {
       this.formattedDate = ''; // Si la fecha es undefined, establece la variable como cadena vacía

@@ -16,17 +16,9 @@ import { TwofactorViewComponent } from './views/two-factor-view/two-factor-view.
 
 const routes: Routes = [
   { path: 'contacto',
-   component: ContactoViewComponent,
-   canActivate: [AuthGuard],
-   data: {
-     allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
-   }
+   component: ContactoViewComponent
    },
-  { path: 'modelo', component: ModeloViewComponent,
-  canActivate: [AuthGuard],
-  data: {
-    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
-  } },
+  { path: 'modelo', component: ModeloViewComponent },
   { path: 'historial', component: HistorialViewComponent,
   canActivate: [AuthGuard],
   data: {
@@ -45,27 +37,11 @@ const routes: Routes = [
   data: {
     allowedRoles: ['Auditor', 'Medico'],
   }},
-  { path: 'resetPassword', component: ResetPasswordComponent,
-  canActivate: [AuthGuard],
-  data: {
-    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud', 'Administrador'],
-  }},
-  { path: 'register', component: RegistroComponent,
-  canActivate: [AuthGuard],
-  data: {
-    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud', 'Administrador'],
-  }},
+  { path: 'resetPassword', component: ResetPasswordComponent},
+  { path: 'register', component: RegistroComponent},
   { path: '', component: InicioViewComponent },
-  { path: 'new-password', component: NewPasswordViewComponent ,
-  canActivate: [AuthGuard],
-  data: {
-    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud', 'Administrador'],
-  }},
-  { path: 'logout', component: LogoutComponent,
-  canActivate: [AuthGuard],
-  data: {
-    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
-  } },
+  { path: 'new-password', component: NewPasswordViewComponent},
+  { path: 'logout', component: LogoutComponent },
   { path: 'two-factor', component: TwofactorViewComponent}
 ];
 
