@@ -7,6 +7,7 @@ import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
 import { MessageService } from 'primeng/api';
 import { forEach } from 'jszip';
+import jsPDF from 'jspdf';
 
 
 @Component({
@@ -49,11 +50,11 @@ export class ResultViewComponent implements OnInit {
 
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
-
+  datosPaciente: any;
+  imagePath: any
 
   constructor(private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
   }
-
 
   ngOnInit(): void {
     //318 319
@@ -190,8 +191,62 @@ export class ResultViewComponent implements OnInit {
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({ key, value }));
+    this.datosPaciente = JSON.parse(this.result.datos_paciente);
+    this.imagePath = 'data:image/png;base64,' + this.result.imagen;
   }
 
+  armarPDF(res: DiagnosticResp) {
+    let fecha = new Date().toLocaleDateString();
+
+    let resultadopdf = 'Diagnóstico\nCódigo de diagnóstico: ' + this.result.id + '                                                  Fecha: ' + fecha + '\n\nDatos del médico: \n';
+    let condicionesPrevias = "\n";
+    this.datosComplementariosList.map((conPrev) => {
+      const newKey = conPrev.key.replaceAll("_", " ");
+      condicionesPrevias += "-   " + newKey + ": " + (conPrev.value ? "Si" : "No") + "\n"; 
+    })
+
+    resultadopdf = resultadopdf + 'DNI: ' + this.result.usuario_medico_dni + '\n' +
+      'Nombre y apellido: ' + this.result.nombre_medico + '\n\n' +
+      'Datos del paciente: \n' +
+      'Fecha de nacimiento: ' + this.datosPaciente.fecha_nacimiento + '\n' +
+      'Peso: ' + this.datosPaciente.peso + 'kg\n' +
+      'Altura: ' + this.datosPaciente.altura + 'cm\n' +
+      'Sexo: ' + this.datosPaciente.sexo + '\n' +
+      'Sección del cuerpo: ' + this.result.modelo_nombre + '\n' +
+      'Condiciones previas: ' + condicionesPrevias;
+
+    return resultadopdf;
+  }
+
+  descargarPDF() {
+    const doc = new jsPDF();
+
+    //Agregar datos al PDF
+    let re = "";
+    let val = 0;
+    this.resultadoList.map((item: { value: number; key: string; }) => {
+      if (item.value > val) {
+        if (this.result.modelo_id === 3) {
+          const newValue = item.value * 100
+          re = item.key +  " " + Math.ceil(newValue) + "%\n";
+          val = item.value;
+        } else {
+          re = item.key +  " " + Math.ceil(item.value) + "%\n";
+          val = item.value;
+        }
+      }
+    })
+
+    doc.text(this.armarPDF(this.result), 10, 20);
+
+    const imagen = 'data:image/png;base64,' + this.result.imagen;
+    doc.addImage(imagen, 'JPEG', 75, 150, 60, 60);
+
+    const pdfResult = '\nResultado: ' + re;
+    doc.text(pdfResult, 10, 230);
+
+    doc.save('Diagnóstico '+ this.result.id +'.pdf')
+  }
 
   enableButtonSubmitFeedback() {
     this.buttonSubmitFeedback = false; //habilitar
@@ -245,15 +300,44 @@ export class ResultViewComponent implements OnInit {
   getHighestKeyValue(): { key: string, value: any } {
     let highestValue: any = null;
     let highestKeyValue: { key: string, value: any } = { key: '', value: null };
-    console.log(this.resultadoList)
-    for (const item of this.resultadoList) {
-      if (highestValue === null || item.value > highestValue) {
-        highestValue = item.value;
-        highestKeyValue = { key: item.key, value: item.value };
-      }
-    }
-
-    return highestKeyValue;
+    const prediction = this.resultado['prediction']; 
+    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado); 
+   
+    const keyTranslations: { [key: string]: string } = { 
+      "LCA sano": 'Ligamento cruzado anterior sano', 
+      lcaSano: 'Ligamento cruzado anterior sano', 
+      roturaLCA: 'Rotura de ligamento cruzado anterior', 
+      normal: 'Normal', 
+      piedra: 'Piedra', 
+      quiste: 'Quiste', 
+      tumor: 'Tumor', 
+      no_pneumonia: 'No neumonía', 
+      pneumonia: 'Neumonía', 
+      fractura: 'Fractura', 
+      sano: 'Sano', 
+      glioma: 'Glioma', 
+      meningioma: 'Meningioma', 
+      pituitary: 'Pituitaria', 
+      no_tumor: 'No tumor', 
+      contraccionVentricular: 'Contraccion ventricular', 
+      fusionVentricularNormal: 'Fusión ventricular normal', 
+      infarto: 'Infarto', 
+      prematuroSupraventricular: 'Prematuro supraventricular', 
+      no_clasificable: 'No clasificable', 
+    }; 
+   
+    for (const [key, value] of resultEntries) { 
+      if (typeof value === 'number' && (highestValue === null || value > highestValue)) { 
+        highestValue = value; 
+        const translatedKey = keyTranslations[key] || key; 
+        highestKeyValue = { key: translatedKey, value }; 
+      } 
+    } 
+   
+    if (highestKeyValue.value !== null && highestKeyValue.value >= 0 && highestKeyValue.value <= 1) { 
+      highestKeyValue.value *= 100; 
+    } 
+    return highestKeyValue; 
   }
 
 }

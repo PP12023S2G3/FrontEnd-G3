@@ -20,7 +20,7 @@
               "zone.js"
             ],
             "allowedCommonJsDependencies":
-              ["lodash"]
+              ["lodash", "canvg", "jszip", "html2canvas"]
             ,
             "tsConfig": "tsconfig.app.json",
             "assets": [
