@@ -10,6 +10,7 @@ export interface DiagnosticResp {
     nombre_medico: string;
     apellido_medico: string;
     nombre_usuario: string;
+    apellido_usuario:string;
     resultado: string;
     usuario_id: number;
     usuario_medico_dni: number;
