@@ -8,6 +8,7 @@ export interface DiagnosticResp {
     modelo_id: number;
     modelo_nombre: string;
     nombre_medico: string;
+    apellido_medico: string;
     nombre_usuario: string;
     resultado: string;
     usuario_id: number;
