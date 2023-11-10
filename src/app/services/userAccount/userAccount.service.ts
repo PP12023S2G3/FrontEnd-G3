@@ -26,6 +26,7 @@ export class UserAccountService {
   private endpointLogIn: string='login';
   private endpointAuth: string='verificarUsuario';
   private endpointCheckCode: string='check_code';
+  private endpointResetPassword: string='reset_pass'
 
   private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();
@@ -65,17 +66,16 @@ export class UserAccountService {
       catchError(this.handleErrorLogin));
   }
 
-  //para que usuario resetee su contraseña
-  public postCheckCode(data:FormData):Observable<any>{
-    let url=this.apiUsers+this.endpointCheckCode;
-    return this.http.post<any>(url,data);
+  //para que usuario valide su codigo
+  public postCheckCode(codigo:String):Observable<any>{
+    let url=this.apiUsers+this.endpointCheckCode+`?codigo=${codigo}`;
+    return this.http.post<any>(url,null);
   }
 
   //para que usuario cambie su contraseña
-  public postNewPssword(data:FormData):Observable<any>{
-    let url='http://localhost:5001/usuariosResetPW';
-   //mockUrl
-    return this.http.post<any>(url,data);
+  public postResetPassword(dni:String):Observable<any>{
+    let url=this.apiUsers+this.endpointResetPassword+`/${dni}`;
+    return this.http.post<any>(url,null);
   }
 
   //para que usuario cambie su contraseña
@@ -89,12 +89,6 @@ export class UserAccountService {
    public getDoctors():Observable<DoctorResp[]>{
     let url=this.apiUsers+this.endpointDoctors;
     return this.http.get<DoctorResp[]>(url);
-  }
-
-  createRequestCheckCode(codigo:String):FormData {
-    const formData = new FormData();
-    formData.append('codigo', `${codigo}`);
-    return formData;
   }
 
   saveDataInLocalStorage(response: any): void {
