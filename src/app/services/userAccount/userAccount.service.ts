@@ -73,7 +73,7 @@ export class UserAccountService {
   }
 
   //para que usuario cambie su contraseña
-  public postResetPassword(dni:String):Observable<any>{
+  public postResetPasswordDni(dni:String):Observable<any>{
     let url=this.apiUsers+this.endpointResetPassword+`/${dni}`;
     return this.http.post<any>(url,null);
   }
