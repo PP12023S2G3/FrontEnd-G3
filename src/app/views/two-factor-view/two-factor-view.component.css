@@ -26,8 +26,18 @@
     margin:40px auto auto;
     text-align: center;
 }
+.container-img-two-factor {
+    position: relative;
+}
 .icon-two-factor {  
     font-size: 90px;
+}
+.circle-two-factor {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -10px;
+    right: 145px;
 }
 .subtitle-two-factor {
     text-align: center;
