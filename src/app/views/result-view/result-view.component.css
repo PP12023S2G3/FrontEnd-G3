@@ -4,7 +4,7 @@
     min-width: 300px;
     min-height: 1200px;
     max-width: 2000px;
-    max-height: 1700px;
+    max-height: 2000px;
     font-family: var(--font-family);
     background-color: var(--background-color-light);
     margin-top: 90px;
@@ -68,6 +68,8 @@
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
+    color: black;
+    font-weight: normal;
 }
 
 .container-inputs-data-doctor div {
@@ -105,6 +107,8 @@
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
+    color: black;
+    font-weight: normal;
 }
 
 .container-inputs-data-patient div {
@@ -118,7 +122,14 @@
     font-weight: normal;
     margin: 0;
 }
+
+.title-preconditions-patient{
+    margin: 0 0 0 2%;
+}
+
 .container-inputs-data-long-patient input {
+    color: black;
+    font-weight: normal;
     width: 100%;
     min-height: 4vw;
     max-height: 12vw;
@@ -130,11 +141,11 @@
 }
 
 .container-inputs-data-long-patient div {
-    margin: 2% 1% 2% 1%;
+    margin: 0 1% 2% 1%;
 }
 
 .container-checkbox {
-    width: 100%;
+    width: 99%;
     min-height: 4vw;
     max-height: 10vw;
     margin: 0;
@@ -178,9 +189,9 @@
     border-width: 1px;
     border-color: var(--border-box-color);
     margin: 5% 5% 5% 0;
-    width: 80%;
-    height: 80%;
-
+    width: 50%;
+    height: 50%;
+    background-color: white;
 }
 
 /*------------------------------------------------FEEDBACK-----------------------------------------------------------*/
@@ -191,10 +202,11 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    width: 85%;
-    height: auto;
+    width: 90%;
+   
     border: 1px solid var(--border-box-color);
     border-radius: 10px;
+    background-color: white;
 }
 
 .container-feedback p {
@@ -222,6 +234,7 @@ ul{
    align-items: center;
    justify-content: center;
    flex-wrap: wrap;
+   font-size: 15px;
 }
 
 
@@ -241,6 +254,7 @@ ul{
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
+    color: black;
 }
 .container-comment {
     margin: 0 5% 0 5%;
@@ -348,6 +362,14 @@ ul{
     }
     .container-comment input {
         height: 20vw;
+    }
+    .generate-buttons-feedback {
+        flex-direction: column;
+    }
+    :host::ng-deep .generate-buttons-feedback .p-button{
+        width: 50vw;
+        height: 3rem;
+        text-align: left;
     }
 
 }

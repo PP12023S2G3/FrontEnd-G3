@@ -290,11 +290,13 @@ export class ResultViewComponent implements OnInit {
   disableButtonYes() {
     this.buttonSubmitFeedback = false;
     this.containerMoreOptions = true; //deshabilitar
+    this.buttonNo = true;
   }
 
   disableButtonNo() {
     this.buttonSubmitFeedback = true;
     this.containerMoreOptions = false; //habilitar
+    this.buttonYes = true;
   }
 
   getHighestKeyValue(): { key: string, value: any } {
