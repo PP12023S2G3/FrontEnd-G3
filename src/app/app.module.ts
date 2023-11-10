@@ -47,6 +47,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/middlewares/interceptor.service';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { TwofactorViewComponent } from './views/two-factor-view/two-factor-view.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     LoginViewComponent,
     LogoutComponent,
     LoaderComponent,
+    TwofactorViewComponent,
   ],
   imports: [
     BrowserAnimationsModule,

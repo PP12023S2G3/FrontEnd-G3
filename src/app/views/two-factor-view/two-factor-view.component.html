@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="body-two-factor">
+    <div class="container-two-factor">
+        <h2 class="title-two-factor">Atención!</h2>
+        <div class="container-icon-two-factor">
+          <i class="pi pi-envelope icon-two-factor"></i>
+        </div>
+        <h4 class="subtitle-two-factor">Te enviamos un mensaje!</h4>
+        <h4 class="instruction-two-factor">Por favor, ingresa el código de verificación</h4>
+        <h4 class="code-title-two-factor">Código de verificación</h4>
+        <form class="form-two-factor">
+          <div class="code-two-factor">
+                <input type="text" pInputText class="input-two-factor" name="first"/>
+                <input type="text" pInputText class="input-two-factor" name="second"/>
+                <input type="text" pInputText class="input-two-factor" name="third"/>
+                <input type="text" pInputText class="input-two-factor" name="fourth"/>
+          </div>
+            <button class="enabled-button-two-factor"> Verificar</button>
+            <a routerLink="" class="link-two-factor" href="">Reenviar código</a>
+            <a routerLink="" class="link-two-factor" href="">Volver a la página principal</a>
+        </form>
+      </div>
+
+
+        <p-dialog [draggable]="false" [blockScroll]="true" header="Header" [style]= "{width: '700px', height: '300px', border: '1px solid #797979', margin: '20px'}" [closable]="false">
+          <ng-template pTemplate="header">
+              <span class="text-xl font-bold modal-title-reset">Recuperación de la cuenta</span>
+          </ng-template>  
+          <p class="modal-content-reset">  
+              Se envió un correo electrónico con un código de verificación para reestablecer su contraseña.
+          </p>
+          <ng-template pTemplate="footer">
+            <a routerLink="" class="modal-inicio-reset" href="">Volver a la página principal</a>
+          </ng-template>
+        </p-dialog>
+    </div>
+
+
+    
