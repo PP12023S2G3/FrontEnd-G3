@@ -50,7 +50,6 @@ export class ResultViewComponent implements OnInit {
 
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
-  datosPaciente: any;
   imagePath: any
 
   constructor(private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
@@ -84,7 +83,7 @@ export class ResultViewComponent implements OnInit {
           });
         }
       });
-  
+
       //314 320
       this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
         next: (res) => {
@@ -98,7 +97,7 @@ export class ResultViewComponent implements OnInit {
           });
         }
       });
-  
+
       //316 321
       this.feedbackService.postFeedbackKidney(321, true, true, true, true, "comentario").subscribe({
         next: (res) => {
@@ -135,10 +134,10 @@ export class ResultViewComponent implements OnInit {
           // Manejar errores aquí
         }
       });
-  
+
   */
     const idResult = localStorage.getItem('idResult');
-    const roleId = localStorage.getItem('role');
+    const roleId = localStorage.getItem('roleId');
 
     if (idResult && roleId) {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
@@ -191,7 +190,6 @@ export class ResultViewComponent implements OnInit {
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({ key, value }));
-    this.datosPaciente = JSON.parse(this.result.datos_paciente);
     this.imagePath = 'data:image/png;base64,' + this.result.imagen;
   }
 
@@ -202,16 +200,16 @@ export class ResultViewComponent implements OnInit {
     let condicionesPrevias = "\n";
     this.datosComplementariosList.map((conPrev) => {
       const newKey = conPrev.key.replaceAll("_", " ");
-      condicionesPrevias += "-   " + newKey + ": " + (conPrev.value ? "Si" : "No") + "\n"; 
+      condicionesPrevias += "-   " + newKey + ": " + (conPrev.value ? "Si" : "No") + "\n";
     })
 
     resultadopdf = resultadopdf + 'DNI: ' + this.result.usuario_medico_dni + '\n' +
       'Nombre y apellido: ' + this.result.nombre_medico + '\n\n' +
       'Datos del paciente: \n' +
-      'Fecha de nacimiento: ' + this.datosPaciente.fecha_nacimiento + '\n' +
-      'Peso: ' + this.datosPaciente.peso + 'kg\n' +
-      'Altura: ' + this.datosPaciente.altura + 'cm\n' +
-      'Sexo: ' + this.datosPaciente.sexo + '\n' +
+      'Fecha de nacimiento: ' + this.datos_paciente.fecha_nacimiento + '\n' +
+      'Peso: ' + this.datos_paciente.peso + 'kg\n' +
+      'Altura: ' + this.datos_paciente.altura + 'cm\n' +
+      'Sexo: ' + this.datos_paciente.sexo + '\n' +
       'Sección del cuerpo: ' + this.result.modelo_nombre + '\n' +
       'Condiciones previas: ' + condicionesPrevias;
 
@@ -280,9 +278,9 @@ export class ResultViewComponent implements OnInit {
         for (let i = 0; i < this.buttonsModels.length; i++) {
         this.buttonsModels[i].idActivate = true;
         }
-        this.buttonSubmitFeedback = false; 
+        this.buttonSubmitFeedback = false;
       }else if(this.textComment.length < 2){
-        this.buttonSubmitFeedback = true; 
+        this.buttonSubmitFeedback = true;
       }
   }
 
@@ -300,44 +298,44 @@ export class ResultViewComponent implements OnInit {
   getHighestKeyValue(): { key: string, value: any } {
     let highestValue: any = null;
     let highestKeyValue: { key: string, value: any } = { key: '', value: null };
-    const prediction = this.resultado['prediction']; 
-    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado); 
-   
-    const keyTranslations: { [key: string]: string } = { 
-      "LCA sano": 'Ligamento cruzado anterior sano', 
-      lcaSano: 'Ligamento cruzado anterior sano', 
-      roturaLCA: 'Rotura de ligamento cruzado anterior', 
-      normal: 'Normal', 
-      piedra: 'Piedra', 
-      quiste: 'Quiste', 
-      tumor: 'Tumor', 
-      no_pneumonia: 'No neumonía', 
-      pneumonia: 'Neumonía', 
-      fractura: 'Fractura', 
-      sano: 'Sano', 
-      glioma: 'Glioma', 
-      meningioma: 'Meningioma', 
-      pituitary: 'Pituitaria', 
-      no_tumor: 'No tumor', 
-      contraccionVentricular: 'Contraccion ventricular', 
-      fusionVentricularNormal: 'Fusión ventricular normal', 
-      infarto: 'Infarto', 
-      prematuroSupraventricular: 'Prematuro supraventricular', 
-      no_clasificable: 'No clasificable', 
-    }; 
-   
-    for (const [key, value] of resultEntries) { 
-      if (typeof value === 'number' && (highestValue === null || value > highestValue)) { 
-        highestValue = value; 
-        const translatedKey = keyTranslations[key] || key; 
-        highestKeyValue = { key: translatedKey, value }; 
-      } 
-    } 
-   
-    if (highestKeyValue.value !== null && highestKeyValue.value >= 0 && highestKeyValue.value <= 1) { 
-      highestKeyValue.value *= 100; 
-    } 
-    return highestKeyValue; 
+    const prediction = this.resultado['prediction'];
+    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado);
+
+    const keyTranslations: { [key: string]: string } = {
+      "LCA sano": 'Ligamento cruzado anterior sano',
+      lcaSano: 'Ligamento cruzado anterior sano',
+      roturaLCA: 'Rotura de ligamento cruzado anterior',
+      normal: 'Normal',
+      piedra: 'Piedra',
+      quiste: 'Quiste',
+      tumor: 'Tumor',
+      no_pneumonia: 'No neumonía',
+      pneumonia: 'Neumonía',
+      fractura: 'Fractura',
+      sano: 'Sano',
+      glioma: 'Glioma',
+      meningioma: 'Meningioma',
+      pituitary: 'Pituitaria',
+      no_tumor: 'No tumor',
+      contraccionVentricular: 'Contraccion ventricular',
+      fusionVentricularNormal: 'Fusión ventricular normal',
+      infarto: 'Infarto',
+      prematuroSupraventricular: 'Prematuro supraventricular',
+      no_clasificable: 'No clasificable',
+    };
+
+    for (const [key, value] of resultEntries) {
+      if (typeof value === 'number' && (highestValue === null || value > highestValue)) {
+        highestValue = value;
+        const translatedKey = keyTranslations[key] || key;
+        highestKeyValue = { key: translatedKey, value };
+      }
+    }
+
+    if (highestKeyValue.value !== null && highestKeyValue.value >= 0 && highestKeyValue.value <= 1) {
+      highestKeyValue.value *= 100;
+    }
+    return highestKeyValue;
   }
 
 }
