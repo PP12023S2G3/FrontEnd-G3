@@ -26,7 +26,8 @@ export class UserAccountService {
   private endpointLogIn: string='login';
   private endpointAuth: string='verificarUsuario';
   private endpointCheckCode: string='check_code';
-  private endpointResetPassword: string='reset_pass'
+  private endpointResetPasswordDni: string='reset_pass'
+  private endpointResetPassword: string='reset_password'
 
   private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();
@@ -74,15 +75,13 @@ export class UserAccountService {
 
   //para que usuario cambie su contraseña
   public postResetPasswordDni(dni:String):Observable<any>{
-    let url=this.apiUsers+this.endpointResetPassword+`/${dni}`;
+    let url=this.apiUsers+this.endpointResetPasswordDni+`/${dni}`;
     return this.http.post<any>(url,null);
   }
 
-  //para que usuario cambie su contraseña
-  public postNewPassword(data:FormData):Observable<any>{
-    let url='http://localhost:5001/usuariosResetPW';
-   //mockUrl
-    return this.http.post<any>(url,data);
+  public postResetPassword(new_password:String,confirm_password:String):Observable<any>{
+    let url=this.apiUsers+this.endpointResetPassword+`?new_password=${new_password}&confirm_password=${confirm_password}`;
+    return this.http.post<any>(url,null);
   }
 
    //para obtener una lista de medicos
