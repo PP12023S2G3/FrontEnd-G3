@@ -6,7 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./two-factor-view.component.css']
 })
 export class TwofactorViewComponent {
+  modalVisible: boolean = false;
 
+  mostrarModal() {
+    this.modalVisible = true;
+    this.desenfocarFondo();
+    
+}
 
+desenfocarFondo() {
+   var containerBlur = document.querySelector(".body-two-factor");
+   containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
+} 
 
 }
