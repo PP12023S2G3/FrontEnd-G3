@@ -20,7 +20,7 @@
                 <div>
                     <h6 class="title-lastname-doctor">Apellido</h6>
                     <input id="disabled-input3" type="text" pInputText [disabled]="true"
-                        value={{result?.nombre_medico}} />
+                        value={{result?.apellido_medico}} />
                 </div>
 
             </div>
@@ -94,26 +94,26 @@
         <div class="container-result-image">
             <img class="img-result" alt="imagen del resultado" src={{imagePath}} style="height: 280px; width: 280px;">
         </div>
-    
+
         <div class="container-feedback">
             <p>¿Este resultado te parece correcto?</p>
-    
+
             <div class="buttons-normal-feedback">
                 <p-button styleClass="p-button-global" (onClick)="disableButtonYes()" [disabled]="buttonYes"
                     label="Si"></p-button>
                 <p-button styleClass="p-button-global" (onClick)="disableButtonNo()" [disabled]="buttonNo"
                     label="No"></p-button>
             </div>
-    
+
             <div *ngIf="!containerMoreOptions">
                 <p>¿Qué resultado sería mejor en este caso?</p>
-    
+
                 <div class="generate-buttons-feedback">
                     <div *ngFor="let button of buttonsModels">
                         <button pButton styleClass="p-button-global" (click)="selectButton(button.id)"
                         label="{{ button.label }}" [disabled]="button.idActivate" [id]="button.id"></button>
                     </div>
-                    
+
                 </div>
                 <p> En caso de no coincidir deja un comentario por favor</p>
                 <div class="container-comment">
@@ -125,13 +125,13 @@
             <div class="container-submit-feedback">
                 <p-button styleClass="p-button-global" type="submit" [disabled]="buttonSubmitFeedback" label="Enviar Feedback"></p-button>
             </div>
-    
+
         </div>
-    
+
         <div class="container-download-result">
             <p-button styleClass="p-button-global" type="download" label="Descargar" (click)="descargarPDF()"></p-button>
         </div>
     </div>
 
-    
+
 </div>

@@ -142,6 +142,7 @@ export class ResultViewComponent implements OnInit {
     if (idResult && roleId) {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
+
           this.setValueResultDiagnostic(res);
           if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones" || res.modelo_nombre === "Pulmon") {
             this.diagnostic.sectionBody = res.modelo_nombre;
@@ -185,6 +186,7 @@ export class ResultViewComponent implements OnInit {
     if (this.result.nombre_medico === null) {
       this.result.nombre_medico = '';
     }
+    console.log(this.result);
     this.datos_paciente = JSON.parse(this.result.datos_paciente);
     this.resultado = JSON.parse(this.result.resultado);
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);

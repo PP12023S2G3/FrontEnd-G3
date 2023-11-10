@@ -2,7 +2,6 @@
     height: 100%;
     width:  100%;
     background-color: #efefef;
-    border: 1px solid #000;
 }
 .container-two-factor {
     width: 450px;
@@ -25,8 +24,6 @@
     height: 100px;
     margin:40px auto auto;
     text-align: center;
-}
-.container-img-two-factor {
     position: relative;
 }
 .icon-two-factor {  
@@ -37,7 +34,7 @@
     height: 40px;
     position: absolute;
     top: -10px;
-    right: 145px;
+    right: -10px;
 }
 .subtitle-two-factor {
     text-align: center;
@@ -77,6 +74,9 @@
     border-radius: 10px;
     border: 1px solid var(--Difuminado-navbar, #797979);
     background: var(--base-white, #FFF);
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
 }
 .enabled-button-two-factor {
     width: 300px;
@@ -111,6 +111,33 @@
     color: #000;
     text-align: center;
 }
+.modal-title-two-factor {
+    color: #000;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin: auto;
+  }
+  .modal-content-two-factor {
+    color: #797979;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0%;
+    position: relative;
+    top: 20px;
+  }
+  .modal-inicio-two-factor {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 30px;
+  }
+.blur-div{
+    filter: blur(2px);
+  }
 
 @media screen and (max-width: 768px) {
     .body-two-factor {
@@ -122,6 +149,10 @@
     }
 }
 @media screen and (max-width: 500px) {
+    .container-two-factor{
+        width: 100vw;
+        height: 100vh;
+    }
     .title-two-factor {
         font-size: 24px;
         margin: 0px;
@@ -134,6 +165,13 @@
     .gradient-button-two-factor {
         width: 90%;
         height: 40px;
+    }
+    .input-two-factor {
+        width: 65px;
+        height: 65px;
+    }
+    .enabled-button-two-factor {
+        width: 90%;
     }
 
 }
