@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
 
 
 @Component({
   selector: 'app-contacto-view',
   templateUrl: './contacto-view.component.html',
-  styleUrls: ['./contacto-view.component.css']
+  styleUrls: ['./contacto-view.component.css'],
+  providers: [MessageService],
 })
 export class ContactoViewComponent implements OnInit {
   tituloDinamico = 'Contacto';
@@ -15,6 +17,8 @@ export class ContactoViewComponent implements OnInit {
   comments!: Comments;
   messageOptions : {label : string; value: string;}[] | undefined;
 
+  constructor(private messageService: MessageService) {
+  }
 
   ngOnInit(): void {
     this.messageOptions = [
