@@ -4,8 +4,8 @@
     background-color: #efefef;
 }
 .container-two-factor {
-    width: 450px;
-    height: 720px;
+    width: 460px;
+    height: 636px;
     margin: 65px auto auto;
     border: 2px solid var(--border-box-color);
     background-color: var(--font-color-light);
@@ -68,17 +68,18 @@
     justify-content: space-around;
 }
 .input-two-factor {
-    width: 90px;
-    height: 95px;
+    width: 300px;
+    height: 60px;
     flex-shrink: 0;
     border-radius: 10px;
     border: 1px solid var(--Difuminado-navbar, #797979);
     background: var(--base-white, #FFF);
-    font-size: 48px;
-    font-weight: 400;
+    font-size: 36px;
+    font-weight: 700;
     text-align: center;
+    color: #000;
 }
-.enabled-button-two-factor {
+.disabled-button-two-factor {
     width: 300px;
     height: 60px;
     border-radius: 10px;
@@ -91,7 +92,7 @@
 }
 .gradient-button-two-factor {
     font-family: var(--font-family-all);
-    width: 400px;
+    width: 300px;
     height: 60px;
     align-items: center;
     border-radius: 10px;
@@ -100,7 +101,7 @@
     font-size: 18px;
     font-weight: 700;
     border: none;
-    margin: 25px 0px;
+    margin: auto;
   }
   .gradient-button-reset:hover {
     cursor: pointer;

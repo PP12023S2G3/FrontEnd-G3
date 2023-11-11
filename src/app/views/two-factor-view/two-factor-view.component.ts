@@ -8,20 +8,24 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class TwofactorViewComponent {
+  value: string = '';
+  correctLength: boolean = false;
   modalVisible: boolean = false;
 
   constructor(private messageService: MessageService) {
   }
 
-  mostrarModal() {
+  isCorrectInput(): void {
+    this.correctLength = this.value.length === 6;
+  }
+
+  showModal() {
     this.modalVisible = true;
     this.desenfocarFondo();
-
-}
-
-desenfocarFondo() {
-   var containerBlur = document.querySelector(".body-two-factor");
-   containerBlur != null ? containerBlur.classList.add("blur-div"): "";
-}
+  }
+  desenfocarFondo() {
+    var containerBlur = document.querySelector(".body-two-factor");
+      containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
+  }  
 
 }

@@ -8,7 +8,6 @@ import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
 import { LogInRequest } from 'src/app/models/LogInRequest';
 import { UserWithToken } from 'src/app/models/UserWithToken';
 import { Role } from 'src/app/models/roles';
-import { Router } from '@angular/router';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
@@ -69,15 +68,15 @@ export class UserAccountService {
   }
 
   //para que usuario valide su codigo
-  public postCheckCode(codigo:String):Observable<any>{
+  public postCheckCode(codigo:String):Observable<CheckCodeResp>{
     let url=this.apiUsers+this.endpointCheckCode+`?codigo=${codigo}`;
-    return this.http.post<any>(url,null);
+    return this.http.post<CheckCodeResp>(url,null);
   }
 
   //para que usuario cambie su contraseña
-  public postResetPasswordDni(dni:String):Observable<any>{
+  public postResetPasswordDni(dni:String):Observable<ResetPasswordDniResp>{
     let url=this.apiUsers+this.endpointResetPasswordDni+`/${dni}`;
-    return this.http.post<any>(url,null);
+    return this.http.post<ResetPasswordDniResp>(url,null);
   }
 
   public postResetPassword(new_password:String,confirm_password:String):Observable<any>{

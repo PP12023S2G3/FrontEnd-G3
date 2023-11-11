@@ -1,69 +1,59 @@
 <p-toast></p-toast>
+<app-loader></app-loader>
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 <div class="container-result">
     <div class="container-data-result">
         <div class="container-data-doctor">
-
             <h4 class="title-data">Datos del médico</h4>
             <div class="container-inputs-data-doctor">
-                <div>
+                <div class="campos-largo">
                     <h6 class="title-dni-doctor">DNI</h6>
                     <input id="disabled-input1" type="text" pInputText [disabled]="true"
                         value={{result?.usuario_medico_dni}} />
                 </div>
-                <div>
+                <div class="campos-largo">
                     <h6 class="title-name-doctor">Nombre</h6>
                     <input id="disabled-input2" type="text" pInputText [disabled]="true"
-                        value={{result?.nombre_medico}} />
-
+                        value={{result?.nombre_medico}} />  
                 </div>
-                <div>
+                <div class="campos-largo">
                     <h6 class="title-lastname-doctor">Apellido</h6>
                     <input id="disabled-input3" type="text" pInputText [disabled]="true"
                         value={{result?.apellido_medico}} />
-                </div>
-
-            </div>
-
+                </div>  
+            </div>  
         </div>
-
         <div class="container-data-patient">
             <h4 class="title-data">Datos del paciente</h4>
             <div class="container-inputs-data-patient">
-                <div>
+                <div class="campos">
                     <h6 class="title-age-patient">Fecha de nacimiento</h6>
                     <input id="disabled-input4" type="text" pInputText [disabled]="true"
                         value={{datos_paciente?.fecha_nacimiento}} />
-                </div>
-
-                <div>
+                </div>   
+                <div class="campos">
                     <h6 class="title-weight-patient">Peso(Kg)</h6>
                     <input id="disabled-input5" type="text" pInputText [disabled]="true"
                         value={{datos_paciente?.peso}} />
-                </div>
-
-                <div>
+                </div>  
+                <div class="campos">
                     <h6 class="title-height-patient">Altura(cm)</h6>
                     <input id="disabled-input6" type="text" pInputText [disabled]="true"
                         value={{datos_paciente?.altura}} />
-                </div>
-
-                <div>
+                </div>   
+                <div class="campos">
                     <h6 class="title-gender-patient">Sexo</h6>
                     <input id="disabled-input7" type="text" pInputText [disabled]="true"
                         value={{datos_paciente?.sexo}} />
                 </div>
-
-                <div>
+                <div class="campos">
                     <h6 class="title-body-section-patient">Sección del cuerpo</h6>
                     <input id="disabled-input8" type="text" pInputText [disabled]="true"
                         value={{result?.modelo_nombre}} />
-                </div>
-
-            </div>
-
+                </div>  
+            </div>  
             <div class="container-inputs-data-long-patient">
-                <div>
+                <div class="campos-dinamicos">
                     <h6 class="title-preconditions-patient">Condiciones previas</h6>
                     <div class="container-checkbox">
                         <ul>
@@ -77,19 +67,15 @@
                         </ul>
                     </div>
                 </div>
-
-                <div>
+                <div class="campos-dinamicos">
                     <h6 class="title-diagnostic-result-patient">Resultado del diagnostico</h6>
                     <div *ngIf="resultadoList.length > 0">
                         <p>{{ getHighestKeyValue().key }}: {{ getHighestKeyValue().value | number:'1.0-1' }}%</p>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-
     <div class="container-downData">
         <div class="container-result-image">
             <img class="img-result" alt="imagen del resultado" src={{imagePath}}>
@@ -105,7 +91,7 @@
                     label="No"></p-button>
             </div>
 
-            <div *ngIf="!containerMoreOptions">
+            <div *ngIf="!containerMoreOptions" style="display: flex; flex-direction: column; gap: 20px;">
                 <p>¿Qué resultado sería mejor en este caso?</p>
 
                 <div class="generate-buttons-feedback">

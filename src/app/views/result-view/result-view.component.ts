@@ -6,6 +6,7 @@ import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
 import { MessageService } from 'primeng/api';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 import { forEach } from 'jszip';
 import jsPDF from 'jspdf';
 
@@ -52,10 +53,12 @@ export class ResultViewComponent implements OnInit {
   datosComplementariosList: { key: string; value: any; }[] = [];
   imagePath: any
 
-  constructor(private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
+  constructor(private loaderService: LoaderService, private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
+    
   }
 
   ngOnInit(): void {
+    this.loaderService.updateIsLoading(true);
     //318 319
     /*  this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
         next: (res) => {
@@ -142,7 +145,6 @@ export class ResultViewComponent implements OnInit {
     if (idResult && roleId) {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
-
           this.setValueResultDiagnostic(res);
           if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones" || res.modelo_nombre === "Pulmon") {
             this.diagnostic.sectionBody = res.modelo_nombre;
@@ -182,6 +184,9 @@ export class ResultViewComponent implements OnInit {
   }
 
   private setValueResultDiagnostic(res: DiagnosticResp) {
+    if (res !== undefined && !this.result) {
+      this.loaderService.updateIsLoading(false);
+    }
     this.result = res;
     if (this.result.nombre_medico === null) {
       this.result.nombre_medico = '';
@@ -240,7 +245,9 @@ export class ResultViewComponent implements OnInit {
     doc.text(this.armarPDF(this.result), 10, 20);
 
     const imagen = 'data:image/png;base64,' + this.result.imagen;
-    doc.addImage(imagen, 'JPEG', 75, 150, 60, 60);
+   // getImageProperties(imagen)
+    doc.addImage(this.imagePath, 'JPEG', 75, 150, 60, 60);
+    //doc.addImage(this.imagePath, 'JPEG', 10, 20, undefined, undefined, 'FAST');
 
     const pdfResult = '\nResultado: ' + re;
     doc.text(pdfResult, 10, 230);
