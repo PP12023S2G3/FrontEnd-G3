@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 
 <div class="container-contact">
@@ -14,7 +15,7 @@
                                 name="nameLastname-contact" />
                         </span>
                     </div>
-            
+
                     <div class="container-field-contact">
                         <h6 class="title-input-contact">Email</h6>
                         <span class="span-input-contact">
@@ -23,7 +24,7 @@
                                 name="email-contact" />
                         </span>
                     </div>
-            
+
                     <div class="container-field-contact">
                         <h6 class="title-input-contact">Asunto</h6>
                         <span class="span-input-contact">
@@ -31,13 +32,13 @@
                             <p-dropdown id="p-dropdown" [style]="{'minWidth':'100%'}" placeholder="Elegir una opción" optionLabel="label" [(ngModel)]="comments.issue"
                             [options]="messageOptions" (onChange)="OnSelectedMessage($event)" styles="width: 230px;  background-color: #3B82F6;"></p-dropdown>
                         </span>
-                        
+
                     </div>
-            
+
                     <div class="container-field-message-contact">
                         <h6 class="title-input-contact">Mensaje</h6>
                         <textarea id="message" type="text" rows="5" cols="30" pInputTextarea [autoResize]="true" [(ngModel)]="comments.message" name="message-contact" ></textarea>
-                     
+
                     </div>
                 </div>
                 <div class="button-submit">
@@ -46,17 +47,17 @@
                 </div>
 
             </form>
-            
+
         </div>
-        
+
 
         <div class="container-data-contact">
             <p> aca iria todo lo referido a los contactos</p>
         </div>
 
     </div>
-    
 
-    
+
+
 
 </div>

@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <app-header></app-header>
 <div class="body-two-factor">
     <div class="container-two-factor">
@@ -26,17 +27,17 @@
         <p-dialog [draggable]="false" [blockScroll]="true" header="Header" [style]= "{width: '700px', height: '300px', border: '1px solid #797979', margin: '20px'}" [closable]="false" [visible]="this.modalVisible">
           <ng-template pTemplate="header">
               <span class="text-xl font-bold modal-title-two-factor">Recuperación de la cuenta</span>
-          </ng-template>  
-          <p class="modal-content-two-factor">  
+          </ng-template>
+          <p class="modal-content-two-factor">
               Se envió un correo electrónico con un código de verificación para reestablecer su contraseña.
           </p>
           <ng-template pTemplate="footer">
             <a routerLink="" class="modal-inicio-two-factor" href="">Volver a la página principal</a>
           </ng-template>
         </p-dialog>
-      
-        
 
 
 
-    
+
+
+
