@@ -1,4 +1,4 @@
-// auth.guard.ts
+
 import { Injectable, inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateFn, CanActivateChildFn } from '@angular/router';
 import { Observable, catchError, map, of, switchMap, take } from 'rxjs';
@@ -9,7 +9,9 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
+
+
+export class NotAuthGuard {
 
   constructor(private authService: UserAccountService, private router: Router) {}
 
@@ -22,15 +24,12 @@ canActivate: CanActivateFn = (
   return this.authService.user$.pipe(
     switchMap(user => {
       console.log(user);
-      if (user && allowedRoles.includes(user.role as Role)) {
-        return of(true);
+      if (!user) {
+        return of(this.router.createUrlTree(['/']));
 
       }else{
-
-      return of(this.router.createUrlTree(['/login']));
-
+        return of(this.router.createUrlTree(['/Diagnostico']));
       }
-
     })
   );
 };

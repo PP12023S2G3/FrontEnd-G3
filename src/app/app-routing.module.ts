@@ -16,13 +16,21 @@ import { TwofactorViewComponent } from './views/two-factor-view/two-factor-view.
 
 const routes: Routes = [
   { path: 'contacto',
-   component: ContactoViewComponent
+   component: ContactoViewComponent,
+   canActivate: [AuthGuard],
+   data: {
+     allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
+   }
    },
-  { path: 'modelo', component: ModeloViewComponent },
+  { path: 'modelo', component: ModeloViewComponent,
+  canActivate: [AuthGuard],
+  data: {
+    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
+  } },
   { path: 'historial', component: HistorialViewComponent,
   canActivate: [AuthGuard],
   data: {
-    allowedRoles: ['Auditor', 'Medico'],
+    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
   }
  },
   { path: 'diagnostico', component: DiagnosticViewComponent,

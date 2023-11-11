@@ -18,7 +18,4 @@ export class LogoutService {
     this.logoutVisible.next(newValue);
   }
 
-  clearLocalStorage() {
-    localStorage.clear();
-  }
 }
