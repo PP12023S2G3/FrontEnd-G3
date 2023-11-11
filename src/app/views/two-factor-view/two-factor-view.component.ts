@@ -8,20 +8,14 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class TwofactorViewComponent {
-  modalVisible: boolean = false;
 
   constructor(private messageService: MessageService) {
   }
+  value: string = '';
+  correctLength: boolean = false;
 
-  mostrarModal() {
-    this.modalVisible = true;
-    this.desenfocarFondo();
-
-}
-
-desenfocarFondo() {
-   var containerBlur = document.querySelector(".body-two-factor");
-   containerBlur != null ? containerBlur.classList.add("blur-div"): "";
-}
+  isCorrectInput(): void {
+    this.correctLength = this.value.length === 6;
+  }
 
 }
