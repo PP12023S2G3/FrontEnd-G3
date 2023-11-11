@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/historial']);
         break;
       default:
-        this.router.navigate(['/inicio']);
+        this.router.navigate(['/login']);
         break;
     }
   }

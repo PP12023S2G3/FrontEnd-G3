@@ -8,6 +8,9 @@ import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
 import { LogInRequest } from 'src/app/models/LogInRequest';
 import { UserWithToken } from 'src/app/models/UserWithToken';
 import { Role } from 'src/app/models/roles';
+import { CheckCodeResp } from 'src/app/models/CheckCodeResp';
+import { ResetPasswordDniResp } from 'src/app/models/ResetPasswordDniResp';
+import { Router } from '@angular/router';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
