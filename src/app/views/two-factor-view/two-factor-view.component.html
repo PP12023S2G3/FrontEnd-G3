@@ -15,12 +15,22 @@
                 <input type="text" pInputText class="input-two-factor" name="first" maxlength="6" [(ngModel)]="value" (input)="isCorrectInput()">
           </div>
             <button class="disabled-button-two-factor" [hidden]="this.correctLength"> Verificar</button>
-            <button class="gradient-button-two-factor" [hidden]="!this.correctLength"> Verificar</button>
+            <button class="gradient-button-two-factor" (click)="showModal()" [hidden]="!this.correctLength"> Verificar</button>
             <a routerLink="" class="link-two-factor" href="">Volver a la página principal</a>
-            
         </form>
       </div>
     </div>
+    <p-dialog [draggable]="false" [blockScroll]="true" header="Header" [style]= "{width: '600px', height: '300px', border: '1px solid #797979', margin: '20px'}" [closable]="false" [(visible)]="this.modalVisible">
+      <ng-template pTemplate="header">
+          <span class="text-xl font-bold modal-title-two-factor">Recuperación de cuenta</span>
+      </ng-template>  
+      <p class="modal-content-two-factor">  
+          El codigo es correcto! Ahora podrás crear una nueva contraseña
+      </p>
+      <ng-template pTemplate="footer">
+        <a routerLink="/new-password" href="" class="modal-inicio-two-factor">Crear nueva contraseña</a>
+      </ng-template>
+    </p-dialog>
 
 
 
