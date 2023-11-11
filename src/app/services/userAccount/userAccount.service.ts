@@ -8,6 +8,9 @@ import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
 import { LogInRequest } from 'src/app/models/LogInRequest';
 import { UserWithToken } from 'src/app/models/UserWithToken';
 import { Role } from 'src/app/models/roles';
+import { CheckCodeResp } from 'src/app/models/CheckCodeResp';
+import { ResetPasswordDniResp } from 'src/app/models/ResetPasswordDniResp';
+import { Router } from '@angular/router';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
@@ -39,7 +42,7 @@ export class UserAccountService {
   especialidadByRoleid3 = 'ProfDelaSalud';
   userWithToken!:any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.loadUserFromLocalStorage();
     this.roleId = localStorage.getItem(ROLEID_LOCAL_STORAGE_KEY);
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
@@ -68,15 +71,15 @@ export class UserAccountService {
   }
 
   //para que usuario valide su codigo
-  public postCheckCode(codigo:String):Observable<any>{
+  public postCheckCode(codigo:String):Observable<CheckCodeResp>{
     let url=this.apiUsers+this.endpointCheckCode+`?codigo=${codigo}`;
-    return this.http.post<any>(url,null);
+    return this.http.post<CheckCodeResp>(url,null);
   }
 
   //para que usuario cambie su contraseña
-  public postResetPasswordDni(dni:String):Observable<any>{
+  public postResetPasswordDni(dni:String):Observable<ResetPasswordDniResp>{
     let url=this.apiUsers+this.endpointResetPasswordDni+`/${dni}`;
-    return this.http.post<any>(url,null);
+    return this.http.post<ResetPasswordDniResp>(url,null);
   }
 
   public postResetPassword(new_password:String,confirm_password:String):Observable<any>{
@@ -91,7 +94,6 @@ export class UserAccountService {
   }
 
   saveDataInLocalStorage(response: any): void {
-    const userToken = response.token;
 
     if(response.rol_id == 4) {
       response.especialidad = this.especialidadByRoleid4;
@@ -105,10 +107,8 @@ export class UserAccountService {
         role: response.especialidad,
         token: response.token,
     };
-
-
-    this.userRole = response.especialidad;
     this.pushNewUser(userWithToken);
+    this.userRole = response.especialidad;
     this.userId = response.id;
     this.saveRoleIdToLocalStore(response.rol_id);
     this.saveRoleToLocalStore(response.especialidad);
@@ -134,6 +134,10 @@ export class UserAccountService {
 
   private pushNewUser(userWithToken: UserWithToken) {
     this.user.next(userWithToken);
+    if(userWithToken.token == undefined || userWithToken.token == 'undefined') {
+      console.log(this.user);
+      this.clearLocalStorage();
+    }
     console.log(this.user);
   }
 
@@ -144,7 +148,7 @@ export class UserAccountService {
   public loadUserFromLocalStorage(): void {
     const userToken = localStorage.getItem(TOKEN_LOCAL_STORAGE_KEY);
     const rol = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
-    if (userToken) {
+    if (userToken != undefined) {
       const userWithToken: UserWithToken = {
         username: '',
         token: userToken,
@@ -152,7 +156,37 @@ export class UserAccountService {
       };
       this.pushNewUser(userWithToken);
   }
+   else {
+    this.navigateToHomeIfLoggedIn();
+   }
+
   }
+
+  navigateToHomeIfLoggedIn(): void {
+    const user = this.getCurrentUser();
+    if (user?.token != 'undefined') {
+      switch (this.roleId) {
+        case 1:
+        case 3:
+          this.router.navigate(['/diagnostico']);
+          break;
+        case 4:
+          this.router.navigate(['/historial']);
+          break;
+      }
+    }
+    else {
+      this.clearLocalStorage();
+      this.user.next(null);
+      this.router.navigate(['/login']);
+    }
+  }
+
+  clearLocalStorage() {
+    localStorage.clear();
+    this.user.next(null);
+  }
+
 
 //TODO: cuando se tengan los errores del back sacar un handleError.
 

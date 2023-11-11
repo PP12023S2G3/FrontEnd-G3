@@ -84,7 +84,7 @@
                 [minDate]="minValidDate"
                 [maxDate]="maxValidDate"
                 placeholder="Fecha de Nacimiento"
-                (ngModelChange)="formatDate()" 
+                (ngModelChange)="formatDate()"
                 [icon]="calendarIcon" #date="ngModel">
 
                 </p-calendar>
@@ -161,7 +161,7 @@
                     <input type="checkbox" [(ngModel)]="selectedOptionsCerebro[option]" (ngModelChange)="onCheckboxChange('Cerebro', option)"> {{ option }}
                   </label>
                 </div>
-                
+
                 <div *ngIf="selectedpartOption === 'Pulmón'" class="checkbox-item">
                   <label *ngFor="let option of getObjectKeys(selectedOptionsPulmon)">
                     <input type="checkbox" [(ngModel)]="selectedOptionsPulmon[option]" (ngModelChange)="onCheckboxChange('Pulmón', option)"> {{ option }}
@@ -193,7 +193,7 @@
                 </div>
 
                 </div>
-           
+
             </div>
         </div>
       </div>
@@ -215,7 +215,17 @@
         <p-button styleClass="p-button-global" (click)="diagnosticResult()" label="Enviar datos" [disabled]="isResultButtonDisabled"></p-button>
       </div>
 
-
+      <div class="container" *ngIf="esVisible">
+        <dialog class="container-logout">
+            <h2 class="title-logout">Informe de diagnostico cargado</h2>
+            <h4 class="subtitle-logout">Su numero de informe es {{nroResultado}}</h4>
+        <div class='button-container-logout'>
+            <div class="gradient-button-logout container-gradient-border">
+                <button class="gray-button-logout button-logout" (click)="this.updateSharedValue()">Ok</button>
+            </div>
+        </div>
+        </dialog>
+    </div>
 </div>
 
 

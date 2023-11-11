@@ -11,23 +11,10 @@ export class LoginViewComponent {
   constructor(private userAccountService: UserAccountService,private router: Router){}
 
   ngOnInit(): void {
-    this.postAuth();
+
   }
 
-  private postAuth() {
-    const token= localStorage.getItem('token');
 
-    if (token) {
-    this.userAccountService.postAuth(token).subscribe({
-      next: (res) => {
-          this.userAccountService.saveDataInLocalStorage(res);
-          this.router.navigate(['/diagnostico']);
-      },
-        error: (error: { message: any }) => {
 
-        }
 
-      });
-    }
-  }
 }
