@@ -462,3 +462,131 @@
       max-width: 300px;
   }
 }
+
+/*------------------------------------PROFESIONAL DE LA SALUD-----------------------------------*/
+
+
+
+.container {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+.container-logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #797979;
+  background: var(--ttulos-subttulos-y-contenedor, #FFF);
+  width: 710px;
+  height: 330px;
+  padding: 50px;
+  gap: 50px;
+  z-index: 10000;
+  position: absolute;
+}
+.container-data-logout {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title-logout {
+  margin: 0px;
+}
+.subtitle-logout {
+  color: var(--Campos, #797979);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+}
+.button-container-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gradient-button-logout {
+  width: 300px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--Difuminado, linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%));
+  border: none;
+  color: #FFF;
+  margin: 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.container-gradient-border {
+  width: 300px;
+  height: 60px;
+  border-radius: 11px;
+  color: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+}
+.gray-button-logout {
+  width: 294px;
+  height: 54px;
+  font-weight: 700;
+  background: rgba(196, 196, 196);
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  color:  #9C237E;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {
+  .container-logout {
+      height: 50%;
+      margin: auto;
+      width: 98vw;
+      gap: 10px;
+      margin: 1vw;
+      padding: 15px;
+  }
+  .title-logout {
+      margin: 0% 0% 50px;
+  }
+  .button-container-logout{
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90vw;
+      gap: 10px;
+  }
+  .button-logout {
+      width: 98%;
+  }
+  .container-gradient-border {
+      width: 100%;
+  }
+}
+
+@media (min-width:576px) and (max-width: 768px) {
+  .container-logout {
+      width: 96%;
+  }
+  .button-container-logout {
+      width: 100%;
+  }
+  .container-gradient-border {
+      width: 100%;
+  }
+  .button-logout {
+      width: 98%;
+      max-width: 300px;
+  }
+}
+

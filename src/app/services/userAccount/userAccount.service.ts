@@ -92,8 +92,8 @@ export class UserAccountService {
     let url=this.apiUsers+this.endpointDoctors;
     return this.http.get<DoctorResp[]>(url);
   }
-
   saveDataInLocalStorage(response: any): void {
+    const userToken = response.token;
 
     if(response.rol_id == 4) {
       response.especialidad = this.especialidadByRoleid4;
@@ -107,15 +107,16 @@ export class UserAccountService {
         role: response.especialidad,
         token: response.token,
     };
-    this.pushNewUser(userWithToken);
+
+
     this.userRole = response.especialidad;
+    this.pushNewUser(userWithToken);
     this.userId = response.id;
     this.saveRoleIdToLocalStore(response.rol_id);
     this.saveRoleToLocalStore(response.especialidad);
     this.saveIdUserToLocalStore(this.userId);
     this.saveTokenToLocalStore(response.token);
   }
-
   saveRoleIdToLocalStore(roleId: any) {
    localStorage.setItem(ROLEID_LOCAL_STORAGE_KEY, roleId);
   }
@@ -134,11 +135,6 @@ export class UserAccountService {
 
   private pushNewUser(userWithToken: UserWithToken) {
     this.user.next(userWithToken);
-    if(userWithToken.token == undefined || userWithToken.token == 'undefined') {
-      console.log(this.user);
-      this.clearLocalStorage();
-    }
-    console.log(this.user);
   }
 
   getCurrentUser(): UserWithToken | null {
@@ -148,7 +144,7 @@ export class UserAccountService {
   public loadUserFromLocalStorage(): void {
     const userToken = localStorage.getItem(TOKEN_LOCAL_STORAGE_KEY);
     const rol = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
-    if (userToken != undefined) {
+    if (userToken) {
       const userWithToken: UserWithToken = {
         username: '',
         token: userToken,
@@ -156,30 +152,6 @@ export class UserAccountService {
       };
       this.pushNewUser(userWithToken);
   }
-   else {
-    this.navigateToHomeIfLoggedIn();
-   }
-
-  }
-
-  navigateToHomeIfLoggedIn(): void {
-    const user = this.getCurrentUser();
-    if (user?.token != 'undefined') {
-      switch (this.roleId) {
-        case 1:
-        case 3:
-          this.router.navigate(['/diagnostico']);
-          break;
-        case 4:
-          this.router.navigate(['/historial']);
-          break;
-      }
-    }
-    else {
-      this.clearLocalStorage();
-      this.user.next(null);
-      this.router.navigate(['/login']);
-    }
   }
 
   clearLocalStorage() {
