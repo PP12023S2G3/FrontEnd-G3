@@ -15,7 +15,7 @@ export class ContactoViewComponent implements OnInit {
   cambiarTitulo(nuevoTitulo: string) {
     this.tituloDinamico = nuevoTitulo;
   }
-
+  formFieldsCompleted =false;
   comments!: Comments;
   messageOptions: { label: string; value: string; }[] | undefined;
 
@@ -37,47 +37,35 @@ export class ContactoViewComponent implements OnInit {
   OnSelectedMessage(event: any) {
   }
 
-
-
-
   onSubmit() {
-    this.validateName();
-    this.validateEmail();
-    this.validateMessage();
-
-  }
-
-  validateName() {
-    if (!this.comments.name) {
-      return alert('Por favor complete el nombre.');
+    this.checkFormFields();
+    console.log(this.formFieldsCompleted);
+    if(!this.formFieldsCompleted){
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Completa todos los campos del formulario antes de continuar',
+        life: 2000,
+      });
+      console.log("ALGUN CAMPO FALTA");
     }
-    if (this.comments.name.length >= 100 || this.comments.name.match(/\d/)) {
-
-      return alert('Nombre y apellido deben tener menos de 100 caracteres y no deben contener números.');
-    }
-  }
-  validateEmail() {
-    if (!this.comments.email) {
-      return alert('Por favor complete el email.');
-    }
-    if (!this.comments.email.includes('@') || !this.comments.email.includes('.com')) {
-
-      return alert('El email debe contener el signo "@" y terminar con ".com"');
-    }
-    if (this.comments.email.length >= 100) {
-      return alert('El email debe tener menos de 100 caracteres.');
-
+    else {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Mensaje enviado con éxito',
+        life: 2000,
+      });
+      console.log("SE ENVIO CON EXITO");
     }
   }
-  validateMessage() {
-    if (!this.comments.message) {
-      return alert('Por favor complete el mensaje.');
-    }
-    if (this.comments.message.length > 300) {
-
-      return alert('El mensaje debe tener menos de 300 caracteres.');
+  checkFormFields() {
+    if (this.comments.name != undefined && this.comments.email != undefined && this.comments.message != undefined && this.comments.name != '' && this.comments.email != '' && this.comments.message != '') {
+      this.formFieldsCompleted = true;
+    } else {
+      this.formFieldsCompleted = false;
     }
   }
+
 
 
 
