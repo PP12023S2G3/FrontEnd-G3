@@ -183,6 +183,28 @@ export class ResultViewComponent implements OnInit {
       } */
   }
 
+  dataTranslations: { [key: string]: string } = {
+    perdida_visual: 'Pérdida visual',
+    debilidad_focal: 'Debilidad focal',
+    convulsiones : 'Convulsiones',
+    palpitaciones: 'Palpitaciones',
+    dolor_superior_izquierdo: 'Dolor miembros sup. izq.',
+    disnea: 'Disnea',
+    dolor_con_limitacion: 'Dolor con limitación func.', 
+    edema : 'Edema',
+    deformidad : 'Deformidad',
+    puntada_lateral  : 'Puntada lateral',
+    fiebre : 'Fiebre',
+    dificultad_respiratoria: 'Dificultad respiratoria',
+    hermaturia : 'Hermaturia',
+    dolor_lumbar : 'Dolor lumbar', 
+    dolor_abdominal  : 'Dolor abdominal',
+    perdida_peso  : 'Pérdida de peso',
+    sensacion_inestabilidad: 'Sensación de inestabilidad',
+    CA_positiva: 'Prueba cajón ant. pos.',
+    impotencia_funcional: 'Impotencia funcional',
+  };
+
   private setValueResultDiagnostic(res: DiagnosticResp) {
     if (res !== undefined && !this.result) {
       this.loaderService.updateIsLoading(false);
@@ -196,7 +218,10 @@ export class ResultViewComponent implements OnInit {
     this.resultado = JSON.parse(this.result.resultado);
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
-    this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({ key, value }));
+    this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({
+      key: this.dataTranslations[key] || key,
+      value,
+    }));
     this.imagePath = 'data:image/png;base64,' + this.result.imagen;
   }
 

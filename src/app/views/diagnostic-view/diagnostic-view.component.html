@@ -6,7 +6,7 @@
     <div class="container-data-doctor">
         <h4 class="title-data">Datos del médico</h4>
         <div class="container-inputs-data-doctor">
-            <div>
+            <div class="campos-largo">
                 <h6 class="title-dni-doctor">DNI</h6>
                 <input class="input-dni-doctor" type="text" placeholder="Dni del medico" pInputText tabindex="1"
                     [(ngModel)]="doctor.dni" #dni="ngModel" name="dni" id="dni" required pattern="^[0-9]{7,8}$"/>
@@ -24,7 +24,7 @@
                     </div>
                   </div>
 
-              <div>
+              <div class="campos-largo">
                 <h6 class="title-name-doctor">Nombre</h6>
                 <input class="input-name-doctor" type="text" placeholder="Nombre del medico" pInputText tabindex="2"
                 [(ngModel)]="doctor.name" name="name" #name="ngModel" id="name" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required/>
@@ -46,7 +46,7 @@
                 </div>
                 </div>
             </div>
-            <div>
+            <div class="campos-largo">
                 <h6 class="title-lastname-doctor">Apellido</h6>
                 <input class="input-lastname-doctor" type="text" placeholder="Apellido del medico" pInputText tabindex="3"
                 [(ngModel)]="doctor.lastname" name="lastname" id="lastname" [minlength]="2" #lastname="ngModel"  pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" required/>
@@ -74,7 +74,7 @@
     <div class="container-data-patient">
         <h4 class="title-data">Datos del paciente</h4>
         <div class="container-inputs-data-patient">
-            <div>
+            <div class="campos">
                 <h6 class="title-age-patient">Fecha de nacimiento</h6>
 
                 <p-calendar
@@ -98,7 +98,7 @@
 
             </div>
 
-            <div>
+            <div class="campos">
               <h6 class="title-weight-patient">Peso(Kg)</h6>
               <input class="input-weight-patient" type="number" placeholder="Peso del paciente" pInputText tabindex="5"
                 [(ngModel)]="diagnostic.weight" name="weight" #weight="ngModel" id="weight"
@@ -117,7 +117,7 @@
               </div>
             </div>
 
-            <div>
+            <div class="campos">
               <h6 class="title-height-patient">Altura(cm)</h6>
               <input class="input-height-patient" type="number" placeholder="Altura del paciente" pInputText tabindex="6"
                 [(ngModel)]="diagnostic.height"  name="height" #height="ngModel" id="height"
@@ -136,13 +136,13 @@
               </div>
             </div>
 
-            <div>
+            <div class="campos">
                 <h6 class="title-gender-patient">Sexo</h6>
                 <p-dropdown placeholder="Seleccionar" appendTo="body" optionLabel="label"
                 [(ngModel)]="diagnostic.gender" [options]="sexOptions" (onChange)="OnSelectedSex($event)"></p-dropdown>
             </div>
 
-            <div>
+            <div class="campos">
                 <h6 class="title-body-section-patient">Sección del cuerpo</h6>
                 <p-dropdown placeholder="Seleccionar" appendTo="body" optionLabel="label"
                 [(ngModel)]="diagnostic.sectionBody" [options]="partsOptions" (onChange)="OnSelectedPart($event)"></p-dropdown>

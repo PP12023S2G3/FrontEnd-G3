@@ -515,7 +515,7 @@ onFileSelect(event: any) {
     }
   }
 
-  tituloDinamico = 'Diagnostico';
+  tituloDinamico = 'Informe médico';
     cambiarTitulo(nuevoTitulo: string) {
     this.tituloDinamico = nuevoTitulo;
   }

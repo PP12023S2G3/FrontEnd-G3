@@ -17,4 +17,16 @@
   .title span{
     font-size: var(--font-size-title3);
   }
+
+  @media screen and (max-width: 767.5px) {
+    .title3{
+      font-size: var(--font-size-title4);
+    }
+  }
+
+  @media screen and (max-width: 395px) {
+    .title3{
+      font-size: 28px;
+    }
+  }
   
