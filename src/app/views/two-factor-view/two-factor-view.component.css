@@ -103,6 +103,10 @@
     border: none;
     margin: auto;
   }
+  .gradient-button-two-factor:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
   .gradient-button-reset:hover {
     cursor: pointer;
   }

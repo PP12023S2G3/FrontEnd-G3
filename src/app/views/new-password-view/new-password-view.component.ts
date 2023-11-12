@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
+import { PasswordModule } from 'primeng/password';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-new-password-view',
@@ -10,14 +12,32 @@ import { Comments } from 'src/app/models/Comment';
 })
 export class NewPasswordViewComponent {
 
+  constructor(private messageService: MessageService) {};
+
+
   showPassword1: boolean = false;
   showPassword2: boolean = false;
   modalVisible: boolean = false;
-  password = '';
+  password1: string = '';
+  password2: string = '';
+ 
 
   ngOnInit(): void {
+  }
 
-
+  onSubmit() {
+    if (this.password1 == '' || this.password2 == '') {
+      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Ambos campos son obligatorios', life: 2000});
+    } else {
+      if(this.password1 == this.password2) {
+        this.showModal();
+      } else {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Las contraseñas no coinciden', life: 2000});
+      }
+    }
+    console.log(this.password1 + ' y ' + this.password2);
+    
+    
   }
 
   togglePasswordVisibility(num: number) {
