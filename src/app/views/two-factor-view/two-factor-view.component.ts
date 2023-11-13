@@ -20,6 +20,7 @@ export class TwofactorViewComponent {
     const numericRegex = /^[0-9]+$/;
     if (!numericRegex.test(this.code)) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El código debe contener sólo números' });
+      this.showModal();
     } else {
       
       this.showModal(); 
