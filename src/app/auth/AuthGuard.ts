@@ -51,7 +51,7 @@ canActivate: CanActivateFn = (
 
       }else{
 
-      return of(this.router.createUrlTree(['/login']));
+      return of(this.router.createUrlTree(['/']));
       }
 
     })
