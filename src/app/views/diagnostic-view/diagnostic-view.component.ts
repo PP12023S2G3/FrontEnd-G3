@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
@@ -61,23 +61,23 @@ export class DiagnosticViewComponent implements OnInit {
     'Dolor lumbar': false,
     'Dolor abdominal': false,
     'Fiebre': false,
-    'Perdida de peso' : false
+    'Pérdida de peso' : false
   };
 
   selectedOptionsRodilla: { [key: string]: boolean } = {
     'Sensacion de inestabilidad': false,
-    'CA positiva': false,
+    'Prueba cajón ant. pos.': false,
     'Impotencia funcional': false
   };
 
   selectedOptionsCorazon: { [key: string]: boolean } = {
     'Palpitaciones': false,
-    'Dolor superior izquierdo': false,
+    'Dolor miembros sup. izq.': false,
     'Disnea': false
   };
 
   selectedOptionsMunieca: { [key: string]: boolean } = {
-    'Dolor con limitacion': false,
+    'Dolor con limitación func.': false,
     'Edema': false,
     'Deformidad': false
   };
@@ -101,6 +101,7 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.imagenURL);
     this.sexOptions = [
       { label: 'Masculino', value: 1 },
       { label: 'Femenino', value: 2 }
@@ -142,9 +143,10 @@ onCheckboxChange(section: string, option: string) {
 }
 
 onFileSelect(event: any) {
+  console.log('onFileSelect called');
   const selectedFile = event.target.files[0];
   if (selectedFile) {
-    if (selectedFile.type === 'application/x-zip-compressed') {
+    if (selectedFile.type === 'application/x-zip-compressed' && this.selectedpartOption == 'Rodilla') {
       console.log("hola")
       const jszip = new JSZip();
       jszip.loadAsync(selectedFile)
@@ -170,9 +172,12 @@ onFileSelect(event: any) {
         .catch((error) => {
           console.error('Error al cargar el archivo ZIP:', error);
         });
-    } else {
-      // No es un archivo ZIP, maneja el caso de imágenes o tipos de archivo válidos
-      // (código anterior para imágenes)
+    } 
+    else if (
+      (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') &&
+      ['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón'].includes(this.selectedpartOption)
+    ) {
+      // Manejar el caso de las imágenes
       const image = new Image();
       image.src = window.URL.createObjectURL(selectedFile);
 
@@ -183,39 +188,52 @@ onFileSelect(event: any) {
           image.width >= this.minImageWidth &&
           image.height >= this.minImageHeight
         ) {
+          console.log('Imagen válida:', selectedFile);
           this.uploadedFile = selectedFile;
           this.isResultButtonDisabled = false;
           this.getObjectURL(selectedFile);
           this.showCancelButton = true; // Muestra el botón de cancelar
         } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'La imagen no cumple con los requisitos',
-            life: 2000,
-          });
-          this.resetFileInput();
+          this.handleInvalidImage();
         }
       };
+    } else {
+      this.handleInvalidImage();
     }
+
   } else {
     this.resetFileInput();
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
-      life: 3000,
-    });
+    this.handleNoImageSelected();
   }
 }
 
+private handleInvalidImage() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'La imagen no cumple con los requisitos',
+    life: 2000,
+  });
+  this.resetFileInput();
+}
 
-  resetFileInput() {
-    this.uploadedFile = null;
-    this.isResultButtonDisabled = true;
-    this.imagenURL = null;
-    console.log(this.imagenURL);
-  }
+private handleNoImageSelected() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
+    life: 3000,
+  });
+}
+
+resetFileInput() {
+  this.imagenURL = null;
+  this.uploadedFile = null;
+  this.isResultButtonDisabled = true;
+}
+
+
+
   cancelImageUpload() {
     this.resetFileInput();
     this.showCancelButton = false; // Oculta el botón de cancelar

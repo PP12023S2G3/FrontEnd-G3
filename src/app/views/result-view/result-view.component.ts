@@ -247,8 +247,8 @@ export class ResultViewComponent implements OnInit {
     dolor_lumbar : 'Dolor lumbar', 
     dolor_abdominal  : 'Dolor abdominal',
     perdida_peso  : 'Pérdida de peso',
-    sensacion_inestabilidad: 'Sensación de inestabilidad',
-    CA_positiva: 'Prueba cajón ant. pos.',
+    sensacion_de_inestabilidad: 'Sensación de inestabilidad',
+    prueba_CA_positiva: 'Prueba cajón ant. pos.',
     impotencia_funcional: 'Impotencia funcional',
   };
 

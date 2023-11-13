@@ -73,12 +73,11 @@
     </div>
     <div class="container-data-patient">
         <h4 class="title-data">Datos del paciente</h4>
-        <div class="container-inputs-data-patient" id="container-inputs-data-patient">
+        <div class="container-inputs-data-patient">
             <div class="campos">
                 <h6 class="title-age-patient">Fecha de nacimiento</h6>
 
                 <p-calendar
-                appendTo="container-inputs-data-patient"
                 styleClass="datepicker"
                 [(ngModel)]="this.diagnostic.dateOfBirth"
                 selectionMode="single"
@@ -209,8 +208,8 @@
         <div class="container-custom-file-input">
           <input type="file" accept="image/*, .zip" (change)="onFileSelect($event)" style="display: none;" #chooseFileInput />
           <img *ngIf="!imagenURL" src="assets/img/foto-subir-archivo.png" (click)="chooseFileInput.click()" style="cursor: pointer;" />
-          <div class="image-preview-container" *ngIf="imagenURL">
-            <img [src]="imagenURL" alt="Vista previa de la imagen subida" class="preview-image">
+          <div class="image-preview-container" *ngIf="imagenURL && uploadedFile">
+            <img [src]="imagenURL" alt="Archivo cargado" class="preview-image">
           </div>
         </div>
         <p-button styleClass="p-button-global" (click)="cancelImageUpload()" label="Cancelar" *ngIf="showCancelButton"></p-button>
