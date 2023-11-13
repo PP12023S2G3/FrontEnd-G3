@@ -77,43 +77,34 @@
         <div class="container-result-image">
             <img class="img-result" alt="imagen del resultado" src={{imagePath}}>
         </div>
-
         <div class="container-feedback">
             <p>¿Este resultado te parece correcto?</p>
-
             <div class="buttons-normal-feedback">
                 <p-button styleClass="p-button-global" (onClick)="disableButtonYes()" [disabled]="buttonYes"
                     label="Si"></p-button>
                 <p-button styleClass="p-button-global" (onClick)="disableButtonNo()" [disabled]="buttonNo"
                     label="No"></p-button>
             </div>
-
             <div *ngIf="!containerMoreOptions" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
                 <p>¿Qué resultado sería mejor en este caso?</p>
-
                 <div class="generate-buttons-feedback">
                     <div *ngFor="let button of buttonsModels">
                         <button pButton styleClass="p-button-global" (click)="selectButton(button.id)"
                         label="{{ button.label }}" [disabled]="button.idActivate" [id]="button.id"></button>
                     </div>
-
                 </div>
                 <p> En caso de no coincidir deja un comentario por favor</p>
                 <div class="container-comment">
                     <textarea pInputTextarea [autoResize]="true" [disabled]="inputDisable" [(ngModel)]="textComment" (input)="inputEnableButtonSubmitFeedback()"
-                        placeholder=" Ejemplo: Gripe" name="comment" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" style="width: 100%;"></textarea>
+                    name="comment" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" style="width: 100%;"></textarea>
                 </div>
             </div>
             <div class="container-submit-feedback">
-                <p-button styleClass="p-button-global" type="submit" [disabled]="buttonSubmitFeedback" label="Enviar Feedback"></p-button>
+                <p-button styleClass="p-button-global" type="submit" [disabled]="buttonSubmitFeedback" label="Enviar Feedback" (click)="enviarFeedback()"></p-button>
             </div>
-
         </div>
-
         <div class="container-download-result">
-            <p-button styleClass="p-button-global" type="download" label="Descargar" (click)="descargarPDF()"></p-button>
+            <p-button styleClass="p-button-global" type="download" label="Descargar" (click)="descargarYArmarPDF()"></p-button>
         </div>
     </div>
-
-
 </div>
