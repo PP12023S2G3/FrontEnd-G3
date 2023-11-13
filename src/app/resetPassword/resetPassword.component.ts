@@ -18,7 +18,7 @@ import { UserAccountService } from '../services/userAccount/userAccount.service'
     comments!: Comments;
     messageOptions: { label: string; value: string; }[] | undefined;
 
-    constructor(private messageService: MessageService,private userAcountService: UserAccountService) {
+    constructor(private messageService: MessageService,private userAccountService: UserAccountService) {
 
     }
     ngOnInit(): void {
@@ -53,7 +53,7 @@ import { UserAccountService } from '../services/userAccount/userAccount.service'
     }
 
     postResetPasswordDni(){
-      this.userAcountService.postResetPasswordDni(this.dniReset).subscribe({
+      this.userAccountService.postResetPasswordDni(this.dniReset).subscribe({
         next: (res) => {
           this.visible = true;
           this.desenfocarFondo();

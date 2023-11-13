@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 @Component({
   selector: 'app-two-factor-view',
@@ -13,7 +14,7 @@ export class TwofactorViewComponent {
   modalVisible: boolean = false;
   numeric = "^[0-9]+$";
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService,private userAccountService: UserAccountService) {
   }
 
   onSubmit() {
@@ -22,9 +23,23 @@ export class TwofactorViewComponent {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El código debe contener sólo números' });
       this.showModal();
     } else {
-      
-      this.showModal(); 
+      this.postCheckCode();
     }
+  }
+
+  private postCheckCode() {
+    this.userAccountService.postCheckCode(this.code).subscribe({
+      next: (res) => {
+        this.showModal();
+      },
+      error: (error: { message: any; }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
+    });
   }
 
   isCorrectInput(): void {
@@ -37,7 +52,7 @@ export class TwofactorViewComponent {
   }
   desenfocarFondo() {
     var containerBlur = document.querySelector(".body-two-factor");
-      containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
-  }  
+      containerBlur != null ? containerBlur.classList.add("blur-div"): "";
+  }
 
 }
