@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
 import { PasswordModule } from 'primeng/password';
 import { User } from 'src/app/models/User';
+import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 @Component({
   selector: 'app-new-password-view',
@@ -12,7 +13,7 @@ import { User } from 'src/app/models/User';
 })
 export class NewPasswordViewComponent {
 
-  constructor(private messageService: MessageService) {};
+  constructor(private messageService: MessageService,private userAccountService: UserAccountService) {};
 
 
   showPassword1: boolean = false;
@@ -20,7 +21,7 @@ export class NewPasswordViewComponent {
   modalVisible: boolean = false;
   password1: string = '';
   password2: string = '';
- 
+
 
   ngOnInit(): void {
   }
@@ -30,14 +31,14 @@ export class NewPasswordViewComponent {
       this.messageService.add({severity: 'error', summary: 'Error', detail: 'Ambos campos son obligatorios', life: 2000});
     } else {
       if(this.password1 == this.password2) {
-        this.showModal();
+        this.postResetPassword();
       } else {
         this.messageService.add({severity: 'error', summary: 'Error', detail: 'Las contraseñas no coinciden', life: 2000});
       }
     }
     console.log(this.password1 + ' y ' + this.password2);
-    
-    
+
+
   }
 
   togglePasswordVisibility(num: number) {
@@ -54,7 +55,21 @@ export class NewPasswordViewComponent {
   }
   desenfocarFondo() {
     var containerBlur = document.querySelector(".body-new-password");
-      containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
-  } 
- 
+      containerBlur != null ? containerBlur.classList.add("blur-div"): "";
+  }
+
+  postResetPassword(){
+    this.userAccountService.postResetPassword(this.password1,this.password2).subscribe({
+      next: (res) => {
+        this.showModal();
+      },
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
+    });
+  }
 }
