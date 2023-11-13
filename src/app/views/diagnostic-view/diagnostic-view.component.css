@@ -198,11 +198,12 @@
   align-items: center;
   height: 100%;
   padding: 20px;
-  /* Agrega un espacio interno para el contenido */
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
 
 .container-custom-file-input {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -210,10 +211,8 @@
   border: 1px solid var(--border-box-color);
   border-radius: 10px;
   background-color: white;
-  margin: 2%;
   width: 300px;
   height: 300px;
-  margin: 1% 0% 1%;
 }
 
 .imagen-pre {
@@ -224,13 +223,20 @@
 .preview-image {
   width: 280px;
   height: 280px;
-  max-width: 300px;
-  max-height: 300px;
-  margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: transparent;
+  width: 280px;
+  height: 280px;
+}
+
+:host::ng-deep .p-button-global{
+  margin-top: 0;
+  bottom: 0;
 }
 
 /*--------------------------------------------------------------------------------------------------*/
