@@ -1,13 +1,13 @@
 .container-diagnostic {
   overflow-x: hidden;
-  overflow-y: hidden;
-  min-width: 300px;
-  min-height: 1200px;
-  max-width: 2000px;
-  max-height: 1700px;
-  font-family: var(--font-family);
-  background-color: #EFEFEF;
-  margin-top: 130px;
+    overflow-y: hidden;
+    font-family: var(--font-family);
+    background-color: var(--background-color-light);
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-header-result {
@@ -33,13 +33,16 @@
 
 .container-data-result {
   background-color: #FFFFFF;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 1px;
-  border-color: var(--border-box-color);
-  width: 85%;
-  height: auto;
-  margin: 2% 0 0 10%;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+    max-width: 89vw;
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 
@@ -48,10 +51,16 @@
 .container-inputs-data-doctor {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  gap: 1vw;
   justify-content: center;
-  margin: 0;
+  align-items: center;
+}
 
+.container-data-doctor{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 }
 
 .container-inputs-data-doctor h6 {
@@ -61,9 +70,8 @@
 }
 
 .container-inputs-data-doctor input {
-  margin: 0 0 2% 0;
-  padding: 10px;
   width: 100%;
+  height: 60px;
   text-align: center;
   border-style: solid;
   border-radius: 10px;
@@ -71,13 +79,19 @@
   border-color: var(--border-box-color);
 }
 
-.container-inputs-data-doctor div {
-  margin: 0 3% 0 0;
+.title-data {
+  margin: 0;
+  font-size: var(--font-size-title5);
 }
 
-.title-data {
-  margin: 1.5%;
-  font-size: var(--font-size-title5);
+.campos {
+    height: 90px;
+    width: 200px;
+}
+
+.campos-largo {
+  height: 90px;
+  width: 300px;
 }
 
 /*---------------------------------------------PACIENTE-----------------------------------------------------*/
@@ -85,10 +99,15 @@
 .container-inputs-data-patient {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  margin: 0 0 0 1%;
+}
 
+.container-data-patient{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .container-inputs-data-patient h6 {
@@ -98,17 +117,13 @@
 }
 
 .container-inputs-data-patient input {
-  margin: 0 0 2% 0;
-  padding: 10px;
+  height: 60px;
+  width: 200px;
   text-align: center;
   border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   border-color: var(--border-box-color);
-}
-
-.container-inputs-data-patient div {
-  margin: 0 1% 0 0;
 }
 
 
@@ -121,19 +136,19 @@
   margin: 0;
 }
 
-.container-inputs-data-long-patient .container-checkbox {
-  width: 100%;
+.container-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
   min-height: 4vw;
-  max-height: 10vw;
   margin: 0;
   border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   border-color: var(--border-box-color);
-}
-
-.container-inputs-data-long-patient div {
-  margin: 2% 1% 2% 1%;
+  background: white;
+  gap: 2vw;
 }
 
 .container-result-image {
@@ -154,10 +169,8 @@
 }
 
 :host ::ng-deep .p-dropdown {
-  margin: 0 0 3.5% 0;
-  padding: 0px;
-  min-width: 224px;
-  max-width: 20vw;
+  height: 60px;
+  width: 200px;
   text-align: center;
   border-style: solid;
   border-radius: 10px;
@@ -165,8 +178,14 @@
   border-color: var(--border-box-color);
 }
 
-.container-data-patient {
-  min-height: 500px;
+:host ::ng-deep .p-dropdown-label {
+    display: flex;
+    flex: 1 1 auto;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    align-content: stretch;
+    align-items: center;
+    justify-content: center;
 }
 
 /*------------------------------------------IMAGEN--------------------------------------------------------*/
@@ -215,8 +234,55 @@
 }
 
 /*--------------------------------------------------------------------------------------------------*/
+@media screen and (max-width: 767.5px) {
+  .container-data-result{
+    background-color:transparent;
+    border-style: none;
+  }
+  .container-inputs-data-patient{
+    align-items: stretch;
+  }
 
+  .container-inputs-data-doctor{
+    flex-direction: column;
+  }
 
+  .container-inputs-data-patient{
+      flex-direction: column;
+      flex-wrap: nowrap;
+  }
+
+  .container-inputs-data-patient input {
+      width: 300px;
+  }
+
+  .campos{
+    width: 300px;
+  }
+
+  :host ::ng-deep .p-dropdown {
+    width: 300px;
+  }
+
+  .container-checkbox {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .checkbox-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkbox-group{
+    justify-content: space-evenly;
+  }
+
+  ::ng-deep .p-calendar .p-datepicker{
+    width: 300px;
+  }
+}
+/*
 @media screen and (max-width: 800px) {
   .container-inputs-data-long-patient .container-checkbox {
     width: 100%;
@@ -287,7 +353,7 @@
   .checkbox-item span {
     margin-left: 10px;
   }
-}
+}*/
 
 .errors{
   color: red;
@@ -297,13 +363,8 @@
 }
 
 :host::ng-deep .p-calendar {
-  margin: 0 0 3.5% 0;
-  padding: 0px;
-  height: 49px;
-  min-height: 47px;
-  max-width: 47px;
-  min-width: 224px;
-  max-width: 20vw;
+  height: 60px;
+  width: 300px;
   text-align: center;
   border-style: solid;
   border-radius: 10px;
@@ -311,18 +372,30 @@
   border-color: var(--border-box-color);
 }
 
-:host ::ng-deep .p-datepicker{
-  min-width: 400px;
-  position: static;
-  min-height: 400px;
-  top: 0;
-  left: 0;
+:host::ng-deep .p-calendar .p-inputtext{
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
 }
 
-.container-checkbox {
-  width: 100%;
-  min-height: 400px;
+::ng-deep .p-calendar .p-datepicker{
+  /*min-width: 400px;
+  position: static;
+  min-height: 400px;*/
+  left: 0;
+  top: 60px;
 }
+
+.datepicker{
+  left: 0;
+  top: 60px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--border-box-color);
+
+}
+
 .checkbox-group {
   display: flex;
   justify-content: center;
@@ -330,8 +403,267 @@
 }
 
 .checkbox-item {
-  padding-left: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2vw;
+    padding: 20px;
 }
 .checkbox-item span {
   margin-left: 10px;
 }
+
+/*------------------------------------PROFESIONAL DE LA SALUD-----------------------------------*/
+
+
+
+.container {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+.container-logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #797979;
+  background: var(--ttulos-subttulos-y-contenedor, #FFF);
+  width: 710px;
+  height: 330px;
+  padding: 50px;
+  gap: 50px;
+  z-index: 10000;
+  position: absolute;
+}
+.container-data-logout {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title-logout {
+  margin: 0px;
+}
+.subtitle-logout {
+  color: var(--Campos, #797979);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+}
+.button-container-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gradient-button-logout {
+  width: 300px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--Difuminado, linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%));
+  border: none;
+  color: #FFF;
+  margin: 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.container-gradient-border {
+  width: 300px;
+  height: 60px;
+  border-radius: 11px;
+  color: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+}
+.gray-button-logout {
+  width: 294px;
+  height: 54px;
+  font-weight: 700;
+  background: rgba(196, 196, 196);
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  color:  #9C237E;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {
+  .container-logout {
+      height: 50%;
+      margin: auto;
+      width: 98vw;
+      gap: 10px;
+      margin: 1vw;
+      padding: 15px;
+  }
+  .title-logout {
+      margin: 0% 0% 50px;
+  }
+  .button-container-logout{
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90vw;
+      gap: 10px;
+  }
+  .button-logout {
+      width: 98%;
+  }
+  .container-gradient-border {
+      width: 100%;
+  }
+}
+
+@media (min-width:576px) and (max-width: 768px) {
+  .container-logout {
+      width: 96%;
+  }
+  .button-container-logout {
+      width: 100%;
+  }
+  .container-gradient-border {
+      width: 100%;
+  }
+  .button-logout {
+      width: 98%;
+      max-width: 300px;
+  }
+}
+
+/*------------------------------------PROFESIONAL DE LA SALUD-----------------------------------*/
+
+
+
+.container {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+.container-logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #797979;
+  background: var(--ttulos-subttulos-y-contenedor, #FFF);
+  width: 710px;
+  height: 330px;
+  padding: 50px;
+  gap: 50px;
+  z-index: 10000;
+  position: absolute;
+}
+.container-data-logout {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title-logout {
+  margin: 0px;
+}
+.subtitle-logout {
+  color: var(--Campos, #797979);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+}
+.button-container-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gradient-button-logout {
+  width: 300px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--Difuminado, linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%));
+  border: none;
+  color: #FFF;
+  margin: 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.container-gradient-border {
+  width: 300px;
+  height: 60px;
+  border-radius: 11px;
+  color: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+}
+.gray-button-logout {
+  width: 294px;
+  height: 54px;
+  font-weight: 700;
+  background: rgba(196, 196, 196);
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  color:  #9C237E;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {
+  .container-logout {
+      height: 50%;
+      margin: auto;
+      width: 98vw;
+      gap: 10px;
+      margin: 1vw;
+      padding: 15px;
+  }
+  .title-logout {
+      margin: 0% 0% 50px;
+  }
+  .button-container-logout{
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90vw;
+      gap: 10px;
+  }
+  .button-logout {
+      width: 98%;
+  }
+  .container-gradient-border {
+      width: 100%;
+  }
+}
+
+@media (min-width:576px) and (max-width: 768px) {
+  .container-logout {
+      width: 96%;
+  }
+  .button-container-logout {
+      width: 100%;
+  }
+  .container-gradient-border {
+      width: 100%;
+  }
+  .button-logout {
+      width: 98%;
+      max-width: 300px;
+  }
+}
+

@@ -56,20 +56,17 @@
                 <div class="campos-dinamicos">
                     <h6 class="title-preconditions-patient">Condiciones previas</h6>
                     <div class="container-checkbox">
-                        <ul>
-                            <li *ngFor="let item of datosComplementariosList">
-                                <span *ngIf="item.value; else noCheck">&#10003;</span>
-                                <span *ngIf="!item.value; else noCross">&#10007;</span>
-                                {{ item.key }}
-                                <ng-template #noCheck>&nbsp;</ng-template>
-                                <ng-template #noCross>&nbsp;</ng-template>
-                            </li>
-                        </ul>
+                        <div *ngFor="let item of datosComplementariosList" class="checkbox-item">
+                            <div class="checkbox">
+                                <div class="inside-checkbox"[class.checked]="item.value"></div>
+                            </div>
+                            <div class="item-name">{{ item.key }}</div>
+                        </div>
                     </div>
                 </div>
                 <div class="campos-dinamicos">
                     <h6 class="title-diagnostic-result-patient">Resultado del diagnostico</h6>
-                    <div *ngIf="resultadoList.length > 0">
+                    <div *ngIf="resultadoList.length > 0" class="result-diag">
                         <p>{{ getHighestKeyValue().key }}: {{ getHighestKeyValue().value | number:'1.0-1' }}%</p>
                     </div>
                 </div>
@@ -91,7 +88,7 @@
                     label="No"></p-button>
             </div>
 
-            <div *ngIf="!containerMoreOptions" style="display: flex; flex-direction: column; gap: 20px;">
+            <div *ngIf="!containerMoreOptions" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
                 <p>¿Qué resultado sería mejor en este caso?</p>
 
                 <div class="generate-buttons-feedback">
@@ -103,9 +100,8 @@
                 </div>
                 <p> En caso de no coincidir deja un comentario por favor</p>
                 <div class="container-comment">
-                    <h6>Comentario</h6>
-                    <input pInputText class="input-comment" [disabled]="inputDisable" [(ngModel)]="textComment" (input)="inputEnableButtonSubmitFeedback()" type="text"
-                        placeholder=" Ejemplo: Gripe" name="comment" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
+                    <textarea pInputTextarea [autoResize]="true" [disabled]="inputDisable" [(ngModel)]="textComment" (input)="inputEnableButtonSubmitFeedback()"
+                        placeholder=" Ejemplo: Gripe" name="comment" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" style="width: 100%;"></textarea>
                 </div>
             </div>
             <div class="container-submit-feedback">

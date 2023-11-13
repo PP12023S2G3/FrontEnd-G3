@@ -22,8 +22,10 @@ export class LoginComponent implements OnInit {
   constructor(private userAccountService: UserAccountService,router: Router,private messageService: MessageService, private loaderService: LoaderService) { this.router = router }
 
   ngOnInit(): void {
+    this.postAuth();
     this.persona.dni = "";
     this.persona.clave = "";
+    this.userAccountService.clearLocalStorage();
   }
 
   togglePasswordVisibility() {
@@ -59,7 +61,7 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
-  
+
   checkFormFields() {
     if (this.persona.dni != undefined && this.persona.clave != undefined && this.persona.dni != '' && this.persona.clave!='') {
       this.formFieldsCompleted = true;
@@ -87,6 +89,22 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+  private postAuth() {
+    const token= localStorage.getItem('token');
+
+    if (token) {
+    this.userAccountService.postAuth(token).subscribe({
+      next: (res) => {
+          this.userAccountService.saveDataInLocalStorage(res);
+
+      },
+        error: (error: { message: any }) => {
+
+        }
+
+      });
+    }
+  }
 
   private redirectBasedOnUserRoleId(userRoleId: number) {
     switch (userRoleId) {
@@ -98,7 +116,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/historial']);
         break;
       default:
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
         break;
     }
   }

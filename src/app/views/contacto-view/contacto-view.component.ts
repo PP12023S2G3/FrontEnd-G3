@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
 
 
+
 @Component({
   selector: 'app-contacto-view',
   templateUrl: './contacto-view.component.html',
@@ -14,16 +15,18 @@ export class ContactoViewComponent implements OnInit {
   cambiarTitulo(nuevoTitulo: string) {
     this.tituloDinamico = nuevoTitulo;
   }
+  formFieldsCompleted =false;
   comments!: Comments;
-  messageOptions : {label : string; value: string;}[] | undefined;
+  messageOptions: { label: string; value: string; }[] | undefined;
 
   constructor(private messageService: MessageService) {
+
   }
 
   ngOnInit(): void {
     this.messageOptions = [
-      {label: 'tipo 1', value : 'valor tipo 1'},
-      {label: 'tipo 2', value: 'valor tipo 2'}
+      { label: 'tipo 1', value: 'valor tipo 1' },
+      { label: 'tipo 2', value: 'valor tipo 2' }
     ];
 
 
@@ -31,12 +34,39 @@ export class ContactoViewComponent implements OnInit {
 
   }
 
-  OnSelectedMessage(event : any) {
+  OnSelectedMessage(event: any) {
   }
 
   onSubmit() {
-
+    this.checkFormFields();
+    console.log(this.formFieldsCompleted);
+    if(!this.formFieldsCompleted){
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Completa todos los campos del formulario antes de continuar',
+        life: 2000,
+      });
+      console.log("ALGUN CAMPO FALTA");
+    }
+    else {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Mensaje enviado con éxito',
+        life: 2000,
+      });
+      console.log("SE ENVIO CON EXITO");
+    }
   }
+  checkFormFields() {
+    if (this.comments.name != undefined && this.comments.email != undefined && this.comments.message != undefined && this.comments.name != '' && this.comments.email != '' && this.comments.message != '') {
+      this.formFieldsCompleted = true;
+    } else {
+      this.formFieldsCompleted = false;
+    }
+  }
+
+
 
 
 }

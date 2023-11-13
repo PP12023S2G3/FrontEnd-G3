@@ -8,8 +8,9 @@ import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
 import { LogInRequest } from 'src/app/models/LogInRequest';
 import { UserWithToken } from 'src/app/models/UserWithToken';
 import { Role } from 'src/app/models/roles';
-import { ResetPasswordDniResp } from 'src/app/models/ResetPasswordDniResp';
 import { CheckCodeResp } from 'src/app/models/CheckCodeResp';
+import { ResetPasswordDniResp } from 'src/app/models/ResetPasswordDniResp';
+import { Router } from '@angular/router';
 import { ContactResp } from 'src/app/models/ContactResp';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
@@ -43,7 +44,7 @@ export class UserAccountService {
   especialidadByRoleid3 = 'ProfDelaSalud';
   userWithToken!:any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.loadUserFromLocalStorage();
     this.roleId = localStorage.getItem(ROLEID_LOCAL_STORAGE_KEY);
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
@@ -128,7 +129,6 @@ export class UserAccountService {
     this.saveIdUserToLocalStore(this.userId);
     this.saveTokenToLocalStore(response.token);
     }
-
     saveRoleIdToLocalStore(roleId: any) {
     localStorage.setItem(ROLEID_LOCAL_STORAGE_KEY, roleId);
     }
@@ -145,10 +145,9 @@ export class UserAccountService {
       localStorage.setItem(USERID_LOCAL_STORAGE_KEY, userId);
     }
 
-    private pushNewUser(userWithToken: UserWithToken) {
-      this.user.next(userWithToken);
-      console.log(this.user);
-    }
+  private pushNewUser(userWithToken: UserWithToken) {
+    this.user.next(userWithToken);
+  }
 
     getCurrentUser(): UserWithToken | null {
       return this.user.getValue();
@@ -167,7 +166,13 @@ export class UserAccountService {
     }
   }
 
-  //TODO: cuando se tengan los errores del back sacar un handleError.
+  clearLocalStorage() {
+    localStorage.clear();
+    this.user.next(null);
+  }
+
+
+//TODO: cuando se tengan los errores del back sacar un handleError.
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === HttpStatusCode.BadRequest) {

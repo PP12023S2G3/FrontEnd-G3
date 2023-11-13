@@ -8,15 +8,27 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class TwofactorViewComponent {
-  value: string = '';
+  code: string = '';
   correctLength: boolean = false;
   modalVisible: boolean = false;
+  numeric = "^[0-9]+$";
 
   constructor(private messageService: MessageService) {
   }
 
+  onSubmit() {
+    const numericRegex = /^[0-9]+$/;
+    if (!numericRegex.test(this.code)) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El código debe contener sólo números' });
+      this.showModal();
+    } else {
+      
+      this.showModal(); 
+    }
+  }
+
   isCorrectInput(): void {
-    this.correctLength = this.value.length === 6;
+    this.correctLength = this.code.length === 6;
   }
 
   showModal() {

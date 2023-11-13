@@ -12,10 +12,10 @@
         <h4 class="code-title-two-factor">Código de verificación</h4>
         <form class="form-two-factor">
           <div class="code-two-factor">
-                <input type="text" pInputText class="input-two-factor" name="first" maxlength="6" [(ngModel)]="value" (input)="isCorrectInput()">
+                <input type="text" pInputText style="width: 100%;" class="input-two-factor" name="first" maxlength="6" [(ngModel)]="code" pattern="^[0-9]+$" (input)="isCorrectInput()">
           </div>
             <button class="disabled-button-two-factor" [hidden]="this.correctLength"> Verificar</button>
-            <button class="gradient-button-two-factor" (click)="showModal()" [hidden]="!this.correctLength"> Verificar</button>
+            <button class="gradient-button-two-factor" (click)="onSubmit()" [hidden]="!this.correctLength"> Verificar</button>
             <a routerLink="" class="link-two-factor" href="">Volver a la página principal</a>
         </form>
       </div>

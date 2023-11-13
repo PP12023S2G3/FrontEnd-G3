@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LogoutService } from './logout.service';
+import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 @Component({
   selector: 'app-logout',
@@ -9,7 +10,7 @@ import { LogoutService } from './logout.service';
 export class LogoutComponent {
   esVisible: boolean = true;
 
-  constructor(private logoutService: LogoutService) {
+  constructor(private logoutService: LogoutService, private userService: UserAccountService) {
     this.logoutService.getLogoutVisible().subscribe(() => {
       this.esVisible = false;
     });
@@ -20,7 +21,7 @@ export class LogoutComponent {
   }
 
   clearSession() {
-    this.logoutService.clearLocalStorage();
+    this.userService.clearLocalStorage();
   }
 
 }

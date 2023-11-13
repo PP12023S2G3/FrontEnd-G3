@@ -66,6 +66,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
 }
 
 .container-inputs-data-doctor h6 {
@@ -154,42 +155,62 @@
     width: 100%;
     min-height: 4vw;
     max-height: 12vw;
-    margin: 0;
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
+    width: 20px;
 }
 
-.container-inputs-data-long-patient div {
+.container-inputs-data-long-patient {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .container-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
     min-height: 4vw;
-    max-height: 10vw;
     margin: 0;
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     background: white;
+    gap: 2vw;
+    padding: 20px;
+    flex-wrap: wrap;
 }
 
 .checkbox-item {
-    padding-right: 2rem;
+    display: flex;
+    align-items: center;
 }
 
 .checkbox-item span {
     margin-left: 10px;
 }
 
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inside-checkbox.checked{
+    background-color: black;
+    border-radius: 1px;
+    width: 12px;
+    height: 12px;
+}
 
 /*------------------------------------------------DESDE LA IMAGEN HASTA DESCARGA-------------------------------------------------------------*/
 
@@ -232,6 +253,7 @@
     border: 1px solid var(--border-box-color);
     border-radius: 10px;
     background-color: white;
+    align-content: center;
 }
 
 .container-feedback p {
@@ -260,10 +282,13 @@ ul{
 
 .generate-buttons-feedback {
     display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-wrap: wrap;
-   font-size: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    max-width: 630px;
+    font-size: 15px;
+    height: auto;
 }
 
 
@@ -276,14 +301,21 @@ ul{
 .container-comment input {
     width: 100%;
     height: 100px;
-    min-height: 4vw;
-    max-height: 12vw;
+    max-width: 620px;
     margin: 0;
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
     border-color: var(--border-box-color);
     color: black;
+}
+
+.container-comment{
+    width: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-submit-feedback{
@@ -312,18 +344,34 @@ ul{
     height: 60px;
 }
 
+.result-diag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    min-height: 4vw;
+    max-height: 10vw;
+    margin: 0;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+    background: white;
+}
+
 /*--------------------------------------------------------------------------------------------------*/
 @media screen and (max-width: 767.5px) {
     .container-checkbox {
-        max-height: 30vw;
-        display: flex;
+        height: auto;
         flex-direction: column;
-        justify-content: center;
         align-items: stretch;
+        align-content: space-around;
     }
 
-    .checkbox-item {
-        padding-right: 2rem;
+    .result-diag{
+        max-height: 30vw;
+        height: auto;
+        flex-direction: column;
     }
 
     .checkbox-item span {
@@ -364,24 +412,41 @@ ul{
         width: 300px;
     }
 
+    .generate-buttons-feedback {
+        flex-direction: column;
+    }
+
     :host::ng-deep .generate-buttons-feedback .p-button{
-        width: 50vw;
+        width: 260px;
     }
 
     :host::ng-deep .container-feedback .p-button {
-        width: 35vw;
+        width: 260px;
     }
 
-    :host::ng-deep .container-download-result .p-button {
+    /*:host::ng-deep .container-download-result .p-button {
         width: 40vw;
     }
     :host::ng-deep .generate-buttons-feedback .p-button{
         padding: 0;
+    }*/
+
+    .container-comment input{
+        width: 35vw;
+        white-space: initial;
+    }
+
+    .container-comment{
+        width: 260px;
+    }
+
+    .item-name {
+        max-width: 100px;
     }
 
 
 }
-
+/*
 @media screen and (max-width: 500px) {
     .container-data-doctor input {
         width: 100%;
@@ -406,7 +471,7 @@ ul{
         flex-direction: column;
     }
 
-}
+}*/
 
 :host ::ng-deep .p-button{
     width: 300px;

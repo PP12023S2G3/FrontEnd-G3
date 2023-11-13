@@ -21,7 +21,7 @@ export class LoginViewComponent {
     this.userAccountService.postAuth(token).subscribe({
       next: (res) => {
           this.userAccountService.saveDataInLocalStorage(res);
-          this.router.navigate(['/diagnostico']);
+          this.redirectBasedOnUserRoleId(this.userAccountService.roleId);
       },
         error: (error: { message: any }) => {
 
@@ -30,4 +30,24 @@ export class LoginViewComponent {
       });
     }
   }
+
+
+
+  private redirectBasedOnUserRoleId(userRoleId: number) {
+    switch (userRoleId) {
+      case 1:
+      case 3:
+        this.router.navigate(['/diagnostico']);
+        break;
+      case 4:
+        this.router.navigate(['/historial']);
+        break;
+      default:
+        this.router.navigate(['/login']);
+        break;
+    }
+  }
 }
+
+
+
