@@ -229,8 +229,7 @@
   border-radius: 10px;
   border-width: 1px;
   border-color: transparent;
-  width: 280px;
-  height: 280px;
+  text-align: center;
 }
 
 :host::ng-deep .p-button-global{
