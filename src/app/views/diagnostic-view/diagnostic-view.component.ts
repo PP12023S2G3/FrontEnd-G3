@@ -214,6 +214,7 @@ onFileSelect(event: any) {
     this.uploadedFile = null;
     this.isResultButtonDisabled = true;
     this.imagenURL = null;
+    console.log(this.imagenURL);
   }
   cancelImageUpload() {
     this.resetFileInput();

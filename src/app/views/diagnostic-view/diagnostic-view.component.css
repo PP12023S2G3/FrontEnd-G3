@@ -141,7 +141,6 @@
   align-items: center;
   justify-content: center;
   height: auto;
-  min-height: 4vw;
   margin: 0;
   border-style: solid;
   border-radius: 10px;
@@ -285,13 +284,13 @@
   }
 
   :host::ng-deep .p-calendar .p-datepicker{
-    width: 300px;
+    width: 300px !important;
   }
 }
 
 @media screen and (min-width: 767.5px){
   :host::ng-deep .p-calendar .p-datepicker {
-    width: 420px;
+    width: 420px !important;
   }
 }
 
@@ -319,13 +318,16 @@
 }
 
 :host::ng-deep .p-calendar .p-datepicker{
-  left: 0;
-  top: 58px;
   z-index: 100;
   border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   border-color: var(--border-box-color);
+}
+
+:host ::ng-deep .datepicker .p-datepicker{
+  left: 0 !important;
+  top: 58px !important;
 }
 
 .checkbox-group {

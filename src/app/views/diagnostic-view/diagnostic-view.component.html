@@ -73,12 +73,13 @@
     </div>
     <div class="container-data-patient">
         <h4 class="title-data">Datos del paciente</h4>
-        <div class="container-inputs-data-patient">
+        <div class="container-inputs-data-patient" id="container-inputs-data-patient">
             <div class="campos">
                 <h6 class="title-age-patient">Fecha de nacimiento</h6>
 
                 <p-calendar
                 appendTo="container-inputs-data-patient"
+                styleClass="datepicker"
                 [(ngModel)]="this.diagnostic.dateOfBirth"
                 selectionMode="single"
                 [readonlyInput]="true"
