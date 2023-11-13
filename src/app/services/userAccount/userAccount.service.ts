@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, pipe, throwError } from 'rxjs';
 //import { environment } from 'src/environments/environment';
-import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders,  HttpResponse,  HttpStatusCode } from '@angular/common/http';
 import { DoctorResp } from 'src/app/models/DoctorResp';
 import { SuccessfulRegistrationResp } from 'src/app/models/SuccessfulRegistrationResp';
 import { SuccessfulLogInResp } from 'src/app/models/SuccessfulLogInResp';
@@ -10,6 +10,7 @@ import { UserWithToken } from 'src/app/models/UserWithToken';
 import { Role } from 'src/app/models/roles';
 import { ResetPasswordDniResp } from 'src/app/models/ResetPasswordDniResp';
 import { CheckCodeResp } from 'src/app/models/CheckCodeResp';
+import { ContactResp } from 'src/app/models/ContactResp';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
@@ -28,8 +29,9 @@ export class UserAccountService {
   private endpointLogIn: string='login';
   private endpointAuth: string='verificarUsuario';
   private endpointCheckCode: string='check_code';
-  private endpointResetPasswordDni: string='reset_pass'
-  private endpointResetPassword: string='reset_password'
+  private endpointResetPasswordDni: string='reset_pass';
+  private endpointResetPassword: string='reset_password';
+  private endpointContact: string='contacto';
 
   private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();
@@ -47,7 +49,7 @@ export class UserAccountService {
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
   }
 
-// ver tipos de datos de las respuestas, probar
+  // ver tipos de datos de las respuestas, probar
 
   //para que usuario se registre
     public postSignIn(data:FormData):Observable<SuccessfulRegistrationResp>{
@@ -69,10 +71,18 @@ export class UserAccountService {
       catchError(this.handleErrorLogin));
   }
 
-  //para que usuario valide su codigo
-  public postCheckCode(codigo:String):Observable<CheckCodeResp>{
-    let url=this.apiUsers+this.endpointCheckCode+`?codigo=${codigo}`;
-    return this.http.post<CheckCodeResp>(url,null);
+  // Servicio postCheckCode
+  public postCheckCode(codigo: string): Observable<CheckCodeResp> {
+    let url = this.apiUsers + this.endpointCheckCode + `?codigo=${codigo}`;
+    const options = { withCredentials: true };
+    return this.http.post<CheckCodeResp>(url, null,options);
+  }
+
+  // Servicio postResetPassword
+  public postResetPassword(new_password: string, confirm_password: string): Observable<any> {
+    let url = this.apiUsers + this.endpointResetPassword + `?new_password=${new_password}&confirm_password=${confirm_password}`;
+    const options = { withCredentials: true };
+    return this.http.post<any>(url, null,options);
   }
 
   //para que usuario cambie su contraseña
@@ -81,15 +91,16 @@ export class UserAccountService {
     return this.http.post<ResetPasswordDniResp>(url,null);
   }
 
-  public postResetPassword(new_password:String,confirm_password:String):Observable<any>{
-    let url=this.apiUsers+this.endpointResetPassword+`?new_password=${new_password}&confirm_password=${confirm_password}`;
-    return this.http.post<any>(url,null);
-  }
-
    //para obtener una lista de medicos
    public getDoctors():Observable<DoctorResp[]>{
     let url=this.apiUsers+this.endpointDoctors;
     return this.http.get<DoctorResp[]>(url);
+  }
+
+   //para obtener una lista de medicos
+   public postContacto(nombre_apellido:string,email:string,mensaje:string):Observable<ContactResp>{
+    let url=this.apiUsers+this.endpointContact + `?nombre_apellido=${nombre_apellido}&email=${email}&mensaje=${mensaje}`;
+    return this.http.post<ContactResp>(url,null);
   }
 
   saveDataInLocalStorage(response: any): void {
@@ -116,47 +127,47 @@ export class UserAccountService {
     this.saveRoleToLocalStore(response.especialidad);
     this.saveIdUserToLocalStore(this.userId);
     this.saveTokenToLocalStore(response.token);
+    }
+
+    saveRoleIdToLocalStore(roleId: any) {
+    localStorage.setItem(ROLEID_LOCAL_STORAGE_KEY, roleId);
+    }
+
+    saveTokenToLocalStore(token: any) {
+      !localStorage.getItem('token')&&localStorage.setItem(TOKEN_LOCAL_STORAGE_KEY, token);
+    }
+
+    saveRoleToLocalStore(role: any) {
+      localStorage.setItem(ROLE_LOCAL_STORAGE_KEY, role);
+    }
+
+    saveIdUserToLocalStore(userId: string): void {
+      localStorage.setItem(USERID_LOCAL_STORAGE_KEY, userId);
+    }
+
+    private pushNewUser(userWithToken: UserWithToken) {
+      this.user.next(userWithToken);
+      console.log(this.user);
+    }
+
+    getCurrentUser(): UserWithToken | null {
+      return this.user.getValue();
+    }
+
+    public loadUserFromLocalStorage(): void {
+      const userToken = localStorage.getItem(TOKEN_LOCAL_STORAGE_KEY);
+      const rol = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
+      if (userToken) {
+        const userWithToken: UserWithToken = {
+          username: '',
+          token: userToken,
+          role: rol || ''
+        };
+        this.pushNewUser(userWithToken);
+    }
   }
 
-  saveRoleIdToLocalStore(roleId: any) {
-   localStorage.setItem(ROLEID_LOCAL_STORAGE_KEY, roleId);
-  }
-
-  saveTokenToLocalStore(token: any) {
-    !localStorage.getItem('token')&&localStorage.setItem(TOKEN_LOCAL_STORAGE_KEY, token);
-  }
-
-  saveRoleToLocalStore(role: any) {
-    localStorage.setItem(ROLE_LOCAL_STORAGE_KEY, role);
-  }
-
-  saveIdUserToLocalStore(userId: string): void {
-    localStorage.setItem(USERID_LOCAL_STORAGE_KEY, userId);
-  }
-
-  private pushNewUser(userWithToken: UserWithToken) {
-    this.user.next(userWithToken);
-    console.log(this.user);
-  }
-
-  getCurrentUser(): UserWithToken | null {
-    return this.user.getValue();
-  }
-
-  public loadUserFromLocalStorage(): void {
-    const userToken = localStorage.getItem(TOKEN_LOCAL_STORAGE_KEY);
-    const rol = localStorage.getItem(ROLE_LOCAL_STORAGE_KEY);
-    if (userToken) {
-      const userWithToken: UserWithToken = {
-        username: '',
-        token: userToken,
-        role: rol || ''
-      };
-      this.pushNewUser(userWithToken);
-  }
-  }
-
-//TODO: cuando se tengan los errores del back sacar un handleError.
+  //TODO: cuando se tengan los errores del back sacar un handleError.
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === HttpStatusCode.BadRequest) {
