@@ -9,7 +9,7 @@
                 <div class="container-data-form-contact">
                     <div class="container-field-contact">
                         <h6 class="title-input-contact">Nombre y apellido</h6>
-                        <span class="span-input-contact">
+                        <span class="span-input-contact" >
                             <i class="pi pi-user"
                                 style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
                             <input type="text" placeholder="Ingresar nombre y apellido" pInputText
@@ -40,14 +40,14 @@
                         </div>
                     </div>
 
+
                     <div class="container-field-contact">
                         <h6 class="title-input-contact">Email</h6>
                         <span class="span-input-contact">
                             <i class="pi pi-at"
                                 style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
                             <input type="email" placeholder="Ingresar email" pInputText [(ngModel)]="comments.email"
-                                name="email-contact" #email="ngModel"
-                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                                name="email-contact" #email="ngModel" [minlength]="4"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
                         </span>
                         <div *ngIf="email.invalid && (email.touched)" class="errors" style="margin-top: 0.3rem;">
                             <div>
@@ -60,22 +60,37 @@
                                     Ingrese un email válido.
                                 </span>
                             </div>
+                            <div>
+                                <span *ngIf="email.errors?.['minlength'] && !email.errors?.['pattern']">
+                                    Debe tener al menos 4 caracteres.
+                                </span>
+                            </div>
                         </div>
                         
+
                         <div class="container-field-message-contact">
                             <h6 class="title-input-contact">Mensaje</h6>
-                            <textarea id="message" type="text" rows="5" cols="30" [maxlength]="300" pInputTextarea
-                                [autoResize]="true" [(ngModel)]="comments.message" name="message-contact"></textarea>
+                            <textarea id="message" type="text" rows="5" cols="30" [minlength]="4" [maxlength]="300" pInputTextarea
+                                [autoResize]="true" [(ngModel)]="comments.message" #message="ngModel" name="message-contact"></textarea>
                             <div>
-                                <span *ngIf="email.errors?.['maxlength']">
+                                <span *ngIf="message.errors?.['maxlength']">
                                     Debe tener hasta 300 caracteres.
+                                </span>
+                            </div>
+                            <div>
+                                <span *ngIf="message.errors?.['minlength'] && !message.errors?.['pattern']">
+                                    Debe tener al menos 4 caracteres.
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div class="button-submit">
-                    <p-button styleClass="p-button-global" type="submit" label="Enviar" (click)="onSubmit()"></p-button>
+                    <p-button styleClass="p-button-global" type="submit" label="Enviar" (onClick)="postContacto()"></p-button>
 
                 </div>
 
