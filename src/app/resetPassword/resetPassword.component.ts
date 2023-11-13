@@ -3,6 +3,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
+import { UserAccountService } from '../services/userAccount/userAccount.service';
 
 @Component({
     selector: 'resetPasswordScreen',
@@ -16,9 +17,9 @@ import { Comments } from 'src/app/models/Comment';
     visible: boolean = false;
     comments!: Comments;
     messageOptions: { label: string; value: string; }[] | undefined;
-  
-    constructor(private messageService: MessageService) {
-  
+
+    constructor(private messageService: MessageService,private userAcountService: UserAccountService) {
+
     }
     ngOnInit(): void {
     }
@@ -30,20 +31,19 @@ import { Comments } from 'src/app/models/Comment';
         } else if (!this.validarDNIReset(this.dniReset)) {
             this.showErrorNotValid();
           } else {
-            this.visible = true;
-            this.desenfocarFondo();
+            this.postResetPasswordDni();
           }
     }
 
     validarDNIReset(dni: string): boolean {
-        return /^\d{7,8}$/.test(dni); //expresion regular 
+        return /^\d{7,8}$/.test(dni); //expresion regular
       }
 
     desenfocarFondo() {
       var containerBlur = document.querySelector(".container-reset");
-        containerBlur != null ? containerBlur.classList.add("blur-div"): ""; 
-    }    
-    
+        containerBlur != null ? containerBlur.classList.add("blur-div"): "";
+    }
+
     showErrorEmpty() {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No olvides agregar tu DNI' });
     }
@@ -52,5 +52,19 @@ import { Comments } from 'src/app/models/Comment';
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El DNI no es válido' });
     }
 
-
+    postResetPasswordDni(){
+      this.userAcountService.postResetPasswordDni(this.dniReset).subscribe({
+        next: (res) => {
+          this.visible = true;
+          this.desenfocarFondo();
+        },
+        error:  (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
 }
