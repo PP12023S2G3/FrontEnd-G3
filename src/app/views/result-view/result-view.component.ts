@@ -289,7 +289,10 @@ export class ResultViewComponent implements OnInit {
     this.datos_paciente = JSON.parse(this.result.datos_paciente);
     this.resultado = JSON.parse(this.result.resultado);
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
-    this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
+    this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({   
+      key: this.keyTranslations[key] || key,
+      value,
+    }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({
       key: this.dataTranslations[key] || key,
       value,
@@ -446,6 +449,21 @@ export class ResultViewComponent implements OnInit {
     this.buttonSubmitFeedback = false;
     this.containerMoreOptions = true; //deshabilitar
     this.buttonNo = true;
+    console.log(this.buttonsModels);
+    for (let i = 0; i < this.buttonsModels.length; i++) {
+      console.log(this.resultadoList[i].key);
+      if (this.buttonsModels[i].key === this.resultadoList[i].key) {
+        this.buttonsModels[i].idActivate = true;
+        console.log(this.buttonsModels[i].label)
+      } 
+      else {
+        this.buttonsModels[i].idActivate = false;
+        console.log(this.buttonsModels[i].label)
+      }
+    }
+    this.enableButtonSubmitFeedback();
+    this.inputDisable = true;
+    console.log(this.buttonsModels);
   }
 
   disableButtonNo() {

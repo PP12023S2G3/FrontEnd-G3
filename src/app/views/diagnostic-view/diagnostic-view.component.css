@@ -278,82 +278,16 @@
     justify-content: space-evenly;
   }
 
-  ::ng-deep .p-calendar .p-datepicker{
+  :host::ng-deep .p-calendar .p-datepicker{
     width: 300px;
   }
 }
-/*
-@media screen and (max-width: 800px) {
-  .container-inputs-data-long-patient .container-checkbox {
-    width: 100%;
-    min-height: 20vw;
-    max-height: 30vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .container-inputs-data-long-patient {
 
-    min-height: 12vw;
-    max-height: 40vw;
+@media screen and (min-width: 767.5px){
+  :host::ng-deep .p-calendar .p-datepicker {
+    width: 420px;
   }
-  .checkbox-group {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .checkbox-item {
-    padding-right: 2rem;
-  }
-  .checkbox-item span {
-    margin-left: 10px;
-  }
-
 }
-
-@media screen and (max-width: 500px) {
-  .container-data-doctor input {
-    width: 100%;
-  }
-
-  .container-inputs-data-patient {
-    flex-direction: column;
-  }
-
-  .container-inputs-data-patient .container-checkbox{
-    width: 100%;
-  }
-
-  .container-inputs-data-long-patient {
-    height: 50vw;
-  }
-
-  .img-result {
-    width: 30%;
-    height: 30%;
-  }
-
-  .container-inputs-data-doctor {
-    flex-direction: column;
-  }
-
-  :host::ng-deep .button-download-result .p-button {
-    width: 50vw;
-    height: 8vw;
-  }
-
-  .checkbox-item {
-
-  }
-  .container-checkbox  {
-    margin-left: 3rem;
-  }
-  .checkbox-item span {
-    margin-left: 10px;
-  }
-}*/
 
 .errors{
   color: red;
@@ -378,22 +312,14 @@
   text-align: center;
 }
 
-::ng-deep .p-calendar .p-datepicker{
-  /*min-width: 400px;
-  position: static;
-  min-height: 400px;*/
+:host::ng-deep .p-calendar .p-datepicker{
   left: 0;
-  top: 60px;
-}
-
-.datepicker{
-  left: 0;
-  top: 60px;
+  top: 58px;
+  z-index: 100;
   border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   border-color: var(--border-box-color);
-
 }
 
 .checkbox-group {

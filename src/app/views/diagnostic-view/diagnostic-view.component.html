@@ -78,7 +78,7 @@
                 <h6 class="title-age-patient">Fecha de nacimiento</h6>
 
                 <p-calendar
-                panelStyleClass="datepicker"
+                appendTo="container-inputs-data-patient"
                 [(ngModel)]="this.diagnostic.dateOfBirth"
                 selectionMode="single"
                 [readonlyInput]="true"
