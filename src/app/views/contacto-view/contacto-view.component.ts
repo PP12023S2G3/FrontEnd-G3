@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
+import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 
 
@@ -19,7 +20,7 @@ export class ContactoViewComponent implements OnInit {
   comments!: Comments;
   messageOptions: { label: string; value: string; }[] | undefined;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private contactService: UserAccountService) {
 
   }
 
@@ -32,6 +33,28 @@ export class ContactoViewComponent implements OnInit {
 
     this.comments = new Comments();
 
+  }
+
+  postContacto(){
+    if(this.comments.name && this.comments.email && this.comments.message)
+    this.contactService.postContacto(this.comments.name, this.comments.email, this.comments.message).subscribe({
+      next: (res) => {
+        console.log("enviado");
+        console.log(res);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Mensaje enviado con éxito',
+          life: 2000,
+        });
+      },
+      error:  (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
+    });
   }
 
   OnSelectedMessage(event: any) {
@@ -50,12 +73,7 @@ export class ContactoViewComponent implements OnInit {
       console.log("ALGUN CAMPO FALTA");
     }
     else {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Mensaje enviado con éxito',
-        life: 2000,
-      });
-      console.log("SE ENVIO CON EXITO");
+      this.postContacto();
     }
   }
   checkFormFields() {
