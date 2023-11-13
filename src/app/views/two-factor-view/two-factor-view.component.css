@@ -66,9 +66,10 @@
 .code-two-factor {
     display: flex;
     justify-content: space-around;
+    width: 300px;
+    margin: auto;
 }
 .input-two-factor {
-    width: 300px;
     height: 60px;
     flex-shrink: 0;
     border-radius: 10px;
@@ -152,6 +153,16 @@
         background-color: #efefef;
         border: none;
     }
+    .code-two-factor {
+        width: 90%;
+        margin: auto;
+    }
+    .enabled-button-two-factor {
+        width: 90%;
+    }
+    .disabled-button-two-factor {
+        width: 90%;
+    }
 }
 @media screen and (max-width: 500px) {
     .container-two-factor{
@@ -169,16 +180,11 @@
     }
     .gradient-button-two-factor {
         width: 90%;
-        height: 40px;
     }
     .input-two-factor {
         width: 65px;
         height: 65px;
     }
-    .enabled-button-two-factor {
-        width: 90%;
-    }
-
 }
 
 
