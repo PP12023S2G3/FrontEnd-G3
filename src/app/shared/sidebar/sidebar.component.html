@@ -2,8 +2,8 @@
     <ng-template pTemplate="header">
       <div class="header-sidebar">
         <img src="./../../../assets/img/profile.webp" alt="">
-        <p class="name-header-sidebar">Nombre Profesional</p>
-        <p class="id-header-sidebar">99.999.999</p>
+        <p class="name-header-sidebar">{{ userdata.nombre }} {{ userdata.apellido }}</p>
+        <p class="id-header-sidebar">{{ userdata.dni}} </p>
       </div>
     </ng-template>
     <ng-template pTemplate="content">

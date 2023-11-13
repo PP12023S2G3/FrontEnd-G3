@@ -14,8 +14,6 @@ export class LoginViewComponent {
 
   ngOnInit(): void {
     this.postAuth();
-    this.userAccountService.redirectBasedOnUserRoleId();
-
   }
 
   private postAuth() {

@@ -17,10 +17,12 @@ export class SidebarComponent implements OnInit{
  esVisible: boolean = false;
   sidebarItems!: any[];
   role: any;
+  userdata:any;
 
  constructor(private sideBarServices: SidebarService,router: Router, private logoutService: LogoutService, private authService:UserAccountService ) {
 
   this.role = this.authService.getCurrentUser()?.role;
+  this.userdata = this.authService.userData;
   const selectedMenu = localStorage.getItem('selectedMenu');
 
   if (selectedMenu) {

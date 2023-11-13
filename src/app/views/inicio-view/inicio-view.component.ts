@@ -14,7 +14,6 @@ export class InicioViewComponent {
 
   ngOnInit(): void {
     this.postAuth();
-    this.userAccountService.redirectBasedOnUserRoleId();
   }
 
   private postAuth() {
