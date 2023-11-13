@@ -171,7 +171,20 @@ export class UserAccountService {
     this.user.next(null);
   }
 
-
+  public redirectBasedOnUserRoleId() {
+    switch (this.roleId) {
+      case 1:
+      case 3:
+        this.router.navigate(['/diagnostico']);
+        break;
+      case 4:
+        this.router.navigate(['/historial']);
+        break;
+      default:
+        this.router.navigate(['/']);
+        break;
+    }
+  }
 //TODO: cuando se tengan los errores del back sacar un handleError.
 
   private handleError(error: HttpErrorResponse) {
