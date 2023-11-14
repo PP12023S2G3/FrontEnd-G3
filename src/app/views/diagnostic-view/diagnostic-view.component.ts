@@ -172,7 +172,7 @@ onFileSelect(event: any) {
         .catch((error) => {
           console.error('Error al cargar el archivo ZIP:', error);
         });
-    } 
+    }
     else if (
       (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') &&
       ['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón'].includes(this.selectedpartOption)
@@ -237,6 +237,9 @@ resetFileInput() {
   cancelImageUpload() {
     this.resetFileInput();
     this.showCancelButton = false; // Oculta el botón de cancelar
+    // Restablecer el valor del input de archivo para que se active el evento change
+    const chooseFileInput = document.getElementById('chooseFileInput') as HTMLInputElement;
+    chooseFileInput.value = '';
   }
 
   getObjectURL(file: File) {
