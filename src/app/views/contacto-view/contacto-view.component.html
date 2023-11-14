@@ -2,72 +2,70 @@
 <app-navbar [pageTitle]="tituloDinamico"></app-navbar>
 
 <div class="container-contact">
-    <h2 class="subtitle-how-help-contact">¿Cómo podemos ayudarte?</h2>
     <div class="container-containers-contact">
         <div class="container-form-contact">
+            <h2 class="subtitle-how-help-contact">¿Cómo podemos ayudarte?</h2>
             <form>
-                <div class="container-data-form-contact">
-                    <div class="container-field-contact">
-                        <h6 class="title-input-contact">Nombre y apellido</h6>
-                        <span class="span-input-contact" >
-                            <i class="pi pi-user"
-                                style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                            <input type="text" placeholder="Ingresar nombre y apellido" pInputText
-                                [(ngModel)]="comments.name" name="nameLastname-contact" #name="ngModel" [minlength]="2"
-                                [maxlength]="100" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
-                        </span>
-                        <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;">
-                            <div>
-                                <span *ngIf="name.errors?.['required']">
-                                    Indique un nombre
-                                </span>
-                            </div>
-                            <div>
-                                <span *ngIf="name.errors?.['pattern']">
-                                    No debe contener numeros
-                                </span>
-                            </div>
-                            <div>
-                                <span *ngIf="name.errors?.['minlength'] && !name.errors?.['pattern']">
-                                    Debe tener al menos 2 caracteres.
-                                </span>
-                            </div>
-                            <div>
-                                <span *ngIf="name.errors?.['maxlength'] && !name.errors?.['pattern']">
-                                    Debe tener hasta 100 caracteres.
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="container-field-contact">
-                        <h6 class="title-input-contact">Email</h6>
-                        <span class="span-input-contact">
-                            <i class="pi pi-at"
-                                style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
-                            <input type="email" placeholder="Ingresar email" pInputText [(ngModel)]="comments.email"
-                                name="email-contact" #email="ngModel" [minlength]="4"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
-                        </span>
-                        <div *ngIf="email.invalid && (email.touched)" class="errors" style="margin-top: 0.3rem;">
-                            <div>
-                                <span *ngIf="email.errors?.['required']">
-                                    Indique un email
-                                </span>
-                            </div>
-                            <div>
-                                <span *ngIf="email.errors?.['pattern']">
-                                    Ingrese un email válido.
-                                </span>
-                            </div>
-                            <div>
-                                <span *ngIf="email.errors?.['minlength'] && !email.errors?.['pattern']">
-                                    Debe tener al menos 4 caracteres.
-                                </span>
+                <div class="container-data">
+                    <div class="container-data-form-contact">
+                        <div class="container-field-contact">
+                            <h6 class="title-input-contact">Nombre y apellido</h6>
+                            <span class="span-input-contact" >
+                                <i class="pi pi-user"
+                                    style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                                <input type="text" placeholder="Ingresar nombre y apellido" pInputText
+                                    [(ngModel)]="comments.name" name="nameLastname-contact" #name="ngModel" [minlength]="2"
+                                    [maxlength]="100" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" />
+                            </span>
+                            <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;">
+                                <div>
+                                    <span *ngIf="name.errors?.['required']">
+                                        Indique un nombre
+                                    </span>
+                                </div>
+                                <div>
+                                    <span *ngIf="name.errors?.['pattern']">
+                                        No debe contener numeros
+                                    </span>
+                                </div>
+                                <div>
+                                    <span *ngIf="name.errors?.['minlength'] && !name.errors?.['pattern']">
+                                        Debe tener al menos 2 caracteres.
+                                    </span>
+                                </div>
+                                <div>
+                                    <span *ngIf="name.errors?.['maxlength'] && !name.errors?.['pattern']">
+                                        Debe tener hasta 100 caracteres.
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        
-
+                        <div class="container-field-contact">
+                            <h6 class="title-input-contact">Email</h6>
+                            <span class="span-input-contact">
+                                <i class="pi pi-at"
+                                    style="font-size: 1.5rem; padding: 10px 10px 10px 10px; color: #797979;"></i>
+                                <input type="email" placeholder="Ingresar email" pInputText [(ngModel)]="comments.email"
+                                    name="email-contact" #email="ngModel" [minlength]="4"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                            </span>
+                            <div *ngIf="email.invalid && (email.touched)" class="errors" style="margin-top: 0.3rem;">
+                                <div>
+                                    <span *ngIf="email.errors?.['required']">
+                                        Indique un email
+                                    </span>
+                                </div>
+                                <div>
+                                    <span *ngIf="email.errors?.['pattern']">
+                                        Ingrese un email válido.
+                                    </span>
+                                </div>
+                                <div>
+                                    <span *ngIf="email.errors?.['minlength'] && !email.errors?.['pattern']">
+                                        Debe tener al menos 4 caracteres.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="container-field-message-contact">
                             <h6 class="title-input-contact">Mensaje</h6>
                             <textarea id="message" type="text" rows="5" cols="30" [minlength]="4" [maxlength]="300" pInputTextarea
@@ -83,25 +81,28 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="button-submit">
+                            <p-button styleClass="p-button-global" type="submit" label="Enviar" (onClick)="postContacto()"></p-button>
+                        </div>
+                    </div>
+                    <div class="container-data-contact">
+                        <p> Celular: +54 9 11 1234 5678 <br><br>
+                            Correo: hola@dimaia.com <br><br>
+                            Sitio: @dimaia.ok <br><br>
+                            Dirección: Calle Cualquiera 123, Cualquier Lugar <br>
+                        </p>
                     </div>
                 </div>
 
 
 
 
-                <div class="button-submit">
-                    <p-button styleClass="p-button-global" type="submit" label="Enviar" (onClick)="postContacto()"></p-button>
-
-                </div>
-
             </form>
 
         </div>
 
 
-        <div class="container-data-contact">
-            <p> aca iria todo lo referido a los contactos</p>
-        </div>
+       
 
     </div>
 

@@ -52,6 +52,7 @@ export class TwofactorViewComponent {
   private postCheckCode() {
     this.userAccountService.postCheckCode(this.code).subscribe({
       next: (res) => {
+        localStorage.setItem('tokenReset',res.token);
         this.showModal();
       },
       error: (error: { message: any; }) => {

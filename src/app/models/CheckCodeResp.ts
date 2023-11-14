@@ -1,3 +1,3 @@
 
-export interface CheckCodeResp{msg: string,dni: string}
+export interface CheckCodeResp{msg: string,dni: string,token: string}
 

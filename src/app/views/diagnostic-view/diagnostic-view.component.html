@@ -206,7 +206,7 @@
     </div>
     <div class="formulario">
         <div class="container-custom-file-input">
-          <input type="file" accept="image/*, .zip" (change)="onFileSelect($event)" style="display: none;" #chooseFileInput />
+          <input type="file" id="chooseFileInput" accept="image/*, .zip" (change)="onFileSelect($event)" style="display: none;" #chooseFileInput />
           <img *ngIf="!imagenURL" src="assets/img/foto-subir-archivo.png" (click)="chooseFileInput.click()" style="cursor: pointer;" />
           <div class="image-preview-container" *ngIf="imagenURL && uploadedFile">
             <img [src]="imagenURL" alt="Archivo cargado" class="preview-image">

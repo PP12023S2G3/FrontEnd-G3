@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
   irAResetPassword() {
     // Navegar a la página resetPassword
     this.router.navigate(['/resetPassword']);
-    localStorage.setItem('newPassword', 'Contrasea321');
   }
 
   noAutorizado() {

@@ -7,18 +7,18 @@ h2 {
     overflow-x: hidden;
     overflow-y: hidden;
     min-width: 300px;
-    min-height: 1000px;
+    min-height: 600px;
     max-width: 2000px;
     max-height: 1500px;
     font-family: var(--font-family);
-    margin-top: 10%;
+    margin-top: 4%;
 }
 
 .container-containers-contact {
-    display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
     margin: 1% 0 0 5%;
+    align-items: stretch;
 }
 
 #p-dropdown {
@@ -49,12 +49,13 @@ h2 {
     box-sizing: border-box;
     font-size: var(--font-size-title6);
     font-weight: normal;
-    width: 70%;
+    width: 100%;
     margin: 2%;
 }
 
 .container-data-form-contact {
     /*AFECTA SOLO A LA ENTRADA DE DATOS DEL FORM*/
+    width: 55%;
     border-radius: 10px;
     border: 1px solid var(--border-box-color);
     background-color: #FFFFFF;
@@ -66,16 +67,16 @@ h2 {
     font-weight: bold;
     margin-right: 5%;
     background-color: #FFFFFF;
+    margin: 0px;
 }
 
 .container-field-contact {
     /*AFECTA TODOS LOS CAMPOS A COMPLETAR*/
-    margin: 3% 2% 0 2%;
+    margin: 2% 2% 0 2%;
 }
 
 .container-field-contact input {
     /*AFECTA TODOS LOS INPUT DEL FORM*/
-
     padding: 10px;
     border: none;
     width: 90%;
@@ -89,10 +90,6 @@ h2 {
     border: 0.996px solid #D1D1D1;
     width: 95%;
     background-color: #FFFFFF;
-}
-
-.subtitle-how-help-contact {
-    margin-left: 7%;
 }
 
 :host::ng-deep .p-dropdown {
@@ -143,7 +140,7 @@ form {
 .button-submit {
     display: flex;
     justify-content: flex-end;
-    margin: 3% 5% 0 0;
+    margin: 0 7% 3% 0;
 }
 
 :host::ng-deep .p-button {
@@ -156,16 +153,22 @@ form {
 
 /*-----------------------------------------------DATOS CONTACTO-------------------------------------------------------------------------------*/
 
+.container-data {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 20px;
+}
 
 .container-data-contact {
     border-radius: 10px;
     border: 1px solid var(--border-box-color);
-    width: 50%;
-    height: 30vw;
+    width: 40%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    margin: 5% 5% 0 0;
     background-color: #FFFFFF;
 }
 
@@ -212,7 +215,6 @@ form {
     .container-field-contact input {
         width: 0;
         min-width: 40vw;
-
     }
 
     .container-form-contact {
