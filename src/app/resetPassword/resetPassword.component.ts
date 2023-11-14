@@ -4,6 +4,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
 import { Comments } from 'src/app/models/Comment';
 import { UserAccountService } from '../services/userAccount/userAccount.service';
+import { LoaderService } from '../shared/loader/loader.service';
 
 @Component({
     selector: 'resetPasswordScreen',
@@ -18,7 +19,7 @@ import { UserAccountService } from '../services/userAccount/userAccount.service'
     comments!: Comments;
     messageOptions: { label: string; value: string; }[] | undefined;
 
-    constructor(private messageService: MessageService,private userAccountService: UserAccountService) {
+    constructor(private messageService: MessageService,private userAccountService: UserAccountService, private loaderService: LoaderService) {
 
     }
     ngOnInit(): void {
@@ -51,6 +52,7 @@ import { UserAccountService } from '../services/userAccount/userAccount.service'
         } else if (!this.validarDNIReset(this.dniReset)) {
             this.showErrorNotValid();
           } else {
+            this.loaderService.updateIsLoading(true);
             this.postResetPasswordDni();
           }
     }
@@ -77,6 +79,7 @@ import { UserAccountService } from '../services/userAccount/userAccount.service'
         next: (res) => {
           this.visible = true;
           this.desenfocarFondo();
+          this.loaderService.updateIsLoading(false);
         },
         error:  (error: { message: any }) => {
           this.messageService.add({
@@ -84,6 +87,7 @@ import { UserAccountService } from '../services/userAccount/userAccount.service'
             summary: error.message,
             life: 2000,
           });
+          this.loaderService.updateIsLoading(false);
         }
       });
     }

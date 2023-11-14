@@ -15,5 +15,6 @@ export class LoaderService {
 
   updateIsLoading(val: boolean) {
     this.isLoading.next(val);
+    this.isLoading.getValue();
   }
 }

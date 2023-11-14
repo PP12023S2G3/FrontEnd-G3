@@ -4,6 +4,7 @@ import { Comments } from 'src/app/models/Comment';
 import { PasswordModule } from 'primeng/password';
 import { User } from 'src/app/models/User';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-new-password-view',
@@ -13,7 +14,7 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
 })
 export class NewPasswordViewComponent {
 
-  constructor(private messageService: MessageService, private userAccountService: UserAccountService) { };
+  constructor(private messageService: MessageService, private userAccountService: UserAccountService, private loaderService: LoaderService) { };
 
 
   showPassword1: boolean = false;
@@ -53,6 +54,7 @@ export class NewPasswordViewComponent {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ambos campos son obligatorios', life: 2000 });
     } else {
       if (this.password1 == this.password2) {
+        this.loaderService.updateIsLoading(true);
         this.postResetPassword();
       } else {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Las contraseñas no coinciden', life: 2000 });
@@ -88,7 +90,7 @@ export class NewPasswordViewComponent {
         this.userAccountService.postResetPassword(this.password1, this.password2, localStorage.getItem('tokenReset') || '').subscribe({
           next: (res) => {
             this.showModal();
-            
+            this.loaderService.updateIsLoading(false);
           },
           error: (error: { message: any }) => {
             this.messageService.add({
@@ -96,6 +98,7 @@ export class NewPasswordViewComponent {
               summary: error.message,
               life: 2000,
             });
+            this.loaderService.updateIsLoading(false);
           }
         });
       }else {

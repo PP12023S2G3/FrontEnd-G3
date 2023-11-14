@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-two-factor-view',
@@ -14,7 +15,7 @@ export class TwofactorViewComponent {
   modalVisible: boolean = false;
   numeric = "^[0-9]+$";
 
-  constructor(private messageService: MessageService,private userAccountService: UserAccountService) {
+  constructor(private messageService: MessageService,private userAccountService: UserAccountService, private loaderService: LoaderService) {
   }
   ngOnInit(): void {
     this.postAuth();
@@ -46,6 +47,7 @@ export class TwofactorViewComponent {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El código debe contener sólo números' });
     } else {
       this.postCheckCode();
+      this.loaderService.updateIsLoading(true);
     }
   }
 
@@ -54,6 +56,7 @@ export class TwofactorViewComponent {
       next: (res) => {
         localStorage.setItem('tokenReset',res.token);
         this.showModal();
+        this.loaderService.updateIsLoading(false);
       },
       error: (error: { message: any; }) => {
         this.messageService.add({
@@ -61,6 +64,7 @@ export class TwofactorViewComponent {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
   }
