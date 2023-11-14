@@ -39,6 +39,7 @@ export class UserAccountService {
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
   userId:any;
   roleId:any;
+  userData: any;
   userRole!: Role ;
   especialidadByRoleid4 = 'Medico';
   especialidadByRoleid3 = 'ProfDelaSalud';
@@ -48,6 +49,9 @@ export class UserAccountService {
     this.loadUserFromLocalStorage();
     this.roleId = localStorage.getItem(ROLEID_LOCAL_STORAGE_KEY);
     this.userId = localStorage.getItem(USERID_LOCAL_STORAGE_KEY);
+    const userString = localStorage.getItem(USER_LOCAL_STORAGE_KEY);
+    if (userString)
+      this.userData = JSON.parse(userString);
   }
 
   // ver tipos de datos de las respuestas, probar
@@ -124,6 +128,7 @@ export class UserAccountService {
     this.userRole = response.especialidad;
     this.pushNewUser(userWithToken);
     this.userId = response.id;
+    this.saveUserDataToLocalStore(response);
     this.saveRoleIdToLocalStore(response.rol_id);
     this.saveRoleToLocalStore(response.especialidad);
     this.saveIdUserToLocalStore(this.userId);
@@ -131,6 +136,10 @@ export class UserAccountService {
     }
     saveRoleIdToLocalStore(roleId: any) {
     localStorage.setItem(ROLEID_LOCAL_STORAGE_KEY, roleId);
+    }
+    saveUserDataToLocalStore(user: any): void {
+      const userString = JSON.stringify(user);
+      localStorage.setItem(USER_LOCAL_STORAGE_KEY, userString);
     }
 
     saveTokenToLocalStore(token: any) {
@@ -172,16 +181,24 @@ export class UserAccountService {
   }
 
   public redirectBasedOnUserRoleId() {
-    switch (this.roleId) {
+    const currentUrl = this.router.url;
+    switch (parseInt(this.roleId)) {
       case 1:
       case 3:
-        this.router.navigate(['/diagnostico']);
+        if (currentUrl !== '/diagnostico') {
+          this.router.navigate(['/diagnostico']);
+          console.log("case1,2");
+        }
         break;
       case 4:
-        this.router.navigate(['/historial']);
+        if (currentUrl !== '/historial') {
+          this.router.navigate(['/historial']);
+          console.log("case4");
+        }
         break;
       default:
-        this.router.navigate(['/']);
+        console.log("casenada");
+        // No redirigir si no hay un rol correspondiente
         break;
     }
   }

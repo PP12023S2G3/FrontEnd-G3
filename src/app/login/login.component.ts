@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     this.postAuth();
     this.persona.dni = "";
     this.persona.clave = "";
-    this.userAccountService.clearLocalStorage();
   }
 
   togglePasswordVisibility() {
