@@ -31,6 +31,31 @@ export class RegistroComponent {
     this.user = new User();
   }
 
+  ngOnInit(): void {
+    this.postAuth();
+  }
+
+  private postAuth() {
+    const token= localStorage.getItem('token');
+
+    if (token) {
+    this.userAccountService.postAuth(token).subscribe({
+      next: (res) => {
+          this.userAccountService.saveDataInLocalStorage(res);
+          this.userAccountService.redirectBasedOnUserRoleId();
+      },
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
+    });
+    }
+  }
+
+
   registrarse(){
     /*this.userAccountService.getDoctors().subscribe({
       next: (res) => {

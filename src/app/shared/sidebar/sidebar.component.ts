@@ -17,10 +17,18 @@ export class SidebarComponent implements OnInit{
  esVisible: boolean = false;
   sidebarItems!: any[];
   role: any;
+  userData:any;
 
  constructor(private sideBarServices: SidebarService,router: Router, private logoutService: LogoutService, private authService:UserAccountService ) {
 
   this.role = this.authService.getCurrentUser()?.role;
+
+  const userString = localStorage.getItem('userData');
+  if (userString) {
+    this.userData = JSON.parse(userString);
+  }
+
+
   const selectedMenu = localStorage.getItem('selectedMenu');
 
   if (selectedMenu) {
@@ -36,8 +44,8 @@ export class SidebarComponent implements OnInit{
   });
 
  }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
 
   }
 

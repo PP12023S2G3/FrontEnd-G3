@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Diagnostic } from 'src/app/models/Diagnostic';
 import { Doctor } from 'src/app/models/Doctor';
@@ -8,6 +8,7 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
 import { ResultcDTO } from 'src/app/models/Dtos/ResultDTO';
 import * as JSZip from 'jszip';
 import { LogoutService } from 'src/app/shared/logout/logout.service';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-diagnostic-view',
@@ -60,23 +61,23 @@ export class DiagnosticViewComponent implements OnInit {
     'Dolor lumbar': false,
     'Dolor abdominal': false,
     'Fiebre': false,
-    'Perdida de peso' : false
+    'Pérdida de peso' : false
   };
 
   selectedOptionsRodilla: { [key: string]: boolean } = {
     'Sensacion de inestabilidad': false,
-    'CA positiva': false,
+    'Prueba cajón ant. pos.': false,
     'Impotencia funcional': false
   };
 
   selectedOptionsCorazon: { [key: string]: boolean } = {
     'Palpitaciones': false,
-    'Dolor superior izquierdo': false,
+    'Dolor miembros sup. izq.': false,
     'Disnea': false
   };
 
   selectedOptionsMunieca: { [key: string]: boolean } = {
-    'Dolor con limitacion': false,
+    'Dolor con limitación func.': false,
     'Edema': false,
     'Deformidad': false
   };
@@ -90,7 +91,8 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   constructor(private resultService: ResultService,
-    private resultDTO: ResultcDTO,private logoutService: LogoutService,private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
+    private resultDTO: ResultcDTO,private logoutService: LogoutService, private loaderService: LoaderService,
+    private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
     this.IdUser = parseInt(this.userAccountService.userId);
     this.logoutService.getLogoutVisible().subscribe(() => {
       this.esVisible = false;
@@ -99,6 +101,7 @@ export class DiagnosticViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.imagenURL);
     this.sexOptions = [
       { label: 'Masculino', value: 1 },
       { label: 'Femenino', value: 2 }
@@ -140,9 +143,10 @@ onCheckboxChange(section: string, option: string) {
 }
 
 onFileSelect(event: any) {
+  console.log('onFileSelect called');
   const selectedFile = event.target.files[0];
   if (selectedFile) {
-    if (selectedFile.type === 'application/x-zip-compressed') {
+    if (selectedFile.type === 'application/x-zip-compressed' && this.selectedpartOption == 'Rodilla') {
       console.log("hola")
       const jszip = new JSZip();
       jszip.loadAsync(selectedFile)
@@ -168,9 +172,12 @@ onFileSelect(event: any) {
         .catch((error) => {
           console.error('Error al cargar el archivo ZIP:', error);
         });
-    } else {
-      // No es un archivo ZIP, maneja el caso de imágenes o tipos de archivo válidos
-      // (código anterior para imágenes)
+    } 
+    else if (
+      (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') &&
+      ['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón'].includes(this.selectedpartOption)
+    ) {
+      // Manejar el caso de las imágenes
       const image = new Image();
       image.src = window.URL.createObjectURL(selectedFile);
 
@@ -181,38 +188,52 @@ onFileSelect(event: any) {
           image.width >= this.minImageWidth &&
           image.height >= this.minImageHeight
         ) {
+          console.log('Imagen válida:', selectedFile);
           this.uploadedFile = selectedFile;
           this.isResultButtonDisabled = false;
           this.getObjectURL(selectedFile);
           this.showCancelButton = true; // Muestra el botón de cancelar
         } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'La imagen no cumple con los requisitos',
-            life: 2000,
-          });
-          this.resetFileInput();
+          this.handleInvalidImage();
         }
       };
+    } else {
+      this.handleInvalidImage();
     }
+
   } else {
     this.resetFileInput();
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
-      life: 3000,
-    });
+    this.handleNoImageSelected();
   }
 }
 
+private handleInvalidImage() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'La imagen no cumple con los requisitos',
+    life: 2000,
+  });
+  this.resetFileInput();
+}
 
-  resetFileInput() {
-    this.uploadedFile = null;
-    this.isResultButtonDisabled = true;
-    this.imagenURL = null;
-  }
+private handleNoImageSelected() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'No se ha seleccionado una imagen o ocurrió un error al subir el archivo.',
+    life: 3000,
+  });
+}
+
+resetFileInput() {
+  this.imagenURL = null;
+  this.uploadedFile = null;
+  this.isResultButtonDisabled = true;
+}
+
+
+
   cancelImageUpload() {
     this.resetFileInput();
     this.showCancelButton = false; // Oculta el botón de cancelar
@@ -277,12 +298,17 @@ onFileSelect(event: any) {
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
       console.log(req);
-
+      this.loaderService.updateIsLoading(true);
       this.resultService.postResultHeart(req).subscribe({
         next: (res) => {
           localStorage.setItem('idResult', JSON.stringify(res.id));
           this.nroResultado = res.id;
+
           this.redirectByRole();
+          this.loaderService.updateIsLoading(false);
+          console.log(this.userAccountService.roleId);
+          console.log("PASE POR EL RESULTADO");
+
           console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
           console.log('Fusion de latido ventricular y normal:', res.fusionVentricularNormal);
           console.log('Infarto de miocardio:', res.infarto);
@@ -307,12 +333,13 @@ onFileSelect(event: any) {
     const reqBrain=this.resultService.createRequestBrain(file,this.selectedOptionsCerebro['Pérdida visual'],this.selectedOptionsCerebro['Debilidad focal'],
     this.selectedOptionsCerebro['Convulsiones'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-
+    this.loaderService.updateIsLoading(true);
     this.resultService.postResultBrain(reqBrain).subscribe({
       next: (res) => {
         localStorage.setItem('idResult', JSON.stringify(res.id));
         this.nroResultado = res.id;
         this.redirectByRole();
+        this.loaderService.updateIsLoading(false);
         console.log(res);
         console.log(res.pituitary);
         console.log(res.no_tumor);
@@ -336,12 +363,13 @@ onFileSelect(event: any) {
     const reqLungs=this.resultService.createRequestLungs(file,this.selectedOptionsPulmon['Puntada lateral'],this.selectedOptionsPulmon['Fiebre']
     ,this.selectedOptionsPulmon['Dificultad respiratoria'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-
+      this.loaderService.updateIsLoading(true);
     this.resultService.postResultLungs(reqLungs).subscribe({
       next: (res) => {
         localStorage.setItem('idResult', JSON.stringify(res.id));
         this.nroResultado = res.id;
         this.redirectByRole();
+        this.loaderService.updateIsLoading(false);
         console.log(res);
         console.log(res.pneumonia);
         console.log(res.no_pneumonia);
@@ -364,12 +392,13 @@ onFileSelect(event: any) {
     const reqKnee=this.resultService.createRequestKnee(file,this.selectedOptionsRodilla['Sensacion de inestabilidad'],
     this.selectedOptionsRodilla['CA positiva'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-
+      this.loaderService.updateIsLoading(true);
     this.resultService.postResultKnee(reqKnee).subscribe({
       next: (res) => {
         localStorage.setItem('idResult', JSON.stringify(res.id));
         this.nroResultado = res.id;
         this.redirectByRole();
+        this.loaderService.updateIsLoading(false);
         console.log(res);
         console.log('prediction:', res.prediction);
         console.log('LCA sano:', res.prediction.lcaSano);
@@ -393,12 +422,13 @@ onFileSelect(event: any) {
     const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hermaturia'],this.selectedOptionsRinion['Dolor lumbar'],
     this.selectedOptionsRinion['Dolor abdominal'],this.selectedOptionsRinion['Fiebre'],this.selectedOptionsRinion['Perdida de peso'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-
+      this.loaderService.updateIsLoading(true);
     this.resultService.postResultKidney(reqKidney).subscribe({
       next: (res) => {
         localStorage.setItem('idResult', JSON.stringify(res.id));
         this.nroResultado = res.id;
         this.redirectByRole();
+        this.loaderService.updateIsLoading(false);
         console.log(res);
         console.log(res.tumor);
         console.log(res.quiste);
@@ -423,12 +453,13 @@ onFileSelect(event: any) {
     const reqWrist=this.resultService.createRequestWrist(file,this.selectedOptionsMunieca['Dolor con limitacion'],this.selectedOptionsMunieca['Edema'],
     this.selectedOptionsMunieca['Deformidad'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-
+      this.loaderService.updateIsLoading(true);
     this.resultService.postResultWrist(reqWrist).subscribe({
       next: (res) => {
         localStorage.setItem('idResult', JSON.stringify(res.id));
         this.nroResultado = res.id;
         this.redirectByRole();
+        this.loaderService.updateIsLoading(false);
         console.log('Fractura:', res.fractura);
         console.log('Sin fractura:', res.sano);
         console.log('imagen_id:', res.imagen_id);
@@ -522,10 +553,13 @@ onFileSelect(event: any) {
 
   redirectByRole(){
     if(this.userAccountService.roleId == 3){
+      console.log("ES diagnostico");
       this.esVisible = true;
       this.router.navigate(['/diagnostico']);
     }
     else {
+      console.log("Es resultado"
+      );
       this.router.navigate(['/result']);
     }
   }

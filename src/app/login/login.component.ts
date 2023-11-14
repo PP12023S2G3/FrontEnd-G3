@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     this.postAuth();
     this.persona.dni = "";
     this.persona.clave = "";
-    this.userAccountService.clearLocalStorage();
   }
 
   togglePasswordVisibility() {
@@ -95,11 +94,15 @@ export class LoginComponent implements OnInit {
     this.userAccountService.postAuth(token).subscribe({
       next: (res) => {
           this.userAccountService.saveDataInLocalStorage(res);
-
+          this.userAccountService.redirectBasedOnUserRoleId();
       },
-        error: (error: { message: any }) => {
-
-        }
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
 
       });
     }

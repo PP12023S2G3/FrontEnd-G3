@@ -7,9 +7,7 @@ import { FeedbackService } from 'src/app/services/feedback/feedback.service';
 import { ResultService } from 'src/app/services/result/result.service';
 import { MessageService } from 'primeng/api';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
-import { forEach } from 'jszip';
 import jsPDF from 'jspdf';
-
 
 @Component({
   selector: 'app-result-view',
@@ -26,119 +24,37 @@ export class ResultViewComponent implements OnInit {
   buttonNo: boolean = false;
   buttonYes: boolean = false;
   inputDisable : boolean = false;
-
   doctor !: any;
   diagnostic!: any;
   responseData: any;
-
   tituloDinamico = 'Resultado';
   formattedDate: any;
   result: DiagnosticResp | any;
-
   datos_paciente: any;
   resultado: any;
   resultadoList: { key: string, value: any }[] = [];
-
   labelModels: { [key: string]: string[] } = {
-    Cerebro: ['Glioma', 'Meningioma', 'Pituitary', 'No tumor'],
-    Corazon: ['Contracción ventricular prematura', 'Fusión de latido ventricular y normal', 'Infarto de miocardio', 'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
+    Cerebro: ['Glioma', 'Meningioma', 'No tumor', 'Pituitaria'],
+    Corazon: ['Contracción ventricular prematura', 
+              'Fusión de latido ventricular y normal', 'Infarto de miocardio', 
+              'Latido no clasificable', 'Normal', 'Latido prematuro supraventricular'],
     Rodilla: ['Rotura LCA', 'LCA Sano'],
-    Muñeca: ['Fractura', 'Sin fractura'],
-    Pulmones: ['Neumonía', 'No neumonía'],
-    Riñones: ['Quistes', 'Cálculos', 'Tumor', 'Normal'],
+    Muñeca: ['Fractura', 'Sano'],
+    Pulmones: ['No neumonía', 'Neumonía'],
+    Riñones: ['Normal', 'Piedra', 'Quiste', 'Tumor'],
   };
   buttonsModels: any[] = [];
-
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
   imagePath: any
 
-  constructor(private loaderService: LoaderService, private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {
-    
-  }
+
+  constructor(private loaderService: LoaderService, private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {}
 
   ngOnInit(): void {
     this.loaderService.updateIsLoading(true);
-    //318 319
-    /*  this.feedbackService.postFeedbackBrain(318, true, true, true, true, "comentario").subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error: { message: any }) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: error.message,
-            life: 2000,
-          });
-        }
-      });
-      // Para el método postFeedbackWrist
-      //315 323
-      this.feedbackService.postFeedbackWrist(315, false, true, "comentario").subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error: { message: any }) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: error.message,
-            life: 2000,
-          });
-        }
-      });
+    console.log(this.result)
 
-      //314 320
-      this.feedbackService.postFeedbackLungs(320, true, true, "comentario").subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error: { message: any }) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: error.message,
-            life: 2000,
-          });
-        }
-      });
-
-      //316 321
-      this.feedbackService.postFeedbackKidney(321, true, true, true, true, "comentario").subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error: { message: any }) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: error.message,
-            life: 2000,
-          });
-        }
-      });
-      //324 325
-      this.feedbackService.postFeedbackKnee(325, false, true, "comentario").subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error: { message: any }) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: error.message,
-            life: 2000,
-          });
-        }
-      });
-      // Para el método postFeedbackHeart
-      //317 322
-      this.feedbackService.postFeedbackHeart(322, false, false, false, false, false, true, "comentario").subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error) => {
-          // Manejar errores aquí
-        }
-      });
-
-  */
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('roleId');
 
@@ -146,7 +62,10 @@ export class ResultViewComponent implements OnInit {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
           this.setValueResultDiagnostic(res);
-          if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones" || res.modelo_nombre === "Pulmon") {
+          if (res.modelo_nombre === "Cerebro" || res.modelo_nombre === "Corazon" || 
+              res.modelo_nombre === "Muñeca" || res.modelo_nombre === "Rodilla" || 
+              res.modelo_nombre === "Riñones" || res.modelo_nombre === "Pulmones" || 
+              res.modelo_nombre === "Pulmon") {
             this.diagnostic.sectionBody = res.modelo_nombre;
             this.buttonsModels = [];
             this.generateButtons();
@@ -161,26 +80,165 @@ export class ResultViewComponent implements OnInit {
         }
       });
     }
-
-
     this.diagnostic = new Diagnostic();
     this.doctor = new Doctor();
+  }
 
+  enviarFeedback() {
+    const id = this.result.imagen_id;
+    
+    if(this.result.modelo_id === 1){
+      const envioCerebro = this.obtenerValoresBotonesCerebro();
+      console.log(envioCerebro);
+      this.feedbackService.postFeedbackBrain(id, ...envioCerebro, this.textComment).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
+    });
+    }
 
+    if(this.result.modelo_id === 2){
+      const envioPulmon = this.obtenerValoresBotonesPulmon();
+      console.log(envioPulmon);
+      console.log(id);
+      this.feedbackService.postFeedbackLungs(id, ...envioPulmon, this.textComment).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
 
+    if(this.result.modelo_id === 3){
+      const envioCorazon = this.obtenerValoresBotonesCorazon();
+      console.log(envioCorazon);
+      this.feedbackService.postFeedbackHeart(id, ...envioCorazon, this.textComment).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
 
-    /*    this.diagnostic = this.resultDTO.getCompanyInformation();
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-        this.formattedDate = this.diagnostic.dateOfBirth.toLocaleDateString('es-ES', options); // Puedes cambiar 'es-ES' según tu preferencia de idioma
-        console.log(this.formattedDate);
-        console.log(this.diagnostic);
+    if(this.result.modelo_id === 4){
+      const envioRinion = this.obtenerValoresBotonesRinion();
+      console.log(envioRinion);
+      this.feedbackService.postFeedbackKidney(id, ...envioRinion, this.textComment).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
 
-      const storedResponseData = localStorage.getItem('responseData');
-      if (storedResponseData) {
-        this.responseData = JSON.parse(storedResponseData);
-        // Haz algo con los datos recibidos
-        console.log(this.responseData);
-      } */
+    if(this.result.modelo_id === 5){
+      const envioRodilla = this.obtenerValoresBotonesRodilla();
+      console.log(envioRodilla);
+      this.feedbackService.postFeedbackKnee(id, ...envioRodilla, this.textComment).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
+
+    if(this.result.modelo_id === 6){
+      const envioMunieca = this.obtenerValoresBotonesMunieca();
+      console.log(envioMunieca);
+      this.feedbackService.postFeedbackWrist(id, ...envioMunieca, this.textComment).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
+        }
+      });
+    }
+  } 
+
+  private obtenerValoresBotonesCerebro(): [boolean, boolean, boolean, boolean] {
+    return [
+      !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
+      !this.buttonsModels[2].idActivate,
+      !this.buttonsModels[3].idActivate,
+    ];
+  }
+
+  private obtenerValoresBotonesCorazon(): [boolean, boolean, boolean, boolean, boolean, boolean] {
+    return [
+      !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
+      !this.buttonsModels[2].idActivate,
+      !this.buttonsModels[3].idActivate,
+      !this.buttonsModels[4].idActivate,
+      !this.buttonsModels[5].idActivate,
+    ];
+  }
+
+  private obtenerValoresBotonesMunieca(): [boolean, boolean] {
+    return [
+      !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
+    ];
+  }
+
+  private obtenerValoresBotonesPulmon(): [boolean, boolean] {
+    return [
+      !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
+    ];
+  }
+
+  private obtenerValoresBotonesRinion(): [boolean, boolean, boolean, boolean] {
+    return [
+      !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
+      !this.buttonsModels[2].idActivate,
+      !this.buttonsModels[3].idActivate,
+    ];
+  }
+
+  private obtenerValoresBotonesRodilla(): [boolean, boolean] {
+    return [
+      !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
+    ];
   }
 
   dataTranslations: { [key: string]: string } = {
@@ -200,24 +258,52 @@ export class ResultViewComponent implements OnInit {
     dolor_lumbar : 'Dolor lumbar', 
     dolor_abdominal  : 'Dolor abdominal',
     perdida_peso  : 'Pérdida de peso',
-    sensacion_inestabilidad: 'Sensación de inestabilidad',
-    CA_positiva: 'Prueba cajón ant. pos.',
+    sensacion_de_inestabilidad: 'Sensación de inestabilidad',
+    prueba_CA_positiva: 'Prueba cajón ant. pos.',
     impotencia_funcional: 'Impotencia funcional',
+  };
+
+  keyTranslations: { [key: string]: string } = {
+    "LCA sano": 'Ligamento cruzado anterior sano',
+    lcaSano: 'LCA sano',
+    roturaLCA: 'Rotura LCA',
+    normal: 'Normal',
+    piedra: 'Piedra',
+    quiste: 'Quiste',
+    tumor: 'Tumor',
+    no_pneumonia: 'No neumonía',
+    pneumonia: 'Neumonía',
+    fractura: 'Fractura',
+    sano: 'Sano',
+    glioma: 'Glioma',
+    meningioma: 'Meningioma',
+    pituitary: 'Pituitaria',
+    no_tumor: 'No tumor',
+    contraccionVentricular: 'Contracción ventricular prematura',
+    fusionVentricularNormal: 'Fusión de latido ventricular y normal',
+    infarto: 'Infarto de miocardio',
+    prematuroSupraventricular: 'Latido prematuro supraventricular',
+    no_clasificable: 'Latido no clasificable',
   };
 
   private setValueResultDiagnostic(res: DiagnosticResp) {
     if (res !== undefined && !this.result) {
       this.loaderService.updateIsLoading(false);
     }
+
     this.result = res;
+
     if (this.result.nombre_medico === null) {
       this.result.nombre_medico = '';
     }
-    console.log(this.result);
+
     this.datos_paciente = JSON.parse(this.result.datos_paciente);
     this.resultado = JSON.parse(this.result.resultado);
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
-    this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({ key, value }));
+    this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({   
+      key: this.keyTranslations[key] || key,
+      value,
+    }));
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({
       key: this.dataTranslations[key] || key,
       value,
@@ -227,16 +313,18 @@ export class ResultViewComponent implements OnInit {
 
   armarPDF(res: DiagnosticResp) {
     let fecha = new Date().toLocaleDateString();
-
     let resultadopdf = 'Diagnóstico\nCódigo de diagnóstico: ' + this.result.id + '                                                  Fecha: ' + fecha + '\n\nDatos del médico: \n';
     let condicionesPrevias = "\n";
+
     this.datosComplementariosList.map((conPrev) => {
       const newKey = conPrev.key.replaceAll("_", " ");
+
       condicionesPrevias += "-   " + newKey + ": " + (conPrev.value ? "Si" : "No") + "\n";
     })
-
-    resultadopdf = resultadopdf + 'DNI: ' + this.result.usuario_medico_dni + '\n' +
-      'Nombre y apellido: ' + this.result.nombre_medico + '\n\n' +
+    resultadopdf = 
+    resultadopdf + 'DNI: ' + this.result.usuario_medico_dni + '\n' +
+      'Nombre: ' + this.result.nombre_medico + '\n' +
+      'Apellido: '+ this.result.apellido_medico + '\n\n' +
       'Datos del paciente: \n' +
       'Fecha de nacimiento: ' + this.datos_paciente.fecha_nacimiento + '\n' +
       'Peso: ' + this.datos_paciente.peso + 'kg\n' +
@@ -244,59 +332,127 @@ export class ResultViewComponent implements OnInit {
       'Sexo: ' + this.datos_paciente.sexo + '\n' +
       'Sección del cuerpo: ' + this.result.modelo_nombre + '\n' +
       'Condiciones previas: ' + condicionesPrevias;
-
     return resultadopdf;
   }
 
   descargarPDF() {
     const doc = new jsPDF();
 
-    //Agregar datos al PDF
-    let re = "";
-    let val = 0;
-    this.resultadoList.map((item: { value: number; key: string; }) => {
-      if (item.value > val) {
-        if (this.result.modelo_id === 3) {
-          const newValue = item.value * 100
-          re = item.key +  " " + Math.ceil(newValue) + "%\n";
-          val = item.value;
-        } else {
-          re = item.key +  " " + Math.ceil(item.value) + "%\n";
-          val = item.value;
-        }
-      }
-    })
-
     doc.text(this.armarPDF(this.result), 10, 20);
+    doc.addImage(this.imagePath, 'JPEG', 75, 150, 60, 60, 'FAST');
 
-    const imagen = 'data:image/png;base64,' + this.result.imagen;
-   // getImageProperties(imagen)
-    doc.addImage(this.imagePath, 'JPEG', 75, 150, 60, 60);
-    //doc.addImage(this.imagePath, 'JPEG', 10, 20, undefined, undefined, 'FAST');
-
-    const pdfResult = '\nResultado: ' + re;
+    const pdfResult = '\nResultado: ' + this.getHighestKeyValue().key + ' ' 
+                      + this.getHighestKeyValue().value.toFixed(1) + "%\n";
+    
     doc.text(pdfResult, 10, 230);
-
     doc.save('Diagnóstico '+ this.result.id +'.pdf')
+  }
+
+  descargarYArmarPDF() {
+    const fecha = new Date().toLocaleDateString();
+    const condicionesPrevias = this.datosComplementariosList
+      .map((conPrev) => `- ${conPrev.key.replaceAll("_", " ")}: ${conPrev.value ? "Si" : "No"}`)
+      .join("\n");
+
+    const doc = new jsPDF();
+    var pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+    var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+
+    doc.setFontSize(24).setFont('helvetica', 'bold');
+    doc.text('Informe médico', pageWidth / 2, 10, {align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Código de informe:', 10,30);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.result.id.toString(), 57,30);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Fecha', 160,30);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(fecha, 177,30);
+    doc.setFontSize(18).setFont('helvetica', 'bold');
+    doc.text('Datos del médico', 10,48,);
+    doc.text('_______________', 10,50);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('DNI', 35,60,);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.result.usuario_medico_dni, 28,70,);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Nombre', pageWidth / 2,60,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.result.nombre_medico, pageWidth / 2,70,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Apellido', 156,60,);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.result.apellido_medico, 155,70,);
+    doc.setFontSize(18).setFont('helvetica', 'bold');
+    doc.text('Datos del paciente', 10,88,);
+    doc.text('________________', 10,90);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Fecha de nacimiento', 10,100);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.datos_paciente.fecha_nacimiento, 20,110);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Peso', pageWidth / 2,100,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.datos_paciente.peso + 'kg', pageWidth / 2,110,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Altura', 160,100);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.datos_paciente.altura + 'cm', 159,110);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Sexo', 160,123);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.datos_paciente.sexo, 155,133);
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Sección del cuerpo', pageWidth / 2,123,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.result.modelo_nombre, pageWidth / 2,133,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Condiciones previas', 10,123,);
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(condicionesPrevias, 10,133,);
+    doc.addImage(this.imagePath, 'JPEG', 75, 170, 60, 60, 'FAST');
+    doc.setFontSize(14).setFont('helvetica', 'bold');
+    doc.text('Resultado', pageWidth / 2,250,{align: 'center'});
+    doc.setFontSize(14).setFont('helvetica', 'normal');
+    doc.text(this.getHighestKeyValue().key+ ' '+ this.getHighestKeyValue().value.toFixed(1)+"%\n",pageWidth/2,260,{align: 'center'});
+    doc.save(`Diagnóstico ${this.result.id}.pdf`);
   }
 
   enableButtonSubmitFeedback() {
     this.buttonSubmitFeedback = false; //habilitar
-    console.log("EStoy llamando");
   }
 
   selectButton(id: number) {
     for (let i = 0; i < this.buttonsModels.length; i++) {
       if (this.buttonsModels[i].id === id) {
-        this.buttonsModels[i].idActivate = false;
-        this.enableButtonSubmitFeedback();
-        this.inputDisable = true;
-      } else {
         this.buttonsModels[i].idActivate = true;
-
+        console.log(this.buttonsModels[i].label)
+      } 
+      else {
+        this.buttonsModels[i].idActivate = false;
       }
     }
+    this.enableButtonSubmitFeedback();
+    this.inputDisable = true;
+  }
 
+  selectYesButton(){
+    console.log(this.buttonsModels);
+    console.log(this.resultadoList);
+    console.log(this.resultado);
+    console.log(this.getHighestKeyValue().key);
+    for (let i = 0; i < this.buttonsModels.length; i++) {
+      for (let i = 0; i < this.resultadoList.length; i++) {
+        if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
+          this.buttonsModels[i].idActivate = false;
+        } 
+        else {
+          this.buttonsModels[i].idActivate = true;
+        }
+      }
+    }
+    this.enableButtonSubmitFeedback();
+    this.inputDisable = true;
   }
 
   generateButtons(): void {
@@ -304,7 +460,6 @@ export class ResultViewComponent implements OnInit {
     for (let i = 0; i < labels.length; i++) {
       this.buttonsModels.push({ label: labels[i], id: i, idActivate: false });
     }
-
   }
 
   inputEnableButtonSubmitFeedback() {
@@ -313,16 +468,17 @@ export class ResultViewComponent implements OnInit {
         this.buttonsModels[i].idActivate = true;
         }
         this.buttonSubmitFeedback = false;
-      }else if(this.textComment.length < 2){
+      }
+      else if(this.textComment.length < 2){
         this.buttonSubmitFeedback = true;
       }
   }
-
 
   disableButtonYes() {
     this.buttonSubmitFeedback = false;
     this.containerMoreOptions = true; //deshabilitar
     this.buttonNo = true;
+    this.selectYesButton();
   }
 
   disableButtonNo() {
@@ -337,33 +493,10 @@ export class ResultViewComponent implements OnInit {
     const prediction = this.resultado['prediction'];
     const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado);
 
-    const keyTranslations: { [key: string]: string } = {
-      "LCA sano": 'Ligamento cruzado anterior sano',
-      lcaSano: 'Ligamento cruzado anterior sano',
-      roturaLCA: 'Rotura de ligamento cruzado anterior',
-      normal: 'Normal',
-      piedra: 'Piedra',
-      quiste: 'Quiste',
-      tumor: 'Tumor',
-      no_pneumonia: 'No neumonía',
-      pneumonia: 'Neumonía',
-      fractura: 'Fractura',
-      sano: 'Sano',
-      glioma: 'Glioma',
-      meningioma: 'Meningioma',
-      pituitary: 'Pituitaria',
-      no_tumor: 'No tumor',
-      contraccionVentricular: 'Contraccion ventricular',
-      fusionVentricularNormal: 'Fusión ventricular normal',
-      infarto: 'Infarto',
-      prematuroSupraventricular: 'Prematuro supraventricular',
-      no_clasificable: 'No clasificable',
-    };
-
     for (const [key, value] of resultEntries) {
       if (typeof value === 'number' && (highestValue === null || value > highestValue)) {
         highestValue = value;
-        const translatedKey = keyTranslations[key] || key;
+        const translatedKey = this.keyTranslations[key] || key;
         highestKeyValue = { key: translatedKey, value };
       }
     }
@@ -373,5 +506,4 @@ export class ResultViewComponent implements OnInit {
     }
     return highestKeyValue;
   }
-
 }

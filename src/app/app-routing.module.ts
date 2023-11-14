@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'historial', component: HistorialViewComponent,
   canActivate: [AuthGuard],
   data: {
-    allowedRoles: ['Auditor', 'Medico', 'ProfDelaSalud'],
+    allowedRoles: ['Auditor', 'Medico'],
   }
  },
   { path: 'diagnostico', component: DiagnosticViewComponent,

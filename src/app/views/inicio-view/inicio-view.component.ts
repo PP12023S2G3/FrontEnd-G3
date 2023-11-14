@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
 })
 export class InicioViewComponent {
 
-  constructor(private userAccountService: UserAccountService,private router: Router){}
+  constructor(private userAccountService: UserAccountService,private messageService: MessageService,private router: Router){}
 
   ngOnInit(): void {
     this.postAuth();
@@ -22,10 +23,17 @@ export class InicioViewComponent {
     this.userAccountService.postAuth(token).subscribe({
       next: (res) => {
           this.userAccountService.saveDataInLocalStorage(res);
+          this.userAccountService.redirectBasedOnUserRoleId();
       },
-        error: (error: { message: any }) => {
-        }
-      });
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+      }
+    });
     }
   }
+
 }

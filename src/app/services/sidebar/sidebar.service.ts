@@ -12,7 +12,7 @@ export class SidebarService {
   ]
 
   menuAuditor: any []= [
-    { label: 'Diagnóstico', link: '/diagnostico' },
+    { label: 'Informe médico', link: '/diagnostico' },
     { label: 'Historial', link: '/historial' },
     { label: 'Modelos', link: '/modelo' },
     { label: 'Contacto', link: '/contacto' }
