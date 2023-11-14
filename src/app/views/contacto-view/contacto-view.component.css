@@ -11,7 +11,7 @@ h2 {
     max-width: 2000px;
     max-height: 1500px;
     font-family: var(--font-family);
-    margin-top: 4%;
+    margin-top: 70px;
 }
 
 .container-containers-contact {
@@ -51,6 +51,7 @@ h2 {
     font-weight: normal;
     width: 100%;
     margin: 2%;
+    margin-bottom: 30px;
 }
 
 .container-data-form-contact {
@@ -170,6 +171,7 @@ form {
     justify-content: space-evenly;
     align-items: center;
     background-color: #FFFFFF;
+    padding: 20px;
 }
 
 /*------------------------------------------------------------------------------------------------------------*/
@@ -184,8 +186,6 @@ form {
 
     .container-data-contact {
         width: 70%;
-        height: 60vw;
-
     }
 
     :host::ng-deep .p-button {
@@ -197,6 +197,20 @@ form {
 }
 
 @media screen and (max-width: 500px) {
+    .container-data {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .container-data-form-contact {
+        width: 97%;
+    }
+
+    .container-data-contact {
+        width: 97%;
+        padding: 10px;
+    }
+    
     .container-containers-contact {
         background-color: transparent;
     }
@@ -219,10 +233,5 @@ form {
 
     .container-form-contact {
         background: transparent;
-    }
-
-    .container-data-form-contact {
-        border-radius: 0;
-        border: none;
     }
 }

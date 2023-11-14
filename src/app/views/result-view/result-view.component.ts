@@ -34,7 +34,7 @@ export class ResultViewComponent implements OnInit {
   resultado: any;
   resultadoList: { key: string, value: any }[] = [];
   labelModels: { [key: string]: string[] } = {
-    Cerebro: ['Glioma', 'Meningioma', 'No tumor', 'Pituitaria'],
+    Cerebro: ['Glioma', 'Meningioma', 'Pituitaria', 'No tumor'],
     Corazon: ['Contracción ventricular prematura', 
               'Fusión de latido ventricular y normal', 'Infarto de miocardio', 
               'Latido no clasificable', 'Normal', 'Latido prematuro supraventricular'],
