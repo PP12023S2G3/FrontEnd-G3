@@ -1,9 +1,9 @@
-<p-sidebar  [(visible)]="sidebarVisible" [style]="{background: 'linear-gradient(#797979, #4c707d, #1b6581, #4b5c8b)'}" [showCloseIcon]="false">
+<p-sidebar  [(visible)]="sidebarVisible" [style]="{background: 'linear-gradient(#797979, #4c707d, #1b6581, #4b5c8b)'}" [showCloseIcon]="false" >
     <ng-template pTemplate="header">
       <div class="header-sidebar">
         <img src="./../../../assets/img/profile.webp" alt="">
-        <p class="name-header-sidebar">{{ userdata.nombre }} {{ userdata.apellido }}</p>
-        <p class="id-header-sidebar">{{ userdata.dni}} </p>
+        <p class="name-header-sidebar">{{ userData.nombre }} {{ userData.apellido }}</p>
+        <p class="id-header-sidebar">{{ userData.dni}} </p>
       </div>
     </ng-template>
     <ng-template pTemplate="content">

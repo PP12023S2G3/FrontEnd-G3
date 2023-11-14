@@ -120,6 +120,8 @@ export class UserAccountService {
 
    const userWithToken: UserWithToken = {
         username: response.nombre,
+        userlastname: response.apellido,
+        dni: response.dni,
         role: response.especialidad,
         token: response.token,
     };
@@ -168,6 +170,8 @@ export class UserAccountService {
       if (userToken) {
         const userWithToken: UserWithToken = {
           username: '',
+          userlastname: '',
+          dni: '',
           token: userToken,
           role: rol || ''
         };
