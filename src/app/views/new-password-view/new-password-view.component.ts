@@ -59,7 +59,7 @@ export class NewPasswordViewComponent {
   }
 
   postResetPassword(){
-    this.userAccountService.postResetPassword(this.password1,this.password2).subscribe({
+    this.userAccountService.postResetPassword(this.password1,this.password2,localStorage.getItem('tokenReset')||'').subscribe({
       next: (res) => {
         this.showModal();
       },

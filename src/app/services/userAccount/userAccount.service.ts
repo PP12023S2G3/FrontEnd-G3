@@ -12,6 +12,7 @@ import { CheckCodeResp } from 'src/app/models/CheckCodeResp';
 import { ResetPasswordDniResp } from 'src/app/models/ResetPasswordDniResp';
 import { Router } from '@angular/router';
 import { ContactResp } from 'src/app/models/ContactResp';
+import { ResetPasswordResp } from 'src/app/models/ResetPasswordResp';
 
 const USER_LOCAL_STORAGE_KEY = 'userData';
 const USERID_LOCAL_STORAGE_KEY = 'userId';
@@ -75,15 +76,17 @@ export class UserAccountService {
   // Servicio postCheckCode
   public postCheckCode(codigo: string): Observable<CheckCodeResp> {
     let url = this.apiUsers + this.endpointCheckCode + `?codigo=${codigo}`;
-    const options = { withCredentials: true };
-    return this.http.post<CheckCodeResp>(url, null,options);
+    return this.http.post<CheckCodeResp>(url, null,{ withCredentials: true });
   }
 
   // Servicio postResetPassword
-  public postResetPassword(new_password: string, confirm_password: string): Observable<any> {
+  public postResetPassword(new_password: string, confirm_password: string, resetToken:string): Observable<ResetPasswordResp> {
     let url = this.apiUsers + this.endpointResetPassword + `?new_password=${new_password}&confirm_password=${confirm_password}`;
-    const options = { withCredentials: true };
-    return this.http.post<any>(url, null,options);
+    const headers = {
+      'X-Reset-Token': resetToken,
+    };
+    return this.http.post<ResetPasswordResp>(url, null,{ withCredentials: true ,headers});
+
   }
 
   //para que usuario cambie su contraseña
