@@ -215,6 +215,9 @@ private handleInvalidImage() {
     life: 2000,
   });
   this.resetFileInput();
+  // Restablecer el valor del input de archivo para que se active el evento change
+  const chooseFileInput = document.getElementById('chooseFileInput') as HTMLInputElement;
+  chooseFileInput.value = '';
 }
 
 private handleNoImageSelected() {
