@@ -296,6 +296,9 @@ export class ResultViewComponent implements OnInit {
     if (this.result.nombre_medico === null) {
       this.result.nombre_medico = '';
     }
+    if (this.result.apellido_medico === null) {
+      this.result.apellido_medico = '';
+    }
 
     this.datos_paciente = JSON.parse(this.result.datos_paciente);
     this.resultado = JSON.parse(this.result.resultado);
