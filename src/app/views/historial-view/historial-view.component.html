@@ -70,7 +70,7 @@
                         <td><span class="p-column-title">Código de Informe</span>{{record.id}}</td>
                         <td><span class="p-column-title">Fecha</span>{{record.fecha}}</td>
                         <td><span class="p-column-title">Estudio</span>{{record.modelo_nombre}}</td>
-                        <td><span class="p-column-title">Médico</span>{{record.apellido_medico+", "+record.nombre_medico}}</td>
+                        <td><span class="p-column-title">Médico</span>{{ (record.apellido_medico ?? '') + ' ' + (record.nombre_medico ?? '') }}</td>
                         <td style="justify-content: center;"><span class="p-column-title"> </span><p-button type="button" label="Resultado" (onClick)="getRecord(record.id)" class="button-view-result"></p-button></td>
                     </tr>
                 </ng-template>

@@ -8,7 +8,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .container-header-result {
@@ -274,7 +273,6 @@ ul{
     bottom: 0;
     margin-top: 0;
     height: 60px;
-
 }
 
 .buttons-normal-feedback {
@@ -331,6 +329,11 @@ ul{
     bottom: 0;
     margin-top: 0;
     height: 60px;
+}
+
+:host::ng-deep .container-submit-feedback .p-button:disabled {
+    background: linear-gradient(90deg, rgba(230, 45, 156, 0.25) 0.04%, rgba(83, 25, 129, 0.25) 102.56%);
+    color: #797979;
 }
 
 /*---------------------------------------------BOTÓN DESCARGAR----------------------------------------*/
@@ -428,13 +431,6 @@ ul{
         width: 260px;
     }
 
-    /*:host::ng-deep .container-download-result .p-button {
-        width: 40vw;
-    }
-    :host::ng-deep .generate-buttons-feedback .p-button{
-        padding: 0;
-    }*/
-
     .container-comment input{
         width: 35vw;
         white-space: initial;
@@ -447,35 +443,7 @@ ul{
     .item-name {
         max-width: 100px;
     }
-
-
 }
-/*
-@media screen and (max-width: 500px) {
-    .container-data-doctor input {
-        width: 100%;
-    }
-
-    .container-inputs-data-patient input {
-        width: 100%;
-    }
-
-    .container-inputs-data-long-patient input {
-        height: 20vw;
-    }
-
-    .container-inputs-data-doctor {
-        flex-direction: column;
-    }
-
-    .container-comment input {
-        height: 20vw;
-    }
-    .generate-buttons-feedback {
-        flex-direction: column;
-    }
-
-}*/
 
 :host ::ng-deep .p-button{
     width: 300px;
@@ -490,9 +458,13 @@ ul{
     bottom: 1rem;
     margin-top: 1rem;
     border: none;
-  
     &:hover {
       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
       cursor: pointer;
     }
-  }
+}
+
+:host ::ng-deep .p-button:disabled{
+    background: linear-gradient(90deg, rgba(230, 45, 156, 0.25) 0.04%, rgba(83, 25, 129, 0.25) 102.56%);
+    color: #797979;
+}
