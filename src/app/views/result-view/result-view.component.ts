@@ -34,14 +34,14 @@ export class ResultViewComponent implements OnInit {
   resultado: any;
   resultadoList: { key: string, value: any }[] = [];
   labelModels: { [key: string]: string[] } = {
-    Cerebro: ['Glioma', 'Meningioma', 'Pituitary', 'No tumor'],
+    Cerebro: ['Glioma', 'Meningioma', 'No tumor', 'Pituitaria'],
     Corazon: ['Contracción ventricular prematura', 
               'Fusión de latido ventricular y normal', 'Infarto de miocardio', 
-              'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
+              'Latido no clasificable', 'Normal', 'Latido prematuro supraventricular'],
     Rodilla: ['Rotura LCA', 'LCA Sano'],
-    Muñeca: ['Fractura', 'Sin fractura'],
-    Pulmones: ['Neumonía', 'No neumonía'],
-    Riñones: ['Quistes', 'Cálculos', 'Tumor', 'Normal'],
+    Muñeca: ['Fractura', 'Sano'],
+    Pulmones: ['No neumonía', 'Neumonía'],
+    Riñones: ['Normal', 'Piedra', 'Quiste', 'Tumor'],
   };
   buttonsModels: any[] = [];
   datosComplementarios: any;
@@ -89,6 +89,7 @@ export class ResultViewComponent implements OnInit {
     
     if(this.result.modelo_id === 1){
       const envioCerebro = this.obtenerValoresBotonesCerebro();
+      console.log(envioCerebro);
       this.feedbackService.postFeedbackBrain(id, ...envioCerebro, this.textComment).subscribe({
       next: (res) => {
         console.log(res);
@@ -105,6 +106,8 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 2){
       const envioPulmon = this.obtenerValoresBotonesPulmon();
+      console.log(envioPulmon);
+      console.log(id);
       this.feedbackService.postFeedbackLungs(id, ...envioPulmon, this.textComment).subscribe({
         next: (res) => {
           console.log(res);
@@ -121,18 +124,24 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 3){
       const envioCorazon = this.obtenerValoresBotonesCorazon();
+      console.log(envioCorazon);
       this.feedbackService.postFeedbackHeart(id, ...envioCorazon, this.textComment).subscribe({
         next: (res) => {
           console.log(res);
         },
-        error: (error) => {
-          // Manejar errores aquí
+        error: (error: { message: any }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: error.message,
+            life: 2000,
+          });
         }
       });
     }
 
     if(this.result.modelo_id === 4){
       const envioRinion = this.obtenerValoresBotonesRinion();
+      console.log(envioRinion);
       this.feedbackService.postFeedbackKidney(id, ...envioRinion, this.textComment).subscribe({
         next: (res) => {
           console.log(res);
@@ -149,6 +158,7 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 5){
       const envioRodilla = this.obtenerValoresBotonesRodilla();
+      console.log(envioRodilla);
       this.feedbackService.postFeedbackKnee(id, ...envioRodilla, this.textComment).subscribe({
         next: (res) => {
           console.log(res);
@@ -165,6 +175,7 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 6){
       const envioMunieca = this.obtenerValoresBotonesMunieca();
+      console.log(envioMunieca);
       this.feedbackService.postFeedbackWrist(id, ...envioMunieca, this.textComment).subscribe({
         next: (res) => {
           console.log(res);
@@ -254,8 +265,8 @@ export class ResultViewComponent implements OnInit {
 
   keyTranslations: { [key: string]: string } = {
     "LCA sano": 'Ligamento cruzado anterior sano',
-    lcaSano: 'Ligamento cruzado anterior sano',
-    roturaLCA: 'Rotura de ligamento cruzado anterior',
+    lcaSano: 'LCA sano',
+    roturaLCA: 'Rotura LCA',
     normal: 'Normal',
     piedra: 'Piedra',
     quiste: 'Quiste',
@@ -268,11 +279,11 @@ export class ResultViewComponent implements OnInit {
     meningioma: 'Meningioma',
     pituitary: 'Pituitaria',
     no_tumor: 'No tumor',
-    contraccionVentricular: 'Contraccion ventricular',
-    fusionVentricularNormal: 'Fusión ventricular normal',
-    infarto: 'Infarto',
-    prematuroSupraventricular: 'Prematuro supraventricular',
-    no_clasificable: 'No clasificable',
+    contraccionVentricular: 'Contracción ventricular prematura',
+    fusionVentricularNormal: 'Fusión de latido ventricular y normal',
+    infarto: 'Infarto de miocardio',
+    prematuroSupraventricular: 'Latido prematuro supraventricular',
+    no_clasificable: 'Latido no clasificable',
   };
 
   private setValueResultDiagnostic(res: DiagnosticResp) {
@@ -423,7 +434,25 @@ export class ResultViewComponent implements OnInit {
     }
     this.enableButtonSubmitFeedback();
     this.inputDisable = true;
+  }
+
+  selectYesButton(){
     console.log(this.buttonsModels);
+    console.log(this.resultadoList);
+    console.log(this.resultado);
+    console.log(this.getHighestKeyValue().key);
+    for (let i = 0; i < this.buttonsModels.length; i++) {
+      for (let i = 0; i < this.resultadoList.length; i++) {
+        if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
+          this.buttonsModels[i].idActivate = false;
+        } 
+        else {
+          this.buttonsModels[i].idActivate = true;
+        }
+      }
+    }
+    this.enableButtonSubmitFeedback();
+    this.inputDisable = true;
   }
 
   generateButtons(): void {
@@ -449,21 +478,7 @@ export class ResultViewComponent implements OnInit {
     this.buttonSubmitFeedback = false;
     this.containerMoreOptions = true; //deshabilitar
     this.buttonNo = true;
-    console.log(this.buttonsModels);
-    for (let i = 0; i < this.buttonsModels.length; i++) {
-      console.log(this.resultadoList[i].key);
-      if (this.buttonsModels[i].key === this.resultadoList[i].key) {
-        this.buttonsModels[i].idActivate = true;
-        console.log(this.buttonsModels[i].label)
-      } 
-      else {
-        this.buttonsModels[i].idActivate = false;
-        console.log(this.buttonsModels[i].label)
-      }
-    }
-    this.enableButtonSubmitFeedback();
-    this.inputDisable = true;
-    console.log(this.buttonsModels);
+    this.selectYesButton();
   }
 
   disableButtonNo() {
