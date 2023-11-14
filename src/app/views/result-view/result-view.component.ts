@@ -423,13 +423,15 @@ export class ResultViewComponent implements OnInit {
   }
 
   selectButton(id: number) {
+    console.log(this.buttonsModels);
+    console.log(this.resultado);
     for (let i = 0; i < this.buttonsModels.length; i++) {
       if (this.buttonsModels[i].id === id) {
-        this.buttonsModels[i].idActivate = true;
+        this.buttonsModels[i].idActivate = false;
         console.log(this.buttonsModels[i].label)
       } 
       else {
-        this.buttonsModels[i].idActivate = false;
+        this.buttonsModels[i].idActivate = true;
       }
     }
     this.enableButtonSubmitFeedback();
@@ -438,8 +440,6 @@ export class ResultViewComponent implements OnInit {
 
   selectYesButton(){
     console.log(this.buttonsModels);
-    console.log(this.resultadoList);
-    console.log(this.resultado);
     console.log(this.getHighestKeyValue().key);
     for (let i = 0; i < this.buttonsModels.length; i++) {
       for (let i = 0; i < this.resultadoList.length; i++) {

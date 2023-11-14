@@ -17,8 +17,7 @@
     border: 2px solid var(--border-box-color);
     background: #ffffff;
     box-sizing: border-box;
-    min-width: 300px;
-    max-width: 1700px;
+    max-width: 90vw;
 }
 
 .filters {
@@ -40,21 +39,6 @@
     align-self: stretch;
 }
 
-:host::ng-deep .p-input-icon-left {
-        display: flex;
-        max-width: 400px;
-        height: 60px;
-        align-items: center;
-        border-radius: 10px;
-        background: #ffffff;
-        border: 2px solid var(--border-box-color);
-        min-width: 300px;
-}
-
-:host::ng-deep .p-input-icon-left .p-inputtext{
-    padding: 0px;
-}
-
 :host::ng-deep .button-view-result .p-button {
     flex: 1 0 0;
     align-self: stretch;
@@ -71,17 +55,6 @@ td, tr, th {
     text-align: center;
 }
 
-:host::ng-deep .p-inputtext {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    border: transparent;
-}
-
-:host::ng-deep .p-inputtext:focus {
-    box-shadow: none !important;
-}
-
 :host::ng-deep .p-button-filter{
   content: "\e9b7";
   color: white;
@@ -91,8 +64,61 @@ td, tr, th {
   border: none;
 }
 
-@media screen and (max-width: 767px) {
+:host::ng-deep .p-input-icon-left {
+    border-radius: 10px;
+}
+
+:host::ng-deep .p-inputtext {
+    text-align: center;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid var(--border-box-color);
+    height: 60px;
+    width: 300px;
+}
+
+:host::ng-deep .p-datatable>.p-datatable-wrapper {
+    border-radius: 10px;
+}
+
+:host::ng-deep .p-paginator{
+    border-radius: 10px;
+}
+
+:host::ng-deep .p-calendar .p-datepicker{
+    z-index: 100;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--border-box-color);
+}
+
+@media screen and (min-width: 769px){
+    :host ::ng-deep .p-calendar .p-datepicker{
+        left: -55px !important;
+        top: 58px !important;
+    }
+}
+
+@media screen and (max-width: 767.5px) {
     .filters {
       flex-direction: column;
     }
+    .container-table-historial {
+        border: none;
+        background: transparent;
+        padding: 0;
+    }
+    .table{
+        width: 300px;
+        border-radius: 10px;
+        border: 1px solid var(--border-box-color);
+    }
+
+    :host::ng-deep .p-calendar .p-datepicker{
+        width: 300px !important;
+        left: 0 !important;
+    }
   }
+
+

@@ -4,31 +4,39 @@
 <div class="historial">
     <div class="container-table-historial">
         <div class="filters">
-            <span class="p-input-icon-left">
-                <span class="icon">
-                    <i class="pi pi-search" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
+            <!--div class="campo">
+                <span class="p-input-icon-left">
+                    <span class="icon">
+                        <i class="pi pi-search" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
+                    </span>
+                    <input type="text" (input)="dtTransactions.filterGlobal($any($event.target).value, 'contains')"
+                    pInputText [(ngModel)]="value" placeholder="Código de Informe, Estudio..."/>
                 </span>
-                <input type="text" (input)="dtTransactions.filterGlobal($any($event.target).value, 'contains')"
-                pInputText [(ngModel)]="value" placeholder="Código de Informe, Estudio..."/>
-            </span>
-            <span class="p-input-icon-left">
-                <span class="icon">
-                    <i class="pi pi-calendar" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
+            </div-->
+            <div>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search" style="font-size: 18px; color: #797979;"></i>
+                    <input styleClass="campo1" type="text" (input)="dtTransactions.filterGlobal($any($event.target).value, 'contains')"
+                    pInputText [(ngModel)]="value" placeholder="Código de Informe, Estudio..."/>
                 </span>
-                <span>
+            </div>
+            <div>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-calendar" style="font-size: 18px; color: #797979; z-index: 2;"></i>
                     <p-calendar
-                    [(ngModel)]="rangeDates"
-                    selectionMode="range"
-                    [readonlyInput]="true"
-                    placeholder="Fecha/s"
-                    [maxDate]="dateTime"
-                    [icon]="calendarIcon"
-                    [dateFormat]="'yy-mm-dd'"
-                    (onSelect)="applyDateFilter()">
-                    >
+                        styleClass="campo2"
+                        [(ngModel)]="rangeDates"
+                        selectionMode="range"
+                        [readonlyInput]="true"
+                        placeholder="Fecha/s"
+                        [maxDate]="dateTime"
+                        [icon]="calendarIcon"
+                        [dateFormat]="'yy-mm-dd'"
+                        (onSelect)="applyDateFilter()">
+                        >
                     </p-calendar>
                 </span>
-            </span>
+            </div>
             <div *ngIf="isFilter">
             <span class="icon">
               <p-button icon="pi pi-filter-slash" styleClass="p-button-filter" (click)="clearFilter()" class="p-button-text"></p-button>
@@ -37,15 +45,14 @@
         </div>
         <div class="table">
             <p-table responsiveLayout="stack"
-             [breakpoint]="'768px'"
+             [breakpoint]="'767.5px'"
              [tableStyle]="{'min-width': '300px'}"
              [value]="isFilter ? filteredData : records"
              id="tableTransactions"
-             #dtTransactions
              [paginator]="true"
              [rows]="3"
-             [rowsPerPageOptions]="[1, 2, 3, 4 , 5]"
-             [globalFilterFields]="['id','modelo_nombre', 'nombre_medico']"
+             #dtTransactions
+             [globalFilterFields]="['id','modelo_nombre', 'nombre_medico', 'apellido_medico']"
              selectionMode="single"
              autocomplete="off"
              >
@@ -55,7 +62,7 @@
                         <th>Fecha</th>
                         <th>Estudio</th>
                         <th>Médico</th>
-                        <th>_____</th>
+                        <th> </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-record let-columns="columns">
@@ -63,8 +70,8 @@
                         <td><span class="p-column-title">Código de Informe</span>{{record.id}}</td>
                         <td><span class="p-column-title">Fecha</span>{{record.fecha}}</td>
                         <td><span class="p-column-title">Estudio</span>{{record.modelo_nombre}}</td>
-                        <td><span class="p-column-title">Médico</span>{{record.nombre_medico}}</td>
-                        <td><span class="p-column-title">Acción</span><p-button type="button" label="Resultado" (onClick)="getRecord(record.id)" class="button-view-result"></p-button></td>
+                        <td><span class="p-column-title">Médico</span>{{record.apellido_medico+", "+record.nombre_medico}}</td>
+                        <td style="justify-content: center;"><span class="p-column-title"> </span><p-button type="button" label="Resultado" (onClick)="getRecord(record.id)" class="button-view-result"></p-button></td>
                     </tr>
                 </ng-template>
             </p-table>
