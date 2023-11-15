@@ -28,8 +28,8 @@ export class DiagnosticViewComponent implements OnInit {
   imagenURL: string | ArrayBuffer | null = null;
   showCancelButton = false;
   maxFileSize: number = 10485760;
-  minImageWidth: number = 225;
-  minImageHeight: number = 225;
+  minImageWidth: number = 224;
+  minImageHeight: number = 224;
   acceptedFileTypes: string = 'image/jpeg,image/png,application/x-zip-compressed';
   sexOptions: { label: string; value: number; }[] | undefined;
   partsOptions: { label: string; value: number; }[] | undefined;
