@@ -85,6 +85,7 @@ export class DiagnosticViewComponent implements OnInit {
   formattedDate: string = ''; // Variable para almacenar la fecha formateada
   esVisible: boolean = false;
   nroResultado !:any;
+  roleId: any;
 
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
@@ -94,10 +95,8 @@ export class DiagnosticViewComponent implements OnInit {
     private resultDTO: ResultcDTO,private logoutService: LogoutService, private loaderService: LoaderService,
     private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
     this.IdUser = parseInt(this.userAccountService.userId);
-    this.logoutService.getLogoutVisible().subscribe(() => {
-      this.esVisible = false;
-    });
-
+    this.roleId = localStorage.getItem('roleId');
+    console.log(this.roleId);
   }
 
   ngOnInit(): void {
@@ -329,7 +328,7 @@ resetFileInput() {
 
           this.redirectByRole();
           this.loaderService.updateIsLoading(false);
-          console.log(this.userAccountService.roleId);
+          console.log(this.roleId);
           console.log("PASE POR EL RESULTADO");
 
           console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
@@ -575,7 +574,7 @@ resetFileInput() {
   }
 
   redirectByRole(){
-    if(this.userAccountService.roleId == 3){
+    if(this.roleId == 3){
       console.log("ES diagnostico");
       this.esVisible = true;
       this.router.navigate(['/diagnostico']);
