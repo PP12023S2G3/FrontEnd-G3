@@ -396,7 +396,7 @@ resetFileInput() {
 
 
     const reqKnee=this.resultService.createRequestKnee(file,this.selectedOptionsRodilla['Sensacion de inestabilidad'],
-    this.selectedOptionsRodilla['CA positiva'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
+    this.selectedOptionsRodilla['Prueba cajón ant. pos.'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
       this.loaderService.updateIsLoading(true);
     this.resultService.postResultKnee(reqKnee).subscribe({
