@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Comments } from 'src/app/models/Comment';
-import { PasswordModule } from 'primeng/password';
-import { User } from 'src/app/models/User';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
 
@@ -16,7 +13,6 @@ export class NewPasswordViewComponent {
 
   constructor(private messageService: MessageService, private userAccountService: UserAccountService, private loaderService: LoaderService) { };
 
-
   showPassword1: boolean = false;
   showPassword2: boolean = false;
   modalVisible: boolean = false;
@@ -24,14 +20,12 @@ export class NewPasswordViewComponent {
   password2: string = '';
   form = false;
 
-
   ngOnInit(): void {
     this.postAuth();
   }
 
   private postAuth() {
     const token = localStorage.getItem('token');
-
     if (token) {
       this.userAccountService.postAuth(token).subscribe({
         next: (res) => {
@@ -60,16 +54,25 @@ export class NewPasswordViewComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Las contraseñas no coinciden', life: 2000 });
       }
     }
-    console.log(this.password1 + ' y ' + this.password2);
+    console.log('pass1: '+this.password1 + ' pass2: ' + this.password2);
+  }
 
-
+  logPassword(fieldName: string, event: any) {
+    const target = event?.target as HTMLInputElement;
+    if (target) {
+      console.log(`${fieldName}: ${target.value}`);
+    }
   }
 
   togglePasswordVisibility(num: number) {
     if (num == 1) {
       this.showPassword1 = !this.showPassword1;
+      console.log(this.password1)
+      console.log(this.password2)
     } else {
       this.showPassword2 = !this.showPassword2;
+      console.log(this.password1)
+      console.log(this.password2)
     }
   }
 
@@ -77,13 +80,13 @@ export class NewPasswordViewComponent {
     this.modalVisible = true;
     this.desenfocarFondo();
   }
+
   desenfocarFondo() {
     var containerBlur = document.querySelector(".body-new-password");
     containerBlur != null ? containerBlur.classList.add("blur-div") : "";
   }
 
   postResetPassword() {
-
     if(this.password1 != undefined && this.password2 != undefined){
       this.isDataIndalid();
       if (!this.form) {
@@ -111,8 +114,6 @@ export class NewPasswordViewComponent {
         
       }
     }
-
-    
   }
 
   isDataIndalid() {
@@ -126,7 +127,4 @@ export class NewPasswordViewComponent {
       this.form = true;
     }
   }
-
-
-
 }
