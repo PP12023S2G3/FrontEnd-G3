@@ -4,6 +4,7 @@ import { ResultService } from 'src/app/services/result/result.service';
 import {MessageService} from 'primeng/api';
 import { UserAccountService } from 'src/app/services/userAccount/userAccount.service';
 import { Location } from '@angular/common';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class HistorialViewComponent implements OnInit {
     records: any;
 
     dateTime = new Date();
-    constructor(private location: Location, private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router) {
+    constructor(private location: Location, private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router, private loaderService:LoaderService) {
         this.dateTime.setDate(this.dateTime.getDate());
         this.IdRole = this.userAccountService.roleId;
         console.log(this.IdRole);
@@ -40,6 +41,7 @@ export class HistorialViewComponent implements OnInit {
     }
 
     ngOnInit(): void {
+      this.loaderService.updateIsLoading(true);
       this.getRecordAll();
       const hasReloaded = localStorage.getItem('hasReloaded');
       if (!hasReloaded) {
@@ -80,6 +82,7 @@ export class HistorialViewComponent implements OnInit {
         this.resultService.getRecordAll(this.IdUser,this.IdRole).subscribe({
             next: (res) => {
               this.records=res.historial;
+              this.loaderService.updateIsLoading(false);
             },
             error: (error: { message: any }) => {
               console.log(error);
@@ -88,6 +91,7 @@ export class HistorialViewComponent implements OnInit {
                 summary: error.message,
                 life: 2000,
               });
+              this.loaderService.updateIsLoading(false);
             }
           });
 
