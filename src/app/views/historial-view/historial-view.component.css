@@ -93,6 +93,19 @@ td, tr, th {
     border-color: var(--border-box-color);
 }
 
+:host::ng-deep .p-datatable .p-sortable-column.p-highlight:hover {
+    background: rgb(248, 249, 250) !important;
+    color: #000000 !important;
+}
+:host::ng-deep .p-datatable .p-sortable-column.p-highlight {
+    background: transparent !important;
+    color: #000000 !important;
+}
+
+:host::ng-deep.p-datatable .p-datatable-tbody > tr {
+    color: #000000;
+}
+
 @media screen and (min-width: 769px){
     :host ::ng-deep .p-calendar .p-datepicker{
         left: -55px !important;

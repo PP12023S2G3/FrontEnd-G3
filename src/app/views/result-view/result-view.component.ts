@@ -47,17 +47,14 @@ export class ResultViewComponent implements OnInit {
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
   imagePath: any
-  
 
 
   constructor(private loaderService: LoaderService, private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {}
 
   ngOnInit(): void {
     this.loaderService.updateIsLoading(true);
-
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('roleId');
-
     if (idResult && roleId) {
       this.resultService.getRecord(parseInt(idResult), roleId).subscribe({
         next: (res) => {
@@ -89,9 +86,9 @@ export class ResultViewComponent implements OnInit {
     
     if(this.result.modelo_id === 1){
       const envioCerebro = this.obtenerValoresBotonesCerebro();
-      console.log(envioCerebro);
+      //console.log(envioCerebro);
       const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
-      console.log(labelSeleccionado);
+      //console.log(labelSeleccionado);
       this.feedbackService.postFeedbackBrain(id, ...envioCerebro, this.textComment).subscribe({
       next: (res) => {
         this.messageService.add({
@@ -99,7 +96,7 @@ export class ResultViewComponent implements OnInit {
           summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
           life: 2000,
         });
-        console.log(res);
+        //console.log(res);
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -113,9 +110,9 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 2){
       const envioPulmon = this.obtenerValoresBotonesPulmon();
-      console.log(envioPulmon);
+     // console.log(envioPulmon);
       const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
-      console.log(labelSeleccionado);
+      //console.log(labelSeleccionado);
       this.feedbackService.postFeedbackLungs(id, ...envioPulmon, this.textComment).subscribe({
         next: (res) => {
           this.messageService.add({
@@ -123,7 +120,7 @@ export class ResultViewComponent implements OnInit {
             summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
             life: 2000,
           });
-          console.log(res);
+          //console.log(res);
         },
         error: (error: { message: any }) => {
           this.messageService.add({
@@ -137,9 +134,9 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 3){
       const envioCorazon = this.obtenerValoresBotonesCorazon();
-      console.log(envioCorazon);
+      //console.log(envioCorazon);
       const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
-      console.log(labelSeleccionado);
+      //console.log(labelSeleccionado);
       this.feedbackService.postFeedbackHeart(id, ...envioCorazon, this.textComment).subscribe({
         next: (res) => {
           this.messageService.add({
@@ -147,7 +144,7 @@ export class ResultViewComponent implements OnInit {
             summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
             life: 2000,
           });
-          console.log(res);
+          //console.log(res);
         },
         error: (error: { message: any }) => {
           this.messageService.add({
@@ -161,9 +158,9 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 4){
       const envioRinion = this.obtenerValoresBotonesRinion();
-      console.log(envioRinion);
+     // console.log(envioRinion);
       const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
-      console.log(labelSeleccionado);
+      //console.log(labelSeleccionado);
       this.feedbackService.postFeedbackKidney(id, ...envioRinion, this.textComment).subscribe({
         next: (res) => {
           this.messageService.add({
@@ -171,7 +168,7 @@ export class ResultViewComponent implements OnInit {
             summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
             life: 2000,
           });
-          console.log(res);
+          //console.log(res);
         },
         error: (error: { message: any }) => {
           this.messageService.add({
@@ -185,9 +182,9 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 5){
       const envioRodilla = this.obtenerValoresBotonesRodilla();
-      console.log(envioRodilla);
+      //console.log(envioRodilla);
       const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
-      console.log(labelSeleccionado);
+      //console.log(labelSeleccionado);
       this.feedbackService.postFeedbackKnee(id, ...envioRodilla, this.textComment).subscribe({
         next: (res) => {
           this.messageService.add({
@@ -195,7 +192,7 @@ export class ResultViewComponent implements OnInit {
             summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
             life: 2000,
           });
-          console.log(res);
+          //console.log(res);
         },
         error: (error: { message: any }) => {
           this.messageService.add({
@@ -209,9 +206,9 @@ export class ResultViewComponent implements OnInit {
 
     if(this.result.modelo_id === 6){
       const envioMunieca = this.obtenerValoresBotonesMunieca();
-      console.log(envioMunieca);
+      //console.log(envioMunieca);
       const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
-      console.log(labelSeleccionado);
+      //console.log(labelSeleccionado);
       this.feedbackService.postFeedbackWrist(id, ...envioMunieca, this.textComment).subscribe({
         next: (res) => {
           this.messageService.add({
@@ -219,7 +216,7 @@ export class ResultViewComponent implements OnInit {
             summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
             life: 2000,
           });
-          console.log(res);
+          //console.log(res);
         },
         error: (error: { message: any }) => {
           this.messageService.add({
@@ -237,15 +234,15 @@ export class ResultViewComponent implements OnInit {
     for (let i = 0; i < this.buttonsModels.length; i++) {
         for (let i = 0; i < this.resultadoList.length; i++) {
         if (this.resultadoList[i].key !== 'prediction' && this.buttonsModels[i].idActivate === false) {
-          console.log('no es rodilla')
+         // console.log('no es rodilla')
           labelSeleccionado = this.buttonsModels[i].label;
-          console.log(labelSeleccionado)
+          //console.log(labelSeleccionado)
           break;
         }
         if (this.resultadoList[i].key === 'prediction' && this.buttonsModels[i].idActivate === true){
-          console.log('es rodilla')
+          //console.log('es rodilla')
           labelSeleccionado = this.buttonsModels[i].label;
-          console.log(labelSeleccionado)
+          //console.log(labelSeleccionado)
           break;
         }
       }
@@ -369,7 +366,7 @@ export class ResultViewComponent implements OnInit {
       key: this.keyTranslations[key] || key,
       value,
     }));
-    console.log(this.resultadoList)
+    //console.log(this.resultadoList)
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({
       key: this.dataTranslations[key] || key,
       value,
@@ -435,11 +432,9 @@ export class ResultViewComponent implements OnInit {
     const condicionesPrevias = this.datosComplementariosList
       .map((conPrev) => `- ${conPrev.key.replaceAll("_", " ")}: ${conPrev.value ? "Si" : "No"}`)
       .join("\n");
-
     const doc = new jsPDF();
     var pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
     var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
-
     doc.setFontSize(24).setFont('helvetica', 'bold');
     doc.text('Informe médico', pageWidth / 2, 10, {align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
@@ -454,63 +449,65 @@ export class ResultViewComponent implements OnInit {
     doc.text('Datos del médico', 10,48,);
     doc.text('_______________', 10,50);
     doc.setFontSize(14).setFont('helvetica', 'bold');
-    doc.text('DNI', 35,60,);
+    doc.text('DNI', 35,60,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
-    doc.text(this.result.usuario_medico_dni, 28,70,);
+    doc.text(this.result.usuario_medico_dni, 35,70,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
     doc.text('Nombre', pageWidth / 2,60,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
     doc.text(this.result.nombre_medico, pageWidth / 2,70,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
-    doc.text('Apellido', 156,60,);
+    doc.text('Apellido', 170,60,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
-    doc.text(this.result.apellido_medico, 155,70,);
+    doc.text(this.result.apellido_medico, 170,70,{align: 'center'});
     doc.setFontSize(18).setFont('helvetica', 'bold');
     doc.text('Datos del paciente', 10,88,);
     doc.text('________________', 10,90);
     doc.setFontSize(14).setFont('helvetica', 'bold');
-    doc.text('Fecha de nacimiento', 10,100);
+    doc.text('Fecha de nacimiento', 35,100,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
-    doc.text(this.datos_paciente.fecha_nacimiento, 20,110);
+    doc.text(this.datos_paciente.fecha_nacimiento, 35,110,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
     doc.text('Peso', pageWidth / 2,100,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
     doc.text(this.datos_paciente.peso + 'kg', pageWidth / 2,110,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
-    doc.text('Altura', 160,100);
+    doc.text('Altura', 170,100,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
-    doc.text(this.datos_paciente.altura + 'cm', 159,110);
+    doc.text(this.datos_paciente.altura + 'cm', 170,110,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
-    doc.text('Sexo', 160,123);
+    doc.text('Sexo', 170,123,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
-    doc.text(this.datos_paciente.sexo, 155,133);
+    doc.text(this.datos_paciente.sexo, 170,133,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
     doc.text('Sección del cuerpo', pageWidth / 2,123,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
     doc.text(this.result.modelo_nombre, pageWidth / 2,133,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'bold');
-    doc.text('Condiciones previas', 10,123,);
+    doc.text('Condiciones previas', 35,123,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
-    doc.text(condicionesPrevias, 10,133,);
+    doc.text(condicionesPrevias, 35,133,{align: 'center'});
     doc.addImage(this.imagePath, 'JPEG', 75, 170, 60, 60, 'FAST');
     doc.setFontSize(14).setFont('helvetica', 'bold');
     doc.text('Resultado', pageWidth / 2,250,{align: 'center'});
     doc.setFontSize(14).setFont('helvetica', 'normal');
     doc.text(this.getHighestKeyValue().key+ ' '+ this.getHighestKeyValue().value.toFixed(1)+"%\n",pageWidth/2,260,{align: 'center'});
+    doc.setFontSize(10).setFont('helvetica', 'normal');
+    doc.text('DIMAIA',pageWidth-15,pageHeight-5,{align: 'center'});
     doc.save(`Diagnóstico ${this.result.id}.pdf`);
   }
 
   enableButtonSubmitFeedback() {
-    this.buttonSubmitFeedback = false; //habilitar
+    this.buttonSubmitFeedback = false;
   }
 
   selectButton(id: number) {
-    console.log(this.buttonsModels);
-    console.log(this.getHighestKeyValue().key);
+    //console.log(this.buttonsModels);
+    //console.log(this.getHighestKeyValue().key);
     for (let i = 0; i < this.buttonsModels.length; i++) {
       if (this.buttonsModels[i].id === id) {
         this.buttonsModels[i].idActivate = false;
-        console.log(this.buttonsModels[i].label)
+        //console.log(this.buttonsModels[i].label)
       } 
       else {
         this.buttonsModels[i].idActivate = true;
@@ -525,41 +522,7 @@ export class ResultViewComponent implements OnInit {
     /*console.log(this.resultado);
     console.log(this.resultadoList);
     console.log(this.buttonsModels);
-    console.log(this.getHighestKeyValue().key);
-    const prediction = this.resultado['prediction'];
-    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado);
-    for (let i = 0; i < this.buttonsModels.length; i++) {
-      for (let i = 0; i < this.resultadoList.length; i++) {
-        if (this.resultadoList[i].key !== 'prediction'){
-          if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
-            console.log('no entro a rodilla')
-            this.buttonsModels[i].idActivate = false;
-          }
-          else {
-            this.buttonsModels[i].idActivate = true;
-          }
-        }
-        if (this.resultadoList[i].key === 'prediction') {
-            if (this.buttonsModels[i].label === this.getHighestKeyValue().key){
-              console.log('entro a rodilla key igual' + this.buttonsModels[i].idActivate)
-              this.buttonsModels[i].idActivate = false;
-              console.log('entro a rodilla key igual' + this.buttonsModels[i].idActivate)
-            }
-            else if (this.buttonsModels[i].label !== this.getHighestKeyValue().key) {
-              console.log('entro a rodilla key distinta' + this.buttonsModels[i].idActivate)
-              this.buttonsModels[i].idActivate = true;
-              console.log('entro a rodilla key distinta' + this.buttonsModels[i].idActivate)
-            }
-        }
-      }
-    }
-    console.log(this.buttonsModels);
-    this.enableButtonSubmitFeedback();
-    this.inputDisable = true;*/
-    console.log(this.resultado);
-    console.log(this.resultadoList);
-    console.log(this.buttonsModels);
-    console.log(this.getHighestKeyValue().key);
+    console.log(this.getHighestKeyValue().key);*/
     for (let i = 0; i < this.buttonsModels.length; i++) {
       for (let i = 0; i < this.resultadoList.length; i++) {
         if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
@@ -570,7 +533,7 @@ export class ResultViewComponent implements OnInit {
         }
       }
     }
-    console.log(this.buttonsModels);
+    //console.log(this.buttonsModels);
     this.enableButtonSubmitFeedback();
     this.inputDisable = true;
   }
@@ -599,14 +562,14 @@ export class ResultViewComponent implements OnInit {
 
   disableButtonYes() {
     this.buttonSubmitFeedback = false;
-    this.containerMoreOptions = true; //deshabilitar
+    this.containerMoreOptions = true;
     this.buttonNo = true;
     this.selectYesButton();
   }
 
   disableButtonNo() {
     this.buttonSubmitFeedback = true;
-    this.containerMoreOptions = false; //habilitar
+    this.containerMoreOptions = false;
     this.buttonYes = true;
   }
 
@@ -615,7 +578,6 @@ export class ResultViewComponent implements OnInit {
     let highestKeyValue: { key: string, value: any } = { key: '', value: null };
     const prediction = this.resultado['prediction'];
     const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado);
-
     for (const [key, value] of resultEntries) {
       if (typeof value === 'number' && (highestValue === null || value > highestValue)) {
         highestValue = value;
@@ -623,7 +585,6 @@ export class ResultViewComponent implements OnInit {
         highestKeyValue = { key: translatedKey, value };
       }
     }
-
     if (highestKeyValue.value !== null && highestKeyValue.value >= 0 && highestKeyValue.value <= 1) {
       highestKeyValue.value *= 100;
     }

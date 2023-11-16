@@ -55,22 +55,23 @@
              [globalFilterFields]="['id','modelo_nombre', 'nombre_medico', 'apellido_medico']"
              selectionMode="single"
              autocomplete="off"
-             >
+             sortMode="single"
+             [resetPageOnSort]="true">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th>Código de Informe</th>
-                        <th>Fecha</th>
-                        <th>Estudio</th>
-                        <th>Médico</th>
+                        <th pSortableColumn="id" style="width:20%">Código de Informe</th>
+                        <th pSortableColumn="fecha" style="width:20%">Fecha</th>
+                        <th pSortableColumn="modelo_nombre" style="width:20%">Estudio</th>
+                        <th pSortableColumn="apellido_medico" style="width:20%">Médico</th>
                         <th> </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-record let-columns="columns">
                     <tr>
-                        <td><span class="p-column-title">Código de Informe</span>{{record.id}}</td>
-                        <td><span class="p-column-title">Fecha</span>{{record.fecha}}</td>
-                        <td><span class="p-column-title">Estudio</span>{{record.modelo_nombre}}</td>
-                        <td><span class="p-column-title">Médico</span>{{ (record.apellido_medico ?? '') + ' ' + (record.nombre_medico ?? '') }}</td>
+                        <td pSortableColumn="id" style="width:20%"><span class="p-column-title">Código de Informe</span>{{record.id}}</td>
+                        <td pSortableColumn="fecha" style="width:20%"><span class="p-column-title">Fecha</span>{{record.fecha}}</td>
+                        <td pSortableColumn="modelo_nombre" style="width:20%"><span class="p-column-title">Estudio</span>{{record.modelo_nombre}}</td>
+                        <td pSortableColumn="apellido_medico" style="width:20%"><span class="p-column-title">Médico</span>{{ (record.apellido_medico ?? '') + ' ' + (record.nombre_medico ?? '') }}</td>
                         <td style="justify-content: center;"><span class="p-column-title"> </span><p-button type="button" label="Resultado" (onClick)="getRecord(record.id)" class="button-view-result"></p-button></td>
                     </tr>
                 </ng-template>
