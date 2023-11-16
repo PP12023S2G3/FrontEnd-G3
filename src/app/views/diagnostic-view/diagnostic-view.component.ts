@@ -57,7 +57,7 @@ export class DiagnosticViewComponent implements OnInit {
   };
 
   selectedOptionsRinion: { [key: string]: boolean } = {
-    'Hermaturia': false,
+    'Hematuria': false,
     'Dolor lumbar': false,
     'Dolor abdominal': false,
     'Fiebre': false,
@@ -425,7 +425,7 @@ resetFileInput() {
 
   else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Riñón') {
 
-    const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hermaturia'],this.selectedOptionsRinion['Dolor lumbar'],
+    const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hematuria'],this.selectedOptionsRinion['Dolor lumbar'],
     this.selectedOptionsRinion['Dolor abdominal'],this.selectedOptionsRinion['Fiebre'],this.selectedOptionsRinion['Perdida de peso'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
       this.loaderService.updateIsLoading(true);

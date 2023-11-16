@@ -37,11 +37,11 @@ export class ResultViewComponent implements OnInit {
     Cerebro: ['Glioma', 'Meningioma', 'Pituitaria', 'No tumor'],
     Corazon: ['Contracción ventricular prematura', 
               'Fusión de latido ventricular y normal', 'Infarto de miocardio', 
-              'Latido no clasificable', 'Normal', 'Latido prematuro supraventricular'],
-    Rodilla: ['Rotura LCA', 'LCA Sano'],
+              'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
+    Rodilla: ['LCA Sano', 'Rotura LCA'],
     Muñeca: ['Fractura', 'Sano'],
-    Pulmones: ['No neumonía', 'Neumonía'],
-    Riñones: ['Normal', 'Piedra', 'Quiste', 'Tumor'],
+    Pulmones: ['Neumonía', 'No neumonía'],
+    Riñones: ['Quiste', 'Piedra', 'Tumor', 'Normal'],
   };
   buttonsModels: any[] = [];
   datosComplementarios: any;
@@ -53,7 +53,6 @@ export class ResultViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaderService.updateIsLoading(true);
-    console.log(this.result)
 
     const idResult = localStorage.getItem('idResult');
     const roleId = localStorage.getItem('roleId');
@@ -90,8 +89,15 @@ export class ResultViewComponent implements OnInit {
     if(this.result.modelo_id === 1){
       const envioCerebro = this.obtenerValoresBotonesCerebro();
       console.log(envioCerebro);
+      const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
+      console.log(labelSeleccionado);
       this.feedbackService.postFeedbackBrain(id, ...envioCerebro, this.textComment).subscribe({
       next: (res) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
+          life: 2000,
+        });
         console.log(res);
       },
       error: (error: { message: any }) => {
@@ -107,9 +113,15 @@ export class ResultViewComponent implements OnInit {
     if(this.result.modelo_id === 2){
       const envioPulmon = this.obtenerValoresBotonesPulmon();
       console.log(envioPulmon);
-      console.log(id);
+      const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
+      console.log(labelSeleccionado);
       this.feedbackService.postFeedbackLungs(id, ...envioPulmon, this.textComment).subscribe({
         next: (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
+            life: 2000,
+          });
           console.log(res);
         },
         error: (error: { message: any }) => {
@@ -125,8 +137,15 @@ export class ResultViewComponent implements OnInit {
     if(this.result.modelo_id === 3){
       const envioCorazon = this.obtenerValoresBotonesCorazon();
       console.log(envioCorazon);
+      const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
+      console.log(labelSeleccionado);
       this.feedbackService.postFeedbackHeart(id, ...envioCorazon, this.textComment).subscribe({
         next: (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
+            life: 2000,
+          });
           console.log(res);
         },
         error: (error: { message: any }) => {
@@ -142,8 +161,15 @@ export class ResultViewComponent implements OnInit {
     if(this.result.modelo_id === 4){
       const envioRinion = this.obtenerValoresBotonesRinion();
       console.log(envioRinion);
+      const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
+      console.log(labelSeleccionado);
       this.feedbackService.postFeedbackKidney(id, ...envioRinion, this.textComment).subscribe({
         next: (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
+            life: 2000,
+          });
           console.log(res);
         },
         error: (error: { message: any }) => {
@@ -159,8 +185,15 @@ export class ResultViewComponent implements OnInit {
     if(this.result.modelo_id === 5){
       const envioRodilla = this.obtenerValoresBotonesRodilla();
       console.log(envioRodilla);
+      const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
+      console.log(labelSeleccionado);
       this.feedbackService.postFeedbackKnee(id, ...envioRodilla, this.textComment).subscribe({
         next: (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
+            life: 2000,
+          });
           console.log(res);
         },
         error: (error: { message: any }) => {
@@ -176,8 +209,15 @@ export class ResultViewComponent implements OnInit {
     if(this.result.modelo_id === 6){
       const envioMunieca = this.obtenerValoresBotonesMunieca();
       console.log(envioMunieca);
+      const labelSeleccionado = this.obtenerLabelSeleccionado() ?? this.textComment;
+      console.log(labelSeleccionado);
       this.feedbackService.postFeedbackWrist(id, ...envioMunieca, this.textComment).subscribe({
         next: (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Feedback enviado: ' + '"' + labelSeleccionado + '"',
+            life: 2000,
+          });
           console.log(res);
         },
         error: (error: { message: any }) => {
@@ -190,6 +230,18 @@ export class ResultViewComponent implements OnInit {
       });
     }
   } 
+
+  private obtenerLabelSeleccionado(): string | null {
+    let labelSeleccionado: string | null = null;
+    for (let i = 0; i < this.buttonsModels.length; i++) {
+      if (this.buttonsModels[i].idActivate === false) {
+        labelSeleccionado = this.buttonsModels[i].label;
+        break;
+      }
+    }
+  
+    return labelSeleccionado;
+  }
 
   private obtenerValoresBotonesCerebro(): [boolean, boolean, boolean, boolean] {
     return [
@@ -236,8 +288,8 @@ export class ResultViewComponent implements OnInit {
 
   private obtenerValoresBotonesRodilla(): [boolean, boolean] {
     return [
-      !this.buttonsModels[0].idActivate,
       !this.buttonsModels[1].idActivate,
+      !this.buttonsModels[0].idActivate,
     ];
   }
 
@@ -254,7 +306,7 @@ export class ResultViewComponent implements OnInit {
     puntada_lateral  : 'Puntada lateral',
     fiebre : 'Fiebre',
     dificultad_respiratoria: 'Dificultad respiratoria',
-    hermaturia : 'Hermaturia',
+    hermaturia : 'Hematuria',
     dolor_lumbar : 'Dolor lumbar', 
     dolor_abdominal  : 'Dolor abdominal',
     perdida_peso  : 'Pérdida de peso',
@@ -264,7 +316,8 @@ export class ResultViewComponent implements OnInit {
   };
 
   keyTranslations: { [key: string]: string } = {
-    "LCA sano": 'Ligamento cruzado anterior sano',
+    "LCA sano": 'LCA sano',
+    "Rotura LCA": 'Rotura LCA',
     lcaSano: 'LCA sano',
     roturaLCA: 'Rotura LCA',
     normal: 'Normal',
@@ -282,6 +335,7 @@ export class ResultViewComponent implements OnInit {
     contraccionVentricular: 'Contracción ventricular prematura',
     fusionVentricularNormal: 'Fusión de latido ventricular y normal',
     infarto: 'Infarto de miocardio',
+    latido_normal: 'Latido normal',
     prematuroSupraventricular: 'Latido prematuro supraventricular',
     no_clasificable: 'Latido no clasificable',
   };
@@ -427,7 +481,7 @@ export class ResultViewComponent implements OnInit {
 
   selectButton(id: number) {
     console.log(this.buttonsModels);
-    console.log(this.resultado);
+    console.log(this.getHighestKeyValue().key);
     for (let i = 0; i < this.buttonsModels.length; i++) {
       if (this.buttonsModels[i].id === id) {
         this.buttonsModels[i].idActivate = false;
@@ -437,23 +491,40 @@ export class ResultViewComponent implements OnInit {
         this.buttonsModels[i].idActivate = true;
       }
     }
+    this.buttonNo = true;
     this.enableButtonSubmitFeedback();
     this.inputDisable = true;
   }
 
   selectYesButton(){
+    console.log(this.resultado);
+    console.log(this.resultadoList);
     console.log(this.buttonsModels);
     console.log(this.getHighestKeyValue().key);
+    console.log(this.getHighestKeyValue().value);
     for (let i = 0; i < this.buttonsModels.length; i++) {
       for (let i = 0; i < this.resultadoList.length; i++) {
-        if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
-          this.buttonsModels[i].idActivate = false;
-        } 
-        else {
-          this.buttonsModels[i].idActivate = true;
+        if (this.resultadoList[i].key !== 'prediction'){
+          if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
+            console.log('no entro a rodilla')
+            this.buttonsModels[i].idActivate = false;
+          }
+          else {
+            this.buttonsModels[i].idActivate = true;
+          }
+        }
+        if (this.resultadoList[i].key === 'prediction') {
+          if (this.buttonsModels[i].label === this.getHighestKeyValue().key){
+            console.log('entro a rodilla')
+            this.buttonsModels[i].idActivate = false;
+          }
+          else{
+            this.buttonsModels[i].idActivate = true;
+          }
         }
       }
     }
+    console.log(this.buttonsModels);
     this.enableButtonSubmitFeedback();
     this.inputDisable = true;
   }
@@ -466,13 +537,16 @@ export class ResultViewComponent implements OnInit {
   }
 
   inputEnableButtonSubmitFeedback() {
-      if(this.inputDisable === false && this.textComment.length > 2){
+      if(this.inputDisable === false && this.textComment.length >= 1){
         for (let i = 0; i < this.buttonsModels.length; i++) {
         this.buttonsModels[i].idActivate = true;
         }
+        this.buttonNo = true;
         this.buttonSubmitFeedback = false;
       }
-      else if(this.textComment.length < 2){
+      else if(this.inputDisable === false && this.textComment.length <= 1){
+        this.buttonsModels.find(button => button.idActivate = false);
+        this.buttonNo = false;
         this.buttonSubmitFeedback = true;
       }
   }

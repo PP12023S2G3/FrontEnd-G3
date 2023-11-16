@@ -44,10 +44,16 @@ import { LogoutComponent } from './shared/logout/logout.component';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LoaderComponent } from './shared/loader/loader.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient  } from '@angular/common/http';
 import { AuthInterceptor } from './services/middlewares/interceptor.service';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TwofactorViewComponent } from './views/two-factor-view/two-factor-view.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -95,6 +101,13 @@ import { TwofactorViewComponent } from './views/two-factor-view/two-factor-view.
     CheckboxModule,
     HttpClientModule,
     SelectButtonModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [MessageService,{
     provide: HTTP_INTERCEPTORS,
