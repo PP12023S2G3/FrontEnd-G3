@@ -116,7 +116,7 @@ export class NewPasswordViewComponent {
   }
 
   isDataIndalid() {
-    const patternPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const patternPassword = /^(?=.*[a-zñÑ])(?=.*[A-ZÑñ])(?=.*\d)[a-zA-Z0-9ñÑ]*$/
     const isPassword1Valid = this.password1 && this.password1.length >= 8 && patternPassword.test(this.password1);
     const isPassword2Valid = this.password2 && this.password2.length >= 8 && patternPassword.test(this.password2);
 

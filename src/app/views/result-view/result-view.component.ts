@@ -38,7 +38,7 @@ export class ResultViewComponent implements OnInit {
     Corazon: ['Contracción ventricular prematura', 
               'Fusión de latido ventricular y normal', 'Infarto de miocardio', 
               'Latido no clasificable', 'Latido normal', 'Latido prematuro supraventricular'],
-    Rodilla: ['LCA Sano', 'Rotura LCA'],
+    Rodilla: ['Rotura LCA', 'LCA Sano'],
     Muñeca: ['Fractura', 'Sano'],
     Pulmones: ['Neumonía', 'No neumonía'],
     Riñones: ['Quiste', 'Piedra', 'Tumor', 'Normal'],
@@ -47,6 +47,7 @@ export class ResultViewComponent implements OnInit {
   datosComplementarios: any;
   datosComplementariosList: { key: string; value: any; }[] = [];
   imagePath: any
+  
 
 
   constructor(private loaderService: LoaderService, private resultDTO: ResultcDTO, private messageService: MessageService, private resultService: ResultService, private feedbackService: FeedbackService) {}
@@ -234,12 +235,21 @@ export class ResultViewComponent implements OnInit {
   private obtenerLabelSeleccionado(): string | null {
     let labelSeleccionado: string | null = null;
     for (let i = 0; i < this.buttonsModels.length; i++) {
-      if (this.buttonsModels[i].idActivate === false) {
-        labelSeleccionado = this.buttonsModels[i].label;
-        break;
+        for (let i = 0; i < this.resultadoList.length; i++) {
+        if (this.resultadoList[i].key !== 'prediction' && this.buttonsModels[i].idActivate === false) {
+          console.log('no es rodilla')
+          labelSeleccionado = this.buttonsModels[i].label;
+          console.log(labelSeleccionado)
+          break;
+        }
+        if (this.resultadoList[i].key === 'prediction' && this.buttonsModels[i].idActivate === true){
+          console.log('es rodilla')
+          labelSeleccionado = this.buttonsModels[i].label;
+          console.log(labelSeleccionado)
+          break;
+        }
       }
     }
-  
     return labelSeleccionado;
   }
 
@@ -288,8 +298,8 @@ export class ResultViewComponent implements OnInit {
 
   private obtenerValoresBotonesRodilla(): [boolean, boolean] {
     return [
-      !this.buttonsModels[1].idActivate,
       !this.buttonsModels[0].idActivate,
+      !this.buttonsModels[1].idActivate,
     ];
   }
 
@@ -316,9 +326,9 @@ export class ResultViewComponent implements OnInit {
   };
 
   keyTranslations: { [key: string]: string } = {
-    "LCA sano": 'LCA sano',
+    "LCA Sano": 'LCA Sano',
     "Rotura LCA": 'Rotura LCA',
-    lcaSano: 'LCA sano',
+    lcaSano: 'LCA Sano',
     roturaLCA: 'Rotura LCA',
     normal: 'Normal',
     piedra: 'Piedra',
@@ -344,29 +354,44 @@ export class ResultViewComponent implements OnInit {
     if (res !== undefined && !this.result) {
       this.loaderService.updateIsLoading(false);
     }
-
     this.result = res;
-
     if (this.result.nombre_medico === null) {
       this.result.nombre_medico = '';
     }
     if (this.result.apellido_medico === null) {
       this.result.apellido_medico = '';
     }
-
     this.datos_paciente = JSON.parse(this.result.datos_paciente);
     this.resultado = JSON.parse(this.result.resultado);
     this.datosComplementarios = JSON.parse(this.result.datos_complementarios);
+    this.transformPrediction();
     this.resultadoList = Object.entries(this.resultado).map(([key, value]) => ({   
       key: this.keyTranslations[key] || key,
       value,
     }));
+    console.log(this.resultadoList)
     this.datosComplementariosList = Object.entries(this.datosComplementarios).map(([key, value]) => ({
       key: this.dataTranslations[key] || key,
       value,
     }));
     this.imagePath = 'data:image/png;base64,' + this.result.imagen;
   }
+
+  transformPrediction() {
+    const prediction = this.resultado['prediction'];
+    if (prediction) {
+      const resultEntries = Object.entries(prediction);
+      for (const [key, value] of resultEntries) {
+        delete this.resultado['prediction'];
+        if (key === 'lcaSano') {
+          this.resultado['LCA Sano'] = value;
+        } else if (key === 'roturaLCA') {
+          this.resultado['Rotura LCA'] = value;
+        }
+      }
+    }
+  }
+  
 
   armarPDF(res: DiagnosticResp) {
     let fecha = new Date().toLocaleDateString();
@@ -497,11 +522,12 @@ export class ResultViewComponent implements OnInit {
   }
 
   selectYesButton(){
-    console.log(this.resultado);
+    /*console.log(this.resultado);
     console.log(this.resultadoList);
     console.log(this.buttonsModels);
     console.log(this.getHighestKeyValue().key);
-    console.log(this.getHighestKeyValue().value);
+    const prediction = this.resultado['prediction'];
+    const resultEntries = prediction ? Object.entries(prediction) : Object.entries(this.resultado);
     for (let i = 0; i < this.buttonsModels.length; i++) {
       for (let i = 0; i < this.resultadoList.length; i++) {
         if (this.resultadoList[i].key !== 'prediction'){
@@ -514,13 +540,33 @@ export class ResultViewComponent implements OnInit {
           }
         }
         if (this.resultadoList[i].key === 'prediction') {
-          if (this.buttonsModels[i].label === this.getHighestKeyValue().key){
-            console.log('entro a rodilla')
-            this.buttonsModels[i].idActivate = false;
-          }
-          else{
-            this.buttonsModels[i].idActivate = true;
-          }
+            if (this.buttonsModels[i].label === this.getHighestKeyValue().key){
+              console.log('entro a rodilla key igual' + this.buttonsModels[i].idActivate)
+              this.buttonsModels[i].idActivate = false;
+              console.log('entro a rodilla key igual' + this.buttonsModels[i].idActivate)
+            }
+            else if (this.buttonsModels[i].label !== this.getHighestKeyValue().key) {
+              console.log('entro a rodilla key distinta' + this.buttonsModels[i].idActivate)
+              this.buttonsModels[i].idActivate = true;
+              console.log('entro a rodilla key distinta' + this.buttonsModels[i].idActivate)
+            }
+        }
+      }
+    }
+    console.log(this.buttonsModels);
+    this.enableButtonSubmitFeedback();
+    this.inputDisable = true;*/
+    console.log(this.resultado);
+    console.log(this.resultadoList);
+    console.log(this.buttonsModels);
+    console.log(this.getHighestKeyValue().key);
+    for (let i = 0; i < this.buttonsModels.length; i++) {
+      for (let i = 0; i < this.resultadoList.length; i++) {
+        if (this.buttonsModels[i].label === this.getHighestKeyValue().key) {
+          this.buttonsModels[i].idActivate = false;
+        }
+        else {
+          this.buttonsModels[i].idActivate = true;
         }
       }
     }
