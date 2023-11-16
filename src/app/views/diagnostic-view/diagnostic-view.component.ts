@@ -28,8 +28,8 @@ export class DiagnosticViewComponent implements OnInit {
   imagenURL: string | ArrayBuffer | null = null;
   showCancelButton = false;
   maxFileSize: number = 10485760;
-  minImageWidth: number = 225;
-  minImageHeight: number = 225;
+  minImageWidth: number = 224;
+  minImageHeight: number = 224;
   acceptedFileTypes: string = 'image/jpeg,image/png,application/x-zip-compressed';
   sexOptions: { label: string; value: number; }[] | undefined;
   partsOptions: { label: string; value: number; }[] | undefined;
@@ -57,7 +57,7 @@ export class DiagnosticViewComponent implements OnInit {
   };
 
   selectedOptionsRinion: { [key: string]: boolean } = {
-    'Hermaturia': false,
+    'Hematuria': false,
     'Dolor lumbar': false,
     'Dolor abdominal': false,
     'Fiebre': false,
@@ -65,7 +65,7 @@ export class DiagnosticViewComponent implements OnInit {
   };
 
   selectedOptionsRodilla: { [key: string]: boolean } = {
-    'Sensacion de inestabilidad': false,
+    'Sensación de inestabilidad': false,
     'Prueba cajón ant. pos.': false,
     'Impotencia funcional': false
   };
@@ -316,7 +316,7 @@ resetFileInput() {
     if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
 
       const req=this.resultService.createRequestHeart(file,this.selectedOptionsCorazon['Palpitaciones'],
-      this.selectedOptionsCorazon['Dolor superior izquierdo'],this.selectedOptionsCorazon['Disnea'],this.formattedDate,this.diagnostic.weight,
+      this.selectedOptionsCorazon['Dolor miembros sup. izq.'],this.selectedOptionsCorazon['Disnea'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
 
       console.log(req);
@@ -411,8 +411,8 @@ resetFileInput() {
   else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Rodilla') {
 
 
-    const reqKnee=this.resultService.createRequestKnee(file,this.selectedOptionsRodilla['Sensacion de inestabilidad'],
-    this.selectedOptionsRodilla['CA positiva'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
+    const reqKnee=this.resultService.createRequestKnee(file,this.selectedOptionsRodilla['Sensación de inestabilidad'],
+    this.selectedOptionsRodilla['Prueba cajón ant. pos.'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
       this.loaderService.updateIsLoading(true);
     this.resultService.postResultKnee(reqKnee).subscribe({
@@ -441,8 +441,9 @@ resetFileInput() {
 
   else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Riñón') {
 
-    const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hermaturia'],this.selectedOptionsRinion['Dolor lumbar'],
-    this.selectedOptionsRinion['Dolor abdominal'],this.selectedOptionsRinion['Fiebre'],this.selectedOptionsRinion['Perdida de peso'],this.formattedDate,this.diagnostic.weight,
+
+    const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hematuria'],this.selectedOptionsRinion['Dolor lumbar'],
+    this.selectedOptionsRinion['Dolor abdominal'],this.selectedOptionsRinion['Fiebre'],this.selectedOptionsRinion['Pérdida de peso'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
       this.loaderService.updateIsLoading(true);
     this.resultService.postResultKidney(reqKidney).subscribe({
@@ -472,8 +473,7 @@ resetFileInput() {
 
     else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Muñeca') {
 
-    const reqWrist=this.resultService.createRequestWrist(file,this.selectedOptionsMunieca['Dolor con limitacion'],this.selectedOptionsMunieca['Edema'],
-    this.selectedOptionsMunieca['Deformidad'],this.formattedDate,this.diagnostic.weight,
+      const reqWrist=this.resultService.createRequestWrist(file,this.selectedOptionsMunieca['Dolor con limitación func.'],this.selectedOptionsMunieca['Edema'],    this.selectedOptionsMunieca['Deformidad'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
       this.loaderService.updateIsLoading(true);
     this.resultService.postResultWrist(reqWrist).subscribe({
