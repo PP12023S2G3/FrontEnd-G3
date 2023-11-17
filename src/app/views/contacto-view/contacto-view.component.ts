@@ -35,6 +35,7 @@ export class ContactoViewComponent implements OnInit {
   }
 
   postContacto() {
+    this.loaderService.updateIsLoading(true);
     if (this.comments.name != undefined && this.comments.email != undefined && this.comments.message != undefined) {
       this.isDataIndalid();
 
@@ -49,8 +50,6 @@ export class ContactoViewComponent implements OnInit {
               summary: 'Mensaje enviado con éxito',
               life: 2000,
             });
-
-
             this.loaderService.updateIsLoading(false);
           },
           error: (error: { message: any }) => {
