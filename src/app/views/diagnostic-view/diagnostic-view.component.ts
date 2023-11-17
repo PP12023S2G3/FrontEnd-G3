@@ -82,7 +82,7 @@ export class DiagnosticViewComponent implements OnInit {
     'Deformidad': false
   };
 
-  formattedDate: string = ''; // Variable para almacenar la fecha formateada
+  formattedDate: string = '';
   esVisible: boolean = false;
   nroResultado !:any;
   roleId: any;
@@ -96,11 +96,9 @@ export class DiagnosticViewComponent implements OnInit {
     private userAccountService: UserAccountService,private messageService: MessageService, private router: Router) {
     this.IdUser = parseInt(this.userAccountService.userId);
     this.roleId = localStorage.getItem('roleId');
-    console.log(this.roleId);
   }
 
   ngOnInit(): void {
-    console.log(this.imagenURL);
     this.sexOptions = [
       { label: 'Masculino', value: 1 },
       { label: 'Femenino', value: 2 }
@@ -126,84 +124,74 @@ export class DiagnosticViewComponent implements OnInit {
 onCheckboxChange(section: string, option: string) {
   if (section === 'Cerebro') {
     if (this.selectedOptionsCerebro[option]) {
-      console.log(option + ' en Cerebro fue marcado');
     } else {
-      console.log(option + ' en Cerebro fue desmarcado');
     }
   } else if (section === 'Pulmón') {
     if (this.selectedOptionsPulmon[option]) {
-      console.log(option + ' en Pulmón fue marcado');
     } else {
-      console.log(option + ' en Pulmón fue desmarcado');
     }
   }
-  console.log( this.selectedOptionsCerebro['Convulsiones']);
-
 }
 
 onFileSelect(event: any) {
-  console.log('onFileSelect called');
   const selectedFile = event.target.files[0];
   if (selectedFile) {
     if (selectedFile.type === 'application/x-zip-compressed' && this.selectedpartOption == 'Rodilla') {
-      console.log("hola")
       const jszip = new JSZip();
       jszip.loadAsync(selectedFile)
         .then((zip) => {
-          if (
-            selectedFile.size <= this.maxFileSize &&
-            this.acceptedFileTypes.split(',').includes(selectedFile.type)
-          ) {
+          if (selectedFile.size <= this.maxFileSize && this.acceptedFileTypes.split(',').includes(selectedFile.type)) {
             this.uploadedFile = selectedFile;
             this.isResultButtonDisabled = false;
             this.getObjectURL(selectedFile);
-            this.showCancelButton = true; // Muestra el botón de cancelar
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'La imagen no cumple con los requisitos',
-              life: 2000,
-            });
-            this.resetFileInput();
+            this.showCancelButton = true;
+          } 
+          else {
+            this.handleInvalidImage();
           }
         })
         .catch((error) => {
           console.error('Error al cargar el archivo ZIP:', error);
         });
     }
-    else if (
-      (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') &&
-      ['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón'].includes(this.selectedpartOption)
-    ) {
-      // Manejar el caso de las imágenes
+    else if ((selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') 
+    && ['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón'].includes(this.selectedpartOption)) {
       const image = new Image();
       image.src = window.URL.createObjectURL(selectedFile);
-
       image.onload = () => {
-        if (
-          selectedFile.size <= this.maxFileSize &&
-          this.acceptedFileTypes.split(',').includes(selectedFile.type) &&
-          image.width >= this.minImageWidth &&
-          image.height >= this.minImageHeight
-        ) {
-          console.log('Imagen válida:', selectedFile);
+        if (selectedFile.size <= this.maxFileSize && this.acceptedFileTypes.split(',').includes(selectedFile.type)
+        && image.width >= this.minImageWidth && image.height >= this.minImageHeight) {
           this.uploadedFile = selectedFile;
           this.isResultButtonDisabled = false;
           this.getObjectURL(selectedFile);
-          this.showCancelButton = true; // Muestra el botón de cancelar
-        } else {
+          this.showCancelButton = true;
+        }
+        else if (this.acceptedFileTypes.split(',').includes(selectedFile.type) 
+        && (image.width < this.minImageWidth || image.height < this.minImageHeight)) {
           this.handleInvalidImage();
+        }
+        else {
+          this.handleInvalidFileNotKnee()
         }
       };
     }
-    else if ( (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') &&
-    !['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón'].includes(this.selectedpartOption)) {
-      this.handleInvalidCompletedSectionBody();
+    else if ((selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png') 
+    && ['Rodilla'].includes(this.selectedpartOption)) {
+      this.handleInvalidFileKnee();
     }
-  } else {
+    else if ((selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png' || selectedFile.type === 'application/x-zip-compressed') 
+    && !['Cerebro', 'Corazon', 'Riñón', 'Muñeca', 'Pulmón, Rodilla'].includes(this.selectedpartOption)) {
+      this.handleInvalidCompletedSectionBody()
+    }
+    else if (selectedFile.type === 'application/x-zip-compressed' && this.selectedpartOption != 'Rodilla') {
+      this.handleInvalidFileNotKnee()
+    }
+    else{
+      this.handleInvalidCompletedSectionBody()
+    }
+  } 
+  else {
     this.resetFileInput();
-    this.handleNoImageSelected();
   }
 }
 
@@ -211,7 +199,27 @@ private handleInvalidImage() {
   this.messageService.add({
     severity: 'error',
     summary: 'Error',
-    detail: 'La imagen no cumple con los requisitos',
+    detail: 'La imagen no cumple con el mínimo de 224x224 px',
+    life: 2000,
+  });
+  this.resetFileInput();
+}
+
+private handleInvalidFileKnee() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'Solo se permite ZIP',
+    life: 2000,
+  });
+  this.resetFileInput();
+}
+
+private handleInvalidFileNotKnee() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'Solo se permite JPEG o PNG',
     life: 2000,
   });
   this.resetFileInput();
@@ -241,24 +249,15 @@ resetFileInput() {
   this.imagenURL = null;
   this.uploadedFile = null;
   this.isResultButtonDisabled = true;
-
-  // Obtener el elemento input por ID
   const fileInput = document.getElementById('chooseFileInput') as HTMLInputElement;
-
-  // Limpiar el valor del input
   fileInput.value = '';
-
-  // Limpiar y volver a asignar el evento change
   fileInput.removeEventListener('change', this.onFileSelect.bind(this));
   fileInput.addEventListener('change', this.onFileSelect.bind(this));
-
-  console.log(this.imagenURL);
-  console.log(this.uploadedFile);
 }
 
   cancelImageUpload() {
     this.resetFileInput();
-    this.showCancelButton = false; // Oculta el botón de cancelar
+    this.showCancelButton = false;
   }
 
   getObjectURL(file: File) {
@@ -277,7 +276,6 @@ resetFileInput() {
     this.diagnostic.sectionBody = this.selectedpartOption;
     this.diagnostic.gender = this.selectedsexOption;
     this.diagnostic.doctor = this.doctor;
-    console.log(this.selectedpartOption);
     if(this.uploadedFile){
     this.diagnostic.image = this.uploadedFile; }
 
@@ -314,34 +312,18 @@ resetFileInput() {
 
   postResult(file: File) {
     if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Corazon') {
-
       const req=this.resultService.createRequestHeart(file,this.selectedOptionsCorazon['Palpitaciones'],
       this.selectedOptionsCorazon['Dolor miembros sup. izq.'],this.selectedOptionsCorazon['Disnea'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
-
-      console.log(req);
       this.loaderService.updateIsLoading(true);
       this.resultService.postResultHeart(req).subscribe({
         next: (res) => {
           localStorage.setItem('idResult', JSON.stringify(res.id));
           this.nroResultado = res.id;
-
           this.redirectByRole();
           this.loaderService.updateIsLoading(false);
-          console.log(this.roleId);
-          console.log("PASE POR EL RESULTADO");
-
-          console.log('Contraccion ventricular prematura:', res.contraccionVentricular);
-          console.log('Fusion de latido ventricular y normal:', res.fusionVentricularNormal);
-          console.log('Infarto de miocardio:', res.infarto);
-          console.log('Latido no clasificable:', res.no_clasificable);
-          console.log('Latido normal:', res.normal);
-          console.log('Latido prematuro supraventricular:', res.prematuroSupraventricular);
-          console.log('imagen_id:', res.imagen_id);
-          console.log('id:', res.id);
         },
         error: (error: { message: any }) => {
-          console.log(error);
           this.messageService.add({
             severity: 'error',
             summary: error.message,
@@ -362,13 +344,6 @@ resetFileInput() {
         this.nroResultado = res.id;
         this.redirectByRole();
         this.loaderService.updateIsLoading(false);
-        console.log(res);
-        console.log(res.pituitary);
-        console.log(res.no_tumor);
-        console.log(res.meningioma);
-        console.log(res.glioma);
-        console.log(res.imagen_id);
-        console.log(res.id);
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -392,11 +367,6 @@ resetFileInput() {
         this.nroResultado = res.id;
         this.redirectByRole();
         this.loaderService.updateIsLoading(false);
-        console.log(res);
-        console.log(res.pneumonia);
-        console.log(res.no_pneumonia);
-        console.log(res.imagen_id);
-        console.log(res.id);
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -409,8 +379,6 @@ resetFileInput() {
   }
 
   else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Rodilla') {
-
-
     const reqKnee=this.resultService.createRequestKnee(file,this.selectedOptionsRodilla['Sensación de inestabilidad'],
     this.selectedOptionsRodilla['Prueba cajón ant. pos.'],this.selectedOptionsRodilla['Impotencia funcional'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
@@ -421,13 +389,6 @@ resetFileInput() {
         this.nroResultado = res.id;
         this.redirectByRole();
         this.loaderService.updateIsLoading(false);
-        console.log(res);
-        console.log('prediction:', res.prediction);
-        console.log('LCA sano:', res.prediction.lcaSano);
-        console.log('Rotura en el LCA:', res.prediction.roturaLCA);
-        console.log('id:', res.id);
-        console.log('imagen_id:', res.imagen_id);
-
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -435,13 +396,12 @@ resetFileInput() {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
   }
 
   else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Riñón') {
-
-
     const reqKidney=this.resultService.createRequestKidney(file,this.selectedOptionsRinion['Hematuria'],this.selectedOptionsRinion['Dolor lumbar'],
     this.selectedOptionsRinion['Dolor abdominal'],this.selectedOptionsRinion['Fiebre'],this.selectedOptionsRinion['Pérdida de peso'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
@@ -452,13 +412,6 @@ resetFileInput() {
         this.nroResultado = res.id;
         this.redirectByRole();
         this.loaderService.updateIsLoading(false);
-        console.log(res);
-        console.log(res.tumor);
-        console.log(res.quiste);
-        console.log(res.piedra);
-        console.log(res.normal);
-        console.log(res.imagen_id);
-        console.log(res.id);
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -468,11 +421,8 @@ resetFileInput() {
         });
       }
     });
-
     }
-
     else if (this.doctor && this.diagnostic.weight && this.diagnostic.height && typeof this.doctor.dni === 'string' && this.selectedpartOption == 'Muñeca') {
-
       const reqWrist=this.resultService.createRequestWrist(file,this.selectedOptionsMunieca['Dolor con limitación func.'],this.selectedOptionsMunieca['Edema'],    this.selectedOptionsMunieca['Deformidad'],this.formattedDate,this.diagnostic.weight,
       this.diagnostic.height,this.selectedsexOption,this.IdUser,this.doctor.dni);
       this.loaderService.updateIsLoading(true);
@@ -482,10 +432,6 @@ resetFileInput() {
         this.nroResultado = res.id;
         this.redirectByRole();
         this.loaderService.updateIsLoading(false);
-        console.log('Fractura:', res.fractura);
-        console.log('Sin fractura:', res.sano);
-        console.log('imagen_id:', res.imagen_id);
-        console.log('id:', res.id);
       },
       error: (error: { message: any }) => {
         this.messageService.add({
@@ -502,12 +448,12 @@ resetFileInput() {
     if (this.diagnostic.dateOfBirth) {
       const date = this.diagnostic.dateOfBirth;
       const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Añade un 0 si es un solo dígito
-      const day = String(date.getDate()).padStart(2, '0'); // Añade un 0 si es un solo dígito
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
 
       this.formattedDate = `${year}-${month}-${day}`;
     } else {
-      this.formattedDate = ''; // Si la fecha es undefined, establece la variable como cadena vacía
+      this.formattedDate = '';
     }
   }
 
@@ -552,7 +498,7 @@ resetFileInput() {
     const namePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
     const lastNamePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
 
-    const validDNI = this.doctor?.dni && dniPattern.test(this.doctor.dni.toString()); // Validar el DNI
+    const validDNI = this.doctor?.dni && dniPattern.test(this.doctor.dni.toString());
 
     const validName = this.doctor?.name && typeof this.doctor.name === 'string' && this.doctor.name.length >= 2 && namePattern.test(this.doctor.name);
     const validLastName = this.doctor?.lastname && typeof this.doctor.lastname === 'string' && this.doctor.lastname.length >= 2 && lastNamePattern.test(this.doctor.lastname);
@@ -575,13 +521,10 @@ resetFileInput() {
 
   redirectByRole(){
     if(this.roleId == 3){
-      console.log("ES diagnostico");
       this.esVisible = true;
       this.router.navigate(['/diagnostico']);
     }
     else {
-      console.log("Es resultado"
-      );
       this.router.navigate(['/result']);
     }
   }

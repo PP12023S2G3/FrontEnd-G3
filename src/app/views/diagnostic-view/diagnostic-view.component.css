@@ -205,13 +205,15 @@
 .container-custom-file-input {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   border: 1px solid var(--border-box-color);
   border-radius: 10px;
   background-color: white;
   width: 300px;
   height: 300px;
+  gap: 20px;
+  padding: 10px;
 }
 
 .imagen-pre {
