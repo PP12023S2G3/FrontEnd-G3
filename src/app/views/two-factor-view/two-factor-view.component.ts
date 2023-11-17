@@ -61,7 +61,7 @@ export class TwofactorViewComponent {
       error: (error: { message: any; }) => {
         this.messageService.add({
           severity: 'error',
-          summary: error.message,
+          summary: 'El código es inválido',
           life: 2000,
         });
         this.loaderService.updateIsLoading(false);
