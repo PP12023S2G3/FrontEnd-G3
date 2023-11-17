@@ -4,15 +4,6 @@
 <div class="historial">
     <div class="container-table-historial">
         <div class="filters">
-            <!--div class="campo">
-                <span class="p-input-icon-left">
-                    <span class="icon">
-                        <i class="pi pi-search" style="font-size: 1.5rem; padding: 10px 10px 10px 10px;"></i>
-                    </span>
-                    <input type="text" (input)="dtTransactions.filterGlobal($any($event.target).value, 'contains')"
-                    pInputText [(ngModel)]="value" placeholder="Código de Informe, Estudio..."/>
-                </span>
-            </div-->
             <div>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search" style="font-size: 18px; color: #797979;"></i>
@@ -50,7 +41,7 @@
              [value]="isFilter ? filteredData : records"
              id="tableTransactions"
              [paginator]="true"
-             [rows]="3"
+             [rows]="4"
              #dtTransactions
              [globalFilterFields]="['id','modelo_nombre', 'nombre_medico', 'apellido_medico']"
              selectionMode="single"

@@ -4,7 +4,7 @@
     align-items: center;
     background: #efefef;
     justify-content: center;
-    margin-top: 130px;
+    margin-top: 90px;
 }
 
 .container-table-historial {
@@ -124,14 +124,26 @@ td, tr, th {
     }
     .table{
         width: 300px;
-        border-radius: 10px;
         border: 1px solid var(--border-box-color);
+        border-radius: 10px;
     }
 
     :host::ng-deep .p-calendar .p-datepicker{
         width: 300px !important;
         left: 0 !important;
     }
-  }
 
+    :host::ng-deep .p-datatable-table {
+        width: 300px;
+        border-radius: 10px;
+    }
 
+    :host::ng-deep .p-table{
+        display: flex;
+        width: 100%;
+    }
+
+    :host::ng-deep .p-datatable>.p-datatable-wrapper {
+        overflow: hidden;
+    }
+}

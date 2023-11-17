@@ -6,7 +6,6 @@ import { UserAccountService } from 'src/app/services/userAccount/userAccount.ser
 import { Location } from '@angular/common';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
 
-
 @Component({
   selector: 'app-historial-view',
   templateUrl: './historial-view.component.html',
@@ -15,7 +14,6 @@ import { LoaderService } from 'src/app/shared/loader/loader.service';
 })
 
 export class HistorialViewComponent implements OnInit {
-
     tituloDinamico = 'Historial';
     calendarIcon = 'pi pi-calendar';
     filteredData: any[] = [];
@@ -23,45 +21,40 @@ export class HistorialViewComponent implements OnInit {
     IdRole: any;
     IdUser: any;
     cambiarTitulo(nuevoTitulo: string) {
-    this.tituloDinamico = nuevoTitulo;
-  }
-
+      this.tituloDinamico = nuevoTitulo;
+    }
     rangeDates: Date[] | undefined;
     value: string | undefined;
-
     records: any;
-
     dateTime = new Date();
-    constructor(private location: Location, private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router, private loaderService:LoaderService) {
-        this.dateTime.setDate(this.dateTime.getDate());
-        this.IdRole = this.userAccountService.roleId;
-        console.log(this.IdRole);
-        this.IdUser = this.userAccountService.userId;
-        console.log(this.IdUser);
-    }
 
-    ngOnInit(): void {
-      this.loaderService.updateIsLoading(true);
-      this.getRecordAll();
-      const hasReloaded = localStorage.getItem('hasReloaded');
-      if (!hasReloaded) {
-        localStorage.setItem('hasReloaded', 'true');
-        location.reload();
-      }
+  constructor(private location: Location, private messageService: MessageService,private userAccountService: UserAccountService,private resultService: ResultService, private router: Router, private loaderService:LoaderService) {
+    this.dateTime.setDate(this.dateTime.getDate());
+    this.IdRole = this.userAccountService.roleId;
+    this.IdUser = this.userAccountService.userId;
+  }
+
+  ngOnInit(): void {
+    this.loaderService.updateIsLoading(true);
+    this.getRecordAll();
+    const hasReloaded = localStorage.getItem('hasReloaded');
+    if (!hasReloaded) {
+      localStorage.setItem('hasReloaded', 'true');
+      location.reload();
     }
+  }
   
-
   applyDateFilter() {
     if (this.rangeDates) {
       this.isFilter = true;
       const startDate = this.formatDateToString(this.rangeDates[0]);
       const endDate = this.formatDateToString(this.rangeDates[1]);
-
       this.filteredData = this.records.filter((item: any) => {
         const itemDate = item.fecha.split(' ')[0];
         return itemDate >= startDate && itemDate <= endDate;
       });
-    } else {
+    } 
+    else {
       this.filteredData = this.records;
     }
   }
@@ -70,35 +63,30 @@ export class HistorialViewComponent implements OnInit {
     return date.toISOString().slice(0, 10);
   }
 
-    clearFilter() {
-      this.isFilter = false;
-      this.rangeDates = undefined; // Limpia el rango de fechas (si estás usando rangeDates)
-      this.filteredData = this.records; // Restablece los datos filtrados
-    }
-
-    private getRecordAll() {
-      //:TODO este rol y id de usuario esta harcodeado
-
-        this.resultService.getRecordAll(this.IdUser,this.IdRole).subscribe({
-            next: (res) => {
-              this.records=res.historial;
-              this.loaderService.updateIsLoading(false);
-            },
-            error: (error: { message: any }) => {
-              console.log(error);
-              this.messageService.add({
-                severity: 'error',
-                summary: error.message,
-                life: 2000,
-              });
-              this.loaderService.updateIsLoading(false);
-            }
-          });
-
+  clearFilter() {
+    this.isFilter = false;
+    this.rangeDates = undefined;
+    this.filteredData = this.records;
   }
-    getRecord(id_diagnostico:number) {
-      localStorage.setItem('idResult', JSON.stringify(id_diagnostico));
-      this.router.navigate(['/result']);
-    }
 
+  private getRecordAll() {
+    this.resultService.getRecordAll(this.IdUser,this.IdRole).subscribe({
+      next: (res) => {
+        this.records=res.historial;
+        this.loaderService.updateIsLoading(false);
+      },
+      error: (error: { message: any }) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: error.message,
+          life: 2000,
+        });
+        this.loaderService.updateIsLoading(false);
+      }
+    });
+  }
+  getRecord(id_diagnostico:number) {
+    localStorage.setItem('idResult', JSON.stringify(id_diagnostico));
+    this.router.navigate(['/result']);
+  }
 }
