@@ -46,12 +46,27 @@ export class NewPasswordViewComponent {
   onSubmit() {
     if (this.password1 == '' || this.password2 == '') {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ambos campos son obligatorios', life: 2000 });
+
     } else {
-      if (this.password1 == this.password2) {
+
+      this.isDataIndalid();
+
+      if (this.password1 == this.password2 && !this.form) {
         this.loaderService.updateIsLoading(true);
         this.postResetPassword();
-      } else {
+
+      } else if (this.password1 != this.password2) {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Las contraseñas no coinciden', life: 2000 });
+      }
+      
+      else { 
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Datos erroneos por favor corregir',
+          life: 2000,
+        });
+        
       }
     }
     console.log('pass1: '+this.password1 + ' pass2: ' + this.password2);
@@ -87,9 +102,6 @@ export class NewPasswordViewComponent {
   }
 
   postResetPassword() {
-    if(this.password1 != undefined && this.password2 != undefined){
-      this.isDataIndalid();
-      if (!this.form) {
         this.userAccountService.postResetPassword(this.password1, this.password2, localStorage.getItem('tokenReset') || '').subscribe({
           next: (res) => {
             this.showModal();
@@ -104,22 +116,12 @@ export class NewPasswordViewComponent {
             this.loaderService.updateIsLoading(false);
           }
         });
-      }else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Datos erroneos por favor corregir',
-          life: 2000,
-        });
-        
-      }
-    }
   }
 
   isDataIndalid() {
-    const patternPassword = /^(?=.*[a-zñÑ])(?=.*[A-ZÑñ])(?=.*\d)[a-zA-Z0-9ñÑ]*$/
-    const isPassword1Valid = this.password1 && this.password1.length >= 8 && patternPassword.test(this.password1);
-    const isPassword2Valid = this.password2 && this.password2.length >= 8 && patternPassword.test(this.password2);
+    const patternPassword = /^(?=.*[a-zñÑ])(?=.*[A-ZÑñ])(?=.*\d)[a-zA-Z0-9ñÑ]{8,}$/
+    const isPassword1Valid = this.password1 && patternPassword.test(this.password1);
+    const isPassword2Valid = this.password2 && patternPassword.test(this.password2);
 
     if (isPassword1Valid && isPassword2Valid) {
       this.form = false;
