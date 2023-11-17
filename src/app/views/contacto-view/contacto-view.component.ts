@@ -87,11 +87,13 @@ export class ContactoViewComponent implements OnInit {
   isDataIndalid() {
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const namePattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+    const messagePattern = /^(.*[A-Za-z]){4}.*$/;
 
     const isNameValid = this.comments.name && this.comments.name.length >= 2 && namePattern.test(this.comments.name);
     const isEmailValid = this.comments.email && this.comments.email.length >= 4 && emailPattern.test(this.comments.email);
+    const isMessageValid = this.comments.message && this.comments.message.length >= 4 && messagePattern.test(this.comments.message);
 
-    if (isNameValid && isEmailValid) {
+    if (isNameValid && isEmailValid && isMessageValid) {
       this.form = false;
     } else {
       this.form = true;
