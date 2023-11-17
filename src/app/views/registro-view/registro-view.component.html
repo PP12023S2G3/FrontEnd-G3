@@ -11,7 +11,7 @@
                   <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
                   <input type="text" pInputText [(ngModel)]="user.name" #name="ngModel" id="nombre" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required placeholder="Ingresar nombre"/>
             </span>
-            <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;">
+            <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
               <div>
                 <span *ngIf="name.errors?.['required']">
                   Indique un nombre
@@ -35,7 +35,7 @@
                 <i class="pi pi-user-edit" style="font-size: 18px; color: #797979;"></i>
                 <input type="text" pInputText [(ngModel)]="user.lastName" #lastname="ngModel" id="apellido" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required  placeholder="Ingresar apellido"/>
             </span>
-            <div *ngIf="lastname.invalid && (lastname.touched)" class="errors" style="margin-top: 0.3rem;">
+            <div *ngIf="lastname.invalid && (lastname.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
             <div>
               <span *ngIf="lastname.errors?.['required']">
                 Indique un apellido
@@ -60,7 +60,7 @@
                 <input type="text" pInputText [(ngModel)]="user.dni" #dni="ngModel" id="dni" required pattern="^[0-9]{7,8}$"
                 placeholder="Ingresar DNI"/>
             </span>
-            <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
+            <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
               <div>
                 <span *ngIf="dni.errors?.['required']">
                   Indique un DNI
@@ -94,7 +94,7 @@
               <i class="pi pi-at" style="font-size: 18px; color: #797979;"></i>
               <input type="email" pInputText [(ngModel)]="user.email" #email="ngModel" id="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Ingresar email"/>
             </span>
-            <div *ngIf="email.invalid && (email.touched)" class="errors" style="margin-top: 0.3rem;">
+            <div *ngIf="email.invalid && (email.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
               <div>
                 <span *ngIf="email.errors?.['required']">
                   Indique un email
@@ -139,7 +139,7 @@
                 </ng-template>
               </p-password>
             </span>
-            <div *ngIf="password.invalid && (password.touched)" class="errors" style="margin-top: 0.3rem;">
+            <div *ngIf="password.invalid && (password.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
               <div>
                 <span *ngIf="password.errors?.['required']">
                   Indique una contraseña

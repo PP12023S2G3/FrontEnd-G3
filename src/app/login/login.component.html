@@ -9,7 +9,7 @@
           <i class="pi pi-id-card" style="font-size: 18px; color: #797979;"></i>
           <input type="text" pInputText [(ngModel)]="persona.dni" name="dni" #dni="ngModel" required  pattern="^[0-9]{7,8}$" placeholder="Ingresar DNI"/>
       </span>
-      <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
+      <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
         <div>
           <span *ngIf="dni.errors?.['required']">
           </span>
@@ -34,7 +34,7 @@
             >
           </p-password>
       </span>
-      <div *ngIf="password.invalid && (password.touched)" class="errors" style="margin-top: 0.3rem;">
+      <div *ngIf="password.invalid && (password.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
         <div>
           <span *ngIf="password.errors?.['required']">
             Indique una contraseña

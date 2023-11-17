@@ -10,7 +10,7 @@
           <h6 class="title-dni-doctor">DNI</h6>
           <input class="input-dni-doctor" type="text" placeholder="Ingrese DNI" pInputText tabindex="1"
           [(ngModel)]="doctor.dni" #dni="ngModel" name="dni" id="dni" required pattern="^[0-9]{7,8}$"/>
-          <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;">
+          <div *ngIf="dni.invalid && (dni.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
             <div>
               <span *ngIf="dni.errors?.['required']">Indique un DNI</span>
             </div>
@@ -24,7 +24,7 @@
           <h6 class="title-name-doctor">Nombre</h6>
           <input class="input-name-doctor" type="text" placeholder="Ingrese nombre" pInputText tabindex="2"
           [(ngModel)]="doctor.name" name="name" #name="ngModel" id="name" [minlength]="2" pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$"  required/>
-          <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;">
+          <div *ngIf="name.invalid && (name.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
             <div>
               <span *ngIf="name.errors?.['required']">Indique un nombre</span>
             </div>
@@ -41,7 +41,7 @@
           <h6 class="title-lastname-doctor">Apellido</h6>
           <input class="input-lastname-doctor" type="text" placeholder="Ingrese apellido" pInputText tabindex="3"
           [(ngModel)]="doctor.lastname" name="lastname" id="lastname" [minlength]="2" #lastname="ngModel"  pattern="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$" required/>
-          <div *ngIf="lastname.invalid && (lastname.touched)" class="errors" style="margin-top: 0.3rem;">
+          <div *ngIf="lastname.invalid && (lastname.touched)" class="errors" style="margin-top: 0.3rem;font-size: 14px;">
             <div>
               <span *ngIf="lastname.errors?.['required']">Indique un apellido</span>
             </div>
@@ -73,7 +73,7 @@
           (ngModelChange)="formatDate()"
           [icon]="calendarIcon" #date="ngModel">
           </p-calendar>
-          <div *ngIf="date.invalid && (date.touched)" class="errors" style="margin-top: -4rem;">
+          <div *ngIf="date.invalid && (date.touched)" class="errors" style="margin-top: -4rem;font-size: 14px;">
                   <div>
                     <span *ngIf="date.invalid">Indique una fecha</span>
                   </div>
@@ -85,7 +85,7 @@
           <input class="input-weight-patient" type="number" placeholder="Ingrese peso" pInputText tabindex="5"
           [(ngModel)]="diagnostic.weight" name="weight" #weight="ngModel" id="weight"
           pattern="^(?:[1-9]|[1-9][0-9]|1[0-9]{2}|200)$" required/>
-          <div *ngIf="weight.invalid && (weight.touched)" class="errors" style="margin-top: -4rem;">
+          <div *ngIf="weight.invalid && (weight.touched)" class="errors" style="margin-top: -4rem;font-size: 14px;">
             <div>
               <span *ngIf="weight.errors?.['required']">Indique un peso</span>
             </div>
@@ -100,7 +100,7 @@
           <input class="input-height-patient" type="number" placeholder="Ingrese altura" pInputText tabindex="6"
           [(ngModel)]="diagnostic.height"  name="height" #height="ngModel" id="height"
           pattern="^(?:[2-9]|[1-9][0-9]|1[0-9]{2}|200|2[5-9]|[3-9][0-9]|[1-9][0-9]{2}|1[0-9]{3}|2[0-2][0-9]|230)$" required/>
-          <div *ngIf="height.invalid && (height.touched)" class="errors" style="margin-top: -4rem;">
+          <div *ngIf="height.invalid && (height.touched)" class="errors" style="margin-top: -4rem;font-size: 14px;">
             <div>
               <span *ngIf="height.errors?.['required']">Indique una altura</span>
             </div>
