@@ -13,7 +13,8 @@
   width: 30px;
   height: 30px;
   margin-right: 10px;
-  margin-top: 6px;
+  margin-top: 8px;
+  margin-left: 1rem;
 }
 .title {
   font-size: 32px;
@@ -26,5 +27,9 @@
 @media screen and (max-width: 767.5px) {
   .toolbar{
     justify-content: center;
+  }
+
+  .toolbar .foto img {
+    margin-left: 0!important;
   }
 }
