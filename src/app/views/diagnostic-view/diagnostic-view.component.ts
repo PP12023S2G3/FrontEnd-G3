@@ -329,6 +329,7 @@ resetFileInput() {
             summary: error.message,
             life: 2000,
           });
+          this.loaderService.updateIsLoading(false);
         }
       });
     }
@@ -351,6 +352,7 @@ resetFileInput() {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
 
@@ -374,6 +376,7 @@ resetFileInput() {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
   }
@@ -419,6 +422,7 @@ resetFileInput() {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
     }
@@ -439,6 +443,7 @@ resetFileInput() {
           summary: error.message,
           life: 2000,
         });
+        this.loaderService.updateIsLoading(false);
       }
     });
   }
