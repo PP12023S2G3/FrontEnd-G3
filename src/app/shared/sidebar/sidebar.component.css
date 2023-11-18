@@ -75,6 +75,11 @@
         left: 0px;
     }
 
+    .header-sidebar img{
+        height: 90px;
+        width: 90px;
+    }
+
     .name-header-sidebar {
         font-size: 16px;
     }
@@ -129,6 +134,10 @@
         margin-top: 40px;
         margin-bottom: auto;
     }
+    .header-sidebar img{
+        height: 80px;
+        width: 80px;
+    }
   }
 
  @media screen and ( max-height: 420px ) {
@@ -136,6 +145,10 @@
         padding: 0px;
         margin-top: 20px;
         margin-bottom: auto;
+    }
+    .header-sidebar img{
+        height: 70px;
+        width: 70px;
     }
   }
 
