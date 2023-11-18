@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 80px 0px auto;
+    margin: 10vh 0px auto;
     width: 200px;
     position: relative;
     left: -20px;
@@ -63,4 +63,81 @@
 :host::ng-deep .p-sidebar .p-sidebar-content{
     padding: 0;
 }
+
+@media screen and ( max-height: 640px ) { 
+    .header-sidebar{
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        width: 200px;
+        position: relative;
+        align-items: center;
+        left: 0px;
+    }
+
+    .name-header-sidebar {
+        font-size: 16px;
+    }
+
+    .id-header-sidebar {
+        font-size: 16px;
+    }
+
+    .link-sidebar {
+        font-size: 14px;
+        padding: 0px;
+    }
+
+    .logout-link-sidebar {
+        font-size: 14px;
+    }
+
+    .content-sidebar {
+        margin: 0px;
+    }
+
+    :host::ng-deep .p-sidebar .p-sidebar-content{
+        padding: 0;
+        display: flex;
+        gap: 3vh;
+        flex-direction: column;
+    }
+
+    :host::ng-deep .p-sidebar .p-sidebar-header {
+        padding: 0px;
+        margin-top: 60px;
+        margin-bottom: auto;
+    }
+
+    :host::ng-deep .p-sidebar .p-sidebar-footer {
+        padding: 0px;
+        margin-bottom: 2vh;
+    }
+
+    :host::ng-deep .p-sidebar-content {
+        overflow-y: hidden;
+    }
+
+    :host::ng-deep .p-sidebar{
+        justify-content: space-evenly;
+    }
+ }
+
+ @media screen and ( max-height: 530px ) {
+    :host::ng-deep .p-sidebar .p-sidebar-header {
+        padding: 0px;
+        margin-top: 40px;
+        margin-bottom: auto;
+    }
+  }
+
+ @media screen and ( max-height: 420px ) {
+    :host::ng-deep .p-sidebar .p-sidebar-header {
+        padding: 0px;
+        margin-top: 20px;
+        margin-bottom: auto;
+    }
+  }
+
+
 
