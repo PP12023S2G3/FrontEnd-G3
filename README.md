@@ -38,6 +38,8 @@ A continuación se presentan las tecnologías y herramientas se utilizaron a lo 
 * **[Angular](https://angular.io/)**
 * **[PrimeNG](https://primeng.org/)**
 * **[Selenium](https://www.selenium.dev/)**
+* **[Drive](https://drive.google.com/drive/folders/1PghwhiKPNhhxW2ZwJTrYwxDCKrcuOMwM)**
+* **[Jira](https://pp12023s2g3.atlassian.net/jira/software/projects/PP1G3/boards/1)**
 
 # Alcance
 ### El equipo se dedicará a realizar la interfaz y experiencia de usuario del sistema. Para que la solución pueda completarse:
