@@ -152,5 +152,38 @@
     }
   }
 
+  @media screen and ( max-height: 360px ) {
+    :host::ng-deep .p-sidebar .p-sidebar-header {
+        padding: 0px;
+        margin-top: 20px;
+        margin-bottom: auto;
+    }
+    .header-sidebar img{
+        height: 60px;
+        width: 60px;
+    }
+
+    .name-header-sidebar {
+        font-size: 14px;
+    }
+
+    .id-header-sidebar {
+        font-size: 14px;
+    }
+
+    .link-sidebar {
+        font-size: 12px;
+        padding: 0px;
+    }
+
+    .logout-link-sidebar {
+        font-size: 12px;
+    }
+
+    .content-sidebar {
+        margin: 0px;
+    }
+  }
+
 
 
