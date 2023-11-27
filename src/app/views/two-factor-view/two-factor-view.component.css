@@ -1,17 +1,21 @@
 .body-two-factor {
-    height: 100%;
-    width:  100%;
-    background-color: #efefef;
+    display: flex;
+    justify-content: center;
 }
+
 .container-two-factor {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
     width: 460px;
-    height: 636px;
-    margin: 65px auto auto;
     border: 2px solid var(--border-box-color);
     background-color: var(--font-color-light);
     border-radius: 10px;
     padding: 20px;
+    gap: 20px;
 }
+
 .title-two-factor {
     color: #000;
     font-size: 32px;
@@ -19,49 +23,28 @@
     text-align: center;
     margin: 0px;
 }
+
 .container-icon-two-factor {
-    width: 100px;
-    height: 100px;
-    margin:40px auto auto;
-    text-align: center;
-    position: relative;
+    display: flex;
+    justify-content: flex-end;
 }
+
 .icon-two-factor {  
-    font-size: 90px;
+    font-size: var(--font-size-title1);
+    padding: 5px;
 }
+
 .circle-two-factor {
-    width: 40px;
-    height: 40px;
+    height: 20px;
+    width: 20px;
     position: absolute;
-    top: -10px;
-    right: -10px;
 }
-.subtitle-two-factor {
-    text-align: center;
-    color: #000;
-    font-weight: 400;
-    margin: 25px 0px;
-    font-size: 30px;
-}
-.instruction-two-factor {
-    text-align: center;
-    color: #797979;
-    font-weight: 400;
-    margin: 25px 0px;
-    font-size: 18px;
-}
-.code-title-two-factor {
-    text-align: center;
-    color: #000;
-    font-weight: 400;
-    margin: 25px 0px;
-    font-size: 16px;
-}
+
 .form-two-factor {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 25px;
+    align-items: center;
+    gap: 20px;
 }
 .code-two-factor {
     display: flex;
@@ -143,52 +126,18 @@
   }
 .blur-div{
     filter: blur(2px);
-  }
+}
+
+p{
+    text-align: center;
+}
 
 @media screen and (max-width: 768px) {
     .body-two-factor {
         border: none;
     }
-        .container-two-factor {
-        background-color: #efefef;
-        border: none;
-    }
-    .code-two-factor {
-        width: 90%;
-        margin: auto;
-    }
-    .enabled-button-two-factor {
-        width: 90%;
-    }
-    .disabled-button-two-factor {
-        width: 90%;
+    .container-two-factor {
+       background-color: #efefef;
+       border: none;
     }
 }
-@media screen and (max-width: 500px) {
-    .container-two-factor{
-        width: 100vw;
-        height: 100vh;
-    }
-    .title-two-factor {
-        font-size: 24px;
-        margin: 0px;
-    }
-    .subtitle-two-factor {
-        font-weight: 400;
-        margin: 15px 0px;
-        font-size: 26px;
-    }
-    .gradient-button-two-factor {
-        width: 90%;
-    }
-    .input-two-factor {
-        width: 65px;
-        height: 65px;
-    }
-}
-
-
-
-
-  
-

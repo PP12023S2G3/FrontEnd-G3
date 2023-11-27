@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener  } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,17 +8,17 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor (private router: Router){}
+  constructor(private router: Router) {}
 
-  toggleSidebar() {
-    console.log("abrir sidebar")
+  ngOnInit(): void {}
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event): void {
+    const toolbar = document.querySelector('.toolbar') as HTMLElement | null;
+    if (toolbar && window.scrollY > toolbar.offsetTop) {
+      toolbar.classList.add('sticky');
+    } else if (toolbar) {
+      toolbar.classList.remove('sticky');
+    }
   }
-
-  ngOnInit(): void {
-  }
-
-  redirectLogin() {
-    this.router.navigateByUrl('/login');
-  }
-
 }

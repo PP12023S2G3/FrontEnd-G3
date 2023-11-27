@@ -89,10 +89,6 @@
     text-align: right;
 }
 
-:host::ng-deep .p-button-global{
-    margin-top: 0px;
-}
-
 :host::ng-deep .title4{
     margin: 0px;
 }

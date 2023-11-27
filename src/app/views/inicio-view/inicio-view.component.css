@@ -52,18 +52,6 @@
   align-items: center; /* Centra verticalmente */
 }
 
-
-
---Description
-
-
-.container-description-inicio h1,
-.container-description-inicio h4,
-.container1-description-inicio h1,
-.description-conteiner2 h4 {
-  text-align: center;
-}
-
 .conteiner-foto img {
   border: 1px solid transparent;
   border-radius: 50px;
@@ -88,24 +76,6 @@
   max-width: 340px;
   margin: 2vw;
   flex-wrap: wrap;
-}
-
-h4 {
-  width: 970px;
-  max-width: 85vw;
-  text-align: center;
-}
-
-h1 {
-  width: 970px;
-  max-width: 85vw;
-  font-size: 72px;
-  text-align: center;
-}
-
-.paragraph3{
-  margin: 0px;
-  text-align: center;
 }
 
 .description-text-conteiner {
@@ -134,16 +104,12 @@ h1 {
   max-height: 460px;
 }
 
+h1, h2, p{
+  text-align: center;
+}
+
 @media screen and (max-width: 767.5px) {
-    h4 {
-      font-size: 24px;
-    }
-
-    h1 {
-      font-size: 40px;
-    }
-
-    .inicio-imagen {
+  .inicio-imagen {
     order: 2;
   }
   .container-login-inicio {

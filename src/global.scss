@@ -1,37 +1,37 @@
 :root {
-  height: 100%;
-  --background-color-light: #f2f0f0;
-  --font-color-light: #ffffff;
-  --gradient-green: linear-gradient(90deg, #797979, #4c707d, #1b6581, #4b5c8b);
-  --gradient-pink: linear-gradient(90deg, #e62d9c 0.04%, #531981 102.56%);
+  --background-color-light: #EFEFEF;
+  --font-color-light: #FFFFFF;
+  --font-color-dark: #000000;
+  --gradient-green: linear-gradient(90deg, #797979, #4C707D, #1B6581, #4B5C8B);
+  --gradient-pink: linear-gradient(90deg, #E62D9C 0.04%, #531981 102.56%);
+  --campos: #797979;
+  --gradient-disabled: linear-gradient(90deg, rgba(230, 45, 156, 0.25) 0.04%, rgba(83, 25, 129, 0.25) 102.56%);
   --error-color: red;
   --border-box-color: #598480;
   --font-family-all: "Poppins", sans-serif;
   --font-family-error: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --font-weight-normal: normal;
   --font-weight-bold: bold;
-  --font-size-display1: 6vw;
-  --font-size-title1: 56px;
-  --font-size-title2: 48px;
-  --font-size-title3: 36px;
-  --font-size-title4: 32px;
-  --font-size-title5: 24px;
-  --font-size-title6: 18px;
-  --font-size-paragraph1: 32px;
-  --font-size-paragraph2: 24px;
-  --font-size-paragraph3: 18px;
-  --text-color-1: #0C0C20;
-  --header-height: 70px;
+  --font-size-display1: 4.5rem; /*72px*/
+  --font-size-title1: 3.5rem; /*56px*/
+  --font-size-title2: 3rem; /*48px*/
+  --font-size-title3: 2.25rem; /*36px*/
+  --font-size-title4: 2rem; /*32px*/
+  --font-size-title5: 1.5rem; /*24px*/
+  --font-size-title6: 1.125rem; /*18px*/
+  --font-size-paragraph1: 2rem; /*32px*/
+  --font-size-paragraph2: 1.5rem; /*24px*/
+  --font-size-paragraph3: 1.125rem; /*18px*/
+  --font-size-paragraph4: 1rem; /*16px*/
+  --font-size-link: 0.875rem; /*14px*/
 }
 
-html,
-body {
+html, body {
   margin: 0%;
   padding: 0%;
   //Cualquier cosa sacar min-height
   //min-height: 100vh;
-  background: #efefef;
-  //y background si funciona mal en otras pantallas!!!
+  background: #EFEFEF;
 }
 
 * {
@@ -40,87 +40,112 @@ body {
 
 .p-button-link {
   color:var(--text-color-1);
-  font-size: 16px;
+  font-size: var(--font-size-link);
   font-style: auto;
+  font-weight: bold;
 }
 
 .p-button-global {
   width: 300px;
-  height: 4rem;
-  align-items: center;
+  height: 60px;
   border-radius: 10px;
   background: var(--gradient-pink);
-  font-size: 15.94px;
+  color: var(--font-color-light);
+  font-size: 1rem;
   font-style: normal;
   font-weight: bold;
   line-height: normal;
-  bottom: 1rem;
-  margin-top: 1rem;
   border: none;
 
   &:hover {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     cursor: pointer;
   }
+
+  &:disabled{
+    background: var(--gradient-disabled);
+    color: var(--campos);
+  }
 }
 
-.display1, .title1, .title2, .title3, .title4, .title5, .title6, .paragraph1, .paragraph2, .paragraph3 {
-  font-family: var(--font-family-all);
-  font-weight: var(--font-weight-normal);
-  color: var(--text-color-1);
+.title1, .title2, .title3, .title4, .title5, .title6 {
+  font-weight: var(--font-weight-bold);
+  color: var(--font-color-dark);
   display: flex;
   justify-content: center;
-  margin: 2vw ;
   flex: 1;
+  margin: 0px;
+}
+
+.paragraph1, .paragraph2, .paragraph3, .paragraph4 {
+  font-weight: var(--font-weight-normal);
+  color: var(--font-color-dark);
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin: 0px;
 }
 
 .display1 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-display1);
-  margin: 0;
+  font-size: clamp(
+    var(--font-size-title3), /*min=36px*/
+    4vw + 1.5rem, /*valor en responsive*/
+    var(--font-size-display1) /*max=72px*/
+  );
 }
 
 .title1 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-title1);
+  font-size: clamp(
+    var(--font-size-title4), /*min=32px*/
+    3vw + 1.5rem, /*valor en responsive*/
+    var(--font-size-title1) /*max=56px*/
+  );
 }
 
 .title2 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-title2);
+  font-size: clamp(
+    var(--font-size-title5), /*min=24px*/
+    2vw + 1rem, /*valor en responsive*/
+    var(--font-size-title2) /*max=48px*/
+  );
 }
 
 .title3 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-title3);
-}
-
-.title4 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-title4);
-}
-
-.title5 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-title5);
-}
-
-.title6 {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-title6);
+  font-size: clamp(
+    var(--font-size-title6), /*min=18px*/
+    1vw + 1.5rem, /*valor en responsive*/
+    var(--font-size-title3) /*max=36px*/
+  );
 }
 
 .paragraph1 {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-paragraph1);
+  font-size: clamp(
+    var(--font-size-paragraph3), /*min=18px*/
+    1vw + 1.5rem, /*valor en responsive*/
+    var(--font-size-paragraph1) /*max=32px*/
+  );
 }
 
 .paragraph2 {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-paragraph2);
+  font-size: clamp(
+    var(--font-size-paragraph4), /*min=16px*/
+    1vw + 1rem, /*valor en responsive*/
+    var(--font-size-paragraph2) /*max=24px*/
+  );
 }
 
 .paragraph3 {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-paragraph3);
+  font-size: clamp(
+    var(--font-size-paragraph4), /*min=16px*/
+    1vw + 1rem, /*valor en responsive*/
+    var(--font-size-paragraph3) /*max=18px*/
+  );
+}
+
+.paragraph4 {
+  font-size: clamp(
+    0.875rem, /*min=14px*/
+    1vw + 1rem, /*valor en responsive*/
+    var(--font-size-paragraph4) /*max=16px*/
+  );
 }
